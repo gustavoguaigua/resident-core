@@ -1,0 +1,620 @@
+# RESIDENT Core
+
+## 1. Descripción general
+
+**RESIDENT Core** es el sistema transaccional de la plataforma RESIDENT para la administración de conjuntos residenciales.
+
+El proyecto forma parte de la **FASE 2** de RESIDENT y tiene como objetivo construir el núcleo informático que gestionará procesos como:
+
+```text
+- tenants / conjuntos residenciales;
+- usuarios, roles y permisos;
+- residentes, propietarios y unidades habitacionales;
+- alícuotas, cargos y rubros;
+- pagos y comprobantes;
+- estados de cuenta;
+- reservas de áreas comunales;
+- multas y sanciones;
+- comunicados y notificaciones;
+- reuniones, asistencia, votaciones y actas;
+- documentos seguros;
+- mantenimiento;
+- visitantes y control de accesos;
+- reportes, dashboards e indicadores;
+- importación de datos;
+- automatizaciones;
+- auditoría.
+```
+
+RESIDENT Core será la fuente de verdad transaccional del sistema. El portal WordPress multitenant existente funcionará como capa pública informativa y se integrará con Core mediante APIs controladas.
+
+---
+
+## 2. Estado actual del proyecto
+
+```text
+Estado: Preparación para implementación técnica
+Fase actual: FASE 2 — RESIDENT Core
+Metodología: Spec Driven Development — SDD
+Arquitectura inicial: Monolito modular contenerizado
+Evolución futura: Microservicios físicos cuando el dominio y la operación lo justifiquen
+```
+
+La fase documental SDD inicial ya cuenta con:
+
+```text
+- documentos SDD base;
+- ADRs arquitectónicos;
+- especificaciones funcionales 001-031;
+- contratos API;
+- modelos de datos;
+- planes de prueba;
+- tareas;
+- notas de seguridad;
+- blueprint consolidado;
+- índice maestro de specs;
+- runbook de Sprint 0.
+```
+
+---
+
+## 3. Relación con la FASE 1
+
+La **FASE 1** del proyecto RESIDENT corresponde al portal multitenant construido con WordPress.
+
+Portal actual:
+
+```text
+https://www.resident.gustavoguaigua.com
+```
+
+El portal WordPress permite presentar información pública de cada conjunto residencial, pero no debe procesar información transaccional sensible.
+
+Reglas clave:
+
+```text
+- WordPress no es backend transaccional.
+- WordPress no almacena pagos, saldos, comprobantes ni documentos privados.
+- WordPress no autentica usuarios de RESIDENT Core.
+- WordPress no reemplaza Admin Web App ni Resident Self-Service.
+- WordPress consume o enlaza información controlada desde RESIDENT Core mediante APIs seguras.
+```
+
+---
+
+## 4. Arquitectura objetivo
+
+La arquitectura inicial recomendada es:
+
+```text
+WordPress Multitenant Portal
+        ↓
+Public information / links
+        ↓
+Admin Web App / Resident Web App
+        ↓
+Keycloak
+        ↓
+RESIDENT Core API
+        ↓
+PostgreSQL / Redis / Secure Storage / Audit
+```
+
+Decisiones principales:
+
+```text
+- Backend con NestJS y TypeScript.
+- Base de datos PostgreSQL.
+- ORM Prisma.
+- Redis y BullMQ para cache, colas y procesos asíncronos.
+- Keycloak como proveedor de identidad.
+- OpenAPI como contrato entre backend y frontends.
+- Admin Web App independiente de WordPress.
+- Resident Self-Service independiente de WordPress.
+- Docker para entorno local y despliegue progresivo.
+- Monolito modular como punto de partida.
+- Preparación arquitectónica para microservicios futuros.
+```
+
+---
+
+## 5. Stack tecnológico previsto
+
+```text
+Runtime: Node.js LTS
+Package manager: pnpm
+Backend: NestJS + TypeScript
+Database: PostgreSQL
+ORM: Prisma
+Cache / Queues: Redis + BullMQ
+Identity Provider: Keycloak
+API Contract: OpenAPI
+Admin Frontend: Next.js + React + TypeScript
+Resident Frontend: Next.js + React + TypeScript
+Containerization: Docker + Docker Compose
+CI/CD: GitHub Actions
+Testing: Jest / Vitest / Playwright
+Documentation: Markdown + SDD
+```
+
+---
+
+## 6. Estructura actual del repositorio
+
+```text
+resident-core/
+├── README.md
+└── docs/
+    ├── sdd/
+    ├── decisions/
+    ├── specs/
+    ├── changes/
+    ├── implementation/
+    └── consolidated/
+```
+
+---
+
+## 7. Estructura objetivo después de Sprint 0
+
+```text
+resident-core/
+├── apps/
+│   ├── api/
+│   ├── admin-web/
+│   └── resident-web/
+├── packages/
+│   ├── shared/
+│   ├── config/
+│   ├── auth/
+│   ├── openapi-client/
+│   └── testing/
+├── docs/
+│   ├── sdd/
+│   ├── decisions/
+│   ├── specs/
+│   ├── changes/
+│   ├── implementation/
+│   └── consolidated/
+├── infra/
+│   ├── docker/
+│   ├── keycloak/
+│   ├── postgres/
+│   └── local/
+├── prisma/
+│   ├── schema.prisma
+│   ├── migrations/
+│   └── seed/
+├── tools/
+│   ├── openapi/
+│   ├── scripts/
+│   └── ci/
+├── .github/
+│   └── workflows/
+├── docker-compose.yml
+├── package.json
+├── pnpm-workspace.yaml
+├── tsconfig.base.json
+├── .env.example
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 8. Documentación principal
+
+### 8.1. Documentos SDD base
+
+```text
+docs/sdd/
+├── constitution.md
+├── domain-map.md
+├── architecture.md
+├── security.md
+├── api-guidelines.md
+├── data-governance.md
+└── documentation-standard.md
+```
+
+Estos documentos contienen las reglas globales del proyecto.
+
+---
+
+### 8.2. ADRs
+
+```text
+docs/decisions/
+├── ADR-001-architecture-style.md
+├── ADR-002-backend-framework.md
+├── ADR-003-database-strategy.md
+├── ADR-004-multitenancy-strategy.md
+├── ADR-005-authentication-strategy.md
+├── ADR-006-identity-provider-strategy.md
+├── ADR-007-authorization-strategy.md
+├── ADR-008-api-gateway-strategy.md
+├── ADR-009-deployment-strategy.md
+├── ADR-010-observability-strategy.md
+├── ADR-011-testing-strategy.md
+└── ADR-012-ci-cd-strategy.md
+```
+
+Los ADRs documentan decisiones arquitectónicas relevantes, su contexto y consecuencias.
+
+---
+
+### 8.3. Especificaciones funcionales
+
+```text
+docs/specs/
+├── SPECS_INDEX.md
+├── 001-tenants/
+├── 002-users-roles/
+├── 003-residents-properties/
+├── 004-dues-fees/
+├── 005-payments/
+├── 006-account-statements/
+├── 007-audit/
+├── 008-basic-reports/
+├── 009-wordpress-integration-basic/
+├── 010-reservations-common-areas/
+├── 011-fines-sanctions/
+├── 012-communications-notifications/
+├── 013-meetings-attendance/
+├── 014-voting-basic/
+├── 015-certified-minutes/
+├── 016-secure-document-storage/
+├── 017-bank-reconciliation/
+├── 018-payment-provider-integration/
+├── 019-open-banking-integration/
+├── 020-accounting-ledger/
+├── 021-supplier-payments/
+├── 022-maintenance-work-orders/
+├── 023-inventory-basic/
+├── 024-access-control-visitors/
+├── 025-tenant-settings-policies/
+├── 026-automation-workflows-basic/
+├── 027-dashboard-kpis/
+├── 028-data-import-migration/
+├── 029-admin-web-app-basic/
+├── 030-resident-self-service-basic/
+└── 031-implementation-readiness/
+```
+
+Cada paquete SDD debe contener:
+
+```text
+spec.md
+plan.md
+data-model.md
+api-contract.md
+test-plan.md
+tasks.md
+security-notes.md
+```
+
+---
+
+### 8.4. Documentos consolidados
+
+```text
+docs/consolidated/
+├── RESIDENT_Core_Keycloak_Docs_Consolidated.md
+└── RESIDENT_Core_Project_Blueprint_v0.1.md
+```
+
+El documento más importante para entender el estado actual del proyecto es:
+
+```text
+docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md
+```
+
+---
+
+### 8.5. Implementación
+
+```text
+docs/implementation/
+└── sprint-0-foundation.md
+```
+
+Este documento guía la creación de la base técnica del repositorio.
+
+---
+
+## 9. Módulos principales
+
+```text
+001-tenants                         Gestión de tenants / conjuntos
+002-users-roles                     Usuarios, roles y permisos
+003-residents-properties            Residentes, propietarios y unidades
+004-dues-fees                       Alícuotas, cargos y rubros
+005-payments                        Pagos y comprobantes
+006-account-statements              Estados de cuenta
+007-audit                           Auditoría
+008-basic-reports                   Reportes básicos
+009-wordpress-integration-basic     Integración con WordPress
+010-reservations-common-areas       Reservas de áreas comunales
+011-fines-sanctions                 Multas y sanciones
+012-communications-notifications    Comunicados y notificaciones
+013-meetings-attendance             Reuniones y asistencia
+014-voting-basic                    Votaciones básicas
+015-certified-minutes               Actas certificadas
+016-secure-document-storage         Almacenamiento documental seguro
+017-bank-reconciliation             Conciliación bancaria
+018-payment-provider-integration    Integración con pasarelas de pago
+019-open-banking-integration        Integración open banking
+020-accounting-ledger               Contabilidad / libro mayor
+021-supplier-payments               Pagos a proveedores
+022-maintenance-work-orders         Órdenes de mantenimiento
+023-inventory-basic                 Inventario básico
+024-access-control-visitors         Visitantes y accesos
+025-tenant-settings-policies        Configuración y políticas por tenant
+026-automation-workflows-basic      Automatizaciones
+027-dashboard-kpis                  Dashboards e indicadores
+028-data-import-migration           Importación y migración de datos
+029-admin-web-app-basic             Aplicación web administrativa
+030-resident-self-service-basic     Portal privado del residente
+031-implementation-readiness        Preparación para implementación
+```
+
+---
+
+## 10. Orden recomendado de implementación
+
+```text
+Sprint 0 — Fundación técnica
+Sprint 1 — Backend Platform Base
+Sprint 2 — Tenants, usuarios, roles, permisos y Keycloak
+Sprint 3 — Residentes, propiedades y finanzas base
+Sprint 4 — Admin Web App MVP
+Sprint 5 — Resident Self-Service MVP
+Sprint 6 — Operación comunitaria básica
+Sprint 7 — Gobernanza, reportes, dashboard e importación
+Post-MVP — Finanzas avanzadas, open banking, contabilidad, automatizaciones avanzadas
+```
+
+---
+
+## 11. Reglas críticas del proyecto
+
+```text
+- No implementar código sin revisar la spec correspondiente.
+- No crear endpoint sin api-contract.md.
+- No crear tabla sin data-model.md.
+- No implementar módulo crítico sin test-plan.md.
+- No implementar módulo crítico sin security-notes.md.
+- No usar WordPress como backend transaccional.
+- No usar sesión WordPress para autenticar RESIDENT Core.
+- No exponer storageKey.
+- No exponer signedUrl persistentes.
+- No aceptar tenantId como autoridad final desde cliente.
+- No aceptar actor fields desde cliente.
+- No calcular saldos finales en frontend.
+- No validar pagos desde Resident Self-Service.
+- No crear asientos contables fuera del módulo autorizado.
+- No confirmar conciliaciones fuera del módulo autorizado.
+- No controlar hardware físico en MVP.
+- No usar biometría ni reconocimiento facial en MVP.
+- No enviar datos reales a IA externa.
+```
+
+---
+
+## 12. Seguridad
+
+Principios de seguridad vigentes:
+
+```text
+- Keycloak autentica.
+- RESIDENT Core autoriza.
+- La autorización es tenant-aware, role-aware, permission-aware y resource-aware.
+- El portal residente requiere property-level authorization.
+- Todo movimiento financiero debe ser auditable.
+- Los documentos privados deben manejarse mediante Secure Document Storage.
+- Los errores no deben revelar datos de otros tenants o unidades.
+- El frontend no es autoridad de negocio.
+- Las APIs privadas no deben exponerse públicamente.
+```
+
+---
+
+## 13. Multitenancy
+
+La estrategia inicial es:
+
+```text
+Shared database
+Shared schema
+tenant_id obligatorio en entidades tenant-scoped
+aislamiento lógico por tenant
+TenantGuard obligatorio
+pruebas multitenant obligatorias
+```
+
+Regla:
+
+```text
+Toda entidad, consulta, operación, evento, auditoría, archivo y respuesta asociada a un conjunto residencial debe estar correctamente delimitada por tenant.
+```
+
+---
+
+## 14. Identidad y acceso
+
+La estrategia objetivo de identidad es Keycloak.
+
+```text
+Keycloak = autenticación
+RESIDENT Core = autorización de negocio
+```
+
+Flujo general:
+
+```text
+Usuario inicia sesión
+        ↓
+Keycloak emite token
+        ↓
+RESIDENT Core valida token
+        ↓
+Core resuelve UserProfile
+        ↓
+Core resuelve memberships, roles y permissions
+        ↓
+Core autoriza tenant, recurso y acción
+```
+
+---
+
+## 15. Integración con WordPress
+
+WordPress queda limitado a:
+
+```text
+- portal público multitenant;
+- páginas informativas por conjunto;
+- logos, banners, slogan, datos públicos;
+- enlaces hacia aplicaciones privadas;
+- consumo controlado de información pública autorizada.
+```
+
+WordPress no debe:
+
+```text
+- procesar pagos;
+- autenticar usuarios Core;
+- mostrar estados de cuenta privados;
+- recibir comprobantes;
+- administrar residentes;
+- administrar usuarios Core;
+- servir como consola administrativa;
+- servir como portal privado del residente.
+```
+
+---
+
+## 16. Uso con Codex, Claude Code o agentes de IA
+
+Antes de pedir implementación a un agente de código, indicar:
+
+```text
+Lee primero:
+
+1. docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md
+2. docs/specs/SPECS_INDEX.md
+3. docs/sdd/constitution.md
+4. docs/sdd/architecture.md
+5. docs/sdd/security.md
+6. docs/sdd/api-guidelines.md
+7. docs/sdd/data-governance.md
+8. docs/sdd/documentation-standard.md
+9. docs/implementation/sprint-0-foundation.md
+
+Implementa únicamente el sprint solicitado.
+No inventes endpoints, tablas, permisos ni reglas fuera de las specs.
+No implementes lógica de negocio no solicitada.
+No uses datos reales.
+No expongas storageKey.
+No uses WordPress como backend transaccional.
+```
+
+---
+
+## 17. Sprint 0
+
+El siguiente paso operativo es ejecutar:
+
+```text
+docs/implementation/sprint-0-foundation.md
+```
+
+Sprint 0 debe crear:
+
+```text
+- monorepo;
+- apps/api;
+- apps/admin-web;
+- apps/resident-web;
+- packages/shared;
+- packages/config;
+- packages/auth;
+- packages/openapi-client;
+- packages/testing;
+- Docker Compose;
+- PostgreSQL local;
+- Redis local;
+- Keycloak local;
+- Prisma base;
+- OpenAPI base;
+- CI inicial;
+- README técnico;
+- .env.example;
+- .gitignore.
+```
+
+Sprint 0 no debe implementar lógica funcional de negocio.
+
+---
+
+## 18. Arranque local previsto
+
+Una vez creado Sprint 0, el arranque esperado será similar a:
+
+```bash
+pnpm install
+pnpm docker:up
+pnpm build
+pnpm test
+```
+
+Hasta completar Sprint 0, este README funciona como referencia del proyecto, no como guía ejecutable definitiva.
+
+---
+
+## 19. Estado de readiness
+
+```text
+Implementation Readiness: completo
+Specs 001-031: completas
+Blueprint: creado
+Specs Index: creado
+Documentation Standard: creado o recomendado
+Sprint 0 Foundation: creado
+Estado sugerido: CONDITIONAL_GO para iniciar Sprint 0
+```
+
+Condición:
+
+```text
+Antes de iniciar código, confirmar que no existen gaps críticos abiertos en documentación, seguridad, multitenancy, Keycloak, OpenAPI o CI inicial.
+```
+
+---
+
+## 20. Licencia
+
+Pendiente de definir.
+
+Opciones posibles:
+
+```text
+- privado / propietario;
+- MIT;
+- Apache 2.0;
+- GPL;
+- licencia comercial propia.
+```
+
+Para RESIDENT, se recomienda mantener inicialmente el repositorio como privado y propietario mientras el producto está en diseño e implementación inicial.
+
+---
+
+## 21. Autor / responsable
+
+```text
+Proyecto: RESIDENT
+Responsable: Gustavo Guaigua Albarracín
+Fase: RESIDENT Core — FASE 2
+Metodología: Spec Driven Development
+```

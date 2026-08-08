@@ -1,0 +1,438 @@
+# SPECS INDEX — RESIDENT Core
+
+## 1. Información del documento
+
+| Campo      | Valor                                  |
+| ---------- | -------------------------------------- |
+| Proyecto   | RESIDENT Core                          |
+| Documento  | Specs Index                            |
+| Ruta       | `docs/specs/SPECS_INDEX.md`            |
+| Versión    | 0.1                                    |
+| Estado     | Índice inicial                         |
+| Fecha      | 2026-08-06                             |
+| Fase       | FASE 2 — RESIDENT Core                 |
+| Naturaleza | Índice maestro de especificaciones SDD |
+
+---
+
+## 2. Propósito
+
+Este documento resume el estado, alcance, prioridad, dependencias y orden sugerido de implementación de las especificaciones SDD creadas para RESIDENT Core.
+
+Debe servir como mapa rápido para:
+
+```text id="specs-index-purpose"
+- ubicar cada paquete funcional;
+- entender qué módulo representa;
+- identificar su prioridad;
+- conocer dependencias principales;
+- orientar el orden de implementación;
+- guiar a ChatGPT, Codex, Claude Code u otro agente de desarrollo;
+- evitar implementar código sin revisar la spec correspondiente.
+```
+
+Regla central:
+
+```text id="specs-index-rule"
+Ningún módulo funcional de RESIDENT Core debe implementarse sin revisar su carpeta correspondiente en docs/specs, sus contratos API, modelo de datos, plan de pruebas, tareas y notas de seguridad.
+```
+
+---
+
+## 3. Estructura estándar de cada paquete
+
+Cada paquete SDD debe contener:
+
+```text id="specs-index-package-standard"
+spec.md
+plan.md
+data-model.md
+api-contract.md
+test-plan.md
+tasks.md
+security-notes.md
+```
+
+Estado esperado:
+
+```text id="specs-index-package-state"
+complete      documento existente y listo como referencia
+needs-review  documento existente pero pendiente de revisión final
+deferred      documentado pero no implementable en MVP inicial
+blocked       no puede implementarse hasta resolver gap
+```
+
+---
+
+## 4. Índice maestro de specs
+
+| Spec | Módulo                         | Dominio                      | Prioridad  | Estado              | Implementación sugerida |
+| ---: | ------------------------------ | ---------------------------- | ---------- | ------------------- | ----------------------- |
+|  001 | `tenants`                      | Platform / Tenant Management | Crítica    | Complete            | Sprint 2                |
+|  002 | `users-roles`                  | Identity and Access          | Crítica    | Complete            | Sprint 2                |
+|  003 | `residents-properties`         | Residents and Properties     | Crítica    | Complete            | Sprint 3                |
+|  004 | `dues-fees`                    | Financial Management         | Crítica    | Complete            | Sprint 3                |
+|  005 | `payments`                     | Payments                     | Crítica    | Complete            | Sprint 3                |
+|  006 | `account-statements`           | Financial Statements         | Crítica    | Complete            | Sprint 3                |
+|  007 | `audit`                        | Audit and Compliance         | Crítica    | Complete            | Sprint 2-3              |
+|  008 | `basic-reports`                | Reporting                    | Media      | Complete            | Sprint 7                |
+|  009 | `wordpress-integration-basic`  | External Integration         | Media      | Complete            | Sprint 7                |
+|  010 | `reservations-common-areas`    | Reservations                 | Alta       | Complete            | Sprint 6                |
+|  011 | `fines-sanctions`              | Fines and Sanctions          | Alta       | Complete            | Sprint 6                |
+|  012 | `communications-notifications` | Communications               | Alta       | Complete            | Sprint 6                |
+|  013 | `meetings-attendance`          | Meetings                     | Media-Alta | Complete            | Sprint 7                |
+|  014 | `voting-basic`                 | Voting                       | Media-Alta | Complete            | Sprint 7                |
+|  015 | `certified-minutes`            | Governance / Minutes         | Media-Alta | Complete            | Sprint 7                |
+|  016 | `secure-document-storage`      | Document Storage             | Crítica    | Complete            | Sprint 3                |
+|  017 | `bank-reconciliation`          | Reconciliation               | Avanzada   | Complete / Deferred | Post-MVP                |
+|  018 | `payment-provider-integration` | Payment Providers            | Avanzada   | Complete / Deferred | Post-MVP                |
+|  019 | `open-banking-integration`     | Open Banking                 | Avanzada   | Complete / Deferred | Post-MVP                |
+|  020 | `accounting-ledger`            | Accounting                   | Avanzada   | Complete / Deferred | Post-MVP                |
+|  021 | `supplier-payments`            | Supplier Payments            | Avanzada   | Complete / Deferred | Post-MVP                |
+|  022 | `maintenance-work-orders`      | Maintenance                  | Alta       | Complete            | Sprint 6                |
+|  023 | `inventory-basic`              | Inventory                    | Media      | Complete / Deferred | Sprint 7 / Post-MVP     |
+|  024 | `access-control-visitors`      | Access / Visitors            | Alta       | Complete            | Sprint 6                |
+|  025 | `tenant-settings-policies`     | Tenant Configuration         | Crítica    | Complete            | Sprint 2-3              |
+|  026 | `automation-workflows-basic`   | Automation                   | Media      | Complete / Deferred | Post-MVP                |
+|  027 | `dashboard-kpis`               | Dashboards / KPIs            | Media-Alta | Complete            | Sprint 7                |
+|  028 | `data-import-migration`        | Data Import / Migration      | Media-Alta | Complete            | Sprint 7                |
+|  029 | `admin-web-app-basic`          | Admin Frontend               | Crítica    | Complete            | Sprint 4                |
+|  030 | `resident-self-service-basic`  | Resident Frontend            | Crítica    | Complete            | Sprint 5                |
+|  031 | `implementation-readiness`     | Delivery Governance          | Crítica    | Complete            | Sprint 0                |
+
+---
+
+## 5. Clasificación por prioridad
+
+### 5.1. Núcleo obligatorio MVP
+
+Estos módulos forman la base mínima para que RESIDENT Core exista como sistema transaccional seguro:
+
+```text id="specs-index-core-mvp"
+001-tenants
+002-users-roles
+003-residents-properties
+004-dues-fees
+005-payments
+006-account-statements
+007-audit
+016-secure-document-storage
+025-tenant-settings-policies
+029-admin-web-app-basic
+030-resident-self-service-basic
+031-implementation-readiness
+```
+
+---
+
+### 5.2. Operación comunitaria MVP extendido
+
+Estos módulos agregan operación diaria de conjunto residencial:
+
+```text id="specs-index-community-mvp"
+010-reservations-common-areas
+011-fines-sanctions
+012-communications-notifications
+013-meetings-attendance
+014-voting-basic
+015-certified-minutes
+022-maintenance-work-orders
+024-access-control-visitors
+```
+
+---
+
+### 5.3. Reportes, dashboards, importación e integración portal
+
+Estos módulos fortalecen operación, migración, visualización e integración:
+
+```text id="specs-index-operations"
+008-basic-reports
+009-wordpress-integration-basic
+027-dashboard-kpis
+028-data-import-migration
+023-inventory-basic
+```
+
+---
+
+### 5.4. Finanzas e integraciones avanzadas
+
+Estos módulos son importantes, pero se recomienda implementarlos después del MVP base:
+
+```text id="specs-index-advanced-finance"
+017-bank-reconciliation
+018-payment-provider-integration
+019-open-banking-integration
+020-accounting-ledger
+021-supplier-payments
+026-automation-workflows-basic
+```
+
+---
+
+## 6. Dependencias principales
+
+| Módulo                             | Depende principalmente de                                                                              |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `001-tenants`                      | Documentos SDD base, ADR-004                                                                           |
+| `002-users-roles`                  | `001-tenants`, Keycloak, ADR-005, ADR-006, ADR-007                                                     |
+| `003-residents-properties`         | `001-tenants`, `002-users-roles`                                                                       |
+| `004-dues-fees`                    | `001-tenants`, `003-residents-properties`, `007-audit`                                                 |
+| `005-payments`                     | `001-tenants`, `003-residents-properties`, `004-dues-fees`, `016-secure-document-storage`, `007-audit` |
+| `006-account-statements`           | `004-dues-fees`, `005-payments`, `007-audit`                                                           |
+| `007-audit`                        | `001-tenants`, `002-users-roles`                                                                       |
+| `008-basic-reports`                | `004`, `005`, `006`, `007`                                                                             |
+| `009-wordpress-integration-basic`  | `001-tenants`, API guidelines, WordPress portal                                                        |
+| `010-reservations-common-areas`    | `001`, `002`, `003`, `004`, `007`                                                                      |
+| `011-fines-sanctions`              | `001`, `002`, `003`, `004`, `007`, `016`                                                               |
+| `012-communications-notifications` | `001`, `002`, `003`, `007`, `016`                                                                      |
+| `013-meetings-attendance`          | `001`, `002`, `003`, `012`, `007`                                                                      |
+| `014-voting-basic`                 | `001`, `002`, `003`, `013`, `007`                                                                      |
+| `015-certified-minutes`            | `001`, `002`, `013`, `014`, `016`, `007`                                                               |
+| `016-secure-document-storage`      | `001`, `002`, `007`                                                                                    |
+| `017-bank-reconciliation`          | `005`, `007`, `020` opcional                                                                           |
+| `018-payment-provider-integration` | `005`, `007`, `016`                                                                                    |
+| `019-open-banking-integration`     | `017`, `007`, consentimiento                                                                           |
+| `020-accounting-ledger`            | `004`, `005`, `017`, `007`                                                                             |
+| `021-supplier-payments`            | `020`, `022`, `007`                                                                                    |
+| `022-maintenance-work-orders`      | `001`, `002`, `003`, `016`, `007`                                                                      |
+| `023-inventory-basic`              | `001`, `002`, `007`, `022` opcional                                                                    |
+| `024-access-control-visitors`      | `001`, `002`, `003`, `007`                                                                             |
+| `025-tenant-settings-policies`     | `001`, `002`, `007`                                                                                    |
+| `026-automation-workflows-basic`   | Módulos fuente de eventos, `007`, `025`                                                                |
+| `027-dashboard-kpis`               | `004`, `005`, `006`, `008`, `022`, `024`, `026`                                                        |
+| `028-data-import-migration`        | Módulos destino, `016`, `007`                                                                          |
+| `029-admin-web-app-basic`          | OpenAPI, Keycloak, `001`, `002`, módulos Core                                                          |
+| `030-resident-self-service-basic`  | OpenAPI, Keycloak, `001`, `002`, `003`, `004`, `005`, `006`, `016`                                     |
+| `031-implementation-readiness`     | Todos los documentos SDD, ADRs y specs 001-030                                                         |
+
+---
+
+## 7. Orden recomendado de implementación
+
+### Sprint 0 — Fundación técnica
+
+```text id="specs-index-sprint-0"
+031-implementation-readiness
+docs/implementation/sprint-0-foundation.md
+monorepo
+Docker Compose
+CI inicial
+NestJS base
+Next.js base
+PostgreSQL
+Redis
+Keycloak local
+Prisma base
+OpenAPI base
+```
+
+---
+
+### Sprint 1 — Backend Platform Base
+
+```text id="specs-index-sprint-1"
+NestJS API base
+ConfigModule
+ValidationPipe
+ExceptionFilter
+Logger sanitizado
+HealthModule
+PrismaService
+OpenAPI setup
+Auth skeleton
+Tenant skeleton
+Audit skeleton
+```
+
+---
+
+### Sprint 2 — Tenants, identidad y autorización
+
+```text id="specs-index-sprint-2"
+001-tenants
+002-users-roles
+007-audit base
+025-tenant-settings-policies base
+Keycloak integration
+TenantGuard
+PermissionGuard
+```
+
+---
+
+### Sprint 3 — Residentes, propiedades y finanzas base
+
+```text id="specs-index-sprint-3"
+003-residents-properties
+004-dues-fees
+005-payments
+006-account-statements
+016-secure-document-storage
+007-audit integration
+```
+
+---
+
+### Sprint 4 — Admin Web App MVP
+
+```text id="specs-index-sprint-4"
+029-admin-web-app-basic
+login Keycloak
+tenant selector
+permissions
+residentes/unidades UI
+alícuotas/cargos UI
+pagos UI
+estados de cuenta UI
+documentos UI
+```
+
+---
+
+### Sprint 5 — Resident Self-Service MVP
+
+```text id="specs-index-sprint-5"
+030-resident-self-service-basic
+login Keycloak
+tenant selector
+property unit selector
+dashboard residente
+estado de cuenta propio
+pagos propios
+comprobantes
+documentos propios
+```
+
+---
+
+### Sprint 6 — Operación comunitaria básica
+
+```text id="specs-index-sprint-6"
+010-reservations-common-areas
+011-fines-sanctions
+012-communications-notifications
+022-maintenance-work-orders
+024-access-control-visitors
+```
+
+---
+
+### Sprint 7 — Gobernanza, reportes y migración
+
+```text id="specs-index-sprint-7"
+008-basic-reports
+013-meetings-attendance
+014-voting-basic
+015-certified-minutes
+027-dashboard-kpis
+028-data-import-migration
+023-inventory-basic opcional
+009-wordpress-integration-basic
+```
+
+---
+
+### Post-MVP — Finanzas e integraciones avanzadas
+
+```text id="specs-index-post-mvp"
+017-bank-reconciliation
+018-payment-provider-integration
+019-open-banking-integration
+020-accounting-ledger
+021-supplier-payments
+026-automation-workflows-basic
+```
+
+---
+
+## 8. Reglas obligatorias de implementación
+
+```text id="specs-index-implementation-rules"
+- No implementar código sin revisar la spec correspondiente.
+- No crear endpoint sin api-contract.md.
+- No crear tabla sin data-model.md.
+- No crear tarea sin tasks.md.
+- No implementar módulo crítico sin test-plan.md.
+- No implementar módulo crítico sin security-notes.md.
+- No implementar pagos sin auditoría.
+- No implementar documentos sin Secure Document Storage.
+- No exponer storageKey.
+- No usar WordPress como backend transaccional.
+- No usar sesión WordPress para Core.
+- No permitir rutas públicas administrativas.
+- No permitir rutas públicas resident-facing transaccionales.
+- No enviar datos reales a IA externa.
+- No aceptar tenantId como autoridad final desde cliente.
+- No aceptar actor fields desde cliente.
+- No calcular saldos finales en frontend.
+- No permitir que Keycloak reemplace autorización de negocio del Core.
+```
+
+---
+
+## 9. Uso recomendado para agentes de código
+
+Antes de usar Codex, Claude Code, Cursor u otro agente, indicar:
+
+```text id="specs-index-agent-instruction"
+Lee primero:
+1. docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md
+2. docs/specs/SPECS_INDEX.md
+3. docs/sdd/constitution.md
+4. docs/sdd/architecture.md
+5. docs/sdd/security.md
+6. docs/sdd/api-guidelines.md
+7. docs/sdd/data-governance.md
+8. docs/implementation/sprint-0-foundation.md
+
+Luego implementa únicamente el sprint solicitado.
+No inventes endpoints, tablas, permisos ni reglas fuera de las specs.
+```
+
+---
+
+## 10. Estado actual del expediente SDD
+
+```text id="specs-index-current-state"
+docs/sdd/                         completo
+docs/decisions/                   completo
+docs/specs/001-031/               completo
+docs/changes/                     contiene impacto Keycloak
+docs/implementation/              contiene Sprint 0 Foundation
+docs/consolidated/                contiene documentos consolidados
+docs/specs/SPECS_INDEX.md         creado
+```
+
+---
+
+## 11. Próximo paso recomendado
+
+Después de crear este índice, continuar con:
+
+```text id="specs-index-next"
+docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md
+```
+
+Luego iniciar:
+
+```text id="specs-index-next-implementation"
+Sprint 0 — Fundación técnica del repositorio
+```
+
+---
+
+## 12. Definition of Done de este índice
+
+```text id="specs-index-dod"
+[ ] Lista todas las specs 001-031.
+[ ] Identifica módulo de cada spec.
+[ ] Clasifica prioridad.
+[ ] Indica estado documental.
+[ ] Indica sprint o fase sugerida.
+[ ] Resume dependencias principales.
+[ ] Define reglas obligatorias de implementación.
+[ ] Define uso recomendado para agentes de código.
+[ ] Apunta al siguiente documento consolidado.
+```

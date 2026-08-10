@@ -36,6 +36,21 @@ Financial: `GET /charges`, `POST /fees/generate-monthly`, `GET /payments`, `POST
 ## 9. Request/response
 Fechas ISO 8601, dinero decimal string, IDs UUID/no predecibles.
 
+Las respuestas exitosas de APIs funcionales usan por defecto:
+
+```json
+{"data":{},"meta":{}}
+```
+
+`data` es obligatorio y `meta` es opcional. Los endpoints operativos
+`GET /api/v1/health` y `GET /api/v1/health/details` son la única excepción inicial:
+usan los payloads planos definidos en ADR-010 §10 para interoperar con probes. OpenAPI
+debe marcarlos con `x-response-envelope: false` y `x-health-endpoint: true`.
+
+La excepción solo aplica a resultados health `200` y `503`. Errores de autenticación,
+autorización, routing, rate limiting o fallos no controlados usan el formato de error
+estándar.
+
 ## 10. Error format
 ```json
 {"error":{"code":"ACCESS_DENIED","message":"You are not authorized.","details":{},"traceId":"req_123456"}}

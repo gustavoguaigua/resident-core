@@ -10,7 +10,7 @@
 | Documento       | Implementation Tasks                                                                                                                                                    |
 | Ruta            | `docs/specs/010-reservations-common-areas/tasks.md`                                                                                                                     |
 | Versión         | 0.1                                                                                                                                                                     |
-| Estado          | Borrador inicial                                                                                                                                                        |
+| Estado          | needs-review                                                                                                                                                            |
 | Fecha           | 2026-07-18                                                                                                                                                              |
 | Documento base  | `docs/specs/010-reservations-common-areas/spec.md`                                                                                                                      |
 | Plan técnico    | `docs/specs/010-reservations-common-areas/plan.md`                                                                                                                      |

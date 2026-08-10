@@ -1,5 +1,15 @@
 # ADR-004 — Multitenancy Strategy: Shared Schema with Tenant Isolation v0.2
 
+## Estado
+
+`accepted`
+
+## Contexto
+
+RESIDENT Core debe servir a múltiples conjuntos residenciales con bajo costo inicial,
+usuarios potencialmente vinculados a más de un tenant y aislamiento obligatorio en
+datos, APIs, cache, trabajos, eventos, archivos y auditoría.
+
 ## 1. Decisión
 ```text
 Single database + shared schema + tenant_id obligatorio + RBAC por tenant + validación backend.
@@ -41,6 +51,29 @@ Correcto: `findPaymentById(tenantId, paymentId)`. Evitar búsqueda solo por id s
 
 ## 10. Migración futura
 Ruta posible: shared schema → dedicated schema → dedicated database. Requiere ADR.
+
+## Consecuencias
+
+- Toda operación tenant-scoped debe resolver y validar el tenant en Core.
+- Índices, constraints, repositorios, cache, jobs, eventos y archivos deben incorporar el tenant.
+- El aislamiento depende de controles consistentes de aplicación y de pruebas negativas cross-tenant.
+- La estrategia reduce costo inicial, pero exige disciplina permanente para evitar consultas sin filtro.
+
+## Alternativas consideradas
+
+- Base de datos dedicada por tenant: diferida por costo y complejidad operativa inicial.
+- Esquema dedicado por tenant: diferido; puede evaluarse como etapa intermedia mediante un nuevo ADR.
+- Realm Keycloak por tenant: descartado para el MVP porque dificulta usuarios multi-tenant y duplica configuración de identidad.
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/data-governance.md`
+- `docs/decisions/ADR-003-database-strategy.md`
+- `docs/decisions/ADR-006-identity-provider-strategy.md`
+- `docs/decisions/ADR-007-authorization-strategy.md`
 
 ## 11. Decisión final
 Core adopta aislamiento lógico con tenant_id. Keycloak usará realm `resident`. La autorización por tenant sigue en Core.

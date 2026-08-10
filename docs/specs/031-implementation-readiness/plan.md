@@ -10,7 +10,7 @@
 | Documento      | Implementation Plan                                                                                                 |
 | Ruta           | `docs/specs/031-implementation-readiness/plan.md`                                                                   |
 | Versión        | 0.1                                                                                                                 |
-| Estado         | Borrador inicial                                                                                                    |
+| Estado         | complete                                                                                                            |
 | Fecha          | 2026-08-05                                                                                                          |
 | Fase           | FASE 2 — Preparación de implementación                                                                              |
 | Naturaleza     | Readiness gate / SDD closure checkpoint / Pre-implementation validation                                             |
@@ -112,6 +112,8 @@ NO_GO — no iniciar implementación hasta resolver gaps críticos.
 ```text id="ir-plan-scope-out"
 - Codificar módulos productivos.
 - Crear migraciones definitivas.
+- Implementar endpoints, controllers, services, DTOs o permisos de Implementation Readiness.
+- Crear persistencia Prisma/PostgreSQL para Implementation Readiness.
 - Configurar AWS productivo.
 - Configurar Keycloak productivo.
 - Implementar pasarela de pagos real.
@@ -467,6 +469,8 @@ Validar:
 [ ] REST /api/v1 definido.
 [ ] Response envelope estándar.
 [ ] Error envelope estándar.
+[ ] Excepción plana de health documentada conforme a ADR-010 §10.
+[ ] Health básico público separado de health detailed protegido.
 [ ] Auth scheme Bearer definido.
 [ ] Endpoints tenant-scoped documentados.
 [ ] Endpoints .own documentados.
@@ -559,18 +563,21 @@ Validar:
 ```text id="ir-plan-cicd-checks"
 [ ] ADR-012 CI/CD existe.
 [ ] GitHub Actions definido.
+[ ] Install frozen definido.
 [ ] TypeScript check.
 [ ] Lint check.
 [ ] Format check.
-[ ] Unit tests.
-[ ] Integration tests.
-[ ] Prisma migration check.
-[ ] OpenAPI generation.
-[ ] Docker build.
+[ ] Unit/smoke tests.
+[ ] Prisma schema validation.
+[ ] OpenAPI tooling validation.
+[ ] Docker Compose config validation.
+[ ] Docker Compose build de resident-api.
 [ ] Backend build.
 [ ] Frontend builds.
+[ ] Dependency audit.
 [ ] Secret scanning.
-[ ] Security static checks.
+[ ] Required CI gates protegido y sin continue-on-error.
+[ ] Gates de capacidad definidos conforme a ADR-012 §10.2.
 ```
 
 Bloqueante si:
@@ -591,17 +598,27 @@ Validar:
 
 ```text id="ir-plan-docker-checks"
 [ ] docker-compose.yml definido.
-[ ] api service definido.
+[ ] resident-api service definido.
 [ ] postgres service definido.
 [ ] redis service definido.
 [ ] keycloak service definido.
+[ ] keycloak-postgres dedicado definido.
+[ ] minio service definido.
+[ ] mailhog service definido.
+[ ] Tags exactos alineados con ADR-009 §7.1.
+[ ] No existen `latest`, aliases LTS ni versiones flotantes.
+[ ] MailHog y MinIO están limitados a local con datos sintéticos.
 [ ] admin-web service opcional.
 [ ] resident-web service opcional.
 [ ] .env.example definido.
-[ ] health checks básicos.
+[ ] health checks de contenedores de infraestructura, sin HealthModule.
 [ ] README local definido.
 [ ] seed local definido.
 ```
+
+La topología obligatoria de Sprint 0 es exactamente `resident-api`, `postgres`,
+`redis`, `keycloak`, `keycloak-postgres`, `mailhog` y `minio`. Los servicios opcionales
+no forman parte del criterio de cierre.
 
 Bloqueante si:
 
@@ -694,35 +711,65 @@ accepted-risk
 
 ```text id="ir-plan-sprint-0"
 [ ] Crear monorepo.
-[ ] Configurar pnpm workspace.
+[ ] Normalizar master legacy a main antes de crear CI o remoto.
+[ ] Mantener main como única rama permanente; no crear develop.
+[ ] Configurar pnpm 11.21.0 workspace.
+[ ] Fijar Node.js 24.18.0 en .node-version y package.json.
 [ ] Configurar TypeScript base.
 [ ] Crear apps/api.
 [ ] Crear apps/admin-web.
 [ ] Crear apps/resident-web.
 [ ] Crear packages/shared.
+[ ] Crear packages/config.
+[ ] Crear packages/auth como scaffold, sin autenticación o autorización runtime.
+[ ] Crear packages/openapi-client con tooling y validación, sin cliente de dominio generado.
+[ ] Crear packages/testing con smoke utilities y security:secrets, sin suites funcionales.
+[ ] Crear schema.prisma solo con generator y datasource.
+[ ] Confirmar que no existen modelos, enums, migraciones ni seeds Prisma de dominio.
 [ ] Crear docker-compose local.
 [ ] Crear PostgreSQL local.
 [ ] Crear Redis local.
 [ ] Crear Keycloak local.
+[ ] Crear PostgreSQL dedicado para Keycloak.
+[ ] Crear MailHog local.
+[ ] Crear MinIO local.
+[ ] Contenerizar resident-api como scaffold.
 [ ] Configurar GitHub Actions inicial.
+[ ] Confirmar que no existe API ni persistencia runtime de Implementation Readiness.
 ```
+
+`apps/api` significa aquí un scaffold compilable. Sprint 0 prepara únicamente el
+tooling de Prisma y OpenAPI; no implementa módulos o comportamiento runtime de la
+plataforma backend. `Tenant` y `UserProfile` se difieren a las specs 001 y 002,
+respectivamente.
+
+Los cinco packages base deben tener manifest, TypeScript strict, exports, scripts de
+build/test aplicables y smoke validation. No se aceptan directorios vacíos ni scripts
+placeholder. `packages/auth`, `packages/openapi-client` y `packages/testing` respetan el
+alcance exacto definido en spec 031 §12.1.
+
+La evidencia de la compuerta se registra en Markdown versionado. El contrato API y el
+modelo de persistencia de spec 031 quedan diferidos, fuera de Sprint 0 y sin asignación
+automática a Sprint 1. Requieren un plan y sprint posteriores explícitamente aprobados.
 
 ---
 
 ### 21.2. Sprint 1 — Backend platform base
 
 ```text id="ir-plan-sprint-1"
-[ ] NestJS base.
+[ ] Plataforma NestJS runtime base.
 [ ] ConfigModule.
-[ ] Health checks.
-[ ] Prisma base.
+[ ] HealthModule y contrato HTTP conforme a ADR-010 §10.
+[ ] PrismaService.
 [ ] PostgreSQL connection.
 [ ] ValidationPipe.
 [ ] ExceptionFilter.
 [ ] Logger sanitizado.
-[ ] OpenAPI base.
+[ ] Swagger/OpenAPI runtime y generación de contrato.
 [ ] AuthGuard inicial.
 [ ] TenantGuard inicial.
+[ ] PermissionGuard inicial.
+[ ] Audit interceptor inicial.
 ```
 
 ---
@@ -849,17 +896,22 @@ resident-core/
 ├── docker-compose.yml
 ├── package.json
 ├── pnpm-workspace.yaml
+├── .node-version
 ├── tsconfig.base.json
+├── AGENTS.md
 └── README.md
 ```
+
+La aprobación de esta estructura exige que el `AGENTS.md` raíz forme parte del control
+de versiones y que no existan guías anidadas no justificadas.
 
 ---
 
 ## 23. Tooling mínimo
 
 ```text id="ir-plan-tooling"
-Node.js LTS
-pnpm
+Node.js 24.18.0 LTS
+pnpm 11.21.0
 TypeScript
 NestJS
 Next.js
@@ -885,6 +937,9 @@ GitHub Actions
 ## 24. Definition of Ready por área
 
 ### 24.1. Backend Ready
+
+Esta Definition of Ready es el resultado esperado de Sprint 1 y la compuerta para
+iniciar módulos funcionales posteriores; no es criterio de cierre de Sprint 0.
 
 ```text id="ir-plan-backend-dor"
 [ ] apps/api creado.
@@ -921,9 +976,10 @@ GitHub Actions
 ### 24.3. Database Ready
 
 ```text id="ir-plan-database-dor"
-[ ] schema.prisma inicial.
-[ ] Tenant base definido.
-[ ] UserProfile base definido.
+[ ] schema.prisma de Sprint 0 limitado a generator y datasource.
+[ ] Sprint 0 no contiene modelos, enums, migraciones ni seeds de dominio.
+[ ] Tenant diferido a la implementación aprobada de 001-tenants.
+[ ] UserProfile diferido a la implementación aprobada de 002-users-roles.
 [ ] tenant_id convention definida.
 [ ] Decimal definido para dinero.
 [ ] UUID definido.
@@ -940,6 +996,8 @@ GitHub Actions
 [ ] Security scheme Bearer definido.
 [ ] Response envelope definido.
 [ ] Error envelope definido.
+[ ] Health declara x-response-envelope=false y x-health-endpoint=true.
+[ ] Contratos 200/503 y seguridad de health están definidos.
 [ ] Extensions mínimas definidas.
 [ ] Cliente admin generable.
 [ ] Cliente resident generable.
@@ -966,15 +1024,21 @@ GitHub Actions
 
 ```text id="ir-plan-ci-dor"
 [ ] GitHub Actions creado.
+[ ] Install frozen.
 [ ] Lint check.
 [ ] Format check.
 [ ] TypeScript check.
-[ ] Unit tests.
+[ ] Unit/smoke tests.
+[ ] OpenAPI tooling validation.
+[ ] Prisma schema validation.
+[ ] Docker Compose config validation.
+[ ] Dependency audit.
 [ ] Build API.
 [ ] Build admin-web.
 [ ] Build resident-web.
-[ ] Docker build.
-[ ] Secret scan básico.
+[ ] Docker Compose build de resident-api.
+[ ] Secret scan obligatorio.
+[ ] Required CI gates requerido en branch protection.
 ```
 
 ---
@@ -1080,16 +1144,16 @@ Umbral recomendado para GO:
 ## 28. Entregables de cierre
 
 ```text id="ir-plan-deliverables"
-[ ] Matriz de documentos revisada.
-[ ] Matriz de paquetes priorizada.
-[ ] Registro de gaps creado.
-[ ] Gaps críticos resueltos o bloqueados.
-[ ] Gaps no bloqueantes clasificados.
-[ ] Decisión GO/CONDITIONAL_GO/NO_GO emitida.
-[ ] Orden de implementación aprobado.
-[ ] Repositorio objetivo aprobado.
-[ ] Sprint 0 definido.
-[ ] Definition of Ready global aprobada.
+[x] Matriz de documentos revisada.
+[x] Matriz de paquetes priorizada.
+[x] Registro de gaps creado.
+[x] Gaps críticos resueltos o bloqueados.
+[x] Gaps no bloqueantes clasificados.
+[x] Decisión GO/CONDITIONAL_GO/NO_GO emitida.
+[x] Orden de implementación aprobado.
+[x] Repositorio objetivo aprobado.
+[x] Sprint 0 definido.
+[x] Definition of Ready global aprobada.
 ```
 
 ---
@@ -1121,23 +1185,23 @@ No se acepta este plan si:
 ## 30. Definition of Done del plan
 
 ```text id="ir-plan-dod"
-[ ] plan.md creado.
-[ ] Flujo de readiness definido.
-[ ] Fases de revisión definidas.
-[ ] Inventario documental definido.
-[ ] Clasificación por prioridad definida.
-[ ] Matriz de gaps definida.
-[ ] Criterios Go/Conditional Go/No-Go definidos.
-[ ] Orden práctico de implementación definido.
-[ ] Sprint 0 definido.
-[ ] Sprint 1 definido.
-[ ] Sprint 2 definido.
-[ ] Repositorio objetivo definido.
-[ ] Tooling mínimo definido.
-[ ] Definition of Ready por área definida.
-[ ] Riesgos y mitigaciones definidos.
-[ ] Métricas de preparación definidas.
-[ ] No aceptación definida.
+[x] plan.md creado.
+[x] Flujo de readiness definido.
+[x] Fases de revisión definidas.
+[x] Inventario documental definido.
+[x] Clasificación por prioridad definida.
+[x] Matriz de gaps definida.
+[x] Criterios Go/Conditional Go/No-Go definidos.
+[x] Orden práctico de implementación definido.
+[x] Sprint 0 definido.
+[x] Sprint 1 definido.
+[x] Sprint 2 definido.
+[x] Repositorio objetivo definido.
+[x] Tooling mínimo definido.
+[x] Definition of Ready por área definida.
+[x] Riesgos y mitigaciones definidos.
+[x] Métricas de preparación definidas.
+[x] No aceptación definida.
 ```
 
 ---

@@ -10,7 +10,7 @@
 | Documento  | API Contract                                                             |
 | Ruta       | `docs/specs/029-admin-web-app-basic/api-contract.md`                     |
 | Versión    | 0.1                                                                      |
-| Estado     | Borrador inicial                                                         |
+| Estado     | needs-review                                                             |
 | Fecha      | 2026-08-03                                                               |
 | Tipo       | Frontend API Consumption Contract                                        |
 | Base API   | `/api/v1`                                                                |

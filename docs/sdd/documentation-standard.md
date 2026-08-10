@@ -755,21 +755,24 @@ Orden de autoridad documental:
 ```text id="doc-standard-source-of-truth"
 1. docs/sdd/constitution.md
 2. ADRs aceptados en docs/decisions/
-3. docs/sdd/architecture.md
-4. docs/sdd/security.md
-5. docs/sdd/api-guidelines.md
-6. docs/sdd/data-governance.md
-7. docs/specs/<module>/
-8. docs/changes/
-9. docs/implementation/
-10. docs/consolidated/
-11. README.md
+3. docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md
+4. Especificaciones de dominio en docs/specs/
+5. docs/sdd/architecture.md
+6. docs/sdd/security.md
+7. docs/sdd/api-guidelines.md
+8. docs/sdd/data-governance.md
+9. Documento de implementación del sprint vigente
+10. Código de implementación existente
 ```
 
 Regla:
 
 ```text id="doc-standard-conflict-rule"
-Si existe conflicto entre documentos, debe resolverse mediante ADR, change document o actualización explícita de la spec afectada. No debe resolverse informalmente solo en código.
+Esta jerarquía debe mantenerse alineada con AGENTS.md. Los documentos de cambio,
+otros documentos consolidados y README.md aportan trazabilidad y contexto, pero no
+alteran por sí solos el orden de autoridad anterior. Si existe conflicto entre
+documentos, debe resolverse mediante ADR, change document o actualización explícita
+de la fuente afectada. No debe resolverse informalmente solo en código.
 ```
 
 ---

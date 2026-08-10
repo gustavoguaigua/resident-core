@@ -10,7 +10,7 @@
 | Documento    | Functional Specification                                                                                                                                                                                |
 | Ruta         | `docs/specs/001-tenants/spec.md`                                                                                                                                                                        |
 | Versión      | 0.1                                                                                                                                                                                                     |
-| Estado       | Borrador inicial                                                                                                                                                                                        |
+| Estado       | needs-review                                                                                                                                                                                            |
 | Fecha        | 2026-07-12                                                                                                                                                                                              |
 | Prioridad    | Alta                                                                                                                                                                                                    |
 | Dependencias | `constitution.md`, `domain-map.md`, `architecture.md`, `security.md`, `api-guidelines.md`, `data-governance.md`, `ADR-004`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009`, `ADR-010`, `ADR-011`, `ADR-012` |

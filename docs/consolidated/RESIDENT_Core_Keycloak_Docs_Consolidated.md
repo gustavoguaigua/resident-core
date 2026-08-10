@@ -204,7 +204,8 @@ Backend modular monolith + API-first + PostgreSQL + Redis + Docker + Keycloak ob
 | Capa | Tecnología |
 |---|---|
 | Backend | NestJS + TypeScript |
-| Runtime | Node.js LTS |
+| Runtime | Node.js 24.18.0 LTS |
+| Package manager | pnpm 11.21.0 |
 | DB | PostgreSQL |
 | ORM | Prisma |
 | Cache/colas | Redis |
@@ -653,7 +654,20 @@ Keycloak centraliza autenticación, evita login duplicado, soporta OIDC/OAuth2, 
 No realm por conjunto en MVP. Usar realm principal `resident`.
 
 ## 6. Clients
-Iniciales: resident-admin-web, resident-resident-web, resident-api, resident-wordpress, resident-n8n. Futuros: mobile, payments-service, reports-service, notifications-service, audit-service, files-service.
+Identificadores iniciales canónicos:
+
+| Consumidor | `client_id` |
+| --- | --- |
+| Admin Web App | `resident-admin-web` |
+| Resident Web App (`apps/resident-web`) | `resident-resident-web` |
+| RESIDENT Core API | `resident-api` |
+| WordPress | `resident-wordpress` |
+| n8n | `resident-n8n` |
+
+El nombre de aplicación `resident-web` no debe utilizarse como `client_id`; el cliente
+OIDC del frontend residente es siempre `resident-resident-web`. Clientes futuros:
+mobile, payments-service, reports-service, notifications-service, audit-service y
+files-service.
 
 ## 7. Roles y autorización
 Keycloak puede tener roles técnicos generales. Roles funcionales por tenant se gestionan en Core. Keycloak no reemplaza autorización de negocio; Core valida tenant, membership, rol, permiso, recurso y reglas.

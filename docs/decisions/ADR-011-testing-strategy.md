@@ -9,7 +9,7 @@
 | Título          | Testing Strategy: Automated Testing for SDD, Multitenancy, Security and Financial Integrity                           |
 | Ruta            | `docs/decisions/ADR-011-testing-strategy.md`                                                                          |
 | Versión         | 0.1                                                                                                                   |
-| Estado          | Aceptado inicialmente                                                                                                 |
+| Estado          | accepted                                                                                                              |
 | Fecha           | 2026-07-12                                                                                                            |
 | Relacionado con | `constitution.md`, `architecture.md`, `security.md`, `api-guidelines.md`, `data-governance.md`, `ADR-001` a `ADR-010` |
 
@@ -237,9 +237,9 @@ Incluye:
 Comandos esperados:
 
 ```bash id="wn46oo"
-npm run lint
-npm run typecheck
-npm run format:check
+pnpm format:check
+pnpm lint
+pnpm typecheck
 ```
 
 ---
@@ -1250,20 +1250,27 @@ Validar:
 
 ## 26. Pruebas en CI/CD
 
-Pipeline mínimo:
+Pipeline mínimo desde Sprint 0, subordinado a ADR-012 §10-12:
 
 ```text id="kgvxqm"
-npm ci
-npm run lint
-npm run typecheck
-npm run test
-npm run test:integration
-npm run build
-docker build
-openapi validation
-migration check
-security checks
+pnpm install --frozen-lockfile
+pnpm format:check
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm openapi:validate
+pnpm prisma:validate
+docker compose config --quiet
+pnpm security:dependencies
+pnpm security:secrets
+pnpm build
+docker compose build resident-api
 ```
+
+Sprint 0 exige pruebas unitarias/smoke del scaffold. Integration/API tests se activan con
+la plataforma runtime; authorization/multitenancy tests, con tenants e identidad;
+financial regression tests, con módulos financieros; migration checks, con la primera
+migración. Una vez activada, una suite no puede omitirse silenciosamente.
 
 Pipeline para producción:
 
@@ -1282,7 +1289,8 @@ smoke tests after deploy
 
 ## 27. Gates de calidad
 
-No se permite merge si falla:
+No se permite merge si falla un gate base de ADR-012 o cualquiera de estos gates ya
+activados:
 
 * typecheck;
 * lint;
@@ -1684,6 +1692,24 @@ La estrategia se considera implementada si:
 * código generado por IA pasa CI antes de merge.
 
 ---
+
+## Alternativas consideradas
+
+- Pruebas mayormente manuales: descartadas por falta de repetibilidad y cobertura continua.
+- Basar la estrategia solo en E2E: descartado por lentitud, fragilidad y diagnóstico deficiente.
+- Usar porcentaje de cobertura como único gate: descartado porque no garantiza protección de reglas críticas.
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/api-guidelines.md`
+- `docs/sdd/data-governance.md`
+- `docs/decisions/ADR-001-architecture-style.md`
+- `docs/decisions/ADR-007-authorization-strategy.md`
+- `docs/decisions/ADR-010-observability-strategy.md`
+- `docs/decisions/ADR-012-ci-cd-strategy.md`
 
 ## 45. Decisión final
 

@@ -9,7 +9,7 @@
 | Título          | Architecture Style: Modular Monolith First                              |
 | Ruta            | `docs/decisions/ADR-001-architecture-style.md`                          |
 | Versión         | 0.1                                                                     |
-| Estado          | Aceptado inicialmente                                                   |
+| Estado          | accepted                                                               |
 | Fecha           | 2026-07-10                                                              |
 | Relacionado con | `architecture.md`, `domain-map.md`, `security.md`, `data-governance.md` |
 
@@ -632,7 +632,7 @@ El código del módulo debe poder rastrearse hacia esa especificación.
 ## 20. Estado de la decisión
 
 ```text id="x2r0lx"
-Aceptada inicialmente para MVP y primera versión productiva controlada.
+accepted
 ```
 
 Esta decisión deberá revisarse cuando:
@@ -647,6 +647,16 @@ Esta decisión deberá revisarse cuando:
 * Se detecte acoplamiento excesivo.
 
 ---
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/domain-map.md`
+- `docs/sdd/security.md`
+- `docs/sdd/data-governance.md`
+- `docs/decisions/ADR-002-backend-framework.md`
+- `docs/decisions/ADR-009-deployment-strategy.md`
 
 ## 21. Decisión final
 

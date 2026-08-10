@@ -10,7 +10,7 @@
 | Documento              | Data Model                                                                                                                                |
 | Ruta                   | `docs/specs/024-access-control-visitors/data-model.md`                                                                                    |
 | Versión                | 0.1                                                                                                                                       |
-| Estado                 | Borrador inicial                                                                                                                          |
+| Estado                 | needs-review                                                                                                                              |
 | Fecha                  | 2026-07-24                                                                                                                                |
 | Documento base         | `docs/specs/024-access-control-visitors/spec.md`                                                                                          |
 | Plan técnico           | `docs/specs/024-access-control-visitors/plan.md`                                                                                          |

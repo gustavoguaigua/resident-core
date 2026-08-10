@@ -10,7 +10,7 @@
 | Documento       | API Contract                                                                                                                         |
 | Ruta            | `docs/specs/008-basic-reports/api-contract.md`                                                                                       |
 | Versión         | 0.1                                                                                                                                  |
-| Estado          | Borrador inicial                                                                                                                     |
+| Estado          | needs-review                                                                                                                         |
 | Fecha           | 2026-07-14                                                                                                                           |
 | Documento base  | `docs/specs/008-basic-reports/spec.md`                                                                                               |
 | Plan técnico    | `docs/specs/008-basic-reports/plan.md`                                                                                               |

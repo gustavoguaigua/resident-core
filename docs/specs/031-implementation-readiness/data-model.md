@@ -10,16 +10,21 @@
 | Documento  | Data Model                                                                                    |
 | Ruta       | `docs/specs/031-implementation-readiness/data-model.md`                                       |
 | Versión    | 0.1                                                                                           |
-| Estado     | Borrador inicial                                                                              |
+| Estado     | complete                                                                                      |
 | Fecha      | 2026-08-05                                                                                    |
 | Naturaleza | Readiness model / Documentation state model / Gap tracking model / Non-business transactional |
 | Alcance    | Platform-only / Internal / Non-public / Pre-implementation validation                         |
+| Estado runtime | `deferred` — sin persistencia en Sprint 0                                                |
 
 ---
 
 ## 2. Propósito
 
 Definir el modelo de datos conceptual para la compuerta `031-implementation-readiness`.
+
+Las entidades de este documento son conceptuales y reservadas para una capacidad
+interna futura. No autorizan modelos Prisma, tablas, migraciones, seeds, repositorios ni
+servicios de persistencia durante Sprint 0.
 
 Este modelo permite representar el estado de preparación del proyecto antes de iniciar implementación: documentos revisados, paquetes SDD, ADRs, gaps, decisiones, métricas de readiness, matriz de prioridad, condiciones mínimas y resultado Go / Conditional Go / No-Go.
 
@@ -89,6 +94,12 @@ Motivo:
 ```text id="ir-dm-persistence-reason"
 Implementation Readiness puede ejecutarse inicialmente como revisión documental basada en archivos Markdown dentro de docs/specs/031-implementation-readiness/. La persistencia en base de datos solo sería necesaria si se decide construir una consola interna de readiness o automatizar el seguimiento de gaps.
 ```
+
+La persistencia tampoco se incorpora automáticamente a Sprint 1. Requiere asignación
+explícita a un sprint posterior y un plan aprobado que active conjuntamente el contrato
+API y los controles platform-scoped. Mientras esté diferida, la evidencia autoritativa
+se conserva en Markdown versionado bajo `docs/changes/` y
+`docs/specs/031-implementation-readiness/`.
 
 Persistencia opcional futura:
 

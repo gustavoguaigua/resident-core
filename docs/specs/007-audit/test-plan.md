@@ -10,7 +10,7 @@
 | Documento                | Test Plan                                                                                                               |
 | Ruta                     | `docs/specs/007-audit/test-plan.md`                                                                                     |
 | Versión                  | 0.1                                                                                                                     |
-| Estado                   | Borrador inicial                                                                                                        |
+| Estado                   | needs-review                                                                                                            |
 | Fecha                    | 2026-07-14                                                                                                              |
 | Documento base           | `docs/specs/007-audit/spec.md`                                                                                          |
 | Plan técnico             | `docs/specs/007-audit/plan.md`                                                                                          |

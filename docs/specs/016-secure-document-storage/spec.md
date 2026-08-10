@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                                                                           |
 | Ruta            | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                                                   |
 | Versión         | 0.1                                                                                                                                                                                                |
-| Estado          | Borrador inicial                                                                                                                                                                                   |
+| Estado          | needs-review                                                                                                                                                                                       |
 | Fecha           | 2026-07-21                                                                                                                                                                                         |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `005-payments`, `007-audit`, `011-fines-sanctions`, `012-communications-notifications`, `015-certified-minutes`                      |
 | Relacionado con | comprobantes de pago, evidencias de multas, adjuntos de comunicaciones, PDFs de actas, reportes exportados, documentos administrativos, almacenamiento S3-compatible, auditoría, descargas seguras |

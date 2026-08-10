@@ -9,7 +9,7 @@
 | Título          | Deployment Strategy: Progressive Deployment from Docker Compose to Managed Cloud                                                                                                                                                    |
 | Ruta            | `docs/decisions/ADR-009-deployment-strategy.md`                                                                                                                                                                                     |
 | Versión         | 0.1                                                                                                                                                                                                                                 |
-| Estado          | Aceptado inicialmente                                                                                                                                                                                                               |
+| Estado          | accepted                                                                                                                                                                                                                            |
 | Fecha           | 2026-07-12                                                                                                                                                                                                                          |
 | Relacionado con | `ADR-001-architecture-style.md`, `ADR-002-backend-framework.md`, `ADR-003-database-strategy.md`, `ADR-006-identity-provider-strategy.md`, `ADR-008-api-gateway-strategy.md`, `architecture.md`, `security.md`, `data-governance.md` |
 
@@ -279,19 +279,9 @@ Características mínimas:
 
 ## 7. Arquitectura local inicial
 
-Docker Compose local deberá levantar, como mínimo:
+La topología canónica de Docker Compose para Sprint 0 deberá levantar:
 
 ```text id="l0dlhh"
-resident-api
-postgres
-redis
-mailhog
-minio
-```
-
-Con Keycloak:
-
-```text id="7y12hf"
 resident-api
 postgres
 redis
@@ -299,7 +289,43 @@ keycloak
 keycloak-postgres
 mailhog
 minio
-reverse-proxy opcional
+```
+
+Esta lista es única para Sprint 0. `keycloak-postgres` es una instancia dedicada a
+Keycloak y no comparte la base `postgres` de RESIDENT Core. Los nombres de servicio de
+Compose deben coincidir exactamente con esta lista.
+
+### 7.1. Baseline de imágenes de Sprint 0
+
+| Servicio Compose | Imagen o tag canónico |
+| --- | --- |
+| `resident-api` | imagen local `resident-api:0.1.0-sprint0`, construida desde `node:24.18.0-bookworm-slim` |
+| `postgres` | `postgres:17.10-bookworm` |
+| `redis` | `redis:7.4.10-bookworm` |
+| `keycloak` | `quay.io/keycloak/keycloak:26.7.0` |
+| `keycloak-postgres` | `postgres:17.10-bookworm` |
+| `mailhog` | `mailhog/mailhog:v1.0.1` |
+| `minio` | `minio/minio:RELEASE.2025-09-07T16-13-09Z` |
+
+Estos valores fueron verificados el 2026-08-10 contra las publicaciones oficiales de
+Node, PostgreSQL, Redis, Keycloak, MailHog y MinIO. En artefactos ejecutables quedan
+prohibidos `latest`, aliases LTS, majors o minors flotantes y tags de ambiente como
+fuente única de una imagen externa. Una actualización debe modificar ADR-009, el
+runbook, Compose y las validaciones de readiness en un mismo cambio.
+
+`mailhog` y `minio` son herramientas exclusivamente locales y solo pueden contener
+datos sintéticos. Sus distribuciones comunitarias fijadas no autorizan su uso en
+staging ni producción. MinIO debe reevaluarse antes de cualquier ambiente no local
+porque su distribución comunitaria oficial de imágenes quedó archivada.
+
+Quedan fuera del Definition of Done de Sprint 0:
+
+```text id="7y12hf"
+resident-worker — diferido hasta que existan jobs autorizados
+admin-web y resident-web — scaffolds ejecutados fuera de Compose por defecto
+reverse-proxy — opcional en local; requerido según el ambiente desplegado
+wordpress y n8n — integraciones posteriores, nunca parte del backend transaccional
+observability stack — fase posterior según ADR-010
 ```
 
 Estructura conceptual:
@@ -319,7 +345,7 @@ Developer Machine
 
 ## 8. Servicios del sistema
 
-### 8.1. Servicios obligatorios MVP
+### 8.1. Servicios obligatorios de aplicación/despliegue MVP
 
 ```text id="eglkyv"
 resident-api
@@ -327,6 +353,9 @@ postgres
 redis
 reverse-proxy
 ```
+
+Esta clasificación describe el despliegue MVP, no modifica la topología local canónica
+de Sprint 0 definida en §7.
 
 ### 8.2. Servicios recomendados MVP
 
@@ -336,11 +365,14 @@ minio o storage compatible S3 en local/dev
 worker para jobs asíncronos
 ```
 
+En Sprint 0, `mailhog` y `minio` son obligatorios para que el entorno local sea completo;
+`worker` permanece diferido.
+
 ### 8.3. Servicios con Keycloak
 
 ```text id="lsbvce"
 keycloak
-keycloak-db
+keycloak-postgres
 ```
 
 Keycloak en producción requiere configuración explícita de hostname y normalmente se despliega detrás de un reverse proxy o load balancer; su documentación señala que el hostname no se resuelve dinámicamente por seguridad y que la configuración productiva suele incluir reverse proxy/load balancer.
@@ -404,7 +436,9 @@ El backend deberá construirse como imagen Docker.
 
 Requisitos:
 
-* usar Node.js LTS;
+* usar Node.js 24.18.0 LTS y pnpm 11.21.0;
+* usar `node:24.18.0-bookworm-slim` como imagen base;
+* etiquetar el build local de Sprint 0 como `resident-api:0.1.0-sprint0`;
 * instalar dependencias con lockfile;
 * compilar TypeScript;
 * no incluir archivos innecesarios;
@@ -430,15 +464,16 @@ Aunque usen el mismo código base, tendrán comandos de ejecución distintos.
 Ejemplo:
 
 ```text id="cvwogi"
-resident-api     → npm run start:prod
-resident-worker  → npm run worker:prod
+resident-api     → pnpm start:prod
+resident-worker  → pnpm worker:prod
 ```
 
 ---
 
 ### 11.3. Versionamiento de imágenes
 
-Las imágenes deben etiquetarse con:
+El baseline local de Sprint 0 usa las versiones exactas de §7.1. Las imágenes propias
+posteriores deben etiquetarse además con:
 
 ```text id="s0kgr0"
 git commit SHA
@@ -453,6 +488,9 @@ resident-api:0.1.0
 resident-api:2026-07-12
 resident-api:sha-abc123
 ```
+
+Los tags de release o SHA complementan la versión semántica; no sustituyen el tag
+canónico reproducible definido para cada ambiente.
 
 ---
 
@@ -1189,10 +1227,14 @@ Docker Compose
 resident-api
 postgres
 redis
-minio
+keycloak
+keycloak-postgres
 mailhog
-keycloak opcional
+minio
 ```
+
+Esta fase usa la topología canónica de §7. Los servicios opcionales o diferidos no
+forman parte de su criterio de cierre.
 
 ### 36.2. Fase B — Dev/Staging
 
@@ -1516,6 +1558,24 @@ La implementación cumple este ADR si:
 * La estrategia futura hacia servicios administrados está documentada.
 
 ---
+
+## Alternativas consideradas
+
+- Kubernetes o infraestructura cloud compleja desde el inicio: descartado por costo y sobrearquitectura prematura.
+- Despliegue manual sin contenedores ni ambientes separados: descartado por falta de reproducibilidad y control.
+- Producción directa sin staging: descartado por riesgo operativo, de seguridad y de migraciones.
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/data-governance.md`
+- `docs/decisions/ADR-001-architecture-style.md`
+- `docs/decisions/ADR-003-database-strategy.md`
+- `docs/decisions/ADR-006-identity-provider-strategy.md`
+- `docs/decisions/ADR-008-api-gateway-strategy.md`
+- `docs/decisions/ADR-012-ci-cd-strategy.md`
 
 ## 50. Decisión final
 

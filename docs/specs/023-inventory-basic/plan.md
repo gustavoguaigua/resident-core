@@ -10,7 +10,7 @@
 | Documento             | Technical Plan                                                                                                                                |
 | Ruta                  | `docs/specs/023-inventory-basic/plan.md`                                                                                                      |
 | Versión               | 0.1                                                                                                                                           |
-| Estado                | Borrador inicial                                                                                                                              |
+| Estado                | needs-review                                                                                                                                  |
 | Fecha                 | 2026-07-23                                                                                                                                    |
 | Documento base        | `docs/specs/023-inventory-basic/spec.md`                                                                                                      |
 | Fase                  | FASE 2 — RESIDENT Core                                                                                                                        |

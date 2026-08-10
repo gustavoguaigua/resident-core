@@ -10,7 +10,7 @@
 | Documento             | Functional Specification                                                                            |
 | Ruta                  | `docs/specs/028-data-import-migration/spec.md`                                                      |
 | Versión               | 0.1                                                                                                 |
-| Estado                | Borrador inicial                                                                                    |
+| Estado                | needs-review                                                                                        |
 | Fecha                 | 2026-08-02                                                                                          |
 | Fase                  | FASE 2 — RESIDENT Core                                                                              |
 | Arquitectura objetivo | Monolito modular preparado para microservicios                                                      |

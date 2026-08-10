@@ -10,7 +10,7 @@
 | Documento  | Security Notes                                                      |
 | Ruta       | `docs/specs/027-dashboard-kpis/security-notes.md`                   |
 | Versión    | 0.1                                                                 |
-| Estado     | Borrador inicial                                                    |
+| Estado     | needs-review                                                        |
 | Fecha      | 2026-08-02                                                          |
 | Naturaleza | Tenant-scoped / Read-heavy / Derived-data / Role-aware / Non-public |
 

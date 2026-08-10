@@ -10,7 +10,7 @@
 | Documento       | Security Notes                                                                                 |
 | Ruta            | `docs/specs/009-wordpress-integration-basic/security-notes.md`                                 |
 | Versión         | 0.1                                                                                            |
-| Estado          | Borrador inicial                                                                               |
+| Estado          | needs-review                                                                                   |
 | Fecha           | 2026-07-14                                                                                     |
 | Documento base  | `docs/specs/009-wordpress-integration-basic/spec.md`                                           |
 | Plan técnico    | `docs/specs/009-wordpress-integration-basic/plan.md`                                           |

@@ -14,7 +14,8 @@ Backend modular monolith + API-first + PostgreSQL + Redis + Docker + Keycloak ob
 | Capa | Tecnología |
 |---|---|
 | Backend | NestJS + TypeScript |
-| Runtime | Node.js LTS |
+| Runtime | Node.js 24.18.0 LTS |
+| Package manager | pnpm 11.21.0 |
 | DB | PostgreSQL |
 | ORM | Prisma |
 | Cache/colas | Redis |
@@ -83,7 +84,15 @@ WordPress tenant page → `/login?tenant=villa-club` → Keycloak Login → Core
 n8n consume APIs Core. Con Keycloak usa service account/client credentials. No accede a PostgreSQL ni modifica saldos.
 
 ## 15. Infraestructura local
-resident-api, resident-worker, postgres, redis, minio, mailhog. En modo Keycloak: keycloak, keycloak-postgres.
+La topología canónica de Sprint 0, conforme a ADR-009 §7, es: `resident-api`,
+`postgres`, `redis`, `keycloak`, `keycloak-postgres`, `mailhog` y `minio`.
+`keycloak-postgres` es dedicado y no comparte la base de Core. `resident-worker`, los
+frontends, reverse proxy, WordPress, n8n y el stack de observabilidad no forman parte del
+Definition of Done de Sprint 0.
+
+Las imágenes y tags exactos son los definidos en ADR-009 §7.1. Compose no puede usar
+`latest`, aliases LTS ni versiones flotantes. MailHog y MinIO son exclusivamente locales
+con datos sintéticos y no quedan aprobados para staging o producción.
 
 ## 16. CI/CD y pruebas
 Pipeline con install, lint, typecheck, tests, multitenant tests, build, docker build y security checks. Pruebas de tokens Keycloak, audience, issuer, expiración y autorización posterior.

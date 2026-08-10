@@ -10,7 +10,7 @@
 | Documento              | Data Model                                                                                                                                                            |
 | Ruta                   | `docs/specs/019-open-banking-integration/data-model.md`                                                                                                               |
 | Versión                | 0.1                                                                                                                                                                   |
-| Estado                 | Borrador inicial                                                                                                                                                      |
+| Estado                 | needs-review                                                                                                                                                          |
 | Fecha                  | 2026-07-23                                                                                                                                                            |
 | Documento base         | `docs/specs/019-open-banking-integration/spec.md`                                                                                                                     |
 | Plan técnico           | `docs/specs/019-open-banking-integration/plan.md`                                                                                                                     |

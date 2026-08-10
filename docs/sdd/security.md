@@ -33,6 +33,14 @@ Movimientos financieros inmutables históricamente. Correcciones con reversos o 
 ## 9. APIs y archivos
 HTTPS, Bearer token, validación token propio/Keycloak, autorización por recurso, validación estricta, rate limiting, errores seguros, idempotencia y OpenAPI. Archivos en storage privado, separados por tenant.
 
+### 9.1. Health endpoints
+
+`GET /api/v1/health` puede ser público únicamente como liveness mínima y no puede
+revelar dependencias o información interna. `GET /api/v1/health/details` es
+platform-scoped y, fuera de local, requiere exposición interna y una identidad
+autorizada con `platform.health.read`. El detalle nunca expone hosts, puertos, credenciales, queries,
+stack traces, configuración, secretos ni datos de tenant o usuario.
+
 ## 10. Keycloak
 Realm `resident`, no realm por tenant en MVP, redirect URIs exactas, web origins restringidos, HTTPS, MFA para admins, backup DB, no claims sensibles, mappers revisados, rotación de secretos, service accounts limitadas.
 

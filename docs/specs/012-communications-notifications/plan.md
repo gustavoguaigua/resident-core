@@ -10,7 +10,7 @@
 | Documento             | Implementation Plan                                                                                               |
 | Ruta                  | `docs/specs/012-communications-notifications/plan.md`                                                             |
 | Versión               | 0.1                                                                                                               |
-| Estado                | Borrador inicial                                                                                                  |
+| Estado                | needs-review                                                                                                      |
 | Fecha                 | 2026-07-19                                                                                                        |
 | Documento base        | `docs/specs/012-communications-notifications/spec.md`                                                             |
 | Depende de            | `001-tenants`, `002-users-roles`, `003-residents-properties`, `007-audit`, `009-wordpress-integration-basic`      |

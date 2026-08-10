@@ -10,7 +10,7 @@
 | Documento       | API Contract                                                                           |
 | Ruta            | `docs/specs/027-dashboard-kpis/api-contract.md`                                        |
 | Versión         | 0.1                                                                                    |
-| Estado          | Borrador inicial                                                                       |
+| Estado          | needs-review                                                                           |
 | Fecha           | 2026-08-02                                                                             |
 | Documento base  | `docs/specs/027-dashboard-kpis/spec.md`                                                |
 | Plan técnico    | `docs/specs/027-dashboard-kpis/plan.md`                                                |

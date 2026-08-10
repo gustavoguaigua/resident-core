@@ -10,7 +10,7 @@
 | Documento      | Implementation Plan                                          |
 | Ruta           | `docs/specs/004-dues-fees/plan.md`                           |
 | Versión        | 0.1                                                          |
-| Estado         | Borrador inicial                                             |
+| Estado         | needs-review                                                 |
 | Fecha          | 2026-07-14                                                   |
 | Documento base | `docs/specs/004-dues-fees/spec.md`                           |
 | Depende de     | `001-tenants`, `002-users-roles`, `003-residents-properties` |

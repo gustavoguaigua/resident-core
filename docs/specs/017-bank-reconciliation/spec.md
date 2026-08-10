@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                                                                 |
 | Ruta            | `docs/specs/017-bank-reconciliation/spec.md`                                                                                                                                             |
 | Versión         | 0.1                                                                                                                                                                                      |
-| Estado          | Borrador inicial                                                                                                                                                                         |
+| Estado          | needs-review                                                                                                                                                                             |
 | Fecha           | 2026-07-21                                                                                                                                                                               |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `004-dues-fees`, `005-payments`, `006-account-statements`, `007-audit`, `008-basic-reports`, `016-secure-document-storage` |
 | Relacionado con | cuentas bancarias, movimientos bancarios, pagos, comprobantes, asignaciones, estados de cuenta, reportes financieros, auditoría, archivos importados, conciliación manual/asistida       |

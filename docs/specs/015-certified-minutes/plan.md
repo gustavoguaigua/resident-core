@@ -10,7 +10,7 @@
 | Documento       | Plan técnico                                                                                                                                                 |
 | Ruta            | `docs/specs/015-certified-minutes/plan.md`                                                                                                                   |
 | Versión         | 0.1                                                                                                                                                          |
-| Estado          | Borrador inicial                                                                                                                                             |
+| Estado          | needs-review                                                                                                                                                 |
 | Fecha           | 2026-07-21                                                                                                                                                   |
 | Documento base  | `docs/specs/015-certified-minutes/spec.md`                                                                                                                   |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `007-audit`, `012-communications-notifications`, `013-meetings-attendance`, `014-voting-basic` |

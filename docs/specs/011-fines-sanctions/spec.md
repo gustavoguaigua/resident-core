@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                                  |
 | Ruta            | `docs/specs/011-fines-sanctions/spec.md`                                                                                                                  |
 | Versión         | 0.1                                                                                                                                                       |
-| Estado          | Borrador inicial                                                                                                                                          |
+| Estado          | needs-review                                                                                                                                              |
 | Fecha           | 2026-07-19                                                                                                                                                |
 | Prioridad       | Alta                                                                                                                                                      |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `004-dues-fees`, `005-payments`, `006-account-statements`, `007-audit`, `008-basic-reports` |

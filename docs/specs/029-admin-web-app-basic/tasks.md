@@ -10,7 +10,7 @@
 | Documento      | Tasks                                                                                                     |
 | Ruta           | `docs/specs/029-admin-web-app-basic/tasks.md`                                                             |
 | Versión        | 0.1                                                                                                       |
-| Estado         | Borrador inicial                                                                                          |
+| Estado         | needs-review                                                                                              |
 | Fecha          | 2026-08-03                                                                                                |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC |
 | Naturaleza     | Tenant-scoped / Permission-aware / API-first / Non-public / Admin-facing                                  |

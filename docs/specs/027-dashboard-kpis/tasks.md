@@ -10,7 +10,7 @@
 | Documento      | Tasks                                                                  |
 | Ruta           | `docs/specs/027-dashboard-kpis/tasks.md`                               |
 | Versión        | 0.1                                                                    |
-| Estado         | Borrador inicial                                                       |
+| Estado         | needs-review                                                           |
 | Fecha          | 2026-08-02                                                             |
 | Stack objetivo | NestJS / TypeScript / PostgreSQL / Prisma / Redis / OpenAPI / Keycloak |
 | Naturaleza     | Tenant-scoped / Read-heavy / Derived-data / Role-aware / Non-public    |

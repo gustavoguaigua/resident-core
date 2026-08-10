@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                            |
 | Ruta            | `docs/specs/003-residents-properties/spec.md`                                                                                                       |
 | Versión         | 0.1                                                                                                                                                 |
-| Estado          | Borrador inicial                                                                                                                                    |
+| Estado          | needs-review                                                                                                                                        |
 | Fecha           | 2026-07-13                                                                                                                                          |
 | Prioridad       | Alta                                                                                                                                                |
 | Depende de      | `001-tenants`, `002-users-roles`                                                                                                                    |

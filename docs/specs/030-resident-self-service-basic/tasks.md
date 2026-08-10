@@ -10,7 +10,7 @@
 | Documento      | Tasks                                                                                                       |
 | Ruta           | `docs/specs/030-resident-self-service-basic/tasks.md`                                                       |
 | Versión        | 0.1                                                                                                         |
-| Estado         | Borrador inicial                                                                                            |
+| Estado         | needs-review                                                                                                |
 | Fecha          | 2026-08-04                                                                                                  |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC   |
 | Naturaleza     | Resident-facing / Tenant-scoped / Property-scoped / Permission-aware / API-first / Non-public transactional |
@@ -107,7 +107,7 @@ Acceptance:
 [ ] Crear configuración NEXT_PUBLIC_RESIDENT_API_BASE_URL.
 [ ] Crear configuración NEXT_PUBLIC_KEYCLOAK_URL.
 [ ] Crear configuración NEXT_PUBLIC_KEYCLOAK_REALM.
-[ ] Crear configuración NEXT_PUBLIC_KEYCLOAK_CLIENT_ID.
+[ ] Crear configuración NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=resident-resident-web.
 [ ] Crear RESIDENT_SELF_SERVICE_ENABLED=true.
 [ ] Crear RESIDENT_SELF_SERVICE_PUBLIC_MODE_ENABLED=false.
 [ ] Crear RESIDENT_SELF_SERVICE_WORDPRESS_AUTH_ENABLED=false.

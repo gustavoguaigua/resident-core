@@ -9,7 +9,7 @@
 | Título          | API Gateway Strategy: Progressive Edge Gateway for Monolith and Future Microservices                                                                                                                     |
 | Ruta            | `docs/decisions/ADR-008-api-gateway-strategy.md`                                                                                                                                                         |
 | Versión         | 0.1                                                                                                                                                                                                      |
-| Estado          | Aceptado inicialmente                                                                                                                                                                                    |
+| Estado          | accepted                                                                                                                                                                                                 |
 | Fecha           | 2026-07-12                                                                                                                                                                                               |
 | Relacionado con | `ADR-001-architecture-style.md`, `ADR-004-multitenancy-strategy.md`, `ADR-006-identity-provider-strategy.md`, `ADR-007-authorization-strategy.md`, `architecture.md`, `api-guidelines.md`, `security.md` |
 
@@ -1465,6 +1465,17 @@ La implementación cumple este ADR si:
 * Las specs SDD declaran necesidades perimetrales por endpoint.
 
 ---
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/api-guidelines.md`
+- `docs/decisions/ADR-001-architecture-style.md`
+- `docs/decisions/ADR-006-identity-provider-strategy.md`
+- `docs/decisions/ADR-007-authorization-strategy.md`
+- `docs/decisions/ADR-009-deployment-strategy.md`
 
 ## 48. Decisión final
 

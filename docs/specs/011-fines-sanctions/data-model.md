@@ -10,7 +10,7 @@
 | Documento              | Data Model                                                         |
 | Ruta                   | `docs/specs/011-fines-sanctions/data-model.md`                     |
 | Versión                | 0.1                                                                |
-| Estado                 | Borrador inicial                                                   |
+| Estado                 | needs-review                                                       |
 | Fecha                  | 2026-07-19                                                         |
 | Documento base         | `docs/specs/011-fines-sanctions/spec.md`                           |
 | Plan técnico           | `docs/specs/011-fines-sanctions/plan.md`                           |

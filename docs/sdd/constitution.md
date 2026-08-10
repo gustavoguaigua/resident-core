@@ -49,23 +49,56 @@ Unitarias, integración, autorización, aislamiento multitenant, reglas de negoc
 ### 4.10. Uso responsable de IA
 La IA no aprueba código crítico, no inventa reglas, no elimina históricos, no crea bypasses de autenticación ni trata Keycloak como autorización de negocio.
 
-## 5. Estructura SDD
+## 5. Estructura oficial del repositorio
 ```text
 resident-core/
+├── apps/
+│   ├── api/
+│   ├── admin-web/
+│   └── resident-web/
+├── packages/
+│   ├── shared/
+│   ├── config/
+│   ├── auth/
+│   ├── openapi-client/
+│   └── testing/
 ├── docs/
 │   ├── sdd/
-│   ├── specs/
 │   ├── decisions/
-│   └── changes/
-├── apps/
-├── packages/
+│   ├── specs/
+│   ├── changes/
+│   ├── implementation/
+│   ├── consolidated/
+│   └── templates/
+├── infra/
+│   ├── docker/
+│   ├── keycloak/
+│   ├── postgres/
+│   └── local/
 ├── prisma/
-├── docker/
-├── keycloak/
-├── scripts/
-├── tests/
-└── docker-compose.yml
+│   ├── schema.prisma
+│   ├── migrations/
+│   └── seed/
+├── tools/
+│   ├── openapi/
+│   ├── scripts/
+│   └── ci/
+├── .github/
+│   └── workflows/
+├── docker-compose.yml
+├── package.json
+├── pnpm-workspace.yaml
+├── .node-version
+├── tsconfig.base.json
+├── .env.example
+├── .gitignore
+└── README.md
 ```
+
+No se crearán directorios de implementación alternativos en la raíz. Docker,
+Keycloak y PostgreSQL se configurarán bajo `infra/`; los scripts bajo `tools/`; y
+las pruebas compartidas bajo `packages/testing/`. Las pruebas específicas de cada
+aplicación o paquete permanecerán junto al código que validan.
 
 ## 6. Estructura por spec
 Cada módulo contiene `spec.md`, `plan.md`, `tasks.md`, `data-model.md`, `api-contract.md`, `test-plan.md` y `security-notes.md`.

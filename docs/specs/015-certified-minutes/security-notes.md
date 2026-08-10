@@ -10,7 +10,7 @@
 | Documento       | Security Notes                                                                                                                                               |
 | Ruta            | `docs/specs/015-certified-minutes/security-notes.md`                                                                                                         |
 | Versión         | 0.1                                                                                                                                                          |
-| Estado          | Borrador inicial                                                                                                                                             |
+| Estado          | needs-review                                                                                                                                                 |
 | Fecha           | 2026-07-21                                                                                                                                                   |
 | Documento base  | `docs/specs/015-certified-minutes/spec.md`                                                                                                                   |
 | Plan técnico    | `docs/specs/015-certified-minutes/plan.md`                                                                                                                   |

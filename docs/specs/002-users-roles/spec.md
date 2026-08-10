@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                                       |
 | Ruta            | `docs/specs/002-users-roles/spec.md`                                                                                                                           |
 | Versión         | 0.1                                                                                                                                                            |
-| Estado          | Borrador inicial                                                                                                                                               |
+| Estado          | needs-review                                                                                                                                                   |
 | Fecha           | 2026-07-13                                                                                                                                                     |
 | Prioridad       | Alta                                                                                                                                                           |
 | Depende de      | `docs/specs/001-tenants/spec.md`                                                                                                                               |

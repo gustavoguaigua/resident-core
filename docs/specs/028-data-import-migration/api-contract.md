@@ -10,7 +10,7 @@
 | Documento    | API Contract                                                                                    |
 | Ruta         | `docs/specs/028-data-import-migration/api-contract.md`                                          |
 | Versión      | 0.1                                                                                             |
-| Estado       | Borrador inicial                                                                                |
+| Estado       | needs-review                                                                                    |
 | Fecha        | 2026-08-02                                                                                      |
 | API style    | REST                                                                                            |
 | Base path    | `/api/v1`                                                                                       |

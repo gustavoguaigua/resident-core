@@ -10,7 +10,7 @@
 | Documento  | Security Notes                                                       |
 | Ruta       | `docs/specs/031-implementation-readiness/security-notes.md`          |
 | Versión    | 0.1                                                                  |
-| Estado     | Borrador inicial                                                     |
+| Estado     | complete                                                             |
 | Fecha      | 2026-08-06                                                           |
 | Naturaleza | Security readiness gate / Pre-implementation control / Platform-only |
 | Alcance    | Validación previa a implementación técnica                           |
@@ -422,6 +422,12 @@ Controles mínimos:
 - No comprobantes reales.
 - No documentos de residentes reales.
 - No datos personales reales para pruebas.
+- AGENTS.md raíz versionado como guía obligatoria para todo el repositorio.
+- No existen guías AGENTS.md anidadas que alteren silenciosamente estos controles.
+- packages/auth no implementa bypasses, tokens, guards ni auth runtime en Sprint 0.
+- packages/openapi-client no contiene contratos o endpoints improvisados.
+- packages/testing ejecuta security:secrets real y no contiene datos o fixtures reales.
+- La compuerta 031 usa Markdown/Git; no expone API ni persistencia runtime en Sprint 0.
 ```
 
 Estructura segura esperada:
@@ -437,7 +443,8 @@ resident-core/
 ├── infra/
 ├── prisma/
 ├── tools/
-└── .github/
+├── .github/
+└── AGENTS.md
 ```
 
 ---
@@ -500,7 +507,7 @@ Antes de iniciar implementación:
 [ ] Realm definido.
 [ ] Client API definido.
 [ ] Client admin-web definido.
-[ ] Client resident-web definido.
+[ ] Client de `apps/resident-web` definido con `client_id=resident-resident-web`.
 [ ] Authorization Code Flow with PKCE definido.
 [ ] Implicit flow deshabilitado.
 [ ] Mapping keycloakSubjectId -> UserProfile definido.
@@ -585,17 +592,27 @@ Bloqueante si:
 Pipeline mínimo:
 
 ```text id="ir-sec-cicd-minimum"
+[ ] Install frozen.
 [ ] TypeScript check.
 [ ] Lint check.
 [ ] Format check.
-[ ] Unit tests.
-[ ] Integration tests iniciales.
-[ ] OpenAPI generation.
-[ ] Prisma migration check.
-[ ] Docker build.
+[ ] Unit/smoke tests.
+[ ] OpenAPI tooling validation.
+[ ] Prisma schema validation.
+[ ] Docker Compose config validation.
+[ ] Imágenes exactas alineadas con ADR-009 §7.1; sin `latest` ni versiones flotantes.
+[ ] MailHog y MinIO restringidos a local y datos sintéticos.
+[ ] Dependency audit.
+[ ] Workspace builds.
+[ ] Docker Compose build de resident-api.
 [ ] Secret scanning.
-[ ] Security static checks.
+[ ] Required CI gates requerido en branch protection.
+[ ] Sin continue-on-error ni scripts ausentes tolerados.
 ```
+
+Las validaciones de integración, contrato runtime, migraciones, autorización,
+multitenancy, finanzas y clientes generados se activan con su capacidad según ADR-012
+§10.2.
 
 Debe fallar si:
 
@@ -783,6 +800,10 @@ Antes de crear código base:
 [ ] No hay dumps reales.
 [ ] No hay comprobantes reales.
 [ ] No hay documentos privados reales.
+[ ] packages/auth permanece como scaffold sin auth runtime.
+[ ] packages/openapi-client valida tooling sin inventar contratos.
+[ ] packages/testing provee security:secrets real, sin placeholder.
+[ ] No existen endpoints, permisos o persistencia runtime de readiness en Sprint 0.
 ```
 
 ---
@@ -791,6 +812,9 @@ Antes de crear código base:
 
 Antes de implementar módulos reales:
 
+Estos controles se implementan durante Sprint 1 y deben estar completos antes de abrir
+los módulos funcionales de los sprints posteriores. No son entregables de Sprint 0.
+
 ```text id="ir-sec-sprint-1-gates"
 [ ] ValidationPipe activo.
 [ ] ExceptionFilter seguro.
@@ -798,7 +822,7 @@ Antes de implementar módulos reales:
 [ ] AuthGuard base.
 [ ] TenantGuard base.
 [ ] PermissionGuard base.
-[ ] OpenAPI base.
+[ ] Swagger/OpenAPI runtime seguro.
 [ ] Prisma sin modelos financieros inseguros.
 [ ] No float para dinero.
 [ ] No hard delete en entidades críticas.

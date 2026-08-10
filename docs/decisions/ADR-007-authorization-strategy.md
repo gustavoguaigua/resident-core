@@ -9,7 +9,7 @@
 | Título          | Authorization Strategy: Tenant-Aware RBAC with Resource-Level Business Authorization                                                                                   |
 | Ruta            | `docs/decisions/ADR-007-authorization-strategy.md`                                                                                                                     |
 | Versión         | 0.1                                                                                                                                                                    |
-| Estado          | Aceptado inicialmente                                                                                                                                                  |
+| Estado          | accepted                                                                                                                                                               |
 | Fecha           | 2026-07-12                                                                                                                                                             |
 | Relacionado con | `ADR-004-multitenancy-strategy.md`, `ADR-005-authentication-strategy.md`, `ADR-006-identity-provider-strategy.md`, `security.md`, `api-guidelines.md`, `domain-map.md` |
 
@@ -1247,6 +1247,22 @@ La implementación cumple este ADR si:
 * La documentación SDD de cada módulo incluye autorización.
 
 ---
+
+## Alternativas consideradas
+
+- Delegar autorización funcional a roles de Keycloak: descartado porque no representa tenant, recurso ni reglas financieras con suficiente detalle.
+- Aplicar RBAC global sin contexto de tenant: descartado por riesgo de acceso cross-tenant.
+- Usar únicamente reglas ad hoc por endpoint: descartado por falta de consistencia, trazabilidad y reutilización de políticas.
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/api-guidelines.md`
+- `docs/decisions/ADR-004-multitenancy-strategy.md`
+- `docs/decisions/ADR-005-authentication-strategy.md`
+- `docs/decisions/ADR-006-identity-provider-strategy.md`
 
 ## 42. Decisión final
 

@@ -10,10 +10,11 @@
 | Documento         | API Contract                                                                           |
 | Ruta              | `docs/specs/031-implementation-readiness/api-contract.md`                              |
 | Versión           | 0.1                                                                                    |
-| Estado            | Borrador inicial                                                                       |
+| Estado            | complete                                                                               |
 | Fecha             | 2026-08-05                                                                             |
 | Naturaleza        | Internal readiness contract / Non-transactional / Documentation and validation support |
-| Base API sugerida | `/api/v1/platform/readiness`                                                           |
+| Estado runtime    | `deferred` — no autorizado en Sprint 0                                                |
+| Base API reservada| `/api/v1/platform/readiness`                                                           |
 | Auth              | Keycloak OIDC / Bearer token                                                           |
 | Alcance           | Platform-only / Non-public / No tenant transactional data                              |
 
@@ -22,6 +23,11 @@
 ## 2. Propósito
 
 Definir los contratos API opcionales para soportar la revisión de preparación de implementación de RESIDENT Core.
+
+Este documento reserva un posible contrato futuro; no constituye autorización de
+implementación para Sprint 0. Durante Sprint 0 no se crearán rutas, controllers,
+services, DTOs, permisos, entradas OpenAPI ni pruebas runtime bajo
+`/api/v1/platform/readiness`.
 
 El paquete `031-implementation-readiness` no define una funcionalidad transaccional del negocio residencial. Sus APIs son internas, de plataforma y de soporte documental. Sirven para registrar, consultar y evaluar el estado de preparación del proyecto antes de iniciar implementación técnica.
 
@@ -68,6 +74,14 @@ PlatformAdmin-only
 13. Debe ser auditable.
 14. Debe soportar exportación documental segura.
 ```
+
+### 4.1. Condición de activación futura
+
+La API permanece diferida y tampoco se incorpora automáticamente a Sprint 1. Solo podrá
+implementarse si un sprint posterior la incluye explícitamente mediante un plan
+aprobado, después de disponer de la plataforma runtime, autenticación, autorización
+platform-scoped, auditoría y persistencia requeridas. Hasta entonces, todos los
+endpoints de este documento son reservados y no ejecutables.
 
 ---
 
@@ -1166,23 +1180,23 @@ x-external-ai-real-data: false
 ## 21. Criterios de aceptación
 
 ```text id="ir-api-acceptance"
-[ ] API contract define readiness runs.
-[ ] API contract define document status.
-[ ] API contract define gap register.
-[ ] API contract define readiness matrix.
-[ ] API contract define Go/Conditional Go/No-Go decision.
-[ ] API contract define exportación.
-[ ] API contract define permisos.
-[ ] API contract define campos prohibidos.
-[ ] API contract define endpoints prohibidos.
-[ ] API contract define auditoría.
-[ ] API contract define OpenAPI extensions.
-[ ] API contract define contract tests.
-[ ] No expone datos transaccionales.
-[ ] No expone storageKey.
-[ ] No depende de WordPress.
-[ ] No permite acceso tenant/resident.
-[ ] No permite GO con gaps críticos.
+[x] API contract define readiness runs.
+[x] API contract define document status.
+[x] API contract define gap register.
+[x] API contract define readiness matrix.
+[x] API contract define Go/Conditional Go/No-Go decision.
+[x] API contract define exportación.
+[x] API contract define permisos.
+[x] API contract define campos prohibidos.
+[x] API contract define endpoints prohibidos.
+[x] API contract define auditoría.
+[x] API contract define OpenAPI extensions.
+[x] API contract define contract tests.
+[x] No expone datos transaccionales.
+[x] No expone storageKey.
+[x] No depende de WordPress.
+[x] No permite acceso tenant/resident.
+[x] No permite GO con gaps críticos.
 ```
 
 ---

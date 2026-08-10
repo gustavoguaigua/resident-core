@@ -9,7 +9,7 @@
 | Título          | Backend Framework: NestJS + TypeScript                                                 |
 | Ruta            | `docs/decisions/ADR-002-backend-framework.md`                                          |
 | Versión         | 0.1                                                                                    |
-| Estado          | Aceptado inicialmente                                                                  |
+| Estado          | accepted                                                                               |
 | Fecha           | 2026-07-10                                                                             |
 | Relacionado con | `architecture.md`, `api-guidelines.md`, `security.md`, `ADR-001-architecture-style.md` |
 
@@ -65,7 +65,7 @@ La decisión debe considerar:
 RESIDENT Core utilizará como stack backend principal:
 
 ```text id="o3jv73"
-NestJS + TypeScript + Node.js LTS
+NestJS + TypeScript + Node.js 24.18.0 LTS
 ```
 
 La base de datos principal será PostgreSQL y el acceso a datos se realizará inicialmente mediante Prisma ORM, salvo que una decisión posterior justifique TypeORM u otra alternativa.
@@ -75,7 +75,8 @@ Stack recomendado:
 ```text id="t2ib2j"
 Backend Framework: NestJS
 Language: TypeScript
-Runtime: Node.js LTS
+Runtime: Node.js 24.18.0 LTS
+Package manager: pnpm 11.21.0
 Database: PostgreSQL
 ORM: Prisma
 API Style: REST v1
@@ -372,15 +373,24 @@ WordPress y PHP deben permanecer en la capa portal, no en el núcleo transaccion
 
 ## 10. Decisión sobre runtime Node.js
 
-El runtime será Node.js en versión LTS.
+El runtime base queda fijado en Node.js `24.18.0` LTS y el package manager en pnpm
+`11.21.0`.
 
 Regla:
 
 ```text id="42x1ug"
-Usar siempre una versión Active LTS o Maintenance LTS para producción.
+Usar Node.js 24.18.0 y pnpm 11.21.0 en desarrollo, CI, contenedores y builds.
+No usar rangos, aliases LTS, majors flotantes ni latest en artefactos ejecutables.
 ```
 
-Para julio de 2026, la versión recomendada para iniciar el proyecto es Node.js 24 LTS.
+Versiones verificadas el 2026-08-09 contra el archivo oficial de Node.js y los releases
+oficiales de pnpm. Node.js `24.18.0` pertenece a la línea LTS Krypton y pnpm `11.21.0`
+es compatible con Node.js 24.
+
+La versión de Node deberá declararse en `.node-version`, `package.json`, CI y la imagen
+base de los Dockerfiles. pnpm deberá declararse mediante `packageManager`, `engines` y
+la configuración de CI. Cualquier actualización deberá modificar estos puntos en un
+único cambio y regenerar el lockfile cuando corresponda.
 
 Node.js 26 podrá evaluarse cuando entre formalmente en LTS y las dependencias principales del proyecto lo soporten adecuadamente.
 
@@ -618,7 +628,7 @@ El uso de Node.js y npm implica aplicar controles específicos:
 8. Usar secret scanning.
 9. Evitar paquetes sugeridos por IA sin revisión.
 10. Mantener imágenes Docker actualizadas.
-11. Usar Node.js LTS.
+11. Usar Node.js 24.18.0 LTS y pnpm 11.21.0.
 12. No ejecutar contenedores como root cuando sea viable.
 
 ---
@@ -682,12 +692,12 @@ Los módulos financieros deben tener cobertura reforzada.
 El pipeline debe ejecutar:
 
 ```text id="5zgddo"
-npm ci
-npm run lint
-npm run typecheck
-npm run test
-npm run test:integration
-npm run build
+pnpm install --frozen-lockfile
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm test:integration
+pnpm build
 docker build
 security checks
 ```
@@ -746,7 +756,7 @@ La implementación backend cumplirá este ADR si:
 
 * Usa NestJS.
 * Usa TypeScript estricto.
-* Usa Node.js LTS.
+* Usa Node.js 24.18.0 LTS y pnpm 11.21.0.
 * Organiza el código por módulos.
 * Documenta APIs con OpenAPI.
 * Usa PostgreSQL.
@@ -758,6 +768,16 @@ La implementación backend cumplirá este ADR si:
 * Mantiene dependencias auditadas.
 
 ---
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/api-guidelines.md`
+- `docs/sdd/security.md`
+- `docs/decisions/ADR-001-architecture-style.md`
+- `docs/decisions/ADR-003-database-strategy.md`
+- `docs/decisions/ADR-011-testing-strategy.md`
 
 ## 27. Decisión final
 

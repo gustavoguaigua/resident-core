@@ -10,7 +10,7 @@
 | Documento       | Tasks                                                                                                         |
 | Ruta            | `docs/specs/013-meetings-attendance/tasks.md`                                                                 |
 | Versión         | 0.1                                                                                                           |
-| Estado          | Borrador inicial                                                                                              |
+| Estado          | needs-review                                                                                                  |
 | Fecha           | 2026-07-19                                                                                                    |
 | Documento base  | `docs/specs/013-meetings-attendance/spec.md`                                                                  |
 | Plan técnico    | `docs/specs/013-meetings-attendance/plan.md`                                                                  |

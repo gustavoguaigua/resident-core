@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                                                                    |
 | Ruta            | `docs/specs/021-supplier-payments/spec.md`                                                                                                                                                  |
 | Versión         | 0.1                                                                                                                                                                                         |
-| Estado          | Borrador inicial                                                                                                                                                                            |
+| Estado          | needs-review                                                                                                                                                                                |
 | Fecha           | 2026-07-23                                                                                                                                                                                  |
 | Depende de      | `001-tenants`, `002-users-roles`, `007-audit`, `008-basic-reports`, `016-secure-document-storage`, `017-bank-reconciliation`, `020-accounting-ledger`                                       |
 | Relacionado con | proveedores, cuentas por pagar, egresos, facturas de proveedor, órdenes de pago, aprobaciones, comprobantes, gastos, pagos administrativos, evidencias, contabilidad, conciliación bancaria |

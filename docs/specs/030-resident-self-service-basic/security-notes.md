@@ -10,7 +10,7 @@
 | Documento      | Security Notes                                                                                              |
 | Ruta           | `docs/specs/030-resident-self-service-basic/security-notes.md`                                              |
 | Versión        | 0.1                                                                                                         |
-| Estado         | Borrador inicial                                                                                            |
+| Estado         | needs-review                                                                                                |
 | Fecha          | 2026-08-04                                                                                                  |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC   |
 | Naturaleza     | Resident-facing / Tenant-scoped / Property-scoped / Permission-aware / API-first / Non-public transactional |

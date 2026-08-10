@@ -10,7 +10,7 @@
 | Documento                | Test Plan                                             |
 | Ruta                     | `docs/specs/003-residents-properties/test-plan.md`    |
 | Versión                  | 0.1                                                   |
-| Estado                   | Borrador inicial                                      |
+| Estado                   | needs-review                                          |
 | Fecha                    | 2026-07-13                                            |
 | Documento base           | `docs/specs/003-residents-properties/spec.md`         |
 | Plan técnico             | `docs/specs/003-residents-properties/plan.md`         |

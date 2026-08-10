@@ -10,7 +10,7 @@
 | Documento       | Test Plan                                                                                                                                                     |
 | Ruta            | `docs/specs/021-supplier-payments/test-plan.md`                                                                                                               |
 | Versión         | 0.1                                                                                                                                                           |
-| Estado          | Borrador inicial                                                                                                                                              |
+| Estado          | needs-review                                                                                                                                                  |
 | Fecha           | 2026-07-23                                                                                                                                                    |
 | Documento base  | `docs/specs/021-supplier-payments/spec.md`                                                                                                                    |
 | Plan técnico    | `docs/specs/021-supplier-payments/plan.md`                                                                                                                    |

@@ -10,7 +10,7 @@
 | Documento      | Test Plan                                                                                       |
 | Ruta           | `docs/specs/028-data-import-migration/test-plan.md`                                             |
 | Versión        | 0.1                                                                                             |
-| Estado         | Borrador inicial                                                                                |
+| Estado         | needs-review                                                                                    |
 | Fecha          | 2026-08-03                                                                                      |
 | Stack objetivo | NestJS / TypeScript / PostgreSQL / Prisma / Redis / BullMQ / OpenAPI / Keycloak                 |
 | Naturaleza     | Tenant-scoped / Batch-oriented / Validation-heavy / Audit-heavy / Controlled-write / Non-public |

@@ -10,7 +10,7 @@
 | Documento       | Security Notes                                                                                               |
 | Ruta            | `docs/specs/026-automation-workflows-basic/security-notes.md`                                                |
 | Versión         | 0.1                                                                                                          |
-| Estado          | Borrador inicial                                                                                             |
+| Estado          | needs-review                                                                                                 |
 | Fecha           | 2026-08-01                                                                                                   |
 | Documento base  | `docs/specs/026-automation-workflows-basic/spec.md`                                                          |
 | Plan técnico    | `docs/specs/026-automation-workflows-basic/plan.md`                                                          |
@@ -1529,7 +1529,7 @@ fullAutomationHistory
 
 ### 26.3. Controles
 
-```text id="awb-sec-export-controls"
+```text id="awb-sec-export-control-requirements"
 - tenantWorkflowExports.create requerido.
 - tenantWorkflowExports.exportSensitive requerido si includeSensitive=true.
 - reason obligatorio para auditSnapshot.

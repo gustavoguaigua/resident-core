@@ -10,7 +10,7 @@
 | Documento      | Data Model                                                                                            |
 | Ruta           | `docs/specs/030-resident-self-service-basic/data-model.md`                                            |
 | Versión        | 0.1                                                                                                   |
-| Estado         | Borrador inicial                                                                                      |
+| Estado         | needs-review                                                                                          |
 | Fecha          | 2026-08-04                                                                                            |
 | Naturaleza     | Frontend data model / Self-service view model / Tenant-scoped / Property-scoped / Non-source-of-truth |
 | Stack sugerido | Next.js / React / TypeScript / TanStack Query / OpenAPI Client / Keycloak OIDC                        |

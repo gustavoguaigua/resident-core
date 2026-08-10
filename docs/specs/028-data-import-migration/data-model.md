@@ -10,7 +10,7 @@
 | Documento              | Data Model                                                                                      |
 | Ruta                   | `docs/specs/028-data-import-migration/data-model.md`                                            |
 | Versión                | 0.1                                                                                             |
-| Estado                 | Borrador inicial                                                                                |
+| Estado                 | needs-review                                                                                    |
 | Fecha                  | 2026-08-02                                                                                      |
 | Base de datos          | PostgreSQL                                                                                      |
 | ORM                    | Prisma                                                                                          |

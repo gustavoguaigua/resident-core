@@ -10,7 +10,7 @@
 | Documento             | Technical Plan                                                                         |
 | Ruta                  | `docs/specs/027-dashboard-kpis/plan.md`                                                |
 | Versión               | 0.1                                                                                    |
-| Estado                | Borrador inicial                                                                       |
+| Estado                | needs-review                                                                           |
 | Fecha                 | 2026-08-02                                                                             |
 | Documento base        | `docs/specs/027-dashboard-kpis/spec.md`                                                |
 | Stack objetivo        | NestJS / TypeScript / PostgreSQL / Prisma / OpenAPI / Keycloak / Redis                 |

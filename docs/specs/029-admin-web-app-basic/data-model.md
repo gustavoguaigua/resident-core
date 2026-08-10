@@ -10,7 +10,7 @@
 | Documento      | Data Model                                                                       |
 | Ruta           | `docs/specs/029-admin-web-app-basic/data-model.md`                               |
 | Versión        | 0.1                                                                              |
-| Estado         | Borrador inicial                                                                 |
+| Estado         | needs-review                                                                     |
 | Fecha          | 2026-08-03                                                                       |
 | Naturaleza     | Frontend data model / Client state / API DTO mapping / Non-persistent by default |
 | Stack sugerido | Next.js / React / TypeScript / TanStack Query / OpenAPI Client / Keycloak OIDC   |

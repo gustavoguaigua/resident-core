@@ -10,7 +10,7 @@
 | Documento             | Implementation Plan                                                                            |
 | Ruta                  | `docs/specs/009-wordpress-integration-basic/plan.md`                                           |
 | Versión               | 0.1                                                                                            |
-| Estado                | Borrador inicial                                                                               |
+| Estado                | needs-review                                                                                   |
 | Fecha                 | 2026-07-14                                                                                     |
 | Documento base        | `docs/specs/009-wordpress-integration-basic/spec.md`                                           |
 | Depende de            | `001-tenants`, `002-users-roles`, `003-residents-properties`, `007-audit`, `008-basic-reports` |

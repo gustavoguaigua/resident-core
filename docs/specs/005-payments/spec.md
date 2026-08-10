@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                            |
 | Ruta            | `docs/specs/005-payments/spec.md`                                                                                                                   |
 | Versión         | 0.1                                                                                                                                                 |
-| Estado          | Borrador inicial                                                                                                                                    |
+| Estado          | needs-review                                                                                                                                        |
 | Fecha           | 2026-07-14                                                                                                                                          |
 | Prioridad       | Alta                                                                                                                                                |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `004-dues-fees`                                                                       |

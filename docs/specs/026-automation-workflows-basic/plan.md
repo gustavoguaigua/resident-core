@@ -10,7 +10,7 @@
 | Documento             | Technical Plan                                                                                |
 | Ruta                  | `docs/specs/026-automation-workflows-basic/plan.md`                                           |
 | Versión               | 0.1                                                                                           |
-| Estado                | Borrador inicial                                                                              |
+| Estado                | needs-review                                                                                  |
 | Fecha                 | 2026-07-31                                                                                    |
 | Documento base        | `docs/specs/026-automation-workflows-basic/spec.md`                                           |
 | Stack objetivo        | NestJS / TypeScript / PostgreSQL / Prisma / OpenAPI / Keycloak / BullMQ / Redis               |

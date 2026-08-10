@@ -9,7 +9,7 @@
 | Título          | CI/CD Strategy: GitHub Actions with Protected Branches, Environment Gates and Progressive Deployment                                                         |
 | Ruta            | `docs/decisions/ADR-012-ci-cd-strategy.md`                                                                                                                   |
 | Versión         | 0.1                                                                                                                                                          |
-| Estado          | Aceptado inicialmente                                                                                                                                        |
+| Estado          | accepted                                                                                                                                                     |
 | Fecha           | 2026-07-12                                                                                                                                                   |
 | Relacionado con | `ADR-009-deployment-strategy.md`, `ADR-010-observability-strategy.md`, `ADR-011-testing-strategy.md`, `security.md`, `architecture.md`, `data-governance.md` |
 
@@ -76,7 +76,7 @@ CI obligatorio
     ↓
 Code review
     ↓
-Merge a main/develop según flujo
+Merge a main
     ↓
 Build Docker
     ↓
@@ -130,17 +130,9 @@ Incluye:
 
 ### 5.3. CI es obligatorio
 
-El CI debe validar:
-
-* instalación;
-* lint;
-* typecheck;
-* tests;
-* build;
-* seguridad básica;
-* migraciones;
-* OpenAPI;
-* Docker build.
+El CI debe ejecutar los gates base de §10.1 y los gates de capacidad de §10.2 cuando
+apliquen. Esto incluye instalación frozen, formato, lint, tipos, pruebas, OpenAPI,
+Prisma, seguridad, build del workspace y build Docker de `resident-api`.
 
 ---
 
@@ -273,41 +265,47 @@ Diferidas.
 
 ## 7. Estrategia de ramas
 
-### 7.1. Modelo recomendado inicial
+### 7.1. Modelo inicial aprobado
 
-Para RESIDENT Core se recomienda modelo simple:
+RESIDENT Core adopta un flujo trunk-based simple:
 
 ```text id="ge66yp"
-main        → rama estable/releasable
-develop     → rama de integración opcional
-feature/*   → funcionalidades
+main        → única rama permanente, estable y releasable
+feature/*   → funcionalidades autorizadas
 fix/*       → correcciones
 docs/*      → documentación
-hotfix/*    → correcciones urgentes
+chore/*     → tooling e infraestructura
+hotfix/*    → correcciones urgentes posteriores a producción
+codex/*     → cambios de agentes, siempre mediante pull request
 ```
 
-### 7.2. Opción simplificada
+Todas las ramas de trabajo son cortas, nacen de `main` actualizada y vuelven a
+`main` mediante pull request.
 
-Si el equipo es pequeño, se puede iniciar con:
+### 7.2. Ramas no adoptadas inicialmente
 
 ```text id="x7pd1c"
-main
-feature/*
-fix/*
-docs/*
+develop
+release/*
 ```
 
-Y desplegar dev desde merges controlados o desde ramas específicas.
+`develop` no se crea ni se usa como trigger durante Sprint 0. Incorporar una rama
+permanente adicional requiere actualizar este ADR con una necesidad operativa concreta.
 
-### 7.3. Decisión inicial
+### 7.3. Normalización del repositorio existente
 
-Se acepta iniciar con:
+El repositorio local inspeccionado usa actualmente `master` y no tiene remoto. Ese
+nombre se considera legado pre-Sprint 0. Después de aprobar el baseline documental y
+antes de crear el remoto o los workflows, se deberá ejecutar:
 
-```text id="dij2jt"
-main + feature branches
+```bash id="dij2jt"
+git branch -m master main
 ```
 
-Y agregar `develop` si el flujo de trabajo lo requiere.
+Si al momento de la migración la rama ya se llama `main`, el paso se omite. Después de
+crear el remoto se debe publicar `main`, configurarla como rama por defecto y aplicar
+protección antes de retirar cualquier referencia remota a `master`. La retirada de una
+rama remota exige verificación explícita y no forma parte de esta corrección documental.
 
 ---
 
@@ -379,74 +377,102 @@ Todo PR debe incluir:
 
 ## 10. Validaciones de CI en pull request
 
-Cada pull request debe ejecutar:
+Desde Sprint 0, cada pull request y cada push a `main` debe completar el status check
+requerido `Required CI gates`, compuesto por cinco grupos:
 
 ```text id="yf4cgz"
-install
-lint
-format check
-typecheck
-unit tests
-integration tests
-authorization tests
-multitenancy tests
-OpenAPI validation
-migration check
-security checks
+quality
+tests
+contracts-data
+security
 build
 ```
 
+Ninguno puede usar `continue-on-error`, ignorar un código de salida distinto de cero o
+considerarse exitoso porque falta el script correspondiente. Branch protection debe
+exigir `Required CI gates` antes del merge.
+
+### 10.1. Gates base obligatorios desde Sprint 0
+
+| Status check | Validaciones obligatorias |
+| --- | --- |
+| `quality` | install con lockfile, format check, lint y typecheck |
+| `tests` | pruebas unitarias/smoke existentes mediante `pnpm test` |
+| `contracts-data` | tooling OpenAPI, `prisma validate` y `docker compose config` |
+| `security` | dependency audit y secret scan del historial disponible |
+| `build` | build del workspace y build de la imagen `resident-api` mediante Compose |
+
+### 10.2. Gates activados por capacidad
+
+Estas suites son obligatorias desde el PR que introduce la capacidad indicada y no se
+ejecutan como placeholders vacíos en Sprint 0:
+
+| Capacidad introducida | Gates adicionales obligatorios |
+| --- | --- |
+| Runtime API/OpenAPI en Sprint 1 | integration/API tests, validación del contrato generado y detección de drift |
+| Primera migración Prisma | prueba de migración en base limpia y migration check |
+| Tenants, identidad o autorización | authorization y multitenancy tests |
+| Módulo financiero | financial regression y audit tests |
+| Frontend consumidor | generación/validación del cliente OpenAPI y build del frontend afectado |
+
+La activación se determina por la spec y los archivos afectados. Un gate ya activado no
+puede volver a omitirse sin actualizar este ADR.
+
 ---
 
-## 11. Pipeline base
+## 11. Pipeline base canónico
 
-Pipeline sugerido:
+Orden lógico obligatorio:
 
 ```text id="k7jz09"
 1. Checkout
-2. Setup Node.js LTS
+2. Setup Node.js 24.18.0 y pnpm 11.21.0
 3. Install dependencies
-4. Lint
-5. Format check
+4. Format check
+5. Lint
 6. Typecheck
-7. Unit tests
-8. Integration tests
-9. API tests
-10. Authorization tests
-11. Multitenancy tests
-12. Financial regression tests when applicable
-13. OpenAPI validation
-14. Prisma migration validation
-15. Dependency audit
-16. Secret scanning
-17. Build application
-18. Build Docker image
+7. Unit/smoke tests
+8. OpenAPI tooling validation
+9. Prisma schema validation
+10. Docker Compose configuration validation
+11. Dependency audit
+12. Secret scanning
+13. Build workspace
+14. Build resident-api image with Docker Compose
+15. Capability gates when applicable
 ```
 
 ---
 
-## 12. Comandos esperados
+## 12. Comandos canónicos
 
-Ejemplo conceptual:
+Los comandos base de Sprint 0 son:
 
 ```bash id="y8r6qu"
-npm ci
-npm run lint
-npm run format:check
-npm run typecheck
-npm run test
-npm run test:integration
-npm run test:api
-npm run test:authorization
-npm run test:multitenancy
-npm run test:financial
-npm run openapi:validate
-npm run prisma:migrate:check
-npm run build
-docker build -t resident-api .
+pnpm install --frozen-lockfile
+pnpm format:check
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm openapi:validate
+pnpm prisma:validate
+docker compose config --quiet
+pnpm security:dependencies
+pnpm security:secrets
+pnpm build
+docker compose build resident-api
 ```
 
-Los comandos reales se definirán cuando se inicialice el repositorio.
+`pnpm openapi:validate` valida en Sprint 0 el tooling y su configuración, sin exigir un
+contrato runtime todavía. `pnpm prisma:validate` valida el schema de configuración sin
+migraciones. Ambos comandos se amplían, sin cambiar de nombre, cuando sus artefactos
+runtime existan.
+
+`security:dependencies` ejecuta como mínimo `pnpm audit --audit-level high`.
+`security:secrets` ejecuta una herramienta aprobada y versionada sobre todo el historial
+disponible; un placeholder o scanner ausente no satisface el gate. Suites de capacidad
+usan los comandos `test:integration`, `test:api`, `test:authorization`,
+`test:multitenancy`, `test:financial` y `prisma:migrate:check` cuando sean activadas.
 
 ---
 
@@ -462,11 +488,9 @@ Ejecuta validaciones en pull requests y pushes.
 
 Incluye:
 
-* lint;
-* typecheck;
-* tests;
-* build;
-* validation.
+* los cinco grupos de gates de §10;
+* todos los gates base de Sprint 0;
+* gates de capacidad cuando apliquen.
 
 ---
 
@@ -633,7 +657,8 @@ La imagen Docker debe construirse en CI.
 
 Reglas:
 
-* usar Node.js LTS;
+* usar Node.js `24.18.0`;
+* usar pnpm `11.21.0`;
 * usar lockfile;
 * usar multi-stage build si aplica;
 * no incluir secrets;
@@ -840,7 +865,7 @@ Puede ser automático.
 
 Condiciones:
 
-* merge a `main` o `develop`;
+* merge a `main`;
 * CI exitoso;
 * build exitoso;
 * migraciones no críticas;
@@ -1165,35 +1190,66 @@ on:
 
 jobs:
   validate:
+    name: Required CI gates
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '11.21.0'
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: 'npm'
+          node-version: '24.18.0'
+          cache: 'pnpm'
 
       - name: Install
-        run: npm ci
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm format:check
 
       - name: Lint
-        run: npm run lint
+        run: pnpm lint
 
       - name: Typecheck
-        run: npm run typecheck
+        run: pnpm typecheck
 
       - name: Test
-        run: npm run test
+        run: pnpm test
+
+      - name: Validate OpenAPI tooling
+        run: pnpm openapi:validate
+
+      - name: Validate Prisma schema
+        run: pnpm prisma:validate
+
+      - name: Validate Docker Compose
+        run: docker compose config --quiet
+
+      - name: Dependency audit
+        run: pnpm security:dependencies
+
+      - name: Secret scan
+        run: pnpm security:secrets
 
       - name: Build
-        run: npm run build
+        run: pnpm build
+
+      - name: Build resident-api image
+        run: docker compose build resident-api
 ```
 
-Este ejemplo es conceptual. El workflow final deberá ajustarse a la estructura real del monorepo.
+El workflow final puede separar los cinco grupos en jobs independientes; en ese caso
+todos deben ser status checks requeridos. No puede reducir validaciones sin actualizar
+este ADR.
 
 ---
 
@@ -1421,6 +1477,22 @@ La estrategia se considera implementada si:
 * release notes se generan para producción.
 
 ---
+
+## Alternativas consideradas
+
+- Integración y despliegue manuales: descartados por falta de gates, evidencia y reproducibilidad.
+- Push directo a la rama principal: descartado porque evita revisión y controles obligatorios.
+- Otra plataforma CI/CD desde el inicio: no adoptada debido a la integración directa del repositorio con GitHub; podrá reevaluarse mediante ADR si cambia el alojamiento.
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/data-governance.md`
+- `docs/decisions/ADR-009-deployment-strategy.md`
+- `docs/decisions/ADR-010-observability-strategy.md`
+- `docs/decisions/ADR-011-testing-strategy.md`
 
 ## 51. Decisión final
 

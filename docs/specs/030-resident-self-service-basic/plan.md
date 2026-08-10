@@ -10,7 +10,7 @@
 | Documento      | Implementation Plan                                                                                         |
 | Ruta           | `docs/specs/030-resident-self-service-basic/plan.md`                                                        |
 | Versión        | 0.1                                                                                                         |
-| Estado         | Borrador inicial                                                                                            |
+| Estado         | needs-review                                                                                                |
 | Fecha          | 2026-08-03                                                                                                  |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC   |
 | Naturaleza     | Resident-facing / Tenant-scoped / Property-scoped / Permission-aware / API-first / Non-public transactional |
@@ -766,11 +766,14 @@ No permitido:
 NEXT_PUBLIC_RESIDENT_API_BASE_URL
 NEXT_PUBLIC_KEYCLOAK_URL
 NEXT_PUBLIC_KEYCLOAK_REALM
-NEXT_PUBLIC_KEYCLOAK_CLIENT_ID
+NEXT_PUBLIC_KEYCLOAK_CLIENT_ID=resident-resident-web
 RESIDENT_SELF_SERVICE_PUBLIC_MODE_ENABLED=false
 RESIDENT_SELF_SERVICE_WORDPRESS_AUTH_ENABLED=false
 RESIDENT_SELF_SERVICE_STORAGE_KEY_DISPLAY_ENABLED=false
 ```
+
+El valor canónico de `NEXT_PUBLIC_KEYCLOAK_CLIENT_ID` es
+`resident-resident-web`; `resident-web` identifica la aplicación, no el cliente OIDC.
 
 Reglas:
 

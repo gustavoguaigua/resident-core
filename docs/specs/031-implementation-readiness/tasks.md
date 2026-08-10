@@ -10,7 +10,7 @@
 | Documento      | Tasks                                                                                                               |
 | Ruta           | `docs/specs/031-implementation-readiness/tasks.md`                                                                  |
 | Versión        | 0.1                                                                                                                 |
-| Estado         | Borrador inicial                                                                                                    |
+| Estado         | complete                                                                                                            |
 | Fecha          | 2026-08-05                                                                                                          |
 | Naturaleza     | Readiness gate / SDD closure checkpoint / Pre-implementation validation                                             |
 | Stack objetivo | NestJS / TypeScript / PostgreSQL / Prisma / Redis / BullMQ / Docker / Keycloak / OpenAPI / Next.js / GitHub Actions |
@@ -278,6 +278,7 @@ Acceptance:
 
 ```text id="ir-epic-07"
 [ ] Validar Keycloak como autenticación objetivo.
+[ ] Validar `resident-resident-web` como `client_id` único de `apps/resident-web`.
 [ ] Validar Authorization Code Flow with PKCE.
 [ ] Validar implicit flow deshabilitado.
 [ ] Validar mapping keycloakSubjectId -> UserProfile.
@@ -339,6 +340,8 @@ Acceptance:
 [ ] Validar REST /api/v1.
 [ ] Validar response envelope.
 [ ] Validar error envelope.
+[ ] Validar excepción plana de health conforme a ADR-010 §10.
+[ ] Validar separación entre liveness pública y readiness protegida.
 [ ] Validar Bearer auth scheme.
 [ ] Validar endpoints tenant-scoped.
 [ ] Validar endpoints .own.
@@ -426,19 +429,23 @@ Bloqueantes:
 ```text id="ir-epic-12"
 [ ] Validar ADR-012.
 [ ] Validar GitHub Actions.
+[ ] Validar install frozen.
 [ ] Validar lint check.
 [ ] Validar format check.
 [ ] Validar TypeScript check.
-[ ] Validar unit tests.
-[ ] Validar integration tests.
-[ ] Validar Prisma migration check.
-[ ] Validar OpenAPI generation.
-[ ] Validar Docker build.
+[ ] Validar unit/smoke tests.
+[ ] Validar Prisma schema validation.
+[ ] Validar OpenAPI tooling validation.
+[ ] Validar Docker Compose config.
+[ ] Validar Docker Compose build de resident-api.
 [ ] Validar backend build.
 [ ] Validar admin-web build.
 [ ] Validar resident-web build.
+[ ] Validar dependency audit.
 [ ] Validar secret scanning.
-[ ] Validar security static checks.
+[ ] Validar Required CI gates en branch protection.
+[ ] Validar ausencia de continue-on-error y skips silenciosos.
+[ ] Validar activación progresiva de gates conforme a ADR-012 §10.2.
 ```
 
 Acceptance:
@@ -455,14 +462,21 @@ Acceptance:
 
 ```text id="ir-epic-13"
 [ ] Validar docker-compose.yml.
-[ ] Validar servicio api.
+[ ] Validar servicio resident-api.
 [ ] Validar servicio postgres.
 [ ] Validar servicio redis.
 [ ] Validar servicio keycloak.
+[ ] Validar servicio keycloak-postgres dedicado.
+[ ] Validar servicio mailhog.
+[ ] Validar servicio minio.
+[ ] Validar imágenes y tags exactos conforme a ADR-009 §7.1.
+[ ] Rechazar `latest`, aliases LTS y versiones flotantes.
+[ ] Validar que MailHog y MinIO estén limitados a local con datos sintéticos.
+[ ] Confirmar que servicios opcionales/diferidos no bloquean Sprint 0.
 [ ] Validar admin-web opcional.
 [ ] Validar resident-web opcional.
 [ ] Validar .env.example.
-[ ] Validar health checks.
+[ ] Validar health checks de contenedores; no exigir HealthModule en Sprint 0.
 [ ] Validar seed local.
 [ ] Validar README local.
 ```
@@ -481,21 +495,21 @@ Bloqueantes:
 # 18. EPIC-031-14 — Registro de gaps
 
 ```text id="ir-epic-14"
-[ ] Crear gap register.
-[ ] Registrar gaps documentales.
-[ ] Registrar gaps arquitectónicos.
+[x] Crear gap register.
+[x] Registrar gaps documentales.
+[x] Registrar gaps arquitectónicos.
 [ ] Registrar gaps de seguridad.
-[ ] Registrar gaps API/OpenAPI.
-[ ] Registrar gaps de datos.
+[x] Registrar gaps API/OpenAPI.
+[x] Registrar gaps de datos.
 [ ] Registrar gaps de testing.
-[ ] Registrar gaps CI/CD.
-[ ] Registrar gaps Docker/local.
-[ ] Clasificar severidad.
-[ ] Asignar owner.
-[ ] Asignar requiredBefore.
+[x] Registrar gaps CI/CD.
+[x] Registrar gaps Docker/local.
+[x] Clasificar severidad.
+[x] Asignar owner.
+[x] Asignar requiredBefore.
 [ ] Asignar decisión.
-[ ] Definir mitigación.
-[ ] Actualizar estado.
+[x] Definir mitigación.
+[x] Actualizar estado.
 ```
 
 Campos mínimos:
@@ -528,18 +542,18 @@ updatedAt
 [ ] Crear matriz OpenAPI.
 [ ] Crear matriz testing.
 [ ] Crear matriz CI/CD.
-[ ] Calcular gaps críticos abiertos.
-[ ] Calcular gaps altos abiertos.
+[x] Calcular gaps críticos abiertos.
+[x] Calcular gaps altos abiertos.
 [ ] Calcular readiness score por área.
-[ ] Definir recomendación automática: GO / CONDITIONAL_GO / NO_GO.
+[x] Definir recomendación automática: GO / CONDITIONAL_GO / NO_GO.
 ```
 
 Acceptance:
 
 ```text id="ir-epic-15-ac"
-[ ] Matriz permite decisión objetiva.
-[ ] Matriz distingue gaps críticos de no bloqueantes.
-[ ] Matriz identifica qué fases pueden iniciar.
+[x] Matriz permite decisión objetiva.
+[x] Matriz distingue gaps críticos de no bloqueantes.
+[x] Matriz identifica qué fases pueden iniciar.
 ```
 
 ---
@@ -547,25 +561,25 @@ Acceptance:
 # 20. EPIC-031-16 — Decisión Go / Conditional Go / No-Go
 
 ```text id="ir-epic-16"
-[ ] Evaluar condiciones GO.
-[ ] Evaluar condiciones CONDITIONAL_GO.
-[ ] Evaluar condiciones NO_GO.
-[ ] Documentar decisión.
-[ ] Documentar razón.
-[ ] Documentar gaps que bloquean.
+[x] Evaluar condiciones GO.
+[x] Evaluar condiciones CONDITIONAL_GO.
+[x] Evaluar condiciones NO_GO.
+[x] Documentar decisión.
+[x] Documentar razón.
+[x] Documentar gaps que bloquean.
 [ ] Documentar gaps diferidos.
-[ ] Documentar fases autorizadas.
-[ ] Documentar fases no autorizadas.
-[ ] Registrar aprobación.
+[x] Documentar fases autorizadas.
+[x] Documentar fases no autorizadas.
+[x] Registrar aprobación.
 ```
 
 Reglas:
 
 ```text id="ir-epic-16-rules"
-[ ] GO requiere 0 gaps críticos abiertos.
-[ ] GO requiere MVP core completo.
-[ ] CONDITIONAL_GO requiere que Sprint 0-2 no tengan gaps críticos.
-[ ] NO_GO aplica si hay gaps críticos en arquitectura, seguridad, multitenancy, authz, OpenAPI, datos o CI mínimo.
+[x] GO requiere 0 gaps críticos abiertos.
+[x] GO requiere MVP core completo.
+[x] CONDITIONAL_GO requiere que Sprint 0-2 no tengan gaps críticos.
+[x] NO_GO aplica si hay gaps críticos en arquitectura, seguridad, multitenancy, authz, OpenAPI, datos o CI mínimo.
 ```
 
 ---
@@ -612,6 +626,7 @@ Acceptance:
 [ ] Aprobar prisma/.
 [ ] Aprobar tools/.
 [ ] Aprobar .github/workflows/.
+[x] Incorporar el AGENTS.md raíz al control de versiones.
 ```
 
 Acceptance:
@@ -629,20 +644,35 @@ Acceptance:
 
 ```text id="ir-epic-19"
 [ ] Crear monorepo.
-[ ] Configurar pnpm workspace.
+[ ] Normalizar master legacy a main antes de crear CI o remoto.
+[ ] Mantener main como única rama permanente; no crear develop.
+[ ] Configurar pnpm 11.21.0 workspace.
+[ ] Fijar Node.js 24.18.0 en .node-version y package.json.
 [ ] Configurar TypeScript base.
 [ ] Crear apps/api.
 [ ] Crear apps/admin-web.
 [ ] Crear apps/resident-web.
 [ ] Crear packages/shared.
 [ ] Crear packages/config.
+[ ] Crear packages/auth como scaffold, sin autenticación o autorización runtime.
+[ ] Crear packages/openapi-client con tooling y comando real de validación.
+[ ] Crear packages/testing con utilidades smoke y comando real security:secrets.
+[ ] Crear schema.prisma solo con generator y datasource.
+[ ] Confirmar ausencia de modelos, enums, migraciones y seeds Prisma de dominio.
 [ ] Crear docker-compose local.
+[ ] Crear servicio resident-api.
 [ ] Crear servicio postgres.
 [ ] Crear servicio redis.
 [ ] Crear servicio keycloak.
+[ ] Crear servicio keycloak-postgres dedicado.
+[ ] Crear servicio mailhog.
+[ ] Crear servicio minio.
 [ ] Crear GitHub Actions inicial.
 [ ] Crear README local.
 [ ] Crear .env.example.
+[ ] Mantener evidencia de readiness en Markdown/Git.
+[ ] Confirmar ausencia de rutas, controllers, services, DTOs y permisos de readiness.
+[ ] Confirmar ausencia de modelos Prisma, tablas, migraciones, seeds y repositorios de readiness.
 ```
 
 Acceptance:
@@ -651,6 +681,10 @@ Acceptance:
 [ ] Entorno base puede inicializarse.
 [ ] CI mínimo puede ejecutarse.
 [ ] Docker local tiene servicios base definidos.
+[ ] Los cinco packages base tienen manifest, TypeScript strict, exports y scripts aplicables.
+[ ] auth, openapi-client y testing cumplen spec 031 §12.1 sin lógica futura anticipada.
+[ ] No existen packages vacíos ni scripts placeholder.
+[ ] API y persistencia de spec 031 permanecen diferidas y fuera de Sprint 0.
 ```
 
 ---
@@ -787,28 +821,29 @@ No se acepta este paquete si:
 # 29. Definition of Done
 
 ```text id="ir-task-dod"
-[ ] tasks.md creado.
-[ ] Inventario documental definido.
-[ ] Inventario ADR definido.
-[ ] Inventario paquetes 001-030 definido.
-[ ] Clasificación de prioridad definida.
-[ ] Revisión arquitectónica definida.
-[ ] Revisión multitenancy definida.
-[ ] Revisión auth/authz definida.
-[ ] Revisión seguridad definida.
-[ ] Revisión OpenAPI definida.
-[ ] Revisión datos/Prisma definida.
-[ ] Revisión testing definida.
-[ ] Revisión CI/CD definida.
-[ ] Revisión Docker/local definida.
-[ ] Gap register definido.
-[ ] Matriz de readiness definida.
-[ ] Criterios Go/Conditional Go/No-Go definidos.
-[ ] Orden de implementación definido.
-[ ] Repositorio objetivo definido.
-[ ] Sprint 0 backlog definido.
-[ ] Definition of Ready global definida.
-[ ] No aceptación definida.
+[x] tasks.md creado.
+[x] Inventario documental definido.
+[x] Inventario ADR definido.
+[x] Inventario paquetes 001-030 definido.
+[x] Clasificación de prioridad definida.
+[x] Revisión arquitectónica definida.
+[x] Revisión multitenancy definida.
+[x] Revisión auth/authz definida.
+[x] Revisión seguridad definida.
+[x] Revisión OpenAPI definida.
+[x] Revisión datos/Prisma definida.
+[x] Revisión testing definida.
+[x] Revisión CI/CD definida.
+[x] Revisión Docker/local definida.
+[x] Gap register definido.
+[x] Matriz de readiness definida.
+[x] Criterios Go/Conditional Go/No-Go definidos.
+[x] Orden de implementación definido.
+[x] Repositorio objetivo definido.
+[x] Sprint 0 backlog definido.
+[x] API y persistencia runtime de readiness están explícitamente diferidas.
+[x] Definition of Ready global definida.
+[x] No aceptación definida.
 ```
 
 ---
@@ -854,4 +889,37 @@ resident-core/
 │   │       ├── data-model.md
 │   │       ├── api-contract.md
 │   │       └── tasks.md
+```
+
+---
+
+# 32. Ejecución formal — 2026-08-09
+
+```text id="ir-formal-execution-2026-08-09"
+Evaluación: READINESS-031-2026-08-09
+Evidencia: docs/changes/READINESS-031-2026-08-09.md
+Decisión: NO_GO
+Gaps críticos abiertos: 0
+Gaps altos abiertos: 0
+Alcance permitido: remediación documental
+Alcance bloqueado: implementación técnica de Sprint 0
+```
+
+GAP-031-013 ya está resuelto y no quedan gaps registrados abiertos. La compuerta deberá
+reevaluarse formalmente; esta ejecución histórica no cambia de estado ni marca como
+completadas las tareas que dependen de una nueva decisión.
+
+---
+
+# 33. Reevaluación formal — 2026-08-10
+
+```text id="ir-formal-execution-2026-08-10"
+Evaluación: READINESS-031-2026-08-10
+Evidencia: docs/changes/READINESS-031-2026-08-10.md
+Decisión: GO
+Gaps críticos abiertos: 0
+Gaps altos abiertos: 0
+Alcance autorizado: implementación técnica de Sprint 0
+Alcance no autorizado: Sprint 1 y lógica de negocio
+Sustituye: READINESS-031-2026-08-09 (NO_GO)
 ```

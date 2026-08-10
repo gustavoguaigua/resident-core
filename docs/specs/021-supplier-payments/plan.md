@@ -10,7 +10,7 @@
 | Documento       | Plan técnico                                                                                                                                          |
 | Ruta            | `docs/specs/021-supplier-payments/plan.md`                                                                                                            |
 | Versión         | 0.1                                                                                                                                                   |
-| Estado          | Borrador inicial                                                                                                                                      |
+| Estado          | needs-review                                                                                                                                          |
 | Fecha           | 2026-07-23                                                                                                                                            |
 | Documento base  | `docs/specs/021-supplier-payments/spec.md`                                                                                                            |
 | Depende de      | `001-tenants`, `002-users-roles`, `007-audit`, `008-basic-reports`, `016-secure-document-storage`, `017-bank-reconciliation`, `020-accounting-ledger` |

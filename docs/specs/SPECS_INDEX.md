@@ -53,52 +53,58 @@ tasks.md
 security-notes.md
 ```
 
-Estado esperado:
+Estados documentales permitidos:
 
 ```text id="specs-index-package-state"
-complete      documento existente y listo como referencia
-needs-review  documento existente pero pendiente de revisión final
-deferred      documentado pero no implementable en MVP inicial
-blocked       no puede implementarse hasta resolver gap
+draft         documento en elaboración
+in-review     documento bajo revisión formal activa
+needs-review  documento existente y pendiente de revisión formal
+complete      documento revisado y listo como referencia aprobada
+blocked       revisión documental detenida por un gap crítico
 ```
+
+El estado documental no determina el momento de implementación. Las specs diferidas
+se identifican mediante `Post-MVP` o la indicación correspondiente en la columna
+`Implementación sugerida`, independientemente de que su documentación esté completa o
+pendiente de revisión.
 
 ---
 
 ## 4. Índice maestro de specs
 
-| Spec | Módulo                         | Dominio                      | Prioridad  | Estado              | Implementación sugerida |
-| ---: | ------------------------------ | ---------------------------- | ---------- | ------------------- | ----------------------- |
-|  001 | `tenants`                      | Platform / Tenant Management | Crítica    | Complete            | Sprint 2                |
-|  002 | `users-roles`                  | Identity and Access          | Crítica    | Complete            | Sprint 2                |
-|  003 | `residents-properties`         | Residents and Properties     | Crítica    | Complete            | Sprint 3                |
-|  004 | `dues-fees`                    | Financial Management         | Crítica    | Complete            | Sprint 3                |
-|  005 | `payments`                     | Payments                     | Crítica    | Complete            | Sprint 3                |
-|  006 | `account-statements`           | Financial Statements         | Crítica    | Complete            | Sprint 3                |
-|  007 | `audit`                        | Audit and Compliance         | Crítica    | Complete            | Sprint 2-3              |
-|  008 | `basic-reports`                | Reporting                    | Media      | Complete            | Sprint 7                |
-|  009 | `wordpress-integration-basic`  | External Integration         | Media      | Complete            | Sprint 7                |
-|  010 | `reservations-common-areas`    | Reservations                 | Alta       | Complete            | Sprint 6                |
-|  011 | `fines-sanctions`              | Fines and Sanctions          | Alta       | Complete            | Sprint 6                |
-|  012 | `communications-notifications` | Communications               | Alta       | Complete            | Sprint 6                |
-|  013 | `meetings-attendance`          | Meetings                     | Media-Alta | Complete            | Sprint 7                |
-|  014 | `voting-basic`                 | Voting                       | Media-Alta | Complete            | Sprint 7                |
-|  015 | `certified-minutes`            | Governance / Minutes         | Media-Alta | Complete            | Sprint 7                |
-|  016 | `secure-document-storage`      | Document Storage             | Crítica    | Complete            | Sprint 3                |
-|  017 | `bank-reconciliation`          | Reconciliation               | Avanzada   | Complete / Deferred | Post-MVP                |
-|  018 | `payment-provider-integration` | Payment Providers            | Avanzada   | Complete / Deferred | Post-MVP                |
-|  019 | `open-banking-integration`     | Open Banking                 | Avanzada   | Complete / Deferred | Post-MVP                |
-|  020 | `accounting-ledger`            | Accounting                   | Avanzada   | Complete / Deferred | Post-MVP                |
-|  021 | `supplier-payments`            | Supplier Payments            | Avanzada   | Complete / Deferred | Post-MVP                |
-|  022 | `maintenance-work-orders`      | Maintenance                  | Alta       | Complete            | Sprint 6                |
-|  023 | `inventory-basic`              | Inventory                    | Media      | Complete / Deferred | Sprint 7 / Post-MVP     |
-|  024 | `access-control-visitors`      | Access / Visitors            | Alta       | Complete            | Sprint 6                |
-|  025 | `tenant-settings-policies`     | Tenant Configuration         | Crítica    | Complete            | Sprint 2-3              |
-|  026 | `automation-workflows-basic`   | Automation                   | Media      | Complete / Deferred | Post-MVP                |
-|  027 | `dashboard-kpis`               | Dashboards / KPIs            | Media-Alta | Complete            | Sprint 7                |
-|  028 | `data-import-migration`        | Data Import / Migration      | Media-Alta | Complete            | Sprint 7                |
-|  029 | `admin-web-app-basic`          | Admin Frontend               | Crítica    | Complete            | Sprint 4                |
-|  030 | `resident-self-service-basic`  | Resident Frontend            | Crítica    | Complete            | Sprint 5                |
-|  031 | `implementation-readiness`     | Delivery Governance          | Crítica    | Complete            | Sprint 0                |
+| Spec | Módulo                         | Dominio                      | Prioridad  | Estado documental | Implementación sugerida |
+| ---: | ------------------------------ | ---------------------------- | ---------- | ------------------ | ----------------------- |
+|  001 | `tenants`                      | Platform / Tenant Management | Crítica    | needs-review       | Sprint 2                |
+|  002 | `users-roles`                  | Identity and Access          | Crítica    | needs-review       | Sprint 2                |
+|  003 | `residents-properties`         | Residents and Properties     | Crítica    | needs-review       | Sprint 3                |
+|  004 | `dues-fees`                    | Financial Management         | Crítica    | needs-review       | Sprint 3                |
+|  005 | `payments`                     | Payments                     | Crítica    | needs-review       | Sprint 3                |
+|  006 | `account-statements`           | Financial Statements         | Crítica    | needs-review       | Sprint 3                |
+|  007 | `audit`                        | Audit and Compliance         | Crítica    | needs-review       | Sprint 2-3              |
+|  008 | `basic-reports`                | Reporting                    | Media      | needs-review       | Sprint 7                |
+|  009 | `wordpress-integration-basic`  | External Integration         | Media      | needs-review       | Sprint 7                |
+|  010 | `reservations-common-areas`    | Reservations                 | Alta       | needs-review       | Sprint 6                |
+|  011 | `fines-sanctions`              | Fines and Sanctions          | Alta       | needs-review       | Sprint 6                |
+|  012 | `communications-notifications` | Communications               | Alta       | needs-review       | Sprint 6                |
+|  013 | `meetings-attendance`          | Meetings                     | Media-Alta | needs-review       | Sprint 7                |
+|  014 | `voting-basic`                 | Voting                       | Media-Alta | needs-review       | Sprint 7                |
+|  015 | `certified-minutes`            | Governance / Minutes         | Media-Alta | needs-review       | Sprint 7                |
+|  016 | `secure-document-storage`      | Document Storage             | Crítica    | needs-review       | Sprint 3                |
+|  017 | `bank-reconciliation`          | Reconciliation               | Avanzada   | needs-review       | Post-MVP                |
+|  018 | `payment-provider-integration` | Payment Providers            | Avanzada   | needs-review       | Post-MVP                |
+|  019 | `open-banking-integration`     | Open Banking                 | Avanzada   | needs-review       | Post-MVP                |
+|  020 | `accounting-ledger`            | Accounting                   | Avanzada   | needs-review       | Post-MVP                |
+|  021 | `supplier-payments`            | Supplier Payments            | Avanzada   | needs-review       | Post-MVP                |
+|  022 | `maintenance-work-orders`      | Maintenance                  | Alta       | needs-review       | Sprint 6                |
+|  023 | `inventory-basic`              | Inventory                    | Media      | needs-review       | Sprint 7 / Post-MVP     |
+|  024 | `access-control-visitors`      | Access / Visitors            | Alta       | needs-review       | Sprint 6                |
+|  025 | `tenant-settings-policies`     | Tenant Configuration         | Crítica    | needs-review       | Sprint 2-3              |
+|  026 | `automation-workflows-basic`   | Automation                   | Media      | needs-review       | Post-MVP                |
+|  027 | `dashboard-kpis`               | Dashboards / KPIs            | Media-Alta | needs-review       | Sprint 7                |
+|  028 | `data-import-migration`        | Data Import / Migration      | Media-Alta | needs-review       | Sprint 7                |
+|  029 | `admin-web-app-basic`          | Admin Frontend               | Crítica    | needs-review       | Sprint 4                |
+|  030 | `resident-self-service-basic`  | Resident Frontend            | Crítica    | needs-review       | Sprint 5                |
+|  031 | `implementation-readiness`     | Delivery Governance          | Crítica    | complete           | Sprint 0                |
 
 ---
 
@@ -217,15 +223,21 @@ Estos módulos son importantes, pero se recomienda implementarlos después del M
 031-implementation-readiness
 docs/implementation/sprint-0-foundation.md
 monorepo
-Docker Compose
-CI inicial
-NestJS base
+main como única rama permanente; master legacy se renombra antes de CI/remoto
+Node.js 24.18.0 LTS
+pnpm 11.21.0
+packages/shared, packages/config, packages/auth, packages/openapi-client y packages/testing
+Docker Compose: resident-api, postgres, redis, keycloak, keycloak-postgres, mailhog y minio
+Imágenes exactas de Compose conforme a ADR-009 §7.1; sin latest ni versiones flotantes
+CI inicial con quality, tests, contracts-data, security y build conforme a ADR-012 §10
+NestJS scaffold compilable
 Next.js base
 PostgreSQL
 Redis
 Keycloak local
-Prisma base
-OpenAPI base
+Prisma schema con generator y datasource, sin modelos, enums, migraciones, seeds ni PrismaService
+OpenAPI tooling, sin runtime ni endpoints
+Implementation Readiness en Markdown/Git, sin API ni persistencia runtime
 ```
 
 ---
@@ -233,16 +245,17 @@ OpenAPI base
 ### Sprint 1 — Backend Platform Base
 
 ```text id="specs-index-sprint-1"
-NestJS API base
+NestJS runtime platform base
 ConfigModule
 ValidationPipe
 ExceptionFilter
 Logger sanitizado
-HealthModule
+HealthModule con liveness pública y readiness protegida según ADR-010 §10
 PrismaService
-OpenAPI setup
+OpenAPI runtime y generación de contrato
 Auth skeleton
 Tenant skeleton
+Permission skeleton
 Audit skeleton
 ```
 
@@ -259,6 +272,9 @@ Keycloak integration
 TenantGuard
 PermissionGuard
 ```
+
+Los modelos `Tenant` y `UserProfile` se introducen en este sprint mediante sus specs
+aprobadas; no forman parte del schema Prisma de Sprint 0.
 
 ---
 
@@ -398,7 +414,8 @@ No inventes endpoints, tablas, permisos ni reglas fuera de las specs.
 ```text id="specs-index-current-state"
 docs/sdd/                         completo
 docs/decisions/                   completo
-docs/specs/001-031/               completo
+docs/specs/001-030/               needs-review
+docs/specs/031-implementation-readiness/ complete
 docs/changes/                     contiene impacto Keycloak
 docs/implementation/              contiene Sprint 0 Foundation
 docs/consolidated/                contiene documentos consolidados
@@ -409,16 +426,18 @@ docs/specs/SPECS_INDEX.md         creado
 
 ## 11. Próximo paso recomendado
 
-Después de crear este índice, continuar con:
+La reevaluación formal ejecutada el 2026-08-10 se encuentra en:
 
 ```text id="specs-index-next"
-docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md
+docs/changes/READINESS-031-2026-08-10.md
 ```
 
-Luego iniciar:
+Decisión vigente:
 
 ```text id="specs-index-next-implementation"
-Sprint 0 — Fundación técnica del repositorio
+GO para implementación técnica de Sprint 0, limitada al alcance de
+docs/implementation/sprint-0-foundation.md. Sprint 1 y la lógica de negocio permanecen
+fuera del alcance autorizado.
 ```
 
 ---

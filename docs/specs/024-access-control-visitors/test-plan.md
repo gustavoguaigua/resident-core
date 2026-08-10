@@ -10,7 +10,7 @@
 | Documento       | Test Plan                                                                                                                                 |
 | Ruta            | `docs/specs/024-access-control-visitors/test-plan.md`                                                                                     |
 | Versión         | 0.1                                                                                                                                       |
-| Estado          | Borrador inicial                                                                                                                          |
+| Estado          | needs-review                                                                                                                              |
 | Fecha           | 2026-07-30                                                                                                                                |
 | Documento base  | `docs/specs/024-access-control-visitors/spec.md`                                                                                          |
 | Plan técnico    | `docs/specs/024-access-control-visitors/plan.md`                                                                                          |

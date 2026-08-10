@@ -10,7 +10,7 @@
 | Documento      | Test Plan                                                                                                           |
 | Ruta           | `docs/specs/031-implementation-readiness/test-plan.md`                                                              |
 | Versión        | 0.1                                                                                                                 |
-| Estado         | Borrador inicial                                                                                                    |
+| Estado         | complete                                                                                                            |
 | Fecha          | 2026-08-05                                                                                                          |
 | Naturaleza     | Readiness validation / SDD closure checkpoint / Pre-implementation gate                                             |
 | Stack objetivo | NestJS / TypeScript / PostgreSQL / Prisma / Redis / BullMQ / Docker / Keycloak / OpenAPI / Next.js / GitHub Actions |
@@ -283,6 +283,36 @@ Acceptance:
 [ ] Todos los paquetes críticos tienen api-contract.
 ```
 
+### 7.1. Sprint 0 implementation-package tests
+
+```text id="ir-test-sprint0-packages"
+[ ] packages/shared existe y compila.
+[ ] packages/config existe y compila.
+[ ] packages/auth existe y compila sin auth runtime, guards, tokens o Keycloak integration.
+[ ] packages/openapi-client ejecuta una validación real sin generar aún cliente de dominio.
+[ ] packages/testing ejecuta smoke tests y security:secrets con scanner versionado.
+[ ] Los cinco packages tienen manifest, TypeScript strict, entrada y exports explícitos.
+[ ] Ningún package está vacío ni usa scripts placeholder.
+```
+
+Acceptance:
+
+```text id="ir-test-sprint0-packages-ac"
+[ ] El backlog de packages coincide con Sprint 0 y spec 031 §12.1.
+[ ] No se anticipa comportamiento runtime de Sprint 1 ni lógica funcional posterior.
+```
+
+### 7.2. Readiness runtime deferral tests
+
+```text id="ir-test-readiness-runtime-deferral"
+[ ] La evidencia de la compuerta se conserva en Markdown/Git.
+[ ] No existe ruta ni entrada OpenAPI bajo /api/v1/platform/readiness.
+[ ] No existen controllers, services, DTOs o permisos de Implementation Readiness.
+[ ] No existen modelos Prisma, tablas, migraciones, seeds o repositorios de readiness.
+[ ] api-contract.md y data-model.md se identifican como diseños futuros reservados.
+[ ] La implementación futura requiere plan y sprint explícitamente aprobados.
+```
+
 ---
 
 ## 8. Architecture consistency tests
@@ -356,6 +386,7 @@ Acceptance:
 ```text id="ir-test-authorization"
 [ ] Keycloak autentica.
 [ ] Core autoriza.
+[ ] El cliente OIDC de `apps/resident-web` usa `client_id=resident-resident-web`.
 [ ] Roles y permisos están definidos.
 [ ] PermissionGuard está previsto.
 [ ] SensitivePermissionGuard está previsto.
@@ -427,6 +458,10 @@ Acceptance:
 [ ] REST /api/v1 está definido.
 [ ] Response envelope está definido.
 [ ] Error envelope está definido.
+[ ] Health 200/503 usa payload plano conforme a ADR-010 §10.
+[ ] OpenAPI marca health con x-response-envelope=false y x-health-endpoint=true.
+[ ] OpenAPI declara exposición pública solo para /api/v1/health.
+[ ] Health básico no revela dependencias y health detailed está protegido.
 [ ] Bearer security scheme está definido.
 [ ] Endpoints tenant-scoped tienen x-tenant-scope.
 [ ] Endpoints resident .own tienen x-own-resource.
@@ -444,6 +479,7 @@ Blockers:
 [ ] OpenAPI exponiendo storageKey debe bloquear.
 [ ] OpenAPI aceptando actor fields debe bloquear.
 [ ] api-contract.md ausente en paquete MVP debe bloquear.
+[ ] Health detailed público o con información interna sensible debe bloquear.
 ```
 
 Acceptance:
@@ -527,19 +563,22 @@ Acceptance:
 ```text id="ir-test-cicd"
 [ ] ADR-012 existe.
 [ ] GitHub Actions definido.
+[ ] Install frozen definido.
 [ ] TypeScript check definido.
 [ ] Lint check definido.
 [ ] Format check definido.
-[ ] Unit tests definidos.
-[ ] Integration tests previstos.
-[ ] Prisma migration check previsto.
-[ ] OpenAPI generation previsto.
-[ ] Docker build previsto.
+[ ] Unit/smoke tests definidos.
+[ ] Prisma schema validation definida.
+[ ] OpenAPI tooling validation definida.
+[ ] Docker Compose config validation definida.
+[ ] Docker Compose build de resident-api definido.
 [ ] Backend build previsto.
 [ ] Admin-web build previsto.
 [ ] Resident-web build previsto.
+[ ] Dependency audit definido.
 [ ] Secret scanning previsto.
-[ ] Security static checks previstos.
+[ ] Required CI gates requerido en branch protection.
+[ ] Gates de capacidad definidos conforme a ADR-012 §10.2.
 ```
 
 Blockers:
@@ -549,6 +588,7 @@ Blockers:
 [ ] Merge sin tests debe bloquear.
 [ ] OpenAPI roto sin detección debe bloquear.
 [ ] Secretos en repositorio debe bloquear.
+[ ] Script requerido ausente o continue-on-error debe bloquear.
 ```
 
 Acceptance:
@@ -567,10 +607,16 @@ Acceptance:
 [ ] Servicio postgres definido.
 [ ] Servicio redis definido.
 [ ] Servicio keycloak definido.
+[ ] Servicio keycloak-postgres dedicado definido.
+[ ] Servicio mailhog definido.
+[ ] Servicio minio definido.
+[ ] Los siete servicios usan las imágenes y tags exactos de ADR-009 §7.1.
+[ ] No existen `latest`, aliases LTS ni versiones flotantes.
+[ ] MailHog y MinIO están limitados a local con datos sintéticos.
 [ ] Servicio admin-web opcional definido.
 [ ] Servicio resident-web opcional definido.
 [ ] .env.example definido.
-[ ] Health checks básicos definidos.
+[ ] Health checks de contenedores definidos; HealthModule no requerido en Sprint 0.
 [ ] Seed local definido.
 [ ] README local definido.
 ```
@@ -737,6 +783,7 @@ El pipeline debe fallar si:
 [ ] Orden de implementación se puede derivar.
 [ ] Sprint 0 queda definido.
 [ ] Repositorio objetivo queda definido.
+[x] AGENTS.md raíz está versionado y es la única guía aplicable encontrada.
 ```
 
 ---
@@ -789,24 +836,24 @@ No se acepta este test plan si permite:
 ## 25. Definition of Done de pruebas
 
 ```text id="ir-test-dod"
-[ ] test-plan.md creado.
-[ ] Pruebas documentales definidas.
-[ ] Pruebas de ADRs definidas.
-[ ] Pruebas de paquetes definidas.
-[ ] Pruebas de arquitectura definidas.
-[ ] Pruebas de multitenancy definidas.
-[ ] Pruebas de autorización definidas.
-[ ] Pruebas de seguridad definidas.
-[ ] Pruebas de OpenAPI definidas.
-[ ] Pruebas de datos definidas.
-[ ] Pruebas de testing strategy definidas.
-[ ] Pruebas de CI/CD definidas.
-[ ] Pruebas de Docker/local definidas.
-[ ] Pruebas de gap register definidas.
-[ ] Pruebas Go/Conditional Go/No-Go definidas.
-[ ] Negative tests definidos.
-[ ] Smoke tests definidos.
-[ ] No aceptación definida.
+[x] test-plan.md creado.
+[x] Pruebas documentales definidas.
+[x] Pruebas de ADRs definidas.
+[x] Pruebas de paquetes definidas.
+[x] Pruebas de arquitectura definidas.
+[x] Pruebas de multitenancy definidas.
+[x] Pruebas de autorización definidas.
+[x] Pruebas de seguridad definidas.
+[x] Pruebas de OpenAPI definidas.
+[x] Pruebas de datos definidas.
+[x] Pruebas de testing strategy definidas.
+[x] Pruebas de CI/CD definidas.
+[x] Pruebas de Docker/local definidas.
+[x] Pruebas de gap register definidas.
+[x] Pruebas Go/Conditional Go/No-Go definidas.
+[x] Negative tests definidos.
+[x] Smoke tests definidos.
+[x] No aceptación definida.
 ```
 
 ---
@@ -849,4 +896,19 @@ resident-core/
 │   │       ├── plan.md
 │   │       ├── api-contract.md
 │   │       └── test-plan.md
+```
+
+---
+
+## 28. Reevaluación formal — 2026-08-10
+
+```text id="ir-test-formal-reevaluation-2026-08-10"
+[x] 31 paquetes de especificación presentes.
+[x] 217 de 217 documentos requeridos presentes.
+[x] 12 de 12 ADRs con estado accepted.
+[x] 0 gaps críticos abiertos.
+[x] 0 gaps altos abiertos.
+[x] Multitenancy, Keycloak, OpenAPI y security boundaries definidos.
+[x] CI mínimo y orden de implementación definidos.
+[x] La decisión GO es trazable a READINESS-031-2026-08-10.md.
 ```

@@ -10,7 +10,7 @@
 | Documento              | Data Model                                    |
 | Ruta                   | `docs/specs/001-tenants/data-model.md`        |
 | Versión                | 0.1                                           |
-| Estado                 | Borrador inicial                              |
+| Estado                 | needs-review                                  |
 | Fecha                  | 2026-07-12                                    |
 | Documento base         | `docs/specs/001-tenants/spec.md`              |
 | Plan técnico           | `docs/specs/001-tenants/plan.md`              |

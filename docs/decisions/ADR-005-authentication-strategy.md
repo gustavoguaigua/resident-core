@@ -1,5 +1,15 @@
 # ADR-005 — Authentication Strategy: Evolutionary Authentication with Keycloak Target v0.2
 
+## Estado
+
+`accepted`
+
+## Contexto
+
+RESIDENT Core necesita autenticación segura desde el MVP sin convertir una solución
+temporal en dependencia permanente. La identidad debe poder evolucionar hacia OIDC y
+OAuth2 mientras Core conserva tenants, memberships y autorización de negocio.
+
 ## 1. Decisión
 ```text
 MVP: autenticación propia temporal permitida.
@@ -44,6 +54,29 @@ MVP: login, rate limit, refresh, logout, password reset, tenant selection. Keycl
 
 ## 11. Riesgos
 Auth propia permanente, token mal validado, Keycloak mal configurado, confundir auth con autorización, tenant selection insegura y WordPress como auth.
+
+## Consecuencias
+
+- Una implementación temporal propia debe diseñarse para migración y posterior retiro.
+- Core debe separar autenticación técnica de autorización funcional desde el inicio.
+- La transición requiere mapear identidades a `UserProfile` sin perder memberships ni auditoría.
+- Keycloak deberá estar operativo antes de extraer microservicios físicos.
+
+## Alternativas consideradas
+
+- Mantener autenticación propia permanentemente: descartado por deuda de seguridad y duplicación de capacidades de identidad.
+- Exigir Keycloak para toda la primera iteración: no se impone como condición absoluta del MVP, aunque sigue siendo el objetivo.
+- Reutilizar sesiones de WordPress: descartado porque WordPress no autentica ni autoriza RESIDENT Core.
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/api-guidelines.md`
+- `docs/decisions/ADR-004-multitenancy-strategy.md`
+- `docs/decisions/ADR-006-identity-provider-strategy.md`
+- `docs/decisions/ADR-007-authorization-strategy.md`
 
 ## 12. Decisión final
 Auth propia en NestJS solo como transición. Keycloak será proveedor central antes de microservicios. Core conserva membership, roles funcionales, permisos, autorización por recurso, auditoría y reglas financieras.

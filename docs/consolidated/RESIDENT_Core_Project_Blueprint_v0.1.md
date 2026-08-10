@@ -39,7 +39,12 @@ Cuál es el siguiente paso técnico?
 Regla central:
 
 ```text id="blueprint-rule"
-Este Project Blueprint es un documento consolidado de lectura y orientación. No reemplaza los documentos fuente ubicados en docs/sdd, docs/decisions, docs/specs, docs/changes y docs/implementation. En caso de conflicto, prevalecen los documentos fuente individuales y los ADRs vigentes.
+Este Project Blueprint es el baseline consolidado del proyecto y ocupa el tercer nivel
+de autoridad definido en AGENTS.md: está subordinado a constitution.md y a los ADRs
+aprobados, y precede a las especificaciones de dominio y a los demás documentos
+técnicos. No reemplaza el detalle de las fuentes individuales. Toda contradicción debe
+resolverse siguiendo la jerarquía completa de AGENTS.md y registrarse explícitamente;
+no debe resolverse informalmente en el código.
 ```
 
 ---
@@ -76,10 +81,10 @@ El proyecto se ha especificado bajo una variante interna de SDD inspirada princi
 ## 4. Estado actual del proyecto
 
 ```text id="blueprint-current-state"
-Estado general: SDD documental completado para módulos 001-031.
-Fase actual: preparación para Sprint 0.
+Estado general: expediente SDD presente, con specs 001-030 en needs-review y spec 031 en in-review.
+Fase actual: remediación documental previa a Sprint 0.
 Tipo actual de repositorio: documentación SDD estructurada.
-Siguiente paso recomendado: iniciar Sprint 0 — Fundación técnica del repositorio.
+Siguiente paso recomendado: resolver o diferir los gaps altos de READINESS-031-2026-08-09 y reevaluar la compuerta.
 ```
 
 Actualmente el proyecto cuenta con:
@@ -260,7 +265,9 @@ Backend:
 ```text id="blueprint-backend-stack"
 NestJS
 TypeScript
-Node.js LTS
+Node.js 24.18.0 LTS
+pnpm 11.21.0
+main como única rama permanente
 Prisma
 PostgreSQL
 Redis
@@ -326,8 +333,15 @@ GitHub Actions
 PostgreSQL local
 Redis local
 Keycloak local
+PostgreSQL dedicado de Keycloak
+MailHog local
+MinIO local
 Futura nube: AWS o proveedor equivalente
 ```
+
+El baseline reproducible de Compose usa las imágenes y tags exactos de ADR-009 §7.1.
+No admite `latest`, aliases LTS ni versiones flotantes. MailHog y MinIO son únicamente
+locales, con datos sintéticos, y requieren reevaluación antes de ambientes no locales.
 
 ---
 
@@ -337,6 +351,7 @@ Estructura documental principal:
 
 ```text id="blueprint-docs-structure"
 resident-core/
+├── AGENTS.md
 ├── README.md
 └── docs/
     ├── sdd/
@@ -498,41 +513,41 @@ Reglas clave:
 
 ## 14. Paquetes SDD especificados
 
-Inventario completo:
+Inventario documental presente; el estado refleja revisión formal, no calendario de implementación:
 
-| Spec ID | Paquete                        | Estado   |
-| ------: | ------------------------------ | -------- |
-|     001 | `tenants`                      | Completo |
-|     002 | `users-roles`                  | Completo |
-|     003 | `residents-properties`         | Completo |
-|     004 | `dues-fees`                    | Completo |
-|     005 | `payments`                     | Completo |
-|     006 | `account-statements`           | Completo |
-|     007 | `audit`                        | Completo |
-|     008 | `basic-reports`                | Completo |
-|     009 | `wordpress-integration-basic`  | Completo |
-|     010 | `reservations-common-areas`    | Completo |
-|     011 | `fines-sanctions`              | Completo |
-|     012 | `communications-notifications` | Completo |
-|     013 | `meetings-attendance`          | Completo |
-|     014 | `voting-basic`                 | Completo |
-|     015 | `certified-minutes`            | Completo |
-|     016 | `secure-document-storage`      | Completo |
-|     017 | `bank-reconciliation`          | Completo |
-|     018 | `payment-provider-integration` | Completo |
-|     019 | `open-banking-integration`     | Completo |
-|     020 | `accounting-ledger`            | Completo |
-|     021 | `supplier-payments`            | Completo |
-|     022 | `maintenance-work-orders`      | Completo |
-|     023 | `inventory-basic`              | Completo |
-|     024 | `access-control-visitors`      | Completo |
-|     025 | `tenant-settings-policies`     | Completo |
-|     026 | `automation-workflows-basic`   | Completo |
-|     027 | `dashboard-kpis`               | Completo |
-|     028 | `data-import-migration`        | Completo |
-|     029 | `admin-web-app-basic`          | Completo |
-|     030 | `resident-self-service-basic`  | Completo |
-|     031 | `implementation-readiness`     | Completo |
+| Spec ID | Paquete                        | Estado documental |
+| ------: | ------------------------------ | ------------------ |
+|     001 | `tenants`                      | needs-review |
+|     002 | `users-roles`                  | needs-review |
+|     003 | `residents-properties`         | needs-review |
+|     004 | `dues-fees`                    | needs-review |
+|     005 | `payments`                     | needs-review |
+|     006 | `account-statements`           | needs-review |
+|     007 | `audit`                        | needs-review |
+|     008 | `basic-reports`                | needs-review |
+|     009 | `wordpress-integration-basic`  | needs-review |
+|     010 | `reservations-common-areas`    | needs-review |
+|     011 | `fines-sanctions`              | needs-review |
+|     012 | `communications-notifications` | needs-review |
+|     013 | `meetings-attendance`          | needs-review |
+|     014 | `voting-basic`                 | needs-review |
+|     015 | `certified-minutes`            | needs-review |
+|     016 | `secure-document-storage`      | needs-review |
+|     017 | `bank-reconciliation`          | needs-review |
+|     018 | `payment-provider-integration` | needs-review |
+|     019 | `open-banking-integration`     | needs-review |
+|     020 | `accounting-ledger`            | needs-review |
+|     021 | `supplier-payments`            | needs-review |
+|     022 | `maintenance-work-orders`      | needs-review |
+|     023 | `inventory-basic`              | needs-review |
+|     024 | `access-control-visitors`      | needs-review |
+|     025 | `tenant-settings-policies`     | needs-review |
+|     026 | `automation-workflows-basic`   | needs-review |
+|     027 | `dashboard-kpis`               | needs-review |
+|     028 | `data-import-migration`        | needs-review |
+|     029 | `admin-web-app-basic`          | needs-review |
+|     030 | `resident-self-service-basic`  | needs-review |
+|     031 | `implementation-readiness`     | in-review |
 
 ---
 
@@ -716,9 +731,11 @@ resident-core/
 ├── docker-compose.yml
 ├── package.json
 ├── pnpm-workspace.yaml
+├── .node-version
 ├── tsconfig.base.json
 ├── .env.example
 ├── .gitignore
+├── AGENTS.md
 └── README.md
 ```
 
@@ -735,8 +752,14 @@ docs/implementation/sprint-0-foundation.md
 Objetivo de Sprint 0:
 
 ```text id="blueprint-sprint0-objective"
-Crear la fundación técnica del repositorio: monorepo, apps base, packages base, Docker Compose, PostgreSQL, Redis, Keycloak local, Prisma inicial, OpenAPI inicial, CI básico, README, .env.example y estructura de trabajo.
+Crear la fundación técnica del repositorio con main como única rama permanente, Node.js 24.18.0 y pnpm 11.21.0: monorepo, scaffolds compilables de apps, packages base, Docker Compose con resident-api, postgres, redis, keycloak, keycloak-postgres, mailhog y minio, schema Prisma con generator y datasource sin modelos de dominio ni PrismaService, tooling OpenAPI sin runtime, CI con los gates obligatorios de ADR-012 §10, README, .env.example y estructura de trabajo.
 ```
+
+La frontera normativa está definida en
+`docs/implementation/sprint-0-foundation.md`: ConfigModule, ValidationPipe,
+ExceptionFilter, logger de aplicación, HealthModule, PrismaService y Swagger/OpenAPI
+runtime pertenecen a Sprint 1. Ninguno de los dos sprints autoriza lógica de negocio sin
+la spec y el sprint funcional correspondientes.
 
 Sprint 0 no debe implementar:
 
@@ -764,18 +787,37 @@ Sprint 0 no debe implementar:
 
 ```text id="blueprint-wave0"
 - Monorepo.
+- main como única rama permanente; master legacy se renombra antes de CI/remoto.
+- Node.js 24.18.0 y pnpm 11.21.0.
+- packages/shared, packages/config, packages/auth, packages/openapi-client y packages/testing como scaffolds/tooling.
 - Docker Compose.
 - PostgreSQL.
 - Redis.
 - Keycloak local.
-- NestJS base.
+- PostgreSQL dedicado de Keycloak.
+- MailHog local.
+- MinIO local.
+- NestJS scaffold compilable.
 - Next.js apps base.
-- CI inicial.
+- Schema Prisma de configuración sin modelos, enums, migraciones ni seeds de dominio.
+- CI inicial con quality, tests, contracts-data, security y build.
+- Compuerta 031 en Markdown/Git, sin API ni persistencia runtime de readiness.
 ```
 
-### Wave 1 — Plataforma, tenants e identidad
+### Wave 1 — Plataforma backend; después tenants e identidad
 
 ```text id="blueprint-wave1"
+Sprint 1 — Backend Platform Base
+ConfigModule
+ValidationPipe
+ExceptionFilter
+Logger sanitizado
+HealthModule: liveness pública y readiness protegida según ADR-010 §10
+PrismaService y conexión de aplicación
+Swagger/OpenAPI runtime y generación de contrato
+Auth/Tenant/Permission/Audit skeletons
+
+Sprint 2 — Tenants e identidad
 001-tenants
 002-users-roles
 Keycloak integration
@@ -783,6 +825,9 @@ TenantGuard
 PermissionGuard
 Audit base
 ```
+
+`Tenant` y sus entidades relacionadas nacen con 001; `UserProfile`, roles, permisos y
+memberships nacen con 002. Sprint 0 no adelanta esos modelos.
 
 ### Wave 2 — Residentes, unidades y finanzas base
 
@@ -870,15 +915,18 @@ El paquete `031-implementation-readiness` fue creado para validar que el proyect
 Estado actual:
 
 ```text id="blueprint-readiness-state"
-Implementation Readiness: completo.
-Decisión recomendada: CONDITIONAL_GO hacia Sprint 0.
-Motivo: la documentación base está suficientemente estructurada para crear la fundación técnica, siempre que no se implemente lógica de negocio productiva todavía.
+Implementation Readiness: reevaluado formalmente el 2026-08-10.
+Decisión vigente: GO para iniciar implementación técnica de Sprint 0.
+Evidencia: docs/changes/READINESS-031-2026-08-10.md.
+Motivo: todos los criterios obligatorios de GO están sustentados y no existen gaps
+críticos o altos abiertos.
 ```
 
 Condición:
 
 ```text id="blueprint-readiness-condition"
-Sprint 0 puede iniciar porque no modifica reglas de negocio ni datos productivos. Antes de implementar módulos financieros, residentes, pagos o documentos, deben respetarse los paquetes SDD correspondientes.
+Sprint 0 puede iniciar dentro del alcance estricto de su runbook. Sprint 1 y cualquier
+lógica de negocio permanecen fuera del alcance autorizado.
 ```
 
 ---
@@ -921,7 +969,14 @@ Antes de implementar Sprint 0:
 
 ## 25. Prompt recomendado para Codex o Claude Code
 
-Usar este prompt como instrucción inicial:
+Estado de uso:
+
+```text
+SUSPENDIDO mientras READINESS-031-2026-08-09 permanezca en NO_GO.
+```
+
+Este prompt podrá usarse como instrucción inicial únicamente después de que una nueva
+evaluación autorice Sprint 0:
 
 ```text id="blueprint-agent-prompt"
 Lee primero:
@@ -942,6 +997,12 @@ Lee primero:
 
 Implementa únicamente Sprint 0.
 
+Limita apps/api a un scaffold compilable. Crea el schema Prisma solo con generator y
+datasource, sin modelos, enums, migraciones ni seeds de dominio. Prepara tooling de
+OpenAPI, pero no implementes ConfigModule, ValidationPipe, ExceptionFilter, logger de aplicación,
+HealthModule, PrismaService, Swagger/OpenAPI runtime ni endpoints de documentación;
+esos componentes pertenecen a Sprint 1.
+
 Crea la estructura base del monorepo RESIDENT Core:
 
 - apps/api
@@ -961,13 +1022,14 @@ Crea también:
 
 - package.json raíz
 - pnpm-workspace.yaml
+- .node-version con 24.18.0
 - tsconfig.base.json
 - .env.example
 - .gitignore
 - docker-compose.yml
 - README.md base
-- schema.prisma inicial
-- CI inicial
+- schema.prisma configuration-only, sin modelos de dominio
+- CI con los gates obligatorios de ADR-012 §10
 
 No implementes lógica de negocio todavía.
 No implementes pagos.
@@ -998,7 +1060,7 @@ Entrega resumen de archivos creados, comandos ejecutados, errores encontrados y 
 
 ## 26. Archivos recomendados adicionales
 
-Aunque el expediente principal ya está completo, se recomienda crear o mantener:
+Aunque el expediente principal está estructurado, su revisión formal continúa. Se recomienda crear o mantener:
 
 ```text id="blueprint-recommended-files"
 docs/sdd/documentation-standard.md
@@ -1030,18 +1092,14 @@ Archivo guía:
 docs/implementation/sprint-0-foundation.md
 ```
 
+El runbook `docs/implementation/sprint-0-foundation.md` sigue siendo el plan de Sprint
+0, pero no debe ejecutarse hasta que una reevaluación sustituya la decisión `NO_GO`.
+
 Acciones inmediatas:
 
 ```text id="blueprint-next-actions"
-1. Confirmar que la documentación está guardada en docs/.
-2. Completar README.md.
-3. Crear estructura técnica del monorepo.
-4. Configurar Docker Compose.
-5. Configurar apps base.
-6. Configurar packages base.
-7. Configurar Prisma inicial.
-8. Configurar CI inicial.
-9. No implementar lógica de negocio todavía.
+1. Resolver o diferir explícitamente los gaps altos.
+2. Reevaluar la compuerta 031 antes de crear código.
 ```
 
 ---
@@ -1062,7 +1120,7 @@ integrado con WordPress solo como portal público
 autenticado con Keycloak
 autorizado por Core
 documentado bajo SDD
-listo para iniciar Sprint 0
+en remediación documental previa a Sprint 0
 ```
 
 Este documento constituye el baseline consolidado de RESIDENT Core al cierre de la fase documental SDD inicial.

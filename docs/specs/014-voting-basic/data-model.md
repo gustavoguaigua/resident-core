@@ -10,7 +10,7 @@
 | Documento              | Data Model                                                                                                |
 | Ruta                   | `docs/specs/014-voting-basic/data-model.md`                                                               |
 | Versión                | 0.1                                                                                                       |
-| Estado                 | Borrador inicial                                                                                          |
+| Estado                 | needs-review                                                                                              |
 | Fecha                  | 2026-07-20                                                                                                |
 | Documento base         | `docs/specs/014-voting-basic/spec.md`                                                                     |
 | Plan técnico           | `docs/specs/014-voting-basic/plan.md`                                                                     |

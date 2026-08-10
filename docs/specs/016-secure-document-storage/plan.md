@@ -10,7 +10,7 @@
 | Documento       | Plan técnico                                                                                                                                                                  |
 | Ruta            | `docs/specs/016-secure-document-storage/plan.md`                                                                                                                              |
 | Versión         | 0.1                                                                                                                                                                           |
-| Estado          | Borrador inicial                                                                                                                                                              |
+| Estado          | needs-review                                                                                                                                                                  |
 | Fecha           | 2026-07-21                                                                                                                                                                    |
 | Documento base  | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                              |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `005-payments`, `007-audit`, `011-fines-sanctions`, `012-communications-notifications`, `015-certified-minutes` |

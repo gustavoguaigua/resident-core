@@ -10,7 +10,7 @@
 | Documento              | Data Model                                                                                    |
 | Ruta                   | `docs/specs/025-tenant-settings-policies/data-model.md`                                       |
 | Versión                | 0.1                                                                                           |
-| Estado                 | Borrador inicial                                                                              |
+| Estado                 | needs-review                                                                                  |
 | Fecha                  | 2026-07-31                                                                                    |
 | Documento base         | `docs/specs/025-tenant-settings-policies/spec.md`                                             |
 | Plan técnico           | `docs/specs/025-tenant-settings-policies/plan.md`                                             |

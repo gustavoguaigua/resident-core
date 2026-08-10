@@ -10,7 +10,7 @@
 | Documento       | Plan técnico                                                                                                                                                                             |
 | Ruta            | `docs/specs/017-bank-reconciliation/plan.md`                                                                                                                                             |
 | Versión         | 0.1                                                                                                                                                                                      |
-| Estado          | Borrador inicial                                                                                                                                                                         |
+| Estado          | needs-review                                                                                                                                                                             |
 | Fecha           | 2026-07-21                                                                                                                                                                               |
 | Documento base  | `docs/specs/017-bank-reconciliation/spec.md`                                                                                                                                             |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `004-dues-fees`, `005-payments`, `006-account-statements`, `007-audit`, `008-basic-reports`, `016-secure-document-storage` |

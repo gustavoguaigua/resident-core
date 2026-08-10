@@ -121,8 +121,9 @@ Decisiones principales:
 ## 5. Stack tecnológico previsto
 
 ```text
-Runtime: Node.js LTS
-Package manager: pnpm
+Runtime: Node.js 24.18.0 LTS
+Package manager: pnpm 11.21.0
+Branch strategy: main como única rama permanente; ramas cortas mediante pull request
 Backend: NestJS + TypeScript
 Database: PostgreSQL
 ORM: Prisma
@@ -143,6 +144,7 @@ Documentation: Markdown + SDD
 
 ```text
 resident-core/
+├── AGENTS.md
 ├── README.md
 └── docs/
     ├── sdd/
@@ -194,9 +196,11 @@ resident-core/
 ├── docker-compose.yml
 ├── package.json
 ├── pnpm-workspace.yaml
+├── .node-version
 ├── tsconfig.base.json
 ├── .env.example
 ├── .gitignore
+├── AGENTS.md
 └── README.md
 ```
 
@@ -523,11 +527,15 @@ No uses WordPress como backend transaccional.
 
 ## 17. Sprint 0
 
-El siguiente paso operativo es ejecutar:
+Sprint 0 permanece planificado mediante:
 
 ```text
 docs/implementation/sprint-0-foundation.md
 ```
+
+Su ejecución está temporalmente bloqueada por la decisión `NO_GO` registrada en
+`docs/changes/READINESS-031-2026-08-09.md`. Los gaps críticos están cerrados; el
+siguiente paso operativo es resolver o diferir los gaps altos y reevaluar la compuerta 031.
 
 Sprint 0 debe crear:
 
@@ -541,19 +549,31 @@ Sprint 0 debe crear:
 - packages/auth;
 - packages/openapi-client;
 - packages/testing;
-- Docker Compose;
-- PostgreSQL local;
-- Redis local;
-- Keycloak local;
-- Prisma base;
-- OpenAPI base;
-- CI inicial;
+- Node.js 24.18.0 fijado en .node-version y package.json;
+- pnpm 11.21.0 fijado mediante packageManager y engines;
+- main como única rama permanente y target de CI;
+- migración documentada de master legacy a main antes de crear CI o remoto;
+- develop no adoptada inicialmente;
+- Docker Compose con resident-api, postgres, redis, keycloak, keycloak-postgres,
+  mailhog y minio;
+- imágenes y tags exactos conforme a ADR-009 §7.1, sin `latest` ni versiones flotantes;
+- schema Prisma con generator y datasource, sin modelos, enums, migraciones, seeds ni
+  PrismaService;
+- tooling de OpenAPI, sin runtime ni endpoints de documentación;
+- compuerta 031 en Markdown/Git, sin API ni persistencia runtime de readiness;
+- CI inicial con los gates obligatorios de ADR-012 §10;
 - README técnico;
 - .env.example;
 - .gitignore.
 ```
 
 Sprint 0 no debe implementar lógica funcional de negocio.
+
+La frontera normativa está en
+`docs/implementation/sprint-0-foundation.md`: el scaffold compilable y el tooling son
+Sprint 0; ConfigModule, ValidationPipe, ExceptionFilter, logger de aplicación,
+HealthModule con el contrato de ADR-010 §10, PrismaService y Swagger/OpenAPI runtime son Sprint 1. Sprint 1 tampoco
+autoriza lógica de negocio sin la spec y el sprint correspondientes.
 
 ---
 
@@ -575,20 +595,25 @@ Hasta completar Sprint 0, este README funciona como referencia del proyecto, no 
 ## 19. Estado de readiness
 
 ```text
-Implementation Readiness: completo
-Specs 001-031: completas
+Implementation Readiness: reevaluado formalmente el 2026-08-10
+Specs 001-030: needs-review
+Spec 031: complete
 Blueprint: creado
 Specs Index: creado
-Documentation Standard: creado o recomendado
+Documentation Standard: creado
 Sprint 0 Foundation: creado
-Estado sugerido: CONDITIONAL_GO para iniciar Sprint 0
+Decisión vigente: GO para iniciar implementación técnica de Sprint 0
 ```
 
-Condición:
+Evidencia:
 
 ```text
-Antes de iniciar código, confirmar que no existen gaps críticos abiertos en documentación, seguridad, multitenancy, Keycloak, OpenAPI o CI inicial.
+docs/changes/READINESS-031-2026-08-10.md
 ```
+
+Los gaps críticos y altos registrados están cerrados. El `GO` autoriza exclusivamente
+la fundación técnica definida en el runbook de Sprint 0; no autoriza Sprint 1 ni lógica
+de negocio.
 
 ---
 

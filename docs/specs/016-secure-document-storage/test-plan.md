@@ -10,7 +10,7 @@
 | Documento       | Test Plan                                                                                                                                                          |
 | Ruta            | `docs/specs/016-secure-document-storage/test-plan.md`                                                                                                              |
 | Versión         | 0.1                                                                                                                                                                |
-| Estado          | Borrador inicial                                                                                                                                                   |
+| Estado          | needs-review                                                                                                                                                       |
 | Fecha           | 2026-07-21                                                                                                                                                         |
 | Documento base  | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                   |
 | Plan técnico    | `docs/specs/016-secure-document-storage/plan.md`                                                                                                                   |

@@ -9,7 +9,7 @@
 | Título          | Observability Strategy: Logs, Metrics, Traces, Health Checks and Operational Visibility                                                                              |
 | Ruta            | `docs/decisions/ADR-010-observability-strategy.md`                                                                                                                   |
 | Versión         | 0.1                                                                                                                                                                  |
-| Estado          | Aceptado inicialmente                                                                                                                                                |
+| Estado          | accepted                                                                                                                                                             |
 | Fecha           | 2026-07-12                                                                                                                                                           |
 | Relacionado con | `architecture.md`, `security.md`, `data-governance.md`, `ADR-008-api-gateway-strategy.md`, `ADR-009-deployment-strategy.md`, `ADR-006-identity-provider-strategy.md` |
 
@@ -628,75 +628,132 @@ Seguir una operación desde el request inicial hasta todos los servicios involuc
 
 ### 10.1. Endpoints
 
-Endpoints de RESIDENT Core:
+Contrato autoritativo de RESIDENT Core:
 
 ```text id="5v0gyz"
-GET /api/v1/health
-GET /api/v1/health/details
+GET /api/v1/health          → liveness mínima, pública y sin autenticación
+GET /api/v1/health/details  → readiness detallada, protegida y platform-scoped
 ```
+
+No se adoptan inicialmente rutas alternativas `/live`, `/ready` o `/status`.
 
 ### 10.2. Health básico
 
-Debe responder si la API está viva.
+`GET /api/v1/health` solo indica que el proceso HTTP está vivo. No consulta PostgreSQL,
+Redis, storage, Keycloak, colas ni migraciones. No requiere Bearer token ni contexto de
+tenant y puede ser utilizado por el balanceador u orquestador.
 
-Ejemplo:
+Respuesta `200 OK`:
 
 ```json id="smjpio"
 {
   "status": "ok",
   "service": "resident-api",
-  "timestamp": "2026-07-12T15:30:00Z"
+  "timestamp": "2026-08-10T15:30:00Z"
 }
 ```
 
+La respuesta no puede incluir dependencias, versión, build, hostname, configuración,
+tenant, usuario, secretos ni detalles de errores.
+
 ---
 
-### 10.3. Health detallado
+### 10.3. Readiness detallada
 
-Debe validar:
+`GET /api/v1/health/details` indica si la API puede recibir tráfico y valida, cuando
+formen parte del despliegue:
 
 * PostgreSQL;
 * Redis;
 * storage;
 * Keycloak;
-* worker;
-* colas;
-* migraciones pendientes;
-* versión;
-* build.
+* worker y colas;
+* migraciones críticas;
+* versión y build de la aplicación.
 
-Ejemplo:
+Respuesta de ejemplo:
 
 ```json id="w70ap9"
 {
   "status": "degraded",
+  "service": "resident-api",
+  "version": "0.1.0",
+  "build": "git-sha",
   "checks": {
-    "postgres": "ok",
-    "redis": "ok",
-    "storage": "ok",
-    "keycloak": "unavailable",
-    "worker": "ok"
+    "postgres": { "status": "ok" },
+    "redis": { "status": "ok" },
+    "storage": { "status": "ok" },
+    "keycloak": { "status": "unavailable" }
   },
-  "timestamp": "2026-07-12T15:30:00Z"
+  "timestamp": "2026-08-10T15:30:00Z"
 }
 ```
 
+El estado superior es `ok` cuando todas las dependencias requeridas están disponibles y
+`degraded` cuando alguna falla. Cada check usa `ok`, `unavailable` o `notConfigured`.
+Checks de componentes no desplegados pueden omitirse; si se incluyen deben usar
+`notConfigured` y no degradan el servicio.
+
+Mapeo HTTP obligatorio:
+
+```text id="health-status-code-mapping"
+200 OK                  → status = ok
+503 Service Unavailable → status = degraded
+```
+
+Un fallo conocido de dependencia devuelve el payload health plano con `503`. Fallos no
+controlados se procesan mediante el error envelope estándar.
+
 ---
 
-### 10.4. Seguridad de health detailed
+### 10.4. Excepción al response envelope
 
-El health detallado no debe exponerse públicamente sin protección.
+Los dos endpoints health devuelven payloads planos y no usan el envelope de éxito
+`{"data": ...}`. Esta excepción existe para interoperar con probes, balanceadores y
+plataformas de monitoreo y debe declararse en OpenAPI con:
 
-Puede ser accesible solo desde:
+```text id="health-openapi-extensions"
+x-response-envelope: false
+x-health-endpoint: true
+```
 
-* red interna;
-* plataforma de monitoreo;
-* API Gateway;
-* administradores técnicos.
+Además, la exposición se declara por operación:
+
+```yaml id="health-openapi-exposure"
+/api/v1/health:
+  x-auth-required: false
+  x-platform-scope: false
+  x-tenant-scope: false
+  x-public-exposure: true
+
+/api/v1/health/details:
+  x-auth-required: true
+  x-platform-scope: true
+  x-tenant-scope: false
+  x-public-exposure: false
+```
+
+La excepción cubre únicamente las respuestas health `200` y `503`. Respuestas `401`,
+`403`, `404`, `429` y errores no controlados conservan el error envelope estándar.
 
 ---
 
-### 10.5. Keycloak health checks
+### 10.5. Seguridad de health detailed
+
+El health detallado no se expone públicamente. En ambientes no locales exige ambas
+capas:
+
+* exposición restringida a red interna, plataforma de monitoreo o API Gateway;
+* Bearer token de service account o administrador técnico con permiso
+  `platform.health.read`.
+
+No devuelve URLs internas, hosts, puertos, credenciales, query text, stack traces,
+mensajes crudos de proveedores, datos de tenant o usuario ni secretos. En desarrollo
+local puede habilitarse desde localhost, sin ampliar la exposición de otros ambientes.
+
+---
+
+### 10.6. Keycloak health checks
 
 Cuando Keycloak sea parte del despliegue, se deben activar y monitorear sus health checks. La documentación oficial indica que Keycloak expone health checks en el puerto de administración `9000` por defecto.
 
@@ -1968,6 +2025,8 @@ La implementación cumple este ADR si:
 * los logs no exponen secretos;
 * existen health checks;
 * existe health detailed protegido;
+* los endpoints health usan el contrato plano y el mapeo HTTP definidos en §10;
+* OpenAPI declara explícitamente la excepción al response envelope;
 * se monitorea PostgreSQL;
 * se monitorea Redis;
 * se monitorean workers;
@@ -1982,6 +2041,25 @@ La implementación cumple este ADR si:
 * las specs SDD incluyen sección de observabilidad.
 
 ---
+
+## Alternativas consideradas
+
+- Logs de texto sin estructura como única señal: descartado por baja capacidad de correlación y análisis.
+- Plataforma propietaria completa desde el inicio: diferida para evitar costo y dependencia prematuros.
+- Incorporar observabilidad únicamente después del MVP: descartado porque impediría diagnosticar fallos tempranos y validar controles críticos.
+
+## Relación con documentos
+
+- `docs/sdd/constitution.md`
+- `docs/sdd/architecture.md`
+- `docs/sdd/security.md`
+- `docs/sdd/api-guidelines.md`
+- `docs/sdd/data-governance.md`
+- `docs/decisions/ADR-008-api-gateway-strategy.md`
+- `docs/decisions/ADR-009-deployment-strategy.md`
+- `docs/decisions/ADR-011-testing-strategy.md`
+- `docs/decisions/ADR-012-ci-cd-strategy.md`
+- `docs/implementation/sprint-0-foundation.md`
 
 ## 57. Decisión final
 

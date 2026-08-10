@@ -10,7 +10,7 @@
 | Documento      | Functional / Technical Readiness Specification                                                                      |
 | Ruta           | `docs/specs/031-implementation-readiness/spec.md`                                                                   |
 | Versión        | 0.1                                                                                                                 |
-| Estado         | Borrador inicial                                                                                                    |
+| Estado         | complete                                                                                                            |
 | Fecha          | 2026-08-04                                                                                                          |
 | Fase           | FASE 2 — Preparación de implementación                                                                              |
 | Naturaleza     | Readiness gate / Pre-implementation validation / SDD closure checkpoint                                             |
@@ -130,6 +130,8 @@ Sin una compuerta de preparación, el proyecto puede iniciar código con riesgos
 - Implementar código productivo.
 - Crear tablas definitivas.
 - Crear migraciones reales.
+- Implementar la API `/api/v1/platform/readiness` o cualquiera de sus endpoints.
+- Crear modelos Prisma, tablas, migraciones, seeds o repositorios de readiness.
 - Configurar AWS productivo.
 - Configurar Keycloak productivo.
 - Implementar frontend real.
@@ -148,6 +150,11 @@ Sin una compuerta de preparación, el proyecto puede iniciar código con riesgos
 ```text id="ir-decision"
 Implementation Readiness será una compuerta formal SDD previa al desarrollo, usada para validar si RESIDENT Core puede iniciar implementación con suficiente claridad técnica, documental, arquitectónica, contractual, de seguridad y de pruebas.
 ```
+
+En Sprint 0 la compuerta se ejecuta y conserva exclusivamente mediante Markdown y Git.
+El `api-contract.md` y `data-model.md` de esta spec son diseños futuros reservados, no
+backlog ejecutable. Su eventual implementación requiere asignación explícita a un
+sprint posterior; no se activa automáticamente en Sprint 1.
 
 ---
 
@@ -318,37 +325,55 @@ Los paquetes que se definan explícitamente como exploratorios o diferidos puede
 ```text id="ir-implementation-phase-0"
 1. Crear monorepo.
 2. Configurar TypeScript.
-3. Configurar NestJS backend.
-4. Configurar PostgreSQL local.
-5. Configurar Prisma.
+3. Crear el scaffold compilable de NestJS backend.
+4. Configurar PostgreSQL local para Core.
+5. Crear el schema Prisma de configuración con generator y datasource, sin modelos,
+   enums, migraciones, seeds ni PrismaService.
 6. Configurar Docker Compose.
 7. Configurar Redis.
 8. Configurar Keycloak local.
-9. Configurar OpenAPI.
-10. Configurar CI inicial.
-11. Configurar linting, formatting y testing.
+9. Configurar PostgreSQL dedicado para Keycloak.
+10. Configurar MailHog y MinIO locales.
+11. Contenerizar resident-api como scaffold.
+12. Preparar el tooling de OpenAPI, sin runtime ni endpoints de documentación.
+13. Configurar CI inicial.
+14. Configurar linting, formatting y testing.
 ```
 
 ---
 
-### 11.2. Fase técnica 1 — Plataforma y seguridad
+### 11.2. Fase técnica 1 — Backend Platform Base
 
 ```text id="ir-implementation-phase-1"
+1. ConfigModule y validación de entorno.
+2. ValidationPipe global.
+3. ExceptionFilter y secure error handling.
+4. Logger sanitizado.
+5. HealthModule y contrato HTTP conforme a ADR-010 §10.
+6. PrismaService y conexión de aplicación.
+7. Swagger/OpenAPI runtime y generación de contrato.
+8. AuthGuard, TenantGuard y PermissionGuard como esqueletos técnicos.
+9. Audit interceptor como esqueleto técnico.
+10. API guidelines enforcement.
+```
+
+---
+
+### 11.3. Fase técnica 2 — Tenants, identidad y autorización
+
+```text id="ir-implementation-phase-2"
 1. 001-tenants.
 2. 002-users-roles.
 3. Keycloak integration.
-4. TenantGuard.
-5. PermissionGuard.
-6. Audit base.
-7. Secure error handling.
-8. API guidelines enforcement.
+4. TenantGuard y PermissionGuard funcionales conforme a sus specs.
+5. Audit base conforme a 007-audit.
 ```
 
 ---
 
-### 11.3. Fase técnica 2 — Datos residenciales y finanzas base
+### 11.4. Fase técnica 3 — Datos residenciales y finanzas base
 
-```text id="ir-implementation-phase-2"
+```text id="ir-implementation-phase-3"
 1. 003-residents-properties.
 2. 004-dues-fees.
 3. 005-payments.
@@ -359,9 +384,9 @@ Los paquetes que se definan explícitamente como exploratorios o diferidos puede
 
 ---
 
-### 11.4. Fase técnica 3 — Aplicaciones web
+### 11.5. Fase técnica 4 — Aplicaciones web
 
-```text id="ir-implementation-phase-3"
+```text id="ir-implementation-phase-4"
 1. 029-admin-web-app-basic.
 2. 030-resident-self-service-basic.
 3. OpenAPI client generation.
@@ -372,9 +397,9 @@ Los paquetes que se definan explícitamente como exploratorios o diferidos puede
 
 ---
 
-### 11.5. Fase técnica 4 — Operación comunitaria
+### 11.6. Fase técnica 5 — Operación comunitaria
 
-```text id="ir-implementation-phase-4"
+```text id="ir-implementation-phase-5"
 1. 010-reservations-common-areas.
 2. 011-fines-sanctions.
 3. 012-communications-notifications.
@@ -387,9 +412,9 @@ Los paquetes que se definan explícitamente como exploratorios o diferidos puede
 
 ---
 
-### 11.6. Fase técnica 5 — Reportes, dashboards e importación
+### 11.7. Fase técnica 6 — Reportes, dashboards e importación
 
-```text id="ir-implementation-phase-5"
+```text id="ir-implementation-phase-6"
 1. 008-basic-reports.
 2. 027-dashboard-kpis.
 3. 028-data-import-migration.
@@ -399,9 +424,9 @@ Los paquetes que se definan explícitamente como exploratorios o diferidos puede
 
 ---
 
-### 11.7. Fase técnica 6 — Finanzas avanzadas
+### 11.8. Fase técnica 7 — Finanzas avanzadas
 
-```text id="ir-implementation-phase-6"
+```text id="ir-implementation-phase-7"
 1. 017-bank-reconciliation.
 2. 018-payment-provider-integration.
 3. 019-open-banking-integration.
@@ -449,13 +474,42 @@ resident-core/
 ├── docker-compose.yml
 ├── package.json
 ├── pnpm-workspace.yaml
+├── .node-version
 ├── tsconfig.base.json
+├── AGENTS.md
 └── README.md
 ```
+
+`AGENTS.md` debe existir una sola vez en la raíz, estar versionado y aplicar a todo el
+repositorio. Cualquier guía anidada futura deberá justificar explícitamente su alcance
+y no podrá contradecir la precedencia documental definida por la guía raíz.
+
+El baseline obligatorio es Node.js 24.18.0 LTS y pnpm 11.21.0. `.node-version`,
+`packageManager`, `engines`, CI y futuras imágenes Node deben coincidir exactamente.
+
+### 12.1. Alcance de packages en Sprint 0
+
+```text id="ir-sprint0-package-scope"
+- packages/shared y packages/config: scaffolds compilables y exports básicos.
+- packages/auth: scaffold compilable sin autenticación, guards, tokens, sesiones,
+  Keycloak runtime, autorización ni contexto tenant.
+- packages/openapi-client: tooling y comando real de validación; sin cliente de dominio
+  generado hasta que exista el contrato OpenAPI runtime de Sprint 1.
+- packages/testing: utilidades y smoke tests base más el comando real security:secrets;
+  sin fixtures de dominio ni suites funcionales anticipadas.
+```
+
+Cada package debe tener manifest, TypeScript strict, entrada/export explícito, scripts
+aplicables y al menos una validación smoke. Un directorio vacío o un script placeholder
+no satisface el backlog.
 
 ---
 
 ## 13. Condiciones mínimas de backend
+
+Estas condiciones describen la plataforma que Sprint 1 debe completar antes de iniciar
+los módulos funcionales posteriores. Para Sprint 0 solo aplican el scaffold de NestJS,
+TypeScript strict y el tooling base definido por la frontera normativa del runbook.
 
 ```text id="ir-backend-readiness"
 - NestJS inicializado.
@@ -466,7 +520,7 @@ resident-core/
 - Pipes de validación activos.
 - Exception filter estándar.
 - Logger sanitizado.
-- Health checks básicos.
+- HealthModule conforme al contrato de ADR-010 §10.
 - OpenAPI habilitado.
 - AuthGuard definido.
 - TenantGuard definido.
@@ -481,6 +535,10 @@ resident-core/
 ---
 
 ## 14. Condiciones mínimas de base de datos
+
+Las siguientes son condiciones arquitectónicas para la evolución del modelo. En Sprint
+0 solo se materializan `generator client` y `datasource db`; los artefactos de dominio se
+incorporan con la spec funcional que los autoriza.
 
 ```text id="ir-database-readiness"
 - PostgreSQL definido como base principal.
@@ -497,6 +555,9 @@ resident-core/
 - Prohibición de hard delete en entidades críticas.
 ```
 
+`Tenant` corresponde a `001-tenants`; `UserProfile`, roles, permisos y memberships
+corresponden a `002-users-roles`. Ninguno forma parte del schema de Sprint 0.
+
 ---
 
 ## 15. Condiciones mínimas de Keycloak
@@ -505,7 +566,7 @@ resident-core/
 - Realm definido.
 - Client backend definido.
 - Client admin-web definido.
-- Client resident-web definido.
+- Client de `apps/resident-web` definido con `client_id=resident-resident-web`.
 - Authorization Code Flow with PKCE habilitado.
 - Implicit flow deshabilitado.
 - Roles técnicos mínimos definidos si aplica.
@@ -526,6 +587,9 @@ resident-core/
 - Versionado /api/v1.
 - Response envelope estándar.
 - Error envelope estándar.
+- Excepción health documentada conforme a ADR-010 §10.
+- `/api/v1/health` público, mínimo y sin dependencias.
+- `/api/v1/health/details` protegido y platform-scoped.
 - Security scheme Bearer definido.
 - x-auth-required en endpoints protegidos.
 - x-tenant-scope en endpoints tenant.
@@ -534,6 +598,10 @@ resident-core/
 - Cliente frontend generado desde OpenAPI.
 - CI falla si OpenAPI no genera cliente.
 ```
+
+Los resultados `200` y `503` de ambos endpoints health usan payload plano y OpenAPI los
+marca con `x-response-envelope: false` y `x-health-endpoint: true`. Los demás errores
+conservan el error envelope estándar.
 
 ---
 
@@ -624,20 +692,29 @@ resident-core/
 
 ```text id="ir-cicd-readiness"
 - GitHub Actions definido.
+- main definida como única rama permanente.
+- Pull requests y pushes de CI dirigidos a main.
+- develop no adoptada inicialmente.
+- Install con pnpm --frozen-lockfile.
 - Lint check.
 - Format check.
 - TypeScript check.
-- Unit tests.
-- Integration tests iniciales.
-- OpenAPI generation.
-- Prisma migration check.
-- Security static checks.
+- Unit/smoke tests mediante pnpm test.
+- OpenAPI tooling validation.
+- Prisma schema validation.
+- Docker Compose configuration validation.
+- Dependency audit.
+- Secret scan.
 - Build backend.
 - Build admin-web.
 - Build resident-web.
-- Docker build.
-- No secrets in repo scan.
+- Docker Compose build de resident-api.
+- Required CI gates configurado como status check obligatorio.
 ```
+
+Integration/API, OpenAPI runtime, migration, authorization, multitenancy, financial y
+client-generation gates se activan con la capacidad correspondiente según ADR-012
+§10.2. Ningún gate obligatorio usa `continue-on-error` o pasa por ausencia del script.
 
 ---
 
@@ -645,17 +722,35 @@ resident-core/
 
 ```text id="ir-docker-readiness"
 - docker-compose.yml definido.
-- Servicio api.
+- Servicio resident-api.
 - Servicio postgres.
 - Servicio redis.
 - Servicio keycloak.
+- Servicio keycloak-postgres dedicado.
+- Servicio minio.
+- Servicio mailhog.
+- Imágenes exactas conforme a ADR-009 §7.1:
+  `resident-api:0.1.0-sprint0` con base `node:24.18.0-bookworm-slim`,
+  `postgres:17.10-bookworm`, `redis:7.4.10-bookworm`,
+  `quay.io/keycloak/keycloak:26.7.0`, `mailhog/mailhog:v1.0.1` y
+  `minio/minio:RELEASE.2025-09-07T16-13-09Z`.
+- Prohibición de `latest`, aliases LTS y versiones flotantes.
 - Servicio admin-web opcional.
 - Servicio resident-web opcional.
 - Variables .env.example.
 - Volúmenes locales controlados.
-- Health checks básicos.
+- Health checks de contenedores de infraestructura; sin HealthModule en Sprint 0.
 - README de arranque local.
 ```
+
+La lista canónica obligatoria es `resident-api`, `postgres`, `redis`, `keycloak`,
+`keycloak-postgres`, `mailhog` y `minio`, conforme a ADR-009 §7. `resident-worker`,
+frontends, reverse proxy, WordPress, n8n y observabilidad quedan fuera del Definition of
+Done de Sprint 0.
+
+`postgres` y `keycloak-postgres` usan la misma imagen fijada, pero bases y volúmenes
+separados. MailHog y MinIO solo se aprueban para local con datos sintéticos; MinIO debe
+reevaluarse antes de cualquier ambiente no local.
 
 ---
 
@@ -712,23 +807,23 @@ Todo gap no bloqueante debe registrarse explícitamente con owner, impacto, prio
 RESIDENT Core está listo para implementación inicial cuando:
 
 ```text id="ir-global-dor"
-[ ] Documentos SDD base existen y están alineados.
-[ ] ADRs 001-012 existen y no se contradicen.
-[ ] Paquetes 001-030 están clasificados por prioridad.
-[ ] Paquetes MVP críticos tienen spec completo.
-[ ] Paquetes MVP críticos tienen api-contract.
-[ ] Paquetes MVP críticos tienen data-model.
-[ ] Paquetes MVP críticos tienen security-notes.
-[ ] Arquitectura monolito modular está confirmada.
-[ ] Estrategia multitenant está confirmada.
-[ ] Estrategia Keycloak está confirmada.
-[ ] Estrategia PostgreSQL/Prisma está confirmada.
-[ ] Estrategia OpenAPI está confirmada.
-[ ] Estrategia CI/CD está confirmada.
-[ ] Orden de implementación está definido.
-[ ] Estructura de repositorio está definida.
-[ ] Gaps críticos están resueltos.
-[ ] Gaps no bloqueantes están registrados.
+[x] Documentos SDD base existen y están alineados.
+[x] ADRs 001-012 existen y no se contradicen.
+[x] Paquetes 001-030 están clasificados por prioridad.
+[x] Paquetes MVP críticos tienen spec completo.
+[x] Paquetes MVP críticos tienen api-contract.
+[x] Paquetes MVP críticos tienen data-model.
+[x] Paquetes MVP críticos tienen security-notes.
+[x] Arquitectura monolito modular está confirmada.
+[x] Estrategia multitenant está confirmada.
+[x] Estrategia Keycloak está confirmada.
+[x] Estrategia PostgreSQL/Prisma está confirmada.
+[x] Estrategia OpenAPI está confirmada.
+[x] Estrategia CI/CD está confirmada.
+[x] Orden de implementación está definido.
+[x] Estructura de repositorio está definida.
+[x] Gaps críticos están resueltos.
+[x] Gaps no bloqueantes están registrados.
 ```
 
 ---
@@ -736,24 +831,24 @@ RESIDENT Core está listo para implementación inicial cuando:
 ## 26. Criterios de aceptación
 
 ```text id="ir-acceptance"
-[ ] Se identifica el estado documental de docs/sdd.
-[ ] Se identifica el estado documental de ADRs.
-[ ] Se identifica el estado documental de specs 001-030.
-[ ] Se clasifican paquetes por prioridad.
-[ ] Se define orden recomendado de implementación.
-[ ] Se define estructura mínima de repositorio.
-[ ] Se definen condiciones mínimas de backend.
-[ ] Se definen condiciones mínimas de base de datos.
-[ ] Se definen condiciones mínimas de Keycloak.
-[ ] Se definen condiciones mínimas de OpenAPI.
-[ ] Se definen condiciones mínimas de admin-web.
-[ ] Se definen condiciones mínimas de resident-web.
-[ ] Se definen condiciones mínimas de seguridad.
-[ ] Se definen condiciones mínimas de testing.
-[ ] Se definen condiciones mínimas de CI/CD.
-[ ] Se definen gaps críticos bloqueantes.
-[ ] Se definen gaps no bloqueantes.
-[ ] Se define Definition of Ready global.
+[x] Se identifica el estado documental de docs/sdd.
+[x] Se identifica el estado documental de ADRs.
+[x] Se identifica el estado documental de specs 001-030.
+[x] Se clasifican paquetes por prioridad.
+[x] Se define orden recomendado de implementación.
+[x] Se define estructura mínima de repositorio.
+[x] Se definen condiciones mínimas de backend.
+[x] Se definen condiciones mínimas de base de datos.
+[x] Se definen condiciones mínimas de Keycloak.
+[x] Se definen condiciones mínimas de OpenAPI.
+[x] Se definen condiciones mínimas de admin-web.
+[x] Se definen condiciones mínimas de resident-web.
+[x] Se definen condiciones mínimas de seguridad.
+[x] Se definen condiciones mínimas de testing.
+[x] Se definen condiciones mínimas de CI/CD.
+[x] Se definen gaps críticos bloqueantes.
+[x] Se definen gaps no bloqueantes.
+[x] Se define Definition of Ready global.
 ```
 
 ---

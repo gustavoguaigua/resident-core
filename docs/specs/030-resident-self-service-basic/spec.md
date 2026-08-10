@@ -10,7 +10,7 @@
 | Documento      | Functional Specification                                                                                    |
 | Ruta           | `docs/specs/030-resident-self-service-basic/spec.md`                                                        |
 | Versión        | 0.1                                                                                                         |
-| Estado         | Borrador inicial                                                                                            |
+| Estado         | needs-review                                                                                                |
 | Fecha          | 2026-08-03                                                                                                  |
 | Fase           | FASE 2 — RESIDENT Core                                                                                      |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC   |

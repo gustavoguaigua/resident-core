@@ -10,7 +10,7 @@
 | Documento       | Implementation Tasks                                  |
 | Ruta            | `docs/specs/003-residents-properties/tasks.md`        |
 | Versión         | 0.1                                                   |
-| Estado          | Borrador inicial                                      |
+| Estado          | needs-review                                          |
 | Fecha           | 2026-07-14                                            |
 | Documento base  | `docs/specs/003-residents-properties/spec.md`         |
 | Plan técnico    | `docs/specs/003-residents-properties/plan.md`         |

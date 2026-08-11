@@ -8,9 +8,9 @@
 | Documento   | Project Blueprint                                                                      |
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
-| Estado      | Sprint 0 implementado y cerrado formalmente                                             |
+| Estado      | Sprint 0 cerrado; Sprint 1 Backend Platform Base autorizado                            |
 | Fecha       | 2026-08-06                                                                             |
-| Fase actual | Preparación documental y de readiness para Sprint 1                                    |
+| Fase actual | Inicio autorizado de Sprint 1 — Backend Platform Base                                 |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -81,10 +81,10 @@ El proyecto se ha especificado bajo una variante interna de SDD inspirada princi
 ## 4. Estado actual del proyecto
 
 ```text id="blueprint-current-state"
-Estado general: baseline SDD consolidado y Sprint 0 cerrado formalmente.
-Fase actual: preparación del runbook y la compuerta de autorización de Sprint 1.
+Estado general: Sprint 0 cerrado y Sprint 1 Backend Platform Base autorizado.
+Fase actual: preparación del primer PR técnico de Sprint 1.
 Tipo actual de repositorio: monorepo técnico versionado con CI y entorno local reproducible.
-Siguiente paso recomendado: definir y revisar Sprint 1 antes de autorizar su implementación.
+Siguiente paso recomendado: implementar configuración y bootstrap seguro en una rama corta.
 ```
 
 Actualmente el proyecto cuenta con:
@@ -95,7 +95,8 @@ Actualmente el proyecto cuenta con:
 - specs funcionales 001-031;
 - cambio transversal Keycloak;
 - documento consolidado Keycloak;
-- runbook Sprint 0;
+- runbooks de Sprint 0 y Sprint 1;
+- compuertas formales de readiness y cierre;
 - estándar documental recomendado;
 - este Project Blueprint como baseline general.
 ```
@@ -923,15 +924,17 @@ críticos o altos abiertos.
 Definition of Done técnico de Sprint 0: PASS el 2026-08-11.
 Cierre formal de Sprint 0: PASS el 2026-08-11.
 Evidencia de cierre: docs/changes/SPRINT-0-CLOSURE-2026-08-11.md.
+Readiness de Sprint 1: GO el 2026-08-11.
+Plan autorizado: docs/implementation/sprint-1-backend-platform-base.md.
+Evidencia: docs/changes/READINESS-SPRINT-1-2026-08-11.md.
 ```
 
 Condición:
 
 ```text id="blueprint-readiness-condition"
 Sprint 0 fue ejecutado dentro del alcance estricto de su runbook y queda formalmente
-cerrado. Sprint 1 permanece fuera del alcance autorizado hasta aprobar su runbook y una
-compuerta explícita. La lógica de negocio requiere además la spec y el sprint funcional
-correspondientes.
+cerrado. Sprint 1 queda autorizado solo para Backend Platform Base. Sprint 2 y la lógica
+de negocio permanecen fuera de alcance y requieren sus specs y compuertas correspondientes.
 ```
 
 ---
@@ -1079,34 +1082,35 @@ Propósito:
 | ----------------------------------- | ----------------------------------------- |
 | `documentation-standard.md`         | Formalizar el estándar documental interno |
 | `SPECS_INDEX.md`                    | Índice navegable de todos los paquetes    |
-| `sprint-1-backend-platform-base.md` | Runbook posterior a Sprint 0              |
+| `sprint-1-backend-platform-base.md` | Runbook autorizado de Sprint 1            |
 
 ---
 
 ## 27. Próximo paso recomendado
 
-El siguiente paso documental es:
+El siguiente paso técnico autorizado es:
 
 ```text id="blueprint-next-step"
-Definir y revisar el runbook de Sprint 1 — Backend Platform Base.
+Implementar el PR 1 de Sprint 1: configuración y bootstrap seguro.
 ```
 
 Archivo guía:
 
 ```text id="blueprint-next-doc"
-docs/implementation/sprint-1-backend-platform-base.md (por crear)
+docs/implementation/sprint-1-backend-platform-base.md
 ```
 
 El runbook `docs/implementation/sprint-0-foundation.md` fue ejecutado conforme a la
 decisión `GO` de `READINESS-031-2026-08-10`. El Definition of Done técnico y el cierre
-formal cumplen; no existen gaps de cierre abiertos.
+formal cumplen; no existen gaps de cierre abiertos. Sprint 1 fue evaluado mediante
+`READINESS-SPRINT-1-2026-08-11` y obtuvo `GO` para su alcance técnico estricto.
 
 Acciones inmediatas:
 
 ```text id="blueprint-next-actions"
-1. Crear y revisar el runbook de Sprint 1.
-2. Identificar las specs y ADRs que autorizan cada capacidad de plataforma.
-3. Ejecutar una compuerta explícita antes de iniciar implementación.
+1. Crear una rama corta desde main para el PR 1.
+2. Implementar configuración y bootstrap seguro sin lógica de negocio.
+3. Ejecutar los gates correspondientes y abrir un PR protegido.
 ```
 
 ---

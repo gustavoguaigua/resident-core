@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 0 implementado y cerrado formalmente
+Estado: Sprint 0 cerrado; Sprint 1 Backend Platform Base autorizado
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -53,7 +53,8 @@ La fase documental SDD inicial ya cuenta con:
 - notas de seguridad;
 - blueprint consolidado;
 - índice maestro de specs;
-- runbook de Sprint 0.
+- runbook de Sprint 0;
+- runbook y compuerta de readiness de Sprint 1.
 ```
 
 ---
@@ -322,10 +323,11 @@ docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md
 
 ```text
 docs/implementation/
-└── sprint-0-foundation.md
+├── sprint-0-foundation.md
+└── sprint-1-backend-platform-base.md
 ```
 
-Este documento guía la creación de la base técnica del repositorio.
+Estos documentos guían la fundación técnica cerrada y la base backend autorizada.
 
 ---
 
@@ -601,17 +603,19 @@ baseline.
 ## 19. Estado de readiness
 
 ```text
-Implementation Readiness: reevaluado formalmente el 2026-08-10
+Implementation Readiness Sprint 0: GO (2026-08-10)
 Specs 001-030: needs-review
 Spec 031: complete
 Blueprint: creado
 Specs Index: creado
 Documentation Standard: creado
 Sprint 0 Foundation: creado
-Decisión vigente: GO para iniciar implementación técnica de Sprint 0
+Decisión Sprint 0: GO; alcance implementado y cerrado
 Definition of Done técnico de Sprint 0: PASS (2026-08-11)
 Cierre formal de Sprint 0: PASS (2026-08-11)
-Sprint 1: pendiente de runbook y compuerta de autorización
+Implementation Readiness Sprint 1: GO (2026-08-11)
+Sprint 1: Backend Platform Base autorizado; implementación aún no iniciada
+Sprint 2 y lógica de negocio: no autorizados
 ```
 
 Evidencia:
@@ -619,11 +623,13 @@ Evidencia:
 ```text
 docs/changes/READINESS-031-2026-08-10.md
 docs/changes/SPRINT-0-CLOSURE-2026-08-11.md
+docs/implementation/sprint-1-backend-platform-base.md
+docs/changes/READINESS-SPRINT-1-2026-08-11.md
 ```
 
-Los gaps críticos y altos registrados están cerrados. El `GO` autoriza exclusivamente
-la fundación técnica definida en el runbook de Sprint 0; no autoriza Sprint 1 ni lógica
-de negocio.
+Los gaps críticos y altos registrados para la compuerta de Sprint 1 están cerrados. El
+`GO` vigente autoriza exclusivamente Backend Platform Base; no autoriza Sprint 2 ni
+lógica de negocio.
 
 ---
 

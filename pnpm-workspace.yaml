@@ -2,7 +2,12 @@ packages:
   - "apps/*"
   - "packages/*"
 allowBuilds:
+  "@prisma/client": true
+  "@prisma/engines": true
   esbuild: true
+  prisma: true
+overrides:
+  "@prisma/config@6.19.2>effect": "3.20.0"
 minimumReleaseAgeExclude:
   - "@nestjs/common@11.1.29"
   - "@nestjs/core@11.1.29"

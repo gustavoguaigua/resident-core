@@ -12,6 +12,8 @@
     "format:check": "prettier --check .",
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
+    "prisma:format": "pnpm --filter @resident/api prisma:format",
+    "prisma:validate": "pnpm --filter @resident/api prisma:validate",
     "openapi:validate": "pnpm --filter @resident/openapi-client validate",
     "security:dependencies": "pnpm audit --audit-level high",
     "security:secrets": "pnpm --filter @resident/testing security:secrets"

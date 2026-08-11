@@ -24,6 +24,7 @@ export interface ApplicationEnvironment {
   readonly NODE_ENV: RuntimeEnvironment;
   readonly APP_ENV: ApplicationEnvironmentName;
   readonly API_PORT: number;
+  readonly DATABASE_URL: string;
   readonly CORS_ALLOWED_ORIGINS: readonly string[];
   readonly RATE_LIMIT_TTL_MS: number;
   readonly RATE_LIMIT_LIMIT: number;
@@ -82,6 +83,7 @@ export function parseApplicationEnvironment(
     NODE_ENV: nodeEnvironment,
     APP_ENV: applicationEnvironment,
     API_PORT: readInteger(source, "API_PORT", 3000, 1, 65_535),
+    DATABASE_URL: readDatabaseUrl(source),
     CORS_ALLOWED_ORIGINS: corsAllowedOrigins,
     RATE_LIMIT_TTL_MS: readInteger(
       source,
@@ -92,6 +94,42 @@ export function parseApplicationEnvironment(
     ),
     RATE_LIMIT_LIMIT: readInteger(source, "RATE_LIMIT_LIMIT", 100, 1, 10_000),
   };
+}
+
+function readDatabaseUrl(source: Readonly<Record<string, unknown>>): string {
+  const value = readRequiredString(source, "DATABASE_URL");
+  let databaseUrl: URL;
+
+  try {
+    databaseUrl = new URL(value);
+  } catch {
+    throw configurationError(
+      "DATABASE_URL",
+      "expected an absolute PostgreSQL connection URL",
+    );
+  }
+
+  if (!["postgresql:", "postgres:"].includes(databaseUrl.protocol)) {
+    throw configurationError(
+      "DATABASE_URL",
+      "expected a PostgreSQL connection URL",
+    );
+  }
+
+  return value;
+}
+
+function readRequiredString(
+  source: Readonly<Record<string, unknown>>,
+  key: string,
+): string {
+  const value = source[key];
+
+  if (typeof value !== "string" || value.trim().length === 0) {
+    throw configurationError(key, "a non-empty value is required");
+  }
+
+  return value.trim();
 }
 
 export function validateApplicationEnvironment(

@@ -7,17 +7,18 @@
     "dist"
   ],
   "scripts": {
-    "predev": "pnpm --filter @resident/config build",
+    "predev": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
     "dev": "tsx watch src/main.ts",
+    "prebuild": "pnpm --workspace-root prisma:generate",
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src test",
-    "prisma:format": "prisma format --schema ../../prisma/schema.prisma",
-    "prisma:validate": "prisma validate --schema ../../prisma/schema.prisma",
     "start": "node dist/main.js",
-    "pretest": "pnpm --filter @resident/config build",
-    "test": "vitest run",
-    "pretest:api": "pnpm --filter @resident/config build",
-    "test:api": "vitest run test/application-bootstrap.spec.ts",
+    "pretest": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
+    "test": "vitest run --exclude test/integration/**",
+    "pretest:api": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
+    "test:api": "vitest run test/application-bootstrap.spec.ts test/health.api.spec.ts",
+    "pretest:integration": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
+    "test:integration": "vitest run test/integration",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@nestjs/core": "11.1.29",
     "@nestjs/platform-express": "11.1.29",
     "@nestjs/throttler": "6.5.0",
+    "@prisma/client": "6.19.2",
     "@resident/config": "workspace:*",
     "class-transformer": "0.5.1",
     "class-validator": "0.15.1",
@@ -34,9 +36,7 @@
     "rxjs": "7.8.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "11.1.29",
-    "@prisma/client": "6.19.2",
-    "prisma": "6.19.2"
+    "@nestjs/testing": "11.1.29"
   },
   "engines": {
     "node": "24.18.0",

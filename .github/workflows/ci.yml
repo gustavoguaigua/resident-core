@@ -18,6 +18,20 @@ jobs:
     timeout-minutes: 30
     env:
       DATABASE_URL: postgresql://resident:synthetic_ci_only@127.0.0.1:5432/resident_core?schema=public
+    services:
+      postgres:
+        image: postgres:17.10-bookworm
+        env:
+          POSTGRES_DB: resident_core
+          POSTGRES_USER: resident
+          POSTGRES_PASSWORD: synthetic_ci_only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U resident -d resident_core"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout
@@ -51,11 +65,17 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: PostgreSQL integration tests
+        run: pnpm test:integration
+
       - name: API bootstrap security tests
         run: pnpm test:api
 
       - name: Validate OpenAPI tooling
         run: pnpm openapi:validate
+
+      - name: Generate Prisma Client
+        run: pnpm prisma:generate
 
       - name: Validate Prisma schema
         run: pnpm prisma:validate

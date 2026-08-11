@@ -14,11 +14,11 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "paths": {
-      "@resident/shared": ["./packages/shared/src"],
-      "@resident/config": ["./packages/config/src"],
-      "@resident/auth": ["./packages/auth/src"],
-      "@resident/openapi-client": ["./packages/openapi-client/src"],
-      "@resident/testing": ["./packages/testing/src"]
+      "@resident/shared": ["./packages/shared/src/index.ts"],
+      "@resident/config": ["./packages/config/src/index.ts"],
+      "@resident/auth": ["./packages/auth/src/index.ts"],
+      "@resident/openapi-client": ["./packages/openapi-client/src/index.ts"],
+      "@resident/testing": ["./packages/testing/src/index.ts"]
     }
   }
 }

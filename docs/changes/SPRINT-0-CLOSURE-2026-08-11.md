@@ -84,12 +84,16 @@ exit code 0 usando Node.js `24.18.0` y pnpm `11.21.0`.
 | --- | --- |
 | Severidad | Alta |
 | Estado | closed |
-| Evidencia | La regla de protección `81580681` para `main` exige PR, una aprobación, `Required CI gates` y rama actualizada antes del merge |
+| Evidencia | La regla `81580681` exige PR, `Required CI gates`, rama actualizada, protección del administrador y cero aprobaciones bajo la excepción temporal de ADR-012 §8.1 |
 
-La configuración remota fue actualizada y verificada en GitHub. Además de las reglas
-anteriores, la protección se aplica a administradores, no permite bypass y mantiene
-deshabilitados force-push y eliminación de `main`. La configuración queda alineada con
-las reglas mínimas de ADR-012 §8.
+El repositorio tiene un solo mantenedor elegible y no opera ambientes ni datos
+productivos. ADR-012 v0.2 §8.1 y
+`docs/changes/CI-001-single-maintainer-branch-protection.md` formalizan para este
+contexto una excepción temporal de cero aprobaciones, sin presentar la autorrevisión
+como revisión independiente. La configuración remota conserva PR, CI obligatorio, rama
+actualizada, protección del administrador, ausencia de bypass y force-push y eliminación
+deshabilitados. La aprobación independiente se reactivará al incorporar un segundo
+revisor elegible y se reevaluará antes del primer ambiente o despliegue productivo.
 
 ## 6. Observaciones no bloqueantes
 

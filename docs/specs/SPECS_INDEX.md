@@ -426,18 +426,25 @@ docs/specs/SPECS_INDEX.md         creado
 
 ## 11. Próximo paso recomendado
 
-La reevaluación formal ejecutada el 2026-08-10 se encuentra en:
+La reevaluación previa que autorizó Sprint 0 se encuentra en:
 
 ```text id="specs-index-next"
 docs/changes/READINESS-031-2026-08-10.md
 ```
 
-Decisión vigente:
+La reevaluación de cierre del sprint se encuentra en:
+
+```text id="specs-index-sprint0-closure"
+docs/changes/SPRINT-0-CLOSURE-2026-08-11.md
+```
+
+Estado vigente:
 
 ```text id="specs-index-next-implementation"
-GO para implementación técnica de Sprint 0, limitada al alcance de
-docs/implementation/sprint-0-foundation.md. Sprint 1 y la lógica de negocio permanecen
-fuera del alcance autorizado.
+Definition of Done técnico de Sprint 0: PASS.
+Cierre formal de Sprint 0: PASS; no existen gaps de cierre abiertos.
+Sprint 1 permanece fuera del alcance autorizado hasta aprobar su runbook y compuerta.
+La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
 ---
@@ -445,13 +452,13 @@ fuera del alcance autorizado.
 ## 12. Definition of Done de este índice
 
 ```text id="specs-index-dod"
-[ ] Lista todas las specs 001-031.
-[ ] Identifica módulo de cada spec.
-[ ] Clasifica prioridad.
-[ ] Indica estado documental.
-[ ] Indica sprint o fase sugerida.
-[ ] Resume dependencias principales.
-[ ] Define reglas obligatorias de implementación.
-[ ] Define uso recomendado para agentes de código.
-[ ] Apunta al siguiente documento consolidado.
+[x] Lista todas las specs 001-031.
+[x] Identifica módulo de cada spec.
+[x] Clasifica prioridad.
+[x] Indica estado documental.
+[x] Indica sprint o fase sugerida.
+[x] Resume dependencias principales.
+[x] Define reglas obligatorias de implementación.
+[x] Define uso recomendado para agentes de código.
+[x] Apunta al siguiente documento consolidado.
 ```

@@ -8,9 +8,9 @@
 | Documento   | Project Blueprint                                                                      |
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
-| Estado      | Baseline SDD previo a implementación                                                   |
+| Estado      | Sprint 0 implementado y cerrado formalmente                                             |
 | Fecha       | 2026-08-06                                                                             |
-| Fase actual | Transición de SDD documental a Sprint 0 de implementación                              |
+| Fase actual | Preparación documental y de readiness para Sprint 1                                    |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -81,10 +81,10 @@ El proyecto se ha especificado bajo una variante interna de SDD inspirada princi
 ## 4. Estado actual del proyecto
 
 ```text id="blueprint-current-state"
-Estado general: baseline SDD consolidado, con specs 001-030 en needs-review y spec 031 en complete.
-Fase actual: Sprint 0 autorizado para fundación técnica mediante READINESS-031-2026-08-10.
-Tipo actual de repositorio: baseline documental versionado en transición al workspace técnico.
-Siguiente paso recomendado: completar el preflight local y crear el workspace en el orden aprobado.
+Estado general: baseline SDD consolidado y Sprint 0 cerrado formalmente.
+Fase actual: preparación del runbook y la compuerta de autorización de Sprint 1.
+Tipo actual de repositorio: monorepo técnico versionado con CI y entorno local reproducible.
+Siguiente paso recomendado: definir y revisar Sprint 1 antes de autorizar su implementación.
 ```
 
 Actualmente el proyecto cuenta con:
@@ -547,7 +547,7 @@ Inventario documental presente; el estado refleja revisión formal, no calendari
 |     028 | `data-import-migration`        | needs-review |
 |     029 | `admin-web-app-basic`          | needs-review |
 |     030 | `resident-self-service-basic`  | needs-review |
-|     031 | `implementation-readiness`     | in-review |
+|     031 | `implementation-readiness`     | complete |
 
 ---
 
@@ -920,13 +920,18 @@ Decisión vigente: GO para iniciar implementación técnica de Sprint 0.
 Evidencia: docs/changes/READINESS-031-2026-08-10.md.
 Motivo: todos los criterios obligatorios de GO están sustentados y no existen gaps
 críticos o altos abiertos.
+Definition of Done técnico de Sprint 0: PASS el 2026-08-11.
+Cierre formal de Sprint 0: PASS el 2026-08-11.
+Evidencia de cierre: docs/changes/SPRINT-0-CLOSURE-2026-08-11.md.
 ```
 
 Condición:
 
 ```text id="blueprint-readiness-condition"
-Sprint 0 puede iniciar dentro del alcance estricto de su runbook. Sprint 1 y cualquier
-lógica de negocio permanecen fuera del alcance autorizado.
+Sprint 0 fue ejecutado dentro del alcance estricto de su runbook y queda formalmente
+cerrado. Sprint 1 permanece fuera del alcance autorizado hasta aprobar su runbook y una
+compuerta explícita. La lógica de negocio requiere además la spec y el sprint funcional
+correspondientes.
 ```
 
 ---
@@ -953,16 +958,16 @@ lógica de negocio permanecen fuera del alcance autorizado.
 Antes de implementar Sprint 0:
 
 ```text id="blueprint-pre-code-checklist"
-[ ] Corregir nombres de carpetas.
-[ ] Confirmar que docs/specs/031-implementation-readiness existe correctamente escrito.
-[ ] Confirmar que cada paquete 001-031 tiene 7 documentos.
-[ ] Crear o actualizar docs/sdd/documentation-standard.md.
-[ ] Crear o actualizar docs/specs/SPECS_INDEX.md.
-[ ] Crear este Project Blueprint.
-[ ] Completar README.md.
-[ ] Confirmar que no hay secretos en el repositorio.
-[ ] Confirmar que no hay datos reales.
-[ ] Confirmar que Sprint 0 no incluye lógica de negocio.
+[x] Corregir nombres de carpetas.
+[x] Confirmar que docs/specs/031-implementation-readiness existe correctamente escrito.
+[x] Confirmar que cada paquete 001-031 tiene 7 documentos.
+[x] Crear o actualizar docs/sdd/documentation-standard.md.
+[x] Crear o actualizar docs/specs/SPECS_INDEX.md.
+[x] Crear este Project Blueprint.
+[x] Completar README.md.
+[x] Confirmar que no hay secretos en el repositorio.
+[x] Confirmar que no hay datos reales.
+[x] Confirmar que Sprint 0 no incluye lógica de negocio.
 ```
 
 ---
@@ -1080,28 +1085,28 @@ Propósito:
 
 ## 27. Próximo paso recomendado
 
-El siguiente paso técnico es:
+El siguiente paso documental es:
 
 ```text id="blueprint-next-step"
-Iniciar Sprint 0 — Fundación técnica del repositorio.
+Definir y revisar el runbook de Sprint 1 — Backend Platform Base.
 ```
 
 Archivo guía:
 
 ```text id="blueprint-next-doc"
-docs/implementation/sprint-0-foundation.md
+docs/implementation/sprint-1-backend-platform-base.md (por crear)
 ```
 
-El runbook `docs/implementation/sprint-0-foundation.md` es el plan autorizado de Sprint
-0 conforme a la decisión `GO` de `READINESS-031-2026-08-10`. Su ejecución debe mantener
-los límites y salvaguardas definidos por esa reevaluación.
+El runbook `docs/implementation/sprint-0-foundation.md` fue ejecutado conforme a la
+decisión `GO` de `READINESS-031-2026-08-10`. El Definition of Done técnico y el cierre
+formal cumplen; no existen gaps de cierre abiertos.
 
 Acciones inmediatas:
 
 ```text id="blueprint-next-actions"
-1. Completar y validar el preflight técnico local.
-2. Crear el workspace raíz y la estructura de Sprint 0 en el orden aprobado.
-3. Mantener fuera de alcance toda lógica de negocio y todo entregable de Sprint 1.
+1. Crear y revisar el runbook de Sprint 1.
+2. Identificar las specs y ADRs que autorizan cada capacidad de plataforma.
+3. Ejecutar una compuerta explícita antes de iniciar implementación.
 ```
 
 ---
@@ -1122,7 +1127,7 @@ integrado con WordPress solo como portal público
 autenticado con Keycloak
 autorizado por Core
 documentado bajo SDD
-autorizado para la fundación técnica de Sprint 0
+con la fundación técnica de Sprint 0 implementada y cerrada formalmente
 ```
 
 Este documento constituye el baseline consolidado de RESIDENT Core al cierre de la fase documental SDD inicial.

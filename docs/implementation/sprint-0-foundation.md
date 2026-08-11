@@ -9,8 +9,9 @@
 | Sprint        | Sprint 0                                                              |
 | Documento     | Foundation Implementation Runbook                                     |
 | Ruta sugerida | `docs/implementation/sprint-0-foundation.md`                          |
-| Estado        | Borrador operativo inicial                                            |
+| Estado        | complete — DoD técnico y cierre formal cumplidos                       |
 | Fecha         | 2026-08-06                                                            |
+| Reevaluación  | 2026-08-11                                                            |
 | Naturaleza    | Implementación base / Monorepo / Entorno local / Tooling / CI inicial |
 
 ---
@@ -198,21 +199,21 @@ Linting: ESLint
 ### 7.1. Inicialización del repositorio
 
 ```text id="sprint0-repo-checklist"
-[ ] Crear carpeta resident-core.
-[ ] Inicializar Git.
-[ ] Usar main como única rama permanente.
-[ ] Renombrar la rama local legacy master a main después de aprobar el baseline documental.
-[ ] No crear develop.
-[ ] Crear .gitignore.
-[ ] Crear README.md.
+[x] Crear carpeta resident-core.
+[x] Inicializar Git.
+[x] Usar main como única rama permanente.
+[x] Renombrar la rama local legacy master a main después de aprobar el baseline documental.
+[x] No crear develop.
+[x] Crear .gitignore.
+[x] Crear README.md.
 [x] Incorporar el AGENTS.md raíz al control de versiones.
-[ ] Crear pnpm-workspace.yaml.
-[ ] Crear package.json raíz.
-[ ] Crear .node-version con 24.18.0.
-[ ] Crear tsconfig.base.json.
-[ ] Crear .env.example.
-[ ] Crear estructura docs/.
-[ ] Copiar documentación SDD existente.
+[x] Crear pnpm-workspace.yaml.
+[x] Crear package.json raíz.
+[x] Crear .node-version con 24.18.0.
+[x] Crear tsconfig.base.json.
+[x] Crear .env.example.
+[x] Crear estructura docs/.
+[x] Copiar documentación SDD existente.
 ```
 
 ---
@@ -220,12 +221,12 @@ Linting: ESLint
 ### 7.2. Apps base
 
 ```text id="sprint0-apps-checklist"
-[ ] Crear apps/api.
-[ ] Crear apps/admin-web.
-[ ] Crear apps/resident-web.
-[ ] Confirmar que apps/api compila.
-[ ] Confirmar que apps/admin-web compila.
-[ ] Confirmar que apps/resident-web compila.
+[x] Crear apps/api.
+[x] Crear apps/admin-web.
+[x] Crear apps/resident-web.
+[x] Confirmar que apps/api compila.
+[x] Confirmar que apps/admin-web compila.
+[x] Confirmar que apps/resident-web compila.
 ```
 
 ---
@@ -233,13 +234,13 @@ Linting: ESLint
 ### 7.3. Packages base
 
 ```text id="sprint0-packages-checklist"
-[ ] Crear packages/shared.
-[ ] Crear packages/config.
-[ ] Crear packages/auth.
-[ ] Crear packages/openapi-client.
-[ ] Crear packages/testing.
-[ ] Configurar exports básicos.
-[ ] Configurar TypeScript references si aplica.
+[x] Crear packages/shared.
+[x] Crear packages/config.
+[x] Crear packages/auth.
+[x] Crear packages/openapi-client.
+[x] Crear packages/testing.
+[x] Configurar exports básicos.
+[x] Evaluar TypeScript references; no son necesarias para el baseline actual.
 ```
 
 Alcance obligatorio de los scaffolds:
@@ -259,22 +260,22 @@ ignoren la ausencia de implementación.
 ### 7.4. Infraestructura local
 
 ```text id="sprint0-infra-checklist"
-[ ] Crear docker-compose.yml.
-[ ] Agregar PostgreSQL.
-[ ] Agregar Redis.
-[ ] Agregar Keycloak.
-[ ] Agregar PostgreSQL dedicado para Keycloak como keycloak-postgres.
-[ ] Agregar MinIO.
-[ ] Agregar MailHog.
-[ ] Agregar resident-api como scaffold contenerizado.
-[ ] Usar exactamente las imágenes y tags canónicos de ADR-009 §7.1.
-[ ] Verificar que no existan `latest`, aliases LTS ni versiones flotantes.
-[ ] Agregar red Docker local.
-[ ] Agregar volúmenes locales.
-[ ] Agregar health checks de infraestructura.
-[ ] Crear infra/keycloak/.
-[ ] Crear infra/postgres/.
-[ ] Crear infra/local/.
+[x] Crear docker-compose.yml.
+[x] Agregar PostgreSQL.
+[x] Agregar Redis.
+[x] Agregar Keycloak.
+[x] Agregar PostgreSQL dedicado para Keycloak como keycloak-postgres.
+[x] Agregar MinIO.
+[x] Agregar MailHog.
+[x] Agregar resident-api como scaffold contenerizado.
+[x] Usar exactamente las imágenes y tags canónicos de ADR-009 §7.1.
+[x] Verificar que no existan `latest`, aliases LTS ni versiones flotantes.
+[x] Agregar red Docker local.
+[x] Agregar volúmenes locales.
+[x] Agregar health checks de infraestructura.
+[x] Crear infra/keycloak/.
+[x] Crear infra/postgres/.
+[x] Crear infra/local/.
 ```
 
 ---
@@ -282,13 +283,13 @@ ignoren la ausencia de implementación.
 ### 7.5. Backend base
 
 ```text id="sprint0-backend-checklist"
-[ ] Crear scaffold compilable de NestJS API.
-[ ] Activar TypeScript strict.
-[ ] Configurar lint, typecheck, build y prueba smoke del scaffold.
-[ ] Preparar dependencias y scripts de Swagger/OpenAPI sin habilitarlos en runtime.
-[ ] Instalar y configurar el tooling de Prisma sin crear PrismaService.
-[ ] Crear schema.prisma solo con generator y datasource, sin modelos ni enums.
-[ ] Verificar PostgreSQL como servicio local, sin conectar todavía la aplicación.
+[x] Crear scaffold compilable de NestJS API.
+[x] Activar TypeScript strict.
+[x] Configurar lint, typecheck, build y prueba smoke del scaffold.
+[x] Preparar dependencias y scripts de Swagger/OpenAPI sin habilitarlos en runtime.
+[x] Instalar y configurar el tooling de Prisma sin crear PrismaService.
+[x] Crear schema.prisma solo con generator y datasource, sin modelos ni enums.
+[x] Verificar PostgreSQL como servicio local, sin conectar todavía la aplicación.
 ```
 
 `ConfigModule`, `ValidationPipe`, `ExceptionFilter`, logger de aplicación,
@@ -299,16 +300,16 @@ ignoren la ausencia de implementación.
 ### 7.6. Frontends base
 
 ```text id="sprint0-frontend-checklist"
-[ ] Crear admin-web con Next.js.
-[ ] Crear resident-web con Next.js.
-[ ] Activar TypeScript strict.
-[ ] Configurar ESLint.
-[ ] Configurar Prettier.
-[ ] Preparar estructura app/.
-[ ] Preparar estructura components/.
-[ ] Preparar estructura lib/.
-[ ] Preparar variables de entorno públicas mínimas.
-[ ] No integrar aún lógica de negocio.
+[x] Crear admin-web con Next.js.
+[x] Crear resident-web con Next.js.
+[x] Activar TypeScript strict.
+[x] Configurar ESLint.
+[x] Configurar Prettier.
+[x] Preparar estructura app/.
+[x] Preparar estructura components/.
+[x] Preparar estructura lib/.
+[x] Preparar variables de entorno públicas mínimas.
+[x] No integrar aún lógica de negocio.
 ```
 
 ---
@@ -316,22 +317,22 @@ ignoren la ausencia de implementación.
 ### 7.7. CI inicial
 
 ```text id="sprint0-ci-checklist"
-[ ] Crear .github/workflows/ci.yml.
-[ ] Ejecutar install.
-[ ] Ejecutar lint.
-[ ] Ejecutar format check.
-[ ] Ejecutar TypeScript check.
-[ ] Ejecutar tests base.
-[ ] Validar tooling OpenAPI.
-[ ] Validar schema Prisma.
-[ ] Validar docker compose config.
-[ ] Ejecutar dependency audit.
-[ ] Ejecutar secret scan.
-[ ] Ejecutar build api.
-[ ] Ejecutar build admin-web.
-[ ] Ejecutar build resident-web.
-[ ] Construir la imagen resident-api mediante Docker Compose.
-[ ] Configurar Required CI gates como status check obligatorio.
+[x] Crear .github/workflows/ci.yml.
+[x] Ejecutar install.
+[x] Ejecutar lint.
+[x] Ejecutar format check en CI.
+[x] Ejecutar TypeScript check.
+[x] Ejecutar tests base.
+[x] Validar tooling OpenAPI.
+[x] Validar schema Prisma.
+[x] Validar docker compose config.
+[x] Ejecutar dependency audit.
+[x] Ejecutar secret scan.
+[x] Ejecutar build api.
+[x] Ejecutar build admin-web.
+[x] Ejecutar build resident-web.
+[x] Construir la imagen resident-api mediante Docker Compose.
+[x] Configurar Required CI gates como status check obligatorio.
 ```
 
 ---
@@ -896,55 +897,60 @@ la aplicación de las reglas de `docs/sdd/api-guidelines.md` pertenecen a Sprint
 ## 19. Definition of Done Sprint 0
 
 ```text id="sprint0-dod"
-[ ] Monorepo creado.
-[ ] apps/api creado.
-[ ] apps/admin-web creado.
-[ ] apps/resident-web creado.
-[ ] packages/shared creado.
-[ ] packages/config creado.
-[ ] packages/auth creado.
-[ ] packages/openapi-client creado.
-[ ] packages/testing creado.
-[ ] Los cinco packages base tienen manifest, TypeScript strict, entrada, exports y scripts aplicables.
-[ ] packages/auth no contiene autenticación o autorización runtime.
-[ ] packages/openapi-client ejecuta validación real sin cliente de dominio generado.
-[ ] packages/testing ejecuta smoke tests y security:secrets real sin fixtures de dominio.
-[ ] No existen packages vacíos ni scripts placeholder.
-[ ] docs/implementation creado.
-[ ] docker-compose.yml creado.
-[ ] PostgreSQL local levanta.
-[ ] Redis local levanta.
-[ ] Keycloak local levanta.
-[ ] keycloak-postgres levanta separado de PostgreSQL Core.
-[ ] MinIO local levanta.
-[ ] MailHog local levanta.
-[ ] resident-api levanta como scaffold contenerizado.
-[ ] .env.example creado.
-[ ] .gitignore creado.
-[ ] README.md creado.
+[x] Monorepo creado.
+[x] apps/api creado.
+[x] apps/admin-web creado.
+[x] apps/resident-web creado.
+[x] packages/shared creado.
+[x] packages/config creado.
+[x] packages/auth creado.
+[x] packages/openapi-client creado.
+[x] packages/testing creado.
+[x] Los cinco packages base tienen manifest, TypeScript strict, entrada, exports y scripts aplicables.
+[x] packages/auth no contiene autenticación o autorización runtime.
+[x] packages/openapi-client ejecuta validación real sin cliente de dominio generado.
+[x] packages/testing ejecuta smoke tests y security:secrets real sin fixtures de dominio.
+[x] No existen packages vacíos ni scripts placeholder.
+[x] docs/implementation creado.
+[x] docker-compose.yml creado.
+[x] PostgreSQL local levanta.
+[x] Redis local levanta.
+[x] Keycloak local levanta.
+[x] keycloak-postgres levanta separado de PostgreSQL Core.
+[x] MinIO local levanta.
+[x] MailHog local levanta.
+[x] resident-api levanta como scaffold contenerizado.
+[x] .env.example creado.
+[x] .gitignore creado.
+[x] README.md creado.
 [x] AGENTS.md raíz versionado y aplicable a todo el repositorio.
-[ ] tsconfig.base.json creado.
-[ ] pnpm-workspace.yaml creado.
-[ ] .node-version creado con 24.18.0.
-[ ] package.json fija packageManager y engines en pnpm 11.21.0 y Node.js 24.18.0.
-[ ] CI inicial creado.
-[ ] Required CI gates protege main y ejecuta los cinco grupos de ADR-012 §10.
-[ ] CI valida install frozen, formato, lint, tipos, pruebas smoke, OpenAPI tooling,
+[x] tsconfig.base.json creado.
+[x] pnpm-workspace.yaml creado.
+[x] .node-version creado con 24.18.0.
+[x] package.json fija packageManager y engines en pnpm 11.21.0 y Node.js 24.18.0.
+[x] CI inicial creado.
+[x] Required CI gates protege main y ejecuta los cinco grupos de ADR-012 §10.
+[x] CI valida install frozen, formato, lint, tipos, pruebas smoke, OpenAPI tooling,
     Prisma schema, Compose config, dependency audit, secretos, builds e imagen resident-api.
-[ ] Ningún gate obligatorio usa continue-on-error o pasa por ausencia del script.
-[ ] main es la única rama permanente y está configurada como target de CI.
-[ ] develop no existe.
-[ ] schema.prisma contiene solo generator y datasource.
-[ ] No existen modelos, enums, migraciones ni seeds Prisma de dominio.
-[ ] Health checks de infraestructura definidos; no existe HealthModule de aplicación.
-[ ] Tooling OpenAPI preparado; no existe Swagger/OpenAPI runtime.
-[ ] No hay secretos reales.
-[ ] No hay datos reales.
-[ ] No hay storageKey expuesto.
-[ ] No hay WordPress transaccional.
-[ ] No hay lógica de negocio productiva implementada todavía.
-[ ] No existe API ni persistencia runtime de Implementation Readiness.
+[x] Ningún gate obligatorio usa continue-on-error o pasa por ausencia del script.
+[x] main es la única rama permanente y está configurada como target de CI.
+[x] develop no existe.
+[x] schema.prisma contiene solo generator y datasource.
+[x] No existen modelos, enums, migraciones ni seeds Prisma de dominio.
+[x] Health checks de infraestructura definidos; no existe HealthModule de aplicación.
+[x] Tooling OpenAPI preparado; no existe Swagger/OpenAPI runtime.
+[x] No hay secretos reales.
+[x] No hay datos reales.
+[x] No hay storageKey expuesto.
+[x] No hay WordPress transaccional.
+[x] No hay lógica de negocio productiva implementada todavía.
+[x] No existe API ni persistencia runtime de Implementation Readiness.
 ```
+
+La reevaluación del 2026-08-11 confirma que todos los criterios técnicos anteriores
+están sustentados. Los gaps de cierre fueron corregidos y verificados; Sprint 0 queda
+formalmente cerrado mediante
+`docs/changes/SPRINT-0-CLOSURE-2026-08-11.md`.
 
 ---
 

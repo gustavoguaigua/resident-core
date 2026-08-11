@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Preparación para implementación técnica
+Estado: Sprint 0 implementado y cerrado formalmente
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -146,13 +146,16 @@ Documentation: Markdown + SDD
 resident-core/
 ├── AGENTS.md
 ├── README.md
-└── docs/
-    ├── sdd/
-    ├── decisions/
-    ├── specs/
-    ├── changes/
-    ├── implementation/
-    └── consolidated/
+├── apps/
+├── packages/
+├── docs/
+├── infra/
+├── prisma/
+├── .github/workflows/
+├── docker-compose.yml
+├── package.json
+├── pnpm-workspace.yaml
+└── tsconfig.base.json
 ```
 
 ---
@@ -527,17 +530,17 @@ No uses WordPress como backend transaccional.
 
 ## 17. Sprint 0
 
-Sprint 0 permanece planificado mediante:
+Sprint 0 fue implementado mediante:
 
 ```text
 docs/implementation/sprint-0-foundation.md
 ```
 
-Su ejecución está autorizada por la decisión `GO` registrada en
+Su ejecución fue autorizada por la decisión `GO` registrada en
 `docs/changes/READINESS-031-2026-08-10.md`, que sustituye el `NO_GO` histórico de la
-evaluación del 2026-08-09. Los gaps críticos y altos están cerrados; el siguiente paso
-operativo es ejecutar el runbook en el orden aprobado y dentro del alcance exclusivo de
-fundación técnica.
+evaluación del 2026-08-09. El Definition of Done técnico y el cierre formal fueron
+reevaluados el 2026-08-11 y cumplen según
+`docs/changes/SPRINT-0-CLOSURE-2026-08-11.md`.
 
 Sprint 0 debe crear:
 
@@ -579,9 +582,9 @@ autoriza lógica de negocio sin la spec y el sprint correspondientes.
 
 ---
 
-## 18. Arranque local previsto
+## 18. Arranque local
 
-Una vez creado Sprint 0, el arranque esperado será similar a:
+El baseline de Sprint 0 usa los siguientes comandos:
 
 ```bash
 pnpm install
@@ -590,7 +593,8 @@ pnpm build
 pnpm test
 ```
 
-Hasta completar Sprint 0, este README funciona como referencia del proyecto, no como guía ejecutable definitiva.
+La configuración runtime de plataforma y la lógica de negocio permanecen fuera de este
+baseline.
 
 ---
 
@@ -605,12 +609,16 @@ Specs Index: creado
 Documentation Standard: creado
 Sprint 0 Foundation: creado
 Decisión vigente: GO para iniciar implementación técnica de Sprint 0
+Definition of Done técnico de Sprint 0: PASS (2026-08-11)
+Cierre formal de Sprint 0: PASS (2026-08-11)
+Sprint 1: pendiente de runbook y compuerta de autorización
 ```
 
 Evidencia:
 
 ```text
 docs/changes/READINESS-031-2026-08-10.md
+docs/changes/SPRINT-0-CLOSURE-2026-08-11.md
 ```
 
 Los gaps críticos y altos registrados están cerrados. El `GO` autoriza exclusivamente

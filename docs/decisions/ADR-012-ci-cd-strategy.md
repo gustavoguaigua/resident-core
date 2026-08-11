@@ -8,9 +8,10 @@
 | Documento       | ADR-012                                                                                                                                                      |
 | Título          | CI/CD Strategy: GitHub Actions with Protected Branches, Environment Gates and Progressive Deployment                                                         |
 | Ruta            | `docs/decisions/ADR-012-ci-cd-strategy.md`                                                                                                                   |
-| Versión         | 0.1                                                                                                                                                          |
+| Versión         | 0.2                                                                                                                                                          |
 | Estado          | accepted                                                                                                                                                     |
 | Fecha           | 2026-07-12                                                                                                                                                   |
+| Actualización   | 2026-08-11 — `CI-001-single-maintainer-branch-protection.md`                                                                                                  |
 | Relacionado con | `ADR-009-deployment-strategy.md`, `ADR-010-observability-strategy.md`, `ADR-011-testing-strategy.md`, `security.md`, `architecture.md`, `data-governance.md` |
 
 ---
@@ -74,7 +75,7 @@ Pull Request
     ↓
 CI obligatorio
     ↓
-Code review
+Revisión humana; aprobación independiente cuando exista revisor elegible
     ↓
 Merge a main
     ↓
@@ -166,7 +167,8 @@ Los agentes IA pueden producir código útil, pero el código no debe entrar a `
 
 * CI exitoso;
 * pruebas;
-* revisión humana;
+* revisión humana documentada;
+* aprobación independiente cuando exista un revisor elegible, conforme a §8.1;
 * validación SDD;
 * verificación de seguridad;
 * revisión de migraciones.
@@ -318,12 +320,39 @@ Reglas mínimas:
 * no push directo;
 * pull request obligatorio;
 * status checks obligatorios;
-* revisión requerida;
+* revisión requerida conforme a §8.1;
 * branch actualizada antes de merge;
 * no permitir bypass salvo emergencia controlada;
 * protección para administradores si se considera necesario.
 
 GitHub permite crear reglas de protección de rama para exigir revisiones aprobadas o status checks antes de permitir merge.
+
+### 8.1. Excepción temporal para mantenedor único
+
+Cuando el repositorio tenga un solo mantenedor elegible y todavía no opere ambientes o
+datos productivos, exigir una aprobación independiente bloquearía todos los merges sin
+producir una revisión real. En esa situación se permite configurar temporalmente cero
+aprobaciones requeridas, bajo todas las condiciones siguientes:
+
+* todo cambio continúa entrando mediante pull request;
+* `Required CI gates` continúa siendo obligatorio;
+* la rama debe estar actualizada con `main` antes del merge;
+* la protección se aplica al administrador;
+* no se permite bypass;
+* force-push y eliminación de `main` permanecen deshabilitados;
+* el mantenedor realiza y documenta una revisión humana del diff, la evidencia de CI y
+  la trazabilidad SDD antes del merge;
+* la ausencia de aprobación independiente se declara explícitamente y no se presenta
+  como revisión de un tercero.
+
+Esta excepción no autoriza despliegues a producción, uso de datos reales ni reducción
+de gates de seguridad. Cambios financieros, de seguridad, migraciones destructivas o
+despliegues productivos requieren revisión externa independiente antes de llegar a
+producción.
+
+La excepción termina automáticamente cuando exista un segundo revisor elegible. En ese
+momento branch protection debe volver a exigir al menos una aprobación. También debe
+reevaluarse antes de habilitar el primer ambiente o despliegue productivo.
 
 ---
 
@@ -855,7 +884,8 @@ Reglas:
 7. No debe eliminar auditoría.
 8. No debe cambiar reglas financieras sin pruebas.
 9. No debe modificar migraciones sin revisión humana.
-10. No debe reemplazar revisión técnica.
+10. No debe reemplazar revisión técnica; bajo la excepción de §8.1, el mantenedor debe
+    revisar y documentar personalmente el resultado generado antes del merge.
 
 ---
 
@@ -1329,6 +1359,14 @@ Si un deploy causa incidente:
 
 ## 44. Políticas de aprobación
 
+### 44.0. Aplicación según disponibilidad de revisores
+
+Las revisiones técnicas de este apartado son independientes por defecto. Mientras esté
+activa la excepción de mantenedor único de §8.1, una revisión humana documentada por el
+mantenedor satisface el gate de integración no productiva. No sustituye la revisión
+externa exigida antes de producción para cambios financieros, de seguridad, migraciones
+destructivas o despliegues productivos.
+
 ### 44.1. Cambios normales
 
 Requieren:
@@ -1414,6 +1452,7 @@ Un microservicio no se despliega si rompe contratos publicados.
 | Secrets filtrados             | Crítico    | Secrets management y scanning |
 | Migración destructiva         | Crítico    | Staging, backup, approval     |
 | Código IA sin revisión        | Alto       | PR + CI + review              |
+| Mantenedor único sin revisión independiente | Alto | Excepción §8.1, CI obligatorio y revisión externa antes de producción |
 | Producción sin rollback       | Alto       | Release plan                  |
 | Deploy simultáneo             | Medio-alto | Concurrency                   |
 | Environment secrets expuestos | Alto       | Required reviewers            |
@@ -1473,7 +1512,7 @@ La estrategia se considera implementada si:
 * existe rollback documentado;
 * cambios financieros ejecutan pruebas reforzadas;
 * cambios API validan OpenAPI;
-* código generado por IA pasa CI y revisión;
+* código generado por IA pasa CI y revisión conforme a §8.1;
 * release notes se generan para producción.
 
 ---

@@ -11,17 +11,21 @@ import { SkipThrottle } from "@nestjs/throttler";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
 import { AppModule } from "../src/app.module.js";
+import { PrismaService } from "../src/platform/database/prisma.service.js";
 import { configureApplication } from "../src/platform/http/application-bootstrap.js";
 import { SanitizedLogger } from "../src/platform/logging/sanitized-logger.service.js";
 
 const previousEnvironment = vi.hoisted(() => {
   const previous = {
     corsAllowedOrigins: process.env.CORS_ALLOWED_ORIGINS,
+    databaseUrl: process.env.DATABASE_URL,
     rateLimit: process.env.RATE_LIMIT_LIMIT,
   };
 
   process.env.CORS_ALLOWED_ORIGINS =
     "http://localhost:3001,http://localhost:3002";
+  process.env.DATABASE_URL =
+    "postgresql://resident:synthetic-test-only@127.0.0.1:5432/resident_core";
   process.env.RATE_LIMIT_LIMIT = "1";
 
   return previous;
@@ -64,7 +68,10 @@ describe("secure application bootstrap", () => {
     const moduleReference = await Test.createTestingModule({
       controllers: [PlatformTestController],
       imports: [AppModule],
-    }).compile();
+    })
+      .overrideProvider(PrismaService)
+      .useValue({ isAvailable: vi.fn().mockResolvedValue(true) })
+      .compile();
 
     application = moduleReference.createNestApplication({ logger });
     configureApplication(application, logger);
@@ -85,6 +92,12 @@ describe("secure application bootstrap", () => {
       delete process.env.CORS_ALLOWED_ORIGINS;
     } else {
       process.env.CORS_ALLOWED_ORIGINS = previousEnvironment.corsAllowedOrigins;
+    }
+
+    if (previousEnvironment.databaseUrl === undefined) {
+      delete process.env.DATABASE_URL;
+    } else {
+      process.env.DATABASE_URL = previousEnvironment.databaseUrl;
     }
   });
 

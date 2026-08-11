@@ -9,6 +9,8 @@ import {
 } from "@resident/config";
 
 import { applicationConfig } from "./platform/config/application-config.js";
+import { HealthModule } from "./modules/platform/health/health.module.js";
+import { PrismaModule } from "./platform/database/prisma.module.js";
 
 const applicationConfigModule = ConfigModule.forRoot({
   cache: true,
@@ -20,6 +22,8 @@ const applicationConfigModule = ConfigModule.forRoot({
 @Module({
   imports: [
     applicationConfigModule,
+    PrismaModule,
+    HealthModule,
     ThrottlerModule.forRootAsync({
       inject: [applicationConfig.KEY],
       imports: [applicationConfigModule],

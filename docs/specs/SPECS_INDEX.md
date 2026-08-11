@@ -442,7 +442,7 @@ Estado vigente:
 
 ```text id="specs-index-next-implementation"
 Definition of Done técnico de Sprint 0: PASS.
-Cierre formal de Sprint 0: PENDING por dos gaps registrados.
+Cierre formal de Sprint 0: PENDING por un gap alto abierto.
 Sprint 1 y la lógica de negocio permanecen fuera del alcance autorizado.
 ```
 

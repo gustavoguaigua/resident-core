@@ -84,7 +84,7 @@ El proyecto se ha especificado bajo una variante interna de SDD inspirada princi
 Estado general: baseline SDD consolidado y workspace técnico de Sprint 0 implementado.
 Fase actual: Definition of Done técnico de Sprint 0 cumplido; cierre formal en revisión.
 Tipo actual de repositorio: monorepo técnico versionado con CI y entorno local reproducible.
-Siguiente paso recomendado: cerrar los gaps de SPRINT-0-CLOSURE-2026-08-11 antes de Sprint 1.
+Siguiente paso recomendado: cerrar GAP-S0-CLOSE-002 antes de Sprint 1.
 ```
 
 Actualmente el proyecto cuenta con:
@@ -1102,9 +1102,8 @@ el cierre formal permanece pendiente hasta resolver los gaps documentados.
 Acciones inmediatas:
 
 ```text id="blueprint-next-actions"
-1. Normalizar finales de línea y restablecer `format:check` reproducible en Windows.
-2. Resolver la diferencia entre branch protection y ADR-012 §8.
-3. Reemitir la decisión de cierre antes de autorizar Sprint 1.
+1. Resolver la diferencia entre branch protection y ADR-012 §8.
+2. Reemitir la decisión de cierre antes de autorizar Sprint 1.
 ```
 
 ---

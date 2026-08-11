@@ -61,7 +61,8 @@ Todos los criterios técnicos de §19 del runbook están sustentados y quedan ma
 como completados. Sprint 0 produjo la fundación técnica prevista y respetó la frontera
 con Sprint 1.
 
-El cierre formal no se declara todavía porque permanecen los siguientes gaps.
+El cierre formal no se declara todavía porque permanece un gap alto abierto. El gap
+de reproducibilidad local identificado durante esta evaluación ya fue corregido.
 
 ## 5. Gaps de cierre
 
@@ -70,13 +71,12 @@ El cierre formal no se declara todavía porque permanecen los siguientes gaps.
 | Campo | Valor |
 | --- | --- |
 | Severidad | Media |
-| Estado | open |
-| Evidencia | `core.autocrlf=true`, `.gitattributes` ausente y `pnpm format:check` falla localmente en Windows sobre 62 archivos |
+| Estado | closed |
+| Evidencia | `.gitattributes` fija `* text=auto eol=lf`; `pnpm format:check` pasa localmente en Windows con `core.autocrlf=true` |
 
-La misma revisión pasa en GitHub Actions sobre Linux, lo que demuestra que el contenido
-versionado es válido pero el checkout local no es reproducible para el gate de formato.
-Debe definirse y versionarse una política de finales de línea, normalizar el checkout y
-volver a ejecutar el gate local.
+La política LF quedó versionada y los archivos formateables fueron normalizados con
+Prettier. `git check-attr` confirma `eol: lf` y el gate completo de formato finalizó con
+exit code 0 usando Node.js `24.18.0` y pnpm `11.21.0`.
 
 ### GAP-S0-CLOSE-002 — Branch protection parcial frente a ADR-012 §8
 
@@ -111,10 +111,10 @@ esa decisión.
 Technical Definition of Done: PASS
 Formal Sprint 0 closure: PENDING
 Open high gaps: 1
-Open medium gaps: 1
+Open medium gaps: 0
 Sprint 1 authorization: NOT GRANTED by this evaluation
 ```
 
-El siguiente paso es cerrar `GAP-S0-CLOSE-001` y después resolver
-`GAP-S0-CLOSE-002`. Una vez cerrados ambos, se debe reevaluar esta decisión, actualizar
-README y Blueprint al estado definitivo y emitir el cierre formal de Sprint 0.
+El siguiente paso es resolver `GAP-S0-CLOSE-002`. Una vez cerrado, se debe reevaluar
+esta decisión, actualizar README y Blueprint al estado definitivo y emitir el cierre
+formal de Sprint 0.

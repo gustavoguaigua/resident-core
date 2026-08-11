@@ -948,8 +948,8 @@ la aplicación de las reglas de `docs/sdd/api-guidelines.md` pertenecen a Sprint
 ```
 
 La reevaluación del 2026-08-11 confirma que todos los criterios técnicos anteriores
-están sustentados. El cierre formal permanece en `in-review` por los gaps de
-reproducibilidad local y alineación de branch protection documentados en
+están sustentados. El cierre formal permanece en `in-review` por el gap de alineación
+de branch protection documentado en
 `docs/changes/SPRINT-0-CLOSURE-2026-08-11.md`.
 
 ---

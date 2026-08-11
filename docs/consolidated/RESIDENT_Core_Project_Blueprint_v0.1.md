@@ -81,10 +81,10 @@ El proyecto se ha especificado bajo una variante interna de SDD inspirada princi
 ## 4. Estado actual del proyecto
 
 ```text id="blueprint-current-state"
-Estado general: expediente SDD presente, con specs 001-030 en needs-review y spec 031 en in-review.
-Fase actual: remediación documental previa a Sprint 0.
-Tipo actual de repositorio: documentación SDD estructurada.
-Siguiente paso recomendado: resolver o diferir los gaps altos de READINESS-031-2026-08-09 y reevaluar la compuerta.
+Estado general: baseline SDD consolidado, con specs 001-030 en needs-review y spec 031 en complete.
+Fase actual: Sprint 0 autorizado para fundación técnica mediante READINESS-031-2026-08-10.
+Tipo actual de repositorio: baseline documental versionado en transición al workspace técnico.
+Siguiente paso recomendado: completar el preflight local y crear el workspace en el orden aprobado.
 ```
 
 Actualmente el proyecto cuenta con:
@@ -972,11 +972,11 @@ Antes de implementar Sprint 0:
 Estado de uso:
 
 ```text
-SUSPENDIDO mientras READINESS-031-2026-08-09 permanezca en NO_GO.
+HABILITADO para Sprint 0 por READINESS-031-2026-08-10, con decisión GO.
 ```
 
-Este prompt podrá usarse como instrucción inicial únicamente después de que una nueva
-evaluación autorice Sprint 0:
+Este prompt puede usarse como instrucción inicial para ejecutar exclusivamente la
+fundación técnica autorizada de Sprint 0:
 
 ```text id="blueprint-agent-prompt"
 Lee primero:
@@ -1092,14 +1092,16 @@ Archivo guía:
 docs/implementation/sprint-0-foundation.md
 ```
 
-El runbook `docs/implementation/sprint-0-foundation.md` sigue siendo el plan de Sprint
-0, pero no debe ejecutarse hasta que una reevaluación sustituya la decisión `NO_GO`.
+El runbook `docs/implementation/sprint-0-foundation.md` es el plan autorizado de Sprint
+0 conforme a la decisión `GO` de `READINESS-031-2026-08-10`. Su ejecución debe mantener
+los límites y salvaguardas definidos por esa reevaluación.
 
 Acciones inmediatas:
 
 ```text id="blueprint-next-actions"
-1. Resolver o diferir explícitamente los gaps altos.
-2. Reevaluar la compuerta 031 antes de crear código.
+1. Completar y validar el preflight técnico local.
+2. Crear el workspace raíz y la estructura de Sprint 0 en el orden aprobado.
+3. Mantener fuera de alcance toda lógica de negocio y todo entregable de Sprint 1.
 ```
 
 ---
@@ -1120,7 +1122,7 @@ integrado con WordPress solo como portal público
 autenticado con Keycloak
 autorizado por Core
 documentado bajo SDD
-en remediación documental previa a Sprint 0
+autorizado para la fundación técnica de Sprint 0
 ```
 
 Este documento constituye el baseline consolidado de RESIDENT Core al cierre de la fase documental SDD inicial.

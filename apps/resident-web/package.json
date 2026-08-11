@@ -1,0 +1,22 @@
+{
+  "name": "@resident/resident-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "eslint app components lib test",
+    "start": "next start",
+    "test": "vitest run",
+    "typecheck": "next typegen && tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "engines": {
+    "node": "24.18.0",
+    "pnpm": "11.21.0"
+  }
+}

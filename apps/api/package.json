@@ -1,0 +1,25 @@
+{
+  "name": "@resident/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint src test",
+    "start": "node dist/main.js",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.1.29",
+    "@nestjs/core": "11.1.29",
+    "@nestjs/platform-express": "11.1.29",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "engines": {
+    "node": "24.18.0",
+    "pnpm": "11.21.0"
+  }
+}

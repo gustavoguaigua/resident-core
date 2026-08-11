@@ -416,8 +416,8 @@ docs/sdd/                         completo
 docs/decisions/                   completo
 docs/specs/001-030/               needs-review
 docs/specs/031-implementation-readiness/ complete
-docs/changes/                     contiene impacto Keycloak
-docs/implementation/              contiene Sprint 0 Foundation
+docs/changes/                     contiene cambios, readiness y cierres formales
+docs/implementation/              contiene Sprint 0 y Sprint 1
 docs/consolidated/                contiene documentos consolidados
 docs/specs/SPECS_INDEX.md         creado
 ```
@@ -438,12 +438,20 @@ La reevaluación de cierre del sprint se encuentra en:
 docs/changes/SPRINT-0-CLOSURE-2026-08-11.md
 ```
 
+La compuerta que autoriza Sprint 1 se encuentra en:
+
+```text id="specs-index-sprint1-readiness"
+docs/changes/READINESS-SPRINT-1-2026-08-11.md
+docs/implementation/sprint-1-backend-platform-base.md
+```
+
 Estado vigente:
 
 ```text id="specs-index-next-implementation"
 Definition of Done técnico de Sprint 0: PASS.
 Cierre formal de Sprint 0: PASS; no existen gaps de cierre abiertos.
-Sprint 1 permanece fuera del alcance autorizado hasta aprobar su runbook y compuerta.
+Sprint 1 Backend Platform Base: GO; implementación autorizada y aún no iniciada.
+Sprint 2 permanece fuera del alcance autorizado.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 

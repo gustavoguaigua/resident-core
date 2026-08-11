@@ -12,8 +12,9 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.base.json ./
 COPY apps ./apps
 COPY packages ./packages
 
-RUN pnpm install --frozen-lockfile
-RUN pnpm --filter @resident/api build
+RUN --mount=type=cache,id=resident-pnpm-store,target=/pnpm/store \
+    pnpm install --frozen-lockfile
+RUN pnpm --filter @resident/api... build
 RUN pnpm --filter @resident/api deploy --prod --legacy /opt/resident-api
 
 FROM node:24.18.0-bookworm-slim AS runtime

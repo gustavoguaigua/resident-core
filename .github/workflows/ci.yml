@@ -51,6 +51,9 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: API bootstrap security tests
+        run: pnpm test:api
+
       - name: Validate OpenAPI tooling
         run: pnpm openapi:validate
 

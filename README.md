@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 0 implementado; cierre formal en revisión
+Estado: Sprint 0 implementado y cerrado formalmente
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -538,8 +538,8 @@ docs/implementation/sprint-0-foundation.md
 
 Su ejecución fue autorizada por la decisión `GO` registrada en
 `docs/changes/READINESS-031-2026-08-10.md`, que sustituye el `NO_GO` histórico de la
-evaluación del 2026-08-09. El Definition of Done técnico fue reevaluado el 2026-08-11
-y cumple. El cierre formal permanece en revisión por los gaps registrados en
+evaluación del 2026-08-09. El Definition of Done técnico y el cierre formal fueron
+reevaluados el 2026-08-11 y cumplen según
 `docs/changes/SPRINT-0-CLOSURE-2026-08-11.md`.
 
 Sprint 0 debe crear:
@@ -610,7 +610,8 @@ Documentation Standard: creado
 Sprint 0 Foundation: creado
 Decisión vigente: GO para iniciar implementación técnica de Sprint 0
 Definition of Done técnico de Sprint 0: PASS (2026-08-11)
-Cierre formal de Sprint 0: PENDING
+Cierre formal de Sprint 0: PASS (2026-08-11)
+Sprint 1: pendiente de runbook y compuerta de autorización
 ```
 
 Evidencia:

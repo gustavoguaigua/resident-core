@@ -11,7 +11,7 @@
 | Commit base | `fdc052b` |
 | Rama base | `main` |
 | Resultado técnico | `PASS` |
-| Cierre formal | `PENDING` |
+| Cierre formal | `PASS` |
 
 ## 2. Propósito
 
@@ -61,8 +61,8 @@ Todos los criterios técnicos de §19 del runbook están sustentados y quedan ma
 como completados. Sprint 0 produjo la fundación técnica prevista y respetó la frontera
 con Sprint 1.
 
-El cierre formal no se declara todavía porque permanece un gap alto abierto. El gap
-de reproducibilidad local identificado durante esta evaluación ya fue corregido.
+El cierre formal se declara sustentado porque los dos gaps identificados durante esta
+evaluación fueron corregidos y verificados.
 
 ## 5. Gaps de cierre
 
@@ -83,15 +83,13 @@ exit code 0 usando Node.js `24.18.0` y pnpm `11.21.0`.
 | Campo | Valor |
 | --- | --- |
 | Severidad | Alta |
-| Estado | open |
-| Evidencia | `main` exige PR y `Required CI gates`, pero no exige aprobación ni que la rama esté actualizada antes del merge |
+| Estado | closed |
+| Evidencia | La regla de protección `81580681` para `main` exige PR, una aprobación, `Required CI gates` y rama actualizada antes del merge |
 
-ADR-012 §8 enumera revisión requerida y rama actualizada como reglas mínimas. La
-protección actual fue configurada sin aprobación para no bloquear un repositorio con un
-único propietario. Se requiere una decisión explícita: incorporar un revisor elegible y
-activar la aprobación, o actualizar ADR-012 con una excepción temporal y controlada para
-el modelo de propietario único. La exigencia de rama actualizada puede activarse sin
-esa decisión.
+La configuración remota fue actualizada y verificada en GitHub. Además de las reglas
+anteriores, la protección se aplica a administradores, no permite bypass y mantiene
+deshabilitados force-push y eliminación de `main`. La configuración queda alineada con
+las reglas mínimas de ADR-012 §8.
 
 ## 6. Observaciones no bloqueantes
 
@@ -109,12 +107,12 @@ esa decisión.
 
 ```text
 Technical Definition of Done: PASS
-Formal Sprint 0 closure: PENDING
-Open high gaps: 1
+Formal Sprint 0 closure: PASS
+Open high gaps: 0
 Open medium gaps: 0
 Sprint 1 authorization: NOT GRANTED by this evaluation
 ```
 
-El siguiente paso es resolver `GAP-S0-CLOSE-002`. Una vez cerrado, se debe reevaluar
-esta decisión, actualizar README y Blueprint al estado definitivo y emitir el cierre
-formal de Sprint 0.
+Sprint 0 queda formalmente cerrado. Esta decisión no autoriza por sí sola Sprint 1 ni
+lógica de negocio. El siguiente paso es definir y revisar el runbook de Sprint 1 y
+someterlo a una compuerta explícita antes de iniciar su implementación.

@@ -9,7 +9,7 @@
 | Sprint        | Sprint 0                                                              |
 | Documento     | Foundation Implementation Runbook                                     |
 | Ruta sugerida | `docs/implementation/sprint-0-foundation.md`                          |
-| Estado        | in-review — DoD técnico cumplido; cierre formal pendiente             |
+| Estado        | complete — DoD técnico y cierre formal cumplidos                       |
 | Fecha         | 2026-08-06                                                            |
 | Reevaluación  | 2026-08-11                                                            |
 | Naturaleza    | Implementación base / Monorepo / Entorno local / Tooling / CI inicial |
@@ -948,8 +948,8 @@ la aplicación de las reglas de `docs/sdd/api-guidelines.md` pertenecen a Sprint
 ```
 
 La reevaluación del 2026-08-11 confirma que todos los criterios técnicos anteriores
-están sustentados. El cierre formal permanece en `in-review` por el gap de alineación
-de branch protection documentado en
+están sustentados. Los gaps de cierre fueron corregidos y verificados; Sprint 0 queda
+formalmente cerrado mediante
 `docs/changes/SPRINT-0-CLOSURE-2026-08-11.md`.
 
 ---

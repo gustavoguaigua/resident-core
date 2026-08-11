@@ -8,9 +8,9 @@
 | Documento   | Project Blueprint                                                                      |
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
-| Estado      | Sprint 0 implementado; cierre formal en revisión                                       |
+| Estado      | Sprint 0 implementado y cerrado formalmente                                             |
 | Fecha       | 2026-08-06                                                                             |
-| Fase actual | Transición de SDD documental a Sprint 0 de implementación                              |
+| Fase actual | Preparación documental y de readiness para Sprint 1                                    |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -81,10 +81,10 @@ El proyecto se ha especificado bajo una variante interna de SDD inspirada princi
 ## 4. Estado actual del proyecto
 
 ```text id="blueprint-current-state"
-Estado general: baseline SDD consolidado y workspace técnico de Sprint 0 implementado.
-Fase actual: Definition of Done técnico de Sprint 0 cumplido; cierre formal en revisión.
+Estado general: baseline SDD consolidado y Sprint 0 cerrado formalmente.
+Fase actual: preparación del runbook y la compuerta de autorización de Sprint 1.
 Tipo actual de repositorio: monorepo técnico versionado con CI y entorno local reproducible.
-Siguiente paso recomendado: cerrar GAP-S0-CLOSE-002 antes de Sprint 1.
+Siguiente paso recomendado: definir y revisar Sprint 1 antes de autorizar su implementación.
 ```
 
 Actualmente el proyecto cuenta con:
@@ -921,15 +921,17 @@ Evidencia: docs/changes/READINESS-031-2026-08-10.md.
 Motivo: todos los criterios obligatorios de GO están sustentados y no existen gaps
 críticos o altos abiertos.
 Definition of Done técnico de Sprint 0: PASS el 2026-08-11.
-Cierre formal de Sprint 0: PENDING.
+Cierre formal de Sprint 0: PASS el 2026-08-11.
 Evidencia de cierre: docs/changes/SPRINT-0-CLOSURE-2026-08-11.md.
 ```
 
 Condición:
 
 ```text id="blueprint-readiness-condition"
-Sprint 0 fue ejecutado dentro del alcance estricto de su runbook. Sprint 1 y cualquier
-lógica de negocio permanecen fuera del alcance autorizado hasta emitir el cierre formal.
+Sprint 0 fue ejecutado dentro del alcance estricto de su runbook y queda formalmente
+cerrado. Sprint 1 permanece fuera del alcance autorizado hasta aprobar su runbook y una
+compuerta explícita. La lógica de negocio requiere además la spec y el sprint funcional
+correspondientes.
 ```
 
 ---
@@ -1083,27 +1085,28 @@ Propósito:
 
 ## 27. Próximo paso recomendado
 
-El siguiente paso técnico es:
+El siguiente paso documental es:
 
 ```text id="blueprint-next-step"
-Cerrar los gaps formales de Sprint 0 registrados el 2026-08-11.
+Definir y revisar el runbook de Sprint 1 — Backend Platform Base.
 ```
 
 Archivo guía:
 
 ```text id="blueprint-next-doc"
-docs/changes/SPRINT-0-CLOSURE-2026-08-11.md
+docs/implementation/sprint-1-backend-platform-base.md (por crear)
 ```
 
 El runbook `docs/implementation/sprint-0-foundation.md` fue ejecutado conforme a la
-decisión `GO` de `READINESS-031-2026-08-10`. El Definition of Done técnico cumple, pero
-el cierre formal permanece pendiente hasta resolver los gaps documentados.
+decisión `GO` de `READINESS-031-2026-08-10`. El Definition of Done técnico y el cierre
+formal cumplen; no existen gaps de cierre abiertos.
 
 Acciones inmediatas:
 
 ```text id="blueprint-next-actions"
-1. Resolver la diferencia entre branch protection y ADR-012 §8.
-2. Reemitir la decisión de cierre antes de autorizar Sprint 1.
+1. Crear y revisar el runbook de Sprint 1.
+2. Identificar las specs y ADRs que autorizan cada capacidad de plataforma.
+3. Ejecutar una compuerta explícita antes de iniciar implementación.
 ```
 
 ---
@@ -1124,7 +1127,7 @@ integrado con WordPress solo como portal público
 autenticado con Keycloak
 autorizado por Core
 documentado bajo SDD
-con la fundación técnica de Sprint 0 implementada y su cierre formal en revisión
+con la fundación técnica de Sprint 0 implementada y cerrada formalmente
 ```
 
 Este documento constituye el baseline consolidado de RESIDENT Core al cierre de la fase documental SDD inicial.

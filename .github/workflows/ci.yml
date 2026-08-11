@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Required CI gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATABASE_URL: postgresql://resident:synthetic_ci_only@127.0.0.1:5432/resident_core?schema=public
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "11.21.0"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.18.0"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Validate OpenAPI tooling
+        run: pnpm openapi:validate
+
+      - name: Validate Prisma schema
+        run: pnpm prisma:validate
+
+      - name: Validate Docker Compose
+        run: docker compose config --quiet
+
+      - name: Dependency audit
+        run: pnpm security:dependencies
+
+      - name: Secret scan
+        run: pnpm security:secrets
+
+      - name: Build workspace
+        run: pnpm build
+
+      - name: Build resident-api image
+        run: docker compose build resident-api

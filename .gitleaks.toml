@@ -1,0 +1,14 @@
+title = "RESIDENT Core secret scanning"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated and dependency directories"
+paths = [
+  '''(^|/)\.git/''',
+  '''(^|/)\.next/''',
+  '''(^|/)coverage/''',
+  '''(^|/)dist/''',
+  '''(^|/)node_modules/'''
+]

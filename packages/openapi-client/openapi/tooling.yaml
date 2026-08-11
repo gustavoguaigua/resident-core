@@ -1,0 +1,6 @@
+openapi: 3.1.0
+info:
+  title: RESIDENT Core OpenAPI Tooling
+  version: 0.1.0-sprint0
+  description: Tooling-only document with no runtime operations.
+paths: {}

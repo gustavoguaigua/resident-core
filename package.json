@@ -1,0 +1,42 @@
+{
+  "name": "resident-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RESIDENT Core - multitenant residential administration platform",
+  "packageManager": "pnpm@11.21.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel --if-present dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "docker:config": "docker compose config --quiet",
+    "docker:build:api": "docker compose build resident-api",
+    "prisma:format": "pnpm --filter @resident/api prisma:format",
+    "prisma:validate": "pnpm --filter @resident/api prisma:validate",
+    "openapi:validate": "pnpm --filter @resident/openapi-client validate",
+    "security:dependencies": "pnpm audit --audit-level high",
+    "security:secrets": "pnpm --filter @resident/testing security:secrets"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "eslint": "10.8.1",
+    "prettier": "3.9.6",
+    "tsx": "4.23.12",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.67.0",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": "24.18.0",
+    "pnpm": "11.21.0"
+  }
+}

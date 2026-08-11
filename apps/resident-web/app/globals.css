@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f8f6;
+  color: #173128;
+}
+
+main {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 2rem;
+}
+
+.scaffold-status {
+  max-width: 42rem;
+  padding: 2rem;
+  border: 1px solid #cfe0d8;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}

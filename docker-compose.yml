@@ -1,0 +1,156 @@
+name: resident-core
+
+services:
+  resident-api:
+    image: resident-api:0.1.0-sprint0
+    build:
+      context: .
+      dockerfile: infra/docker/api.Dockerfile
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - "127.0.0.1:${API_PORT:-3000}:3000"
+    networks:
+      - resident-local
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - >-
+          fetch('http://127.0.0.1:3000').then((response) =>
+          process.exit(response.status < 500 ? 0 : 1)).catch(() => process.exit(1))
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  postgres:
+    image: postgres:17.10-bookworm
+    environment:
+      POSTGRES_DB: "${POSTGRES_DB:-resident_core}"
+      POSTGRES_USER: "${POSTGRES_USER:-resident}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-resident_dev_password}"
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - resident-postgres-data:/var/lib/postgresql/data
+    networks:
+      - resident-local
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  redis:
+    image: redis:7.4.10-bookworm
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-6379}:6379"
+    volumes:
+      - resident-redis-data:/data
+    networks:
+      - resident-local
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.7.0
+    command: ["start-dev"]
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak-postgres
+      KC_DB_URL_PORT: 5432
+      KC_DB_URL_DATABASE: "${KEYCLOAK_DB_NAME:-keycloak}"
+      KC_DB_USERNAME: "${KEYCLOAK_DB_USER:-keycloak}"
+      KC_DB_PASSWORD: "${KEYCLOAK_DB_PASSWORD:-keycloak_dev_password}"
+      KC_HEALTH_ENABLED: "true"
+      KC_BOOTSTRAP_ADMIN_USERNAME: "${KEYCLOAK_ADMIN_USER:-resident-admin}"
+      KC_BOOTSTRAP_ADMIN_PASSWORD: "${KEYCLOAK_ADMIN_PASSWORD:-keycloak_admin_dev_password}"
+    depends_on:
+      keycloak-postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - resident-local
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/9000'"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  keycloak-postgres:
+    image: postgres:17.10-bookworm
+    environment:
+      POSTGRES_DB: "${KEYCLOAK_DB_NAME:-keycloak}"
+      POSTGRES_USER: "${KEYCLOAK_DB_USER:-keycloak}"
+      POSTGRES_PASSWORD: "${KEYCLOAK_DB_PASSWORD:-keycloak_dev_password}"
+    ports:
+      - "127.0.0.1:${KEYCLOAK_DB_PORT:-5433}:5432"
+    volumes:
+      - resident-keycloak-postgres-data:/var/lib/postgresql/data
+    networks:
+      - resident-local
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - "127.0.0.1:${SMTP_PORT:-1025}:1025"
+      - "127.0.0.1:${MAILHOG_UI_PORT:-8025}:8025"
+    networks:
+      - resident-local
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:8025 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  minio:
+    image: minio/minio:RELEASE.2025-09-07T16-13-09Z
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: "${S3_ACCESS_KEY:-minio_dev_access}"
+      MINIO_ROOT_PASSWORD: "${S3_SECRET_KEY:-minio_dev_secret}"
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:${MINIO_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - resident-minio-data:/data
+    networks:
+      - resident-local
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+networks:
+  resident-local:
+    name: resident-core-local
+
+volumes:
+  resident-postgres-data:
+  resident-redis-data:
+  resident-keycloak-postgres-data:
+  resident-minio-data:

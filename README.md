@@ -533,9 +533,11 @@ Sprint 0 permanece planificado mediante:
 docs/implementation/sprint-0-foundation.md
 ```
 
-Su ejecución está temporalmente bloqueada por la decisión `NO_GO` registrada en
-`docs/changes/READINESS-031-2026-08-09.md`. Los gaps críticos están cerrados; el
-siguiente paso operativo es resolver o diferir los gaps altos y reevaluar la compuerta 031.
+Su ejecución está autorizada por la decisión `GO` registrada en
+`docs/changes/READINESS-031-2026-08-10.md`, que sustituye el `NO_GO` histórico de la
+evaluación del 2026-08-09. Los gaps críticos y altos están cerrados; el siguiente paso
+operativo es ejecutar el runbook en el orden aprobado y dentro del alcance exclusivo de
+fundación técnica.
 
 Sprint 0 debe crear:
 

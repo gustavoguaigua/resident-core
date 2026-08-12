@@ -927,14 +927,29 @@ Evidencia de cierre: docs/changes/SPRINT-0-CLOSURE-2026-08-11.md.
 Readiness de Sprint 1: GO el 2026-08-11.
 Plan autorizado: docs/implementation/sprint-1-backend-platform-base.md.
 Evidencia: docs/changes/READINESS-SPRINT-1-2026-08-11.md.
+Sprint 1: implementado y cerrado con PASS el 2026-08-11.
+Evidencia de cierre: docs/changes/SPRINT-1-CLOSURE-2026-08-11.md.
+Readiness de Sprint 2: NO_GO el 2026-08-11.
+Gaps abiertos: 5 críticos y 3 altos.
+Plan autorizado para Sprint 2: ninguno.
+Evidencia: docs/changes/READINESS-SPRINT-2-2026-08-11.md.
 ```
 
 Condición:
 
 ```text id="blueprint-readiness-condition"
 Sprint 0 fue ejecutado dentro del alcance estricto de su runbook y queda formalmente
-cerrado. Sprint 1 queda autorizado solo para Backend Platform Base. Sprint 2 y la lógica
-de negocio permanecen fuera de alcance y requieren sus specs y compuertas correspondientes.
+cerrado. Sprint 1 fue implementado y cerrado formalmente con `PASS`. La compuerta de
+Sprint 2 emitió `NO_GO` el 2026-08-11: las specs 001, 002, 007 y 025 permanecen
+`needs-review` y existen cinco gaps críticos y tres altos. Sprint 2 y la lógica de
+negocio permanecen fuera de alcance hasta una nueva reevaluación `GO`.
+```
+
+Evidencia vigente:
+
+```text id="blueprint-sprint2-readiness-evidence"
+docs/changes/SPRINT-1-CLOSURE-2026-08-11.md
+docs/changes/READINESS-SPRINT-2-2026-08-11.md
 ```
 
 ---

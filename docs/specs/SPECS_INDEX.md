@@ -417,7 +417,7 @@ docs/decisions/                   completo
 docs/specs/001-030/               needs-review
 docs/specs/031-implementation-readiness/ complete
 docs/changes/                     contiene cambios, readiness y cierres formales
-docs/implementation/              contiene Sprint 0 y Sprint 1
+docs/implementation/              contiene los runbooks cerrados de Sprint 0 y Sprint 1
 docs/consolidated/                contiene documentos consolidados
 docs/specs/SPECS_INDEX.md         creado
 ```
@@ -450,9 +450,17 @@ Estado vigente:
 ```text id="specs-index-next-implementation"
 Definition of Done técnico de Sprint 0: PASS.
 Cierre formal de Sprint 0: PASS; no existen gaps de cierre abiertos.
-Sprint 1 Backend Platform Base: GO; implementación autorizada y aún no iniciada.
-Sprint 2 permanece fuera del alcance autorizado.
+Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
+Implementation Readiness Sprint 2: NO_GO; 5 gaps críticos y 3 altos abiertos.
+Sprint 2 permanece fuera del alcance autorizado y no tiene runbook aprobado.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
+```
+
+La decisión vigente para Sprint 2 se encuentra en:
+
+```text id="specs-index-sprint2-readiness"
+docs/changes/READINESS-SPRINT-2-2026-08-11.md
+Decision: NO_GO
 ```
 
 ---

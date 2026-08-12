@@ -11,13 +11,14 @@
 | Commit base | `eb0f977` |
 | Rama de implementación | `codex/sprint-1-security-audit-skeletons` |
 | Resultado técnico local | `PASS` |
-| Cierre formal | `PENDING_REMOTE_CI_AND_MERGE` |
+| CI remota | `PASS` — run `31555482685` |
+| Cierre formal | `PENDING_PR4_MERGE` |
 
 ## 2. Propósito
 
 Consolidar la evidencia de los cuatro incrementos del runbook
-`docs/implementation/sprint-1-backend-platform-base.md` sin anticipar evidencia de
-GitHub Actions ni declarar cerrado el sprint antes de fusionar el PR 4.
+`docs/implementation/sprint-1-backend-platform-base.md` sin declarar cerrado el sprint
+antes de fusionar el PR 4.
 
 ## 3. Alcance implementado
 
@@ -54,6 +55,7 @@ promete durabilidad ni escribe en base de datos.
 | Build de `resident-api` | exitoso |
 | Runtime de `resident-api` | contenedor saludable y liveness `200` |
 | Frontera Sprint 1 | sin modelos, enums, migraciones, seeds ni endpoints de dominio |
+| GitHub Actions | `Required CI gates`, run `31555482685`, exitoso en 2m 58s |
 
 Durante el smoke test se detectó que la imagen de ejecución no incluía el nuevo
 workspace `@resident/auth`. El Dockerfile fue corregido para copiar su manifest y su
@@ -76,11 +78,10 @@ No se implementaron:
 ```text
 Local implementation gates: PASS
 Sprint 1 authorized scope: IMPLEMENTED
-Remote required CI: PENDING
+Remote required CI: PASS (run 31555482685)
 PR 4 merge to main: PENDING
-Formal Sprint 1 closure: PENDING_REMOTE_CI_AND_MERGE
+Formal Sprint 1 closure: PENDING_PR4_MERGE
 ```
 
-El candidato de cierre se convierte en cierre formal únicamente cuando el PR 4 supera
-`Required CI gates` y se fusiona en `main`. Hasta entonces no debe marcarse como
-cumplido el criterio de CI del Definition of Done.
+El PR 4 superó `Required CI gates` en el run `31555482685`. El candidato de cierre se
+convierte en cierre formal únicamente cuando el PR se fusiona en `main`.

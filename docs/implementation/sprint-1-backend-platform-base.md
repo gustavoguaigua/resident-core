@@ -9,7 +9,7 @@
 | Sprint | Sprint 1 |
 | Documento | Backend Platform Base Implementation Runbook |
 | Ruta | `docs/implementation/sprint-1-backend-platform-base.md` |
-| Estado | `implementation-complete` — cierre formal pendiente de CI remota y merge del PR 4 |
+| Estado | `validated` — CI remota exitosa; cierre formal pendiente del merge del PR 4 (#7) |
 | Fecha | 2026-08-11 |
 | Commit base evaluado | `09310d5` |
 | Naturaleza | Plataforma backend runtime, sin lógica de negocio |
@@ -369,7 +369,7 @@ La ejecución no debe usar datos reales ni secretos reales.
 [x] Los esqueletos de auth, tenant y permisos fallan cerrados.
 [x] Auditoría no afirma persistencia inexistente.
 [x] Compose e imagen resident-api funcionan con la base runtime.
-[ ] Todos los gates obligatorios pasan en CI.
+[x] Todos los gates obligatorios pasan en CI.
 [x] No existe lógica de negocio ni implementación adelantada de Sprint 2.
 [x] El diff fue revisado y el candidato de cierre documental fue registrado.
 ```

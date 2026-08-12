@@ -451,8 +451,9 @@ Estado vigente:
 Definition of Done técnico de Sprint 0: PASS.
 Cierre formal de Sprint 0: PASS; no existen gaps de cierre abiertos.
 Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
-Implementation Readiness Sprint 2: NO_GO; 5 gaps críticos y 3 altos abiertos.
-Sprint 2 permanece fuera del alcance autorizado y no tiene runbook aprobado.
+Implementation Readiness Sprint 2: NO_GO; 4 gaps críticos y 3 altos abiertos.
+Sprint 2 permanece fuera del alcance autorizado; su runbook define la frontera pero
+está bloqueado hasta una nueva decisión `GO`.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
@@ -460,6 +461,7 @@ La decisión vigente para Sprint 2 se encuentra en:
 
 ```text id="specs-index-sprint2-readiness"
 docs/changes/READINESS-SPRINT-2-2026-08-11.md
+docs/implementation/sprint-2-tenants-identity-access.md
 Decision: NO_GO
 ```
 

@@ -55,10 +55,11 @@ contratos y gates verificables.
 | Identidad y acceso runtime | Puertos y guards fail-closed; no autentican ni conceden permisos |
 | Auditoría runtime | Puerto técnico sin persistencia, conforme a Sprint 1 |
 | OpenAPI | Contrato runtime de plataforma presente; no existen endpoints funcionales de Sprint 2 |
-| CI | Gates de Sprint 1 activos; acciones `@v4` identificadas para migración a Node.js 24 |
+| CI | Gates de Sprint 1 activos; acciones `@v6` sobre runtime Node.js 24 |
+| Runbook de Sprint 2 | Frontera, incrementos, exclusiones y gates definidos; implementación bloqueada por `NO_GO` |
 | Secretos o datos reales requeridos | Ninguno |
 
-## 5. Gaps abiertos
+## 5. Registro de gaps
 
 ### GAP-S2-001 — Estado documental no aprobatorio
 
@@ -77,12 +78,14 @@ de implementar” y ADR-003 exige expresamente specs aprobadas para introducir `
 | Campo | Valor |
 | --- | --- |
 | Severidad | Crítica |
-| Estado | open |
+| Estado | closed — 2026-08-11 |
 
-No existe runbook de Sprint 2. El índice usa “007-audit base” y
-“025-tenant-settings-policies base”, pero sus planes completos incluyen consultas,
-exportaciones, módulos consumidores y dependencias de Sprint 3 o posteriores. Deben
-definirse modelos, endpoints, eventos, tareas y exclusiones exactas del corte inicial.
+`docs/implementation/sprint-2-tenants-identity-access.md` establece una frontera única:
+delimita los modelos y superficies máximas de 001/002, define las porciones base de
+007/025, excluye dominios posteriores y fija secuencia, gates y criterios de cierre. El
+runbook declara expresamente que su definición de alcance no autoriza implementación y
+reserva a sus gaps propietarios las decisiones todavía abiertas. Esta corrección cierra
+únicamente `GAP-S2-002`.
 
 ### GAP-S2-003 — Bootstrap circular de tenant e identidad
 
@@ -155,10 +158,11 @@ append-only aplica y cuáles APIs, exportaciones y categorías se difieren.
 | Severidad | Alta |
 | Estado | open |
 
-No existe descomposición de PRs ni gates de CI específicos para migraciones, realm
-Keycloak, validación JWT, aislamiento multitenant, autorización negativa, auditoría
-durable y drift OpenAPI funcional. La implementación simultánea de todas las specs sería
-demasiado amplia para revisión y rollback seguros.
+El runbook ya define la secuencia de incrementos y los gates esperados para migraciones,
+realm Keycloak, validación JWT, aislamiento multitenant, autorización negativa,
+auditoría durable y drift OpenAPI funcional. El gap permanece abierto porque todavía no
+existen scripts y workflows reproducibles que ejecuten esa frontera y generen evidencia
+en CI.
 
 ## 6. Corrección de CI incluida en esta compuerta
 
@@ -184,13 +188,13 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 | Arquitectura y ADR aplicables están aceptados | Cumple | ADR 003–007 y 010–012 |
 | Baseline técnico falla cerrado | Cumple | guards y adaptadores de Sprint 1 |
 | Specs funcionales aplicables están aprobadas | No cumple | 28 de 28 documentos `needs-review` |
-| Alcance de 007/025 base es verificable | No cumple | No existe corte autoritativo |
+| Alcance de 007/025 base es verificable | Cumple | `sprint-2-tenants-identity-access.md` |
 | Bootstrap tenant-identidad está cerrado | No cumple | Responsabilidades circulares 001/002 |
 | Tenant activo tiene contrato único | No cumple | Rutas y autoridad no unificadas |
 | Keycloak es reproducible y testeable | No cumple | No existe realm/client config versionada |
 | Modelo Prisma inicial no tiene superposiciones | No cumple | 001/025 requieren decisión de propiedad |
-| Gates de Sprint 2 están definidos | No cumple | No existe runbook ni frontera automática |
-| No existen gaps críticos o altos abiertos | No cumple | 5 críticos y 3 altos abiertos |
+| Gates de Sprint 2 están automatizados | No cumple | Definidos en runbook; scripts y workflow pendientes |
+| No existen gaps críticos o altos abiertos | No cumple | 4 críticos y 3 altos abiertos |
 
 ## 8. Decisión vigente
 
@@ -198,7 +202,7 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 Decision: NO_GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
 Effective date: 2026-08-11
-Critical gaps open: 5
+Critical gaps open: 4
 High gaps open: 3
 Authorized plan: none
 Base commit: b7cbc84fd03aeb44714a32cd27d28b5405a9d30e
@@ -211,21 +215,21 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 
 ## 9. Orden recomendado para alcanzar GO
 
-1. Definir el runbook y la frontera exacta de Sprint 2, en especial las bases de 007 y
-   025.
-2. Cerrar el bootstrap inicial y el contrato único de tenant activo entre 001 y 002.
-3. Fijar el contrato reproducible de Keycloak y sus pruebas negativas.
-4. Unificar propiedad de configuración, modelos Prisma, audit base y secuencia de
+1. Cerrar el bootstrap inicial y el contrato único de tenant activo entre 001 y 002.
+2. Fijar el contrato reproducible de Keycloak y sus pruebas negativas.
+3. Unificar propiedad de configuración, modelos Prisma, audit base y secuencia de
    migraciones.
-5. Normalizar los 28 documentos aplicables a `accepted` sólo después de resolver sus
+4. Normalizar los 28 documentos aplicables a `accepted` sólo después de resolver sus
    decisiones abiertas y comprobar consistencia cruzada.
-6. Definir PRs pequeños, gates CI y frontera automática de Sprint 2.
-7. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión `GO` puede autorizar
+5. Implementar los gates CI y la comprobación automática de frontera definidos por el
+   runbook.
+6. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión `GO` puede autorizar
    funcionalidad.
 
 ## 10. Resultado
 
-El baseline técnico de Sprint 1 está sano y la observación de Node.js 20 en GitHub
-Actions queda corregida, pero Sprint 2 no está documentalmente listo para comenzar. El
-siguiente paso permitido es cerrar `GAP-S2-002` mediante un runbook de alcance que no
-apruebe implícitamente decisiones todavía abiertas.
+El baseline técnico de Sprint 1 está sano, la observación de Node.js 20 en GitHub
+Actions está corregida y `GAP-S2-002` queda cerrado con un runbook que no aprueba
+implícitamente decisiones abiertas. Sprint 2 todavía no está listo para comenzar: la
+decisión continúa siendo `NO_GO`, con cuatro gaps críticos y tres altos. El siguiente
+paso permitido recomendado es cerrar `GAP-S2-003`.

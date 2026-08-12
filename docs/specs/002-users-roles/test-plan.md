@@ -1744,6 +1744,16 @@ Las pruebas se enfocarán especialmente en:
 - auditoría de cambios de acceso;
 - bloqueo de escalamiento de privilegios;
 - no acceso cross-tenant.
+- bootstrap concurrente del primer PlatformAdmin;
+- idempotencia para el mismo subject y rechazo para uno diferente;
+- resolución Keycloak server-side sin subject en DTOs;
+- onboarding atómico de tenant, perfil, roles, membership y TenantAdmin;
+- rollback total ante fallos inyectados;
+- activación rechazada sin TenantAdmin activo o con invitación pendiente;
+- protección del último TenantAdmin activo.
 ```
 
 Ninguna implementación de este módulo debe aceptarse si permite que un usuario opere en otro tenant, que un usuario disabled ejecute operaciones, que una invitación sea reutilizada, que un TenantAdmin asigne roles globales o que los permisos efectivos mezclen tenants.
+
+Los escenarios de bootstrap se ejecutarán como gates conjuntos de Specs 001 y
+002 según `docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md`.

@@ -1,4 +1,4 @@
-# ADR-006 — Identity Provider Strategy: Keycloak as Target Identity Provider v0.1
+# ADR-006 — Identity Provider Strategy: Keycloak as Target Identity Provider v0.2
 
 ## Estado
 
@@ -57,6 +57,14 @@ Permitidos: sub, email, preferred_username, name, roles mínimos, iss, aud, exp,
 ```text
 UserProfile(id,keycloakSubjectId,email,displayName,status,timestamps)
 ```
+
+### 9.1. Bootstrap de identidades administrativas
+
+La identidad del primer PlatformAdmin y del TenantAdmin inicial debe existir,
+estar habilitada y tener email verificado en Keycloak antes de escribir en Core.
+Core recibe email, resuelve el subject canónico mediante un adaptador interno y
+rechaza cualquier subject impuesto desde un DTO público. Keycloak no participa
+en la transacción PostgreSQL y Core no crea ni almacena sus credenciales.
 
 ## 10. WordPress/n8n
 WordPress tenant page → Acceso Residentes → Keycloak Login → Core Dashboard. n8n usa client técnico/service account con permisos mínimos.

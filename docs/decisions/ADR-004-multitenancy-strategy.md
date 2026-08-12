@@ -1,4 +1,4 @@
-# ADR-004 — Multitenancy Strategy: Shared Schema with Tenant Isolation v0.2
+# ADR-004 — Multitenancy Strategy: Shared Schema with Tenant Isolation v0.3
 
 ## Estado
 
@@ -29,7 +29,12 @@ Shared schema reduce costo y complejidad. Realm único permite usuarios multi-te
 Validar token propio/Keycloak, identificar subject, mapear UserProfile, identificar tenant, validar membership, validar estado, cargar rol/permisos y ejecutar con tenant_id.
 
 ## 4. Membership y roles
-UserTenantMembership contiene userProfileId, tenantId, roleId, status, invitedBy, joinedAt y timestamps. Globales: SuperAdmin, PlatformOperator, PlatformSupport. Tenant: TenantAdmin, Treasurer, BoardMember, Resident, PropertyOwner, Guard, TenantAuditor.
+UserTenantMembership contiene userProfileId, tenantId, status, invitedBy, joinedAt y timestamps; sus roles se asignan mediante MembershipRole. Globales: SuperAdmin, PlatformAdmin, PlatformOperator, PlatformSupport, PlatformAuditor. Tenant: TenantAdmin, Treasurer, BoardMember, Resident, PropertyOwner, Guard, TenantAuditor.
+
+El bootstrap inicial crea el primer PlatformAdmin mediante un comando operativo
+one-shot y el onboarding de un tenant crea membership activa y TenantAdmin en la
+misma transacción PostgreSQL que el tenant. Una invitación pendiente no autoriza
+activar el tenant.
 
 ## 5. DB/API/cache/jobs/eventos/archivos
 Toda tabla operativa tiene tenant_id. Endpoints privados no aceptan tenantId libre en body. Cache usa `tenant:{tenantId}:...`. Jobs/eventos incluyen tenantId. Archivos se separan por tenant.

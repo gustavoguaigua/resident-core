@@ -1433,6 +1433,40 @@ application/ports/passwordless-invitation-mail.port.ts
 
 ---
 
+## TASK-058A — Implementar bootstrap del primer PlatformAdmin
+
+**Estado:** `[ ] Pending`
+
+### Criterios de aceptación
+
+* Se expone exclusivamente como comando operativo interno.
+* Implementa `pnpm bootstrap:platform-admin -- --email <email>`.
+* Resuelve por email una identidad Keycloak habilitada y verificada.
+* No acepta un subject impuesto por una API pública.
+* Usa transacción serializable y controla intentos concurrentes.
+* Crea permisos, roles globales, UserProfile y PlatformAdmin atómicamente.
+* Es idempotente para el mismo subject y rechaza uno diferente después del bootstrap.
+* Registra auditoría durable y sanitizada.
+* No introduce endpoint anónimo, token maestro ni bypass de guards.
+
+---
+
+## TASK-058B — Implementar acceso inicial transaccional del tenant
+
+**Estado:** `[ ] Pending`
+
+### Criterios de aceptación
+
+* Implementa el puerto de onboarding requerido por Spec 001.
+* Recibe identidad verificada y una unidad de trabajo abierta.
+* Crea o enlaza UserProfile sin conflictos email/subject.
+* Crea roles base, membership activa y TenantAdmin.
+* No confirma independientemente de la creación del tenant.
+* Revierte todo ante un fallo inyectado en cualquier paso.
+* No usa una invitación o evento para completar el acceso inicial.
+
+---
+
 # 14. Fase 8 — Casos de uso
 
 ## TASK-059 — Implementar `CreateUserProfileUseCase`
@@ -1526,7 +1560,7 @@ CreateTenantBaseRolesUseCase
 * Crean roles globales.
 * Crean roles por tenant.
 * Asignan permisos.
-* Implementan diferido de `001-tenants`.
+* Integran `001-tenants` sin placeholder ni persistencia parcial.
 
 ---
 
@@ -1729,7 +1763,7 @@ SwitchCurrentTenantUseCase
 * Valida tenant active.
 * Valida membership active.
 * No confía solo en header.
-* Reemplaza mock/placeholder de `001-tenants`.
+* Integra memberships reales con los guards de `001-tenants`.
 
 ---
 

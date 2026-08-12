@@ -95,7 +95,7 @@ Ejemplo:
 ```json id="x6n805"
 {
   "displayName": "Administrador Villa Club",
-  "keycloakSubjectId": "keycloak-subject-uuid"
+  "email": "tenant.admin@example.com"
 }
 ```
 
@@ -430,10 +430,12 @@ platform.users.create
   "displayName": "Tenant Admin Villa",
   "firstName": "Tenant",
   "lastName": "Admin",
-  "authProvider": "keycloak",
-  "keycloakSubjectId": "kc_subject_uuid"
+  "authProvider": "keycloak"
 }
 ```
+
+Para `authProvider = keycloak`, el backend resuelve el subject canónico desde
+el IdP. El request no puede imponer `keycloakSubjectId`.
 
 ### Response 201
 
@@ -1577,9 +1579,9 @@ POST /api/v1/invitations/{token}/accept
 
 ### Autenticación
 
-Puede requerir usuario autenticado si Keycloak ya está activo.
-
-Durante MVP, puede aceptar datos mínimos y vincular posteriormente con Keycloak.
+El token de invitación no sustituye autenticación. Cuando Keycloak está activo,
+el backend obtiene el subject desde el token OIDC validado; el body nunca lo
+impone. El flujo exacto de redirección y sesión se cierra en `GAP-S2-005`.
 
 ### Request body
 
@@ -1587,8 +1589,7 @@ Durante MVP, puede aceptar datos mínimos y vincular posteriormente con Keycloak
 {
   "displayName": "Nuevo Usuario",
   "firstName": "Nuevo",
-  "lastName": "Usuario",
-  "keycloakSubjectId": "kc_subject_uuid"
+  "lastName": "Usuario"
 }
 ```
 
@@ -2045,16 +2046,24 @@ No usar claims como fuente final de permisos tenant.
 
 ## 26. Compatibilidad con `001-tenants`
 
-Este contrato habilita que `001-tenants` deje de usar placeholder para roles base.
+Este contrato exige que `001-tenants` no use placeholder para roles base.
 
 Puntos de integración:
 
 ```text id="7o7zot"
-CreateTenantBaseRolesUseCase
+ProvisionInitialTenantAccessUseCase
 TenantBaseRolesPort
 TenantGuard con memberships reales
 validación de TenantAdmin inicial
 ```
+
+`POST /api/v1/platform/tenants` recibe únicamente `initialAdmin.email`. El
+backend resuelve la identidad Keycloak y Spec 002 crea/enlaza UserProfile, roles,
+membership activa y TenantAdmin dentro de la transacción abierta por Spec 001.
+
+El primer `PlatformAdmin` no tiene endpoint. Se crea mediante el comando
+operativo one-shot definido en
+`docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md`.
 
 ---
 

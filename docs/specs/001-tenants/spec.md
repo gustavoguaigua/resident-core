@@ -43,7 +43,7 @@ Permitir que un usuario autorizado de plataforma pueda:
 * Definir estado operativo.
 * Vincularlo con el portal WordPress.
 * Crear roles base iniciales.
-* Invitar o asignar un administrador inicial del tenant.
+* Asignar transaccionalmente un administrador inicial del tenant.
 * Consultar tenants existentes.
 * Suspender o reactivar tenants.
 * Actualizar datos administrativos.
@@ -74,7 +74,7 @@ Esta spec incluye:
 * Datos de contacto.
 * Branding básico.
 * Creación de roles base.
-* Invitación de administrador inicial.
+* Asignación transaccional de administrador inicial.
 * Auditoría.
 * Validaciones multitenant.
 * Endpoints REST.
@@ -204,7 +204,8 @@ Relación entre un tenant de RESIDENT Core y el CPT `conjunto` en WordPress.
 5. La autenticación podrá ser temporalmente propia en MVP, pero la arquitectura objetivo será Keycloak.
 6. La autorización de negocio será responsabilidad de RESIDENT Core.
 7. El tenant inicial podrá crearse sin usuarios residentes.
-8. Los roles base se crearán al momento del onboarding del tenant.
+8. Los roles base se crearán dentro de la misma transacción de onboarding, bajo
+   propiedad de `002-users-roles`.
 9. El tenant puede estar en estado `pendingSetup` antes de operar.
 10. Un tenant suspendido no podrá ejecutar operaciones transaccionales normales.
 11. La moneda inicial será `USD`.
@@ -257,7 +258,7 @@ Todo tenant nuevo debe crearse inicialmente en estado:
 pendingSetup
 ```
 
-Salvo que un PlatformAdmin especifique activación directa y se cumplan datos mínimos.
+No se permite activación directa en la operación de creación.
 
 ---
 
@@ -349,7 +350,9 @@ Los endpoints públicos del tenant no deben exponer:
 
 ### BR-011 — Roles base
 
-Al crear o activar un tenant deben existir roles base.
+Al crear un tenant deben persistirse sus roles base en la misma transacción. La
+definición y escritura de roles y permisos pertenece a `002-users-roles`; Spec
+001 orquesta la unidad de trabajo y no mantiene un placeholder.
 
 Roles sugeridos:
 
@@ -371,7 +374,9 @@ La matriz definitiva se desarrollará en `002-users-roles`.
 
 ### BR-012 — Administrador inicial
 
-Un tenant debe tener al menos un `TenantAdmin` antes de operar plenamente.
+Un tenant debe tener al menos una membresía activa con una asignación activa de
+rol `TenantAdmin` antes de activarse. Una invitación pendiente no cumple esta
+regla.
 
 ---
 
@@ -390,7 +395,7 @@ Eventos mínimos:
 * configuración cambiada;
 * branding cambiado;
 * WordPress mapping actualizado;
-* administrador inicial invitado;
+* administrador inicial asignado;
 * roles base creados.
 
 ---
@@ -481,22 +486,25 @@ PlatformAdmin.
 * Usuario con permiso `platform.tenants.create`.
 * Slug disponible.
 * Datos mínimos válidos.
+* `initialAdmin.email` válido.
+* Identidad inicial resuelta de forma unívoca, habilitada y verificada en Keycloak.
 
 ### Flujo principal
 
 ```text id="m8ntr9"
 1. PlatformAdmin envía solicitud de creación.
 2. Sistema valida permisos globales.
-3. Sistema valida nombre.
-4. Sistema genera o valida slug.
-5. Sistema verifica unicidad de slug.
-6. Sistema crea tenant en estado pendingSetup.
-7. Sistema crea configuración inicial.
-8. Sistema crea perfil público inicial.
-9. Sistema crea roles base.
-10. Sistema registra auditoría.
-11. Sistema emite evento TenantCreated.
-12. Sistema devuelve tenant creado.
+3. Sistema valida nombre, slug y datos mínimos.
+4. Sistema resuelve `initialAdmin.email` en Keycloak y obtiene el subject canónico.
+5. Sistema abre una única transacción PostgreSQL.
+6. Sistema crea el tenant en estado pendingSetup y sus entidades iniciales autorizadas.
+7. Sistema crea o enlaza el UserProfile de la identidad verificada.
+8. Sistema crea roles base y permisos del tenant mediante `002-users-roles`.
+9. Sistema crea membership activa y asigna el rol TenantAdmin.
+10. Sistema registra auditoría durable de todos los cambios.
+11. Sistema confirma la transacción.
+12. Sistema emite notificaciones posteriores al commit.
+13. Sistema devuelve tenant creado.
 ```
 
 ### Resultado
@@ -542,7 +550,7 @@ PlatformAdmin.
 * Tenant existe.
 * Tenant no está archivado.
 * Datos mínimos completos.
-* Existe al menos un TenantAdmin o invitación pendiente.
+* Existe al menos una membership activa con rol TenantAdmin activo.
 * Roles base existen.
 
 ### Flujo
@@ -833,9 +841,11 @@ El sistema debe crear roles base al onboarding del tenant.
 
 ---
 
-### FR-014 — Invitar administrador inicial
+### FR-014 — Asignar administrador inicial
 
-El sistema debe permitir invitar un TenantAdmin inicial.
+El sistema debe resolver una identidad Keycloak verificada y crear o enlazar su
+UserProfile, membership activa y rol TenantAdmin dentro de la transacción de
+onboarding. Las invitaciones se reservan para accesos posteriores.
 
 ---
 
@@ -1567,7 +1577,8 @@ o una URL configurada.
 
 ## 29. Integración con Keycloak
 
-Esta spec no crea usuarios en Keycloak directamente, salvo que el flujo de onboarding futuro lo requiera.
+Esta spec no crea usuarios en Keycloak. La identidad del administrador inicial
+debe existir, estar habilitada y tener email verificado antes del onboarding.
 
 Regla:
 
@@ -1576,7 +1587,10 @@ Keycloak gestiona identidad.
 RESIDENT Core gestiona tenants y membresías.
 ```
 
-Cuando se invite el administrador inicial, el flujo de identidad se coordinará con `002-users-roles`.
+El backend resuelve `initialAdmin.email` en Keycloak y obtiene el `sub`; el body
+no puede imponer `keycloakSubjectId`. La creación o enlace de `UserProfile`, los
+roles, la membership y `TenantAdmin` pertenecen a `002-users-roles` y participan
+en la misma transacción PostgreSQL que crea el tenant.
 
 ---
 
@@ -1776,8 +1790,8 @@ docs/specs/001-tenants/
 
 ## 36. Preguntas abiertas
 
-1. ¿El PlatformAdmin podrá crear tenants desde interfaz o solo desde comando/admin API en MVP?
-2. ¿El tenant se activa automáticamente después de crear TenantAdmin?
+1. Resuelta: el MVP crea tenants mediante la API autenticada de plataforma.
+2. Resuelta: el tenant permanece `pendingSetup`; la activación es posterior y explícita.
 3. ¿Qué campos públicos exactos deben sincronizarse desde WordPress hacia Core o desde Core hacia WordPress?
 4. ¿El branding se almacena inicialmente en Core o se sigue editando solo en WordPress?
 5. ¿Se permitirá dominio personalizado por tenant en fase posterior?
@@ -1797,8 +1811,8 @@ Para el MVP de `001-tenants` se recomienda:
 - Crear tenants desde API de plataforma.
 - Usar estado pendingSetup al crear.
 - Crear configuración inicial por defecto.
-- Crear roles base.
-- Permitir activar solo si existe TenantAdmin.
+- Crear roles base, membership y TenantAdmin en una única transacción de onboarding.
+- Permitir activar solo si existe un TenantAdmin activo; una invitación no basta.
 - Mantener WordPress como consumidor de datos públicos.
 - Usar slug como vínculo principal con WordPress.
 - No implementar planes SaaS todavía.

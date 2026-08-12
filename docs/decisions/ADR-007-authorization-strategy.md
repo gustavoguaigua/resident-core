@@ -8,7 +8,7 @@
 | Documento       | ADR-007                                                                                                                                                                |
 | Título          | Authorization Strategy: Tenant-Aware RBAC with Resource-Level Business Authorization                                                                                   |
 | Ruta            | `docs/decisions/ADR-007-authorization-strategy.md`                                                                                                                     |
-| Versión         | 0.1                                                                                                                                                                    |
+| Versión         | 0.2                                                                                                                                                                    |
 | Estado          | accepted                                                                                                                                                               |
 | Fecha           | 2026-07-12                                                                                                                                                             |
 | Relacionado con | `ADR-004-multitenancy-strategy.md`, `ADR-005-authentication-strategy.md`, `ADR-006-identity-provider-strategy.md`, `security.md`, `api-guidelines.md`, `domain-map.md` |
@@ -243,6 +243,7 @@ Roles globales sugeridos:
 
 ```text id="x1ef4p"
 SuperAdmin
+PlatformAdmin
 PlatformOperator
 PlatformSupport
 PlatformAuditor
@@ -256,17 +257,26 @@ Debe tener MFA obligatorio en fase Keycloak.
 
 Debe usarse con alta restricción.
 
-### 8.2. PlatformOperator
+No se utiliza como identidad ordinaria de bootstrap ni como atajo técnico.
+
+### 8.2. PlatformAdmin
+
+Administra tenants, usuarios y accesos globales únicamente mediante permisos
+explícitos de plataforma. El primer PlatformAdmin se crea por un comando
+operativo one-shot, con identidad Keycloak preexistente y una transacción Core
+auditable. No existe un rol implícito ni endpoint anónimo de bootstrap.
+
+### 8.3. PlatformOperator
 
 Puede operar configuraciones de plataforma, planes, features y tenants, según permisos.
 
-### 8.3. PlatformSupport
+### 8.4. PlatformSupport
 
 Puede brindar soporte limitado.
 
 No debe tener acceso financiero completo salvo autorización especial.
 
-### 8.4. PlatformAuditor
+### 8.5. PlatformAuditor
 
 Puede consultar auditoría global o reportes de plataforma, según política.
 

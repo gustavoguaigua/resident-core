@@ -476,7 +476,7 @@ Casos:
 | APP-ACT-002 | Activar active                   | conflicto                       |
 | APP-ACT-003 | Activar archived                 | error                           |
 | APP-ACT-004 | Activar sin configuración mínima | error                           |
-| APP-ACT-005 | Activar sin roles base           | error o placeholder documentado |
+| APP-ACT-005 | Activar sin roles base           | error                           |
 | APP-ACT-006 | Registra auditoría               | `tenant.activated`              |
 | APP-ACT-007 | Emite evento                     | `TenantActivated`               |
 
@@ -611,8 +611,9 @@ Casos:
 | INT-TX-001 | Crear tenant completo exitoso                      | todo persiste           |
 | INT-TX-002 | Falla creación de profile                          | rollback total          |
 | INT-TX-003 | Falla creación de configuration                    | rollback total          |
-| INT-TX-004 | Falla roles base placeholder                       | comportamiento definido |
-| INT-TX-005 | Falla auditoría no debe dejar estado inconsistente | según política definida |
+| INT-TX-004 | Falla creación de roles base                       | rollback total          |
+| INT-TX-005 | Falla creación de membership o TenantAdmin         | rollback total          |
+| INT-TX-006 | Falla auditoría durable                            | rollback total          |
 
 ---
 
@@ -1143,7 +1144,7 @@ accessUrl
 | ID      | Operación                    | Evento esperado                   |
 | ------- | ---------------------------- | --------------------------------- |
 | AUD-001 | Crear tenant                 | `tenant.created`                  |
-| AUD-002 | Crear roles base placeholder | `tenant.baseRoles.created`        |
+| AUD-002 | Crear acceso inicial completo | `tenant.baseRoles.created`        |
 | AUD-003 | Actualizar tenant            | `tenant.updated`                  |
 | AUD-004 | Activar tenant               | `tenant.activated`                |
 | AUD-005 | Suspender tenant             | `tenant.suspended`                |
@@ -1536,7 +1537,7 @@ No se permite merge si falla:
 | FR-011 Reactivar tenant                  | APP-REACT, API-REACT                  |
 | FR-012 Archivar tenant                   | APP-ARCH, API-ARCH                    |
 | FR-013 Crear roles base                  | APP-CREATE, EVT, AUD                  |
-| FR-014 Invitar administrador inicial     | Diferido a 002-users-roles            |
+| FR-014 Asignar administrador inicial     | APP-CREATE, INT-TX, AUTH, AUD         |
 | FR-015 Registrar auditoría               | AUD                                   |
 | FR-016 Emitir eventos                    | EVT                                   |
 | FR-017 Exponer perfil público            | APP-PUBLIC, API-PUBLIC, CONTRACT-WP   |
@@ -1587,8 +1588,9 @@ Pendientes aceptados para esta spec:
 
 ```text id="n4yahq"
 - Pruebas reales de Keycloak se difieren hasta integración de identidad.
-- Invitación real de TenantAdmin se difiere a 002-users-roles.
-- Persistencia real de roles base se difiere a 002-users-roles.
+- Invitaciones ordinarias posteriores pertenecen a 002-users-roles.
+- Identidad, roles, membership y TenantAdmin inicial se prueban conjuntamente
+  con 002-users-roles; no existe placeholder aceptable.
 - Pruebas de frontend se difieren hasta existir frontend Core.
 - Pruebas de sincronización WordPress avanzada se difieren a spec de integración.
 ```
@@ -1607,6 +1609,9 @@ Las pruebas se enfocarán especialmente en:
 - slug único;
 - estado del tenant;
 - creación transaccional;
+- resolución server-side de la identidad inicial;
+- rollback total de tenant, identidad, roles y membership ante cada fallo;
+- rechazo de activación sin TenantAdmin activo o con mera invitación pendiente;
 - endpoint público seguro;
 - autorización global;
 - autorización tenant-scoped;
@@ -1618,3 +1623,7 @@ Las pruebas se enfocarán especialmente en:
 ```
 
 Ninguna implementación de este módulo deberá ser aceptada si permite acceso cross-tenant, expone datos internos por endpoint público, omite auditoría en operaciones críticas o rompe el contrato público con WordPress.
+
+Los gates `GAP-S2-003` deben cubrir además concurrencia, conflicto
+email/subject, Keycloak indisponible y protección del último `TenantAdmin`, según
+`docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md`.

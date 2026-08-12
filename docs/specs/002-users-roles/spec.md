@@ -400,6 +400,8 @@ Depende de:
 11. n8n usará service accounts futuras.
 12. La autorización final siempre se valida en RESIDENT Core.
 13. Los residentes como personas/unidades se modelarán en `003-residents-properties`.
+14. La primera identidad de plataforma existe y está verificada en Keycloak antes
+    de crear su perfil local.
 
 ---
 
@@ -509,6 +511,9 @@ users.assignTenantAdmin
 o aprobación de PlatformAdmin, según política.
 
 Para MVP, se permite que PlatformAdmin asigne el primer TenantAdmin.
+
+La asignación ocurre dentro de la misma transacción que crea el tenant; no se
+materializa mediante una invitación ni un evento posterior.
 
 ---
 
@@ -659,6 +664,30 @@ cancelled
 
 ## 11. Flujos funcionales
 
+## 11.0. Bootstrap del primer PlatformAdmin
+
+### Actor
+
+Operador del entorno de despliegue mediante comando interno, no HTTP.
+
+### Flujo
+
+```text id="bootstrap-platform-admin-flow"
+1. Operador proporciona email normalizado de una identidad Keycloak existente.
+2. Sistema verifica identidad habilitada, email verificado y resolución unívoca.
+3. Sistema abre una transacción serializable y bloquea el bootstrap concurrente.
+4. Sistema confirma que no existe PlatformAdmin global activo.
+5. Sistema crea idempotentemente permisos y roles globales base.
+6. Sistema crea o enlaza UserProfile por email y subject.
+7. Sistema asigna el rol global PlatformAdmin.
+8. Sistema registra auditoría durable y confirma la transacción.
+```
+
+No existe endpoint anónimo ni bypass permanente. Los PlatformAdmin posteriores
+requieren un actor ordinario autenticado y autorizado.
+
+---
+
 ## 11.1. Crear perfil de usuario local
 
 ### Actor
@@ -691,16 +720,18 @@ Sistema, como parte del onboarding del tenant.
 ### Flujo
 
 ```text id="08f52h"
-1. TenantCreated ocurre.
-2. Sistema crea roles base para el tenant.
+1. El onboarding de Spec 001 abre una unidad de trabajo PostgreSQL.
+2. Spec 002 crea roles base para el nuevo tenant.
 3. Sistema asigna permisos base a cada rol.
-4. Sistema registra auditoría.
-5. Sistema emite TenantBaseRolesCreated.
+4. Sistema crea o enlaza el UserProfile de la identidad Keycloak verificada.
+5. Sistema crea membership activa y asignación TenantAdmin.
+6. Sistema registra auditoría en la misma unidad de trabajo.
+7. Spec 001 confirma toda la operación y luego publica notificaciones.
 ```
 
 ### Resultado
 
-Tenant queda preparado para recibir usuarios.
+Tenant queda en `pendingSetup`, con acceso inicial persistido y sin estado parcial.
 
 ---
 
@@ -1961,6 +1992,10 @@ Para el MVP de `002-users-roles`, se recomienda:
 - No implementar MFA aquí.
 - No guardar contraseñas si Keycloak ya está activo.
 - Mantener autorización en Core.
+- Crear el primer PlatformAdmin solo mediante comando operativo one-shot.
+- Resolver identities iniciales en Keycloak antes de cualquier escritura Core.
+- Crear el acceso inicial del tenant en la misma transacción que el tenant.
+- No aceptar invitación pendiente como TenantAdmin para activar un tenant.
 ```
 
 ---

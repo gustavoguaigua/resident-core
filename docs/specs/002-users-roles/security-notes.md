@@ -1884,3 +1884,21 @@ pruebas de seguridad
 ```
 
 La implementación no será aceptada si permite acceso cross-tenant, escalamiento de privilegios, uso de invitaciones reutilizadas, operación con usuario disabled, mezcla de roles globales y tenant, o autorización basada únicamente en Keycloak.
+
+---
+
+## 34. Controles de bootstrap
+
+- El primer PlatformAdmin se crea solo por comando operativo one-shot.
+- No existe endpoint anónimo, token maestro, rol implícito ni bypass permanente.
+- Email es la entrada; Core resuelve y verifica el subject en Keycloak.
+- El comando falla cerrado si Keycloak no está disponible o la identidad no es
+  unívoca, habilitada y verificada.
+- Roles globales, UserProfile y asignación PlatformAdmin comparten una transacción
+  serializable y auditoría durable.
+- El acceso inicial del tenant comparte la transacción de Spec 001 y nunca se
+  completa por evento o invitación.
+- La última asignación TenantAdmin activa de un tenant activo está protegida.
+- Subjects, tokens y credenciales no se registran en claro en logs o auditoría.
+
+Contrato: `docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md`.

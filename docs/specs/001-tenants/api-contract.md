@@ -540,6 +540,9 @@ platform.tenants.create
   "slug": "villa-club",
   "timezone": "America/Guayaquil",
   "currency": "USD",
+  "initialAdmin": {
+    "email": "tenant.admin@example.com"
+  },
   "profile": {
     "displayName": "Villa Club",
     "slogan": "Comunidad residencial inteligente",
@@ -573,7 +576,12 @@ platform.tenants.create
 
 ```text id="7c7uxr"
 name
+initialAdmin.email
 ```
+
+`initialAdmin.email` se normaliza y se resuelve contra Keycloak. El contrato no
+acepta `keycloakSubjectId`, roles, membership, estado `active` ni actor desde el
+body.
 
 Campos con default:
 
@@ -597,6 +605,12 @@ Si `slug` no se envía, el sistema podrá generarlo desde `name`.
     "status": "pendingSetup",
     "timezone": "America/Guayaquil",
     "currency": "USD",
+    "initialAdmin": {
+      "userProfileId": "user_profile_uuid",
+      "email": "tenant.admin@example.com",
+      "membershipStatus": "active",
+      "role": "TenantAdmin"
+    },
     "profile": {
       "displayName": "Villa Club",
       "slogan": "Comunidad residencial inteligente",
@@ -645,6 +659,10 @@ Si `slug` no se envía, el sistema podrá generarlo desde `name`.
 | `TENANT_INVALID_CURRENCY`    |  422 | Moneda inválida   |
 | `TENANT_INVALID_COLOR`       |  422 | Color inválido    |
 | `TENANT_INVALID_URL`         |  422 | URL inválida      |
+| `IDENTITY_NOT_PROVISIONED`   |  409 | Email no existe en Keycloak |
+| `IDENTITY_LINK_CONFLICT`     |  409 | Email y subject no corresponden al mismo perfil |
+| `IDENTITY_NOT_ELIGIBLE`      |  409 | Identidad deshabilitada o email no verificado |
+| `IDENTITY_PROVIDER_UNAVAILABLE` | 503 | No se pudo verificar la identidad |
 
 ### Auditoría
 
@@ -653,6 +671,7 @@ Debe registrar:
 ```text id="xnxj7f"
 tenant.created
 tenant.baseRoles.created
+tenant.initialAdmin.assigned
 ```
 
 ### Eventos
@@ -662,7 +681,12 @@ Debe emitir:
 ```text id="i2m43f"
 TenantCreated
 TenantBaseRolesCreated
+TenantInitialAdminAssigned
 ```
+
+Los eventos se publican después del commit y no completan pasos obligatorios.
+La respuesta `201` garantiza que tenant, perfil, roles, membership,
+`TenantAdmin` y auditoría quedaron confirmados juntos.
 
 ---
 
@@ -893,7 +917,7 @@ Para activar, el tenant debe:
 * no estar archivado;
 * tener configuración mínima;
 * tener roles base;
-* tener TenantAdmin o invitación inicial cuando `002-users-roles` esté implementado.
+* tener al menos una membership activa con rol TenantAdmin activo.
 
 ### Errores
 

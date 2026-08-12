@@ -1,9 +1,17 @@
 import { describe, expect, it } from "vitest";
 
-import { AUTH_RUNTIME_STATUS } from "../src/index.js";
+import {
+  AUTH_RUNTIME_STATUS,
+  IDENTITY_RESOLVER_PORT,
+  PERMISSION_EVALUATOR_PORT,
+  TENANT_CONTEXT_RESOLVER_PORT,
+} from "../src/index.js";
 
-describe("auth scaffold", () => {
-  it("keeps authentication and authorization runtime deferred", () => {
-    expect(AUTH_RUNTIME_STATUS).toBe("deferred-to-sprint-1");
+describe("auth contracts", () => {
+  it("exposes only fail-closed Sprint 1 port contracts", () => {
+    expect(AUTH_RUNTIME_STATUS).toBe("fail-closed-skeletons");
+    expect(IDENTITY_RESOLVER_PORT).toBeTypeOf("symbol");
+    expect(TENANT_CONTEXT_RESOLVER_PORT).toBeTypeOf("symbol");
+    expect(PERMISSION_EVALUATOR_PORT).toBeTypeOf("symbol");
   });
 });

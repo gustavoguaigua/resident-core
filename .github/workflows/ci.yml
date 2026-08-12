@@ -83,6 +83,9 @@ jobs:
       - name: Validate Prisma schema
         run: pnpm prisma:validate
 
+      - name: Verify Sprint 1 scope boundary
+        run: pnpm sprint1:boundary
+
       - name: Validate Docker Compose
         run: docker compose config --quiet
 

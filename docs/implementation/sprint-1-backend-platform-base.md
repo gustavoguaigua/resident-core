@@ -9,7 +9,7 @@
 | Sprint | Sprint 1 |
 | Documento | Backend Platform Base Implementation Runbook |
 | Ruta | `docs/implementation/sprint-1-backend-platform-base.md` |
-| Estado | `accepted` — autorizado por `READINESS-SPRINT-1-2026-08-11` |
+| Estado | `validated` — CI remota exitosa; cierre formal pendiente del merge del PR 4 (#7) |
 | Fecha | 2026-08-11 |
 | Commit base evaluado | `09310d5` |
 | Naturaleza | Plataforma backend runtime, sin lógica de negocio |
@@ -236,56 +236,56 @@ y `audit` de la arquitectura:
 ### 5.1. PR 1 — Configuración y bootstrap seguro
 
 ```text id="sprint1-pr1"
-[ ] Añadir las dependencias exactas de configuración, validación y seguridad.
-[ ] Ampliar packages/config con schema y parser puro de entorno.
-[ ] Unificar API_PORT y los valores de NODE_ENV/APP_ENV.
-[ ] Crear ConfigModule global.
-[ ] Configurar prefijo /api/v1 y ValidationPipe global.
-[ ] Implementar traceId y ExceptionFilter seguro.
-[ ] Implementar logger sanitizado y pruebas de redacción.
-[ ] Configurar CORS, Helmet y rate limiting base.
-[ ] Añadir pruebas unitarias y API negativas correspondientes.
-[ ] Activar en CI los gates que estos artefactos requieran.
+[x] Añadir las dependencias exactas de configuración, validación y seguridad.
+[x] Ampliar packages/config con schema y parser puro de entorno.
+[x] Unificar API_PORT y los valores de NODE_ENV/APP_ENV.
+[x] Crear ConfigModule global.
+[x] Configurar prefijo /api/v1 y ValidationPipe global.
+[x] Implementar traceId y ExceptionFilter seguro.
+[x] Implementar logger sanitizado y pruebas de redacción.
+[x] Configurar CORS, Helmet y rate limiting base.
+[x] Añadir pruebas unitarias y API negativas correspondientes.
+[x] Activar en CI los gates que estos artefactos requieran.
 ```
 
 ### 5.2. PR 2 — Prisma y Health
 
 ```text id="sprint1-pr2"
-[ ] Corregir dependencias y scripts de Prisma.
-[ ] Implementar PrismaService sin modelos de dominio.
-[ ] Implementar liveness pública sin dependencias.
-[ ] Implementar readiness detallada con PostgreSQL como dependencia requerida.
-[ ] Implementar protección local/no local fail-closed.
-[ ] Alinear Compose con API_PORT, APP_ENV y DATABASE_URL.
-[ ] Hacer que resident-api dependa del health de PostgreSQL.
-[ ] Cambiar el healthcheck del contenedor a /api/v1/health.
-[ ] Incluir Prisma y OpenSSL en el build de la imagen.
-[ ] Añadir pruebas unitarias, de integración y de contrato health.
+[x] Corregir dependencias y scripts de Prisma.
+[x] Implementar PrismaService sin modelos de dominio.
+[x] Implementar liveness pública sin dependencias.
+[x] Implementar readiness detallada con PostgreSQL como dependencia requerida.
+[x] Implementar protección local/no local fail-closed.
+[x] Alinear Compose con API_PORT, APP_ENV y DATABASE_URL.
+[x] Hacer que resident-api dependa del health de PostgreSQL.
+[x] Cambiar el healthcheck del contenedor a /api/v1/health.
+[x] Incluir Prisma y OpenSSL en el build de la imagen.
+[x] Añadir pruebas unitarias, de integración y de contrato health.
 ```
 
 ### 5.3. PR 3 — OpenAPI runtime y contrato
 
 ```text id="sprint1-pr3"
-[ ] Configurar Swagger/OpenAPI runtime.
-[ ] Documentar health y sus extensiones de excepción al envelope.
-[ ] Restringir docs y docs-json por APP_ENV.
-[ ] Generar resident-core.v1.json de forma determinista.
-[ ] Implementar openapi:generate, openapi:validate y openapi:check.
-[ ] Sustituir el placeholder como objetivo del lint de Redocly.
-[ ] Añadir pruebas de contrato y drift.
-[ ] Activar el gate OpenAPI runtime en CI.
+[x] Configurar Swagger/OpenAPI runtime.
+[x] Documentar health y sus extensiones de excepción al envelope.
+[x] Restringir docs y docs-json por APP_ENV.
+[x] Generar resident-core.v1.json de forma determinista.
+[x] Implementar openapi:generate, openapi:validate y openapi:check.
+[x] Sustituir el placeholder como objetivo del lint de Redocly.
+[x] Añadir pruebas de contrato y drift.
+[x] Activar el gate OpenAPI runtime en CI.
 ```
 
 ### 5.4. PR 4 — Esqueletos y consolidación
 
 ```text id="sprint1-pr4"
-[ ] Crear puertos y guards técnicos fail-closed.
-[ ] Crear puerto/interceptor técnico de auditoría sin persistencia.
-[ ] Probar que ningún esqueleto concede acceso por defecto.
-[ ] Confirmar ausencia de modelos, migraciones, seeds y endpoints de dominio.
-[ ] Ejecutar todos los gates de Sprint 1.
-[ ] Revisar Docker Compose completo y la imagen resident-api.
-[ ] Registrar cierre y actualizar el estado documental.
+[x] Crear puertos y guards técnicos fail-closed.
+[x] Crear puerto/interceptor técnico de auditoría sin persistencia.
+[x] Probar que ningún esqueleto concede acceso por defecto.
+[x] Confirmar ausencia de modelos, migraciones, seeds y endpoints de dominio.
+[x] Ejecutar todos los gates de Sprint 1 localmente.
+[x] Revisar Docker Compose completo y la imagen resident-api.
+[x] Registrar el candidato de cierre y actualizar el estado documental.
 ```
 
 Cada PR debe incluir las pruebas y gates de su propio cambio. No se pospone la cobertura
@@ -358,20 +358,20 @@ La ejecución no debe usar datos reales ni secretos reales.
 ## 8. Definition of Done
 
 ```text id="sprint1-dod"
-[ ] Todos los elementos del alcance autorizado están implementados.
-[ ] La configuración falla temprano y sin filtrar valores sensibles.
-[ ] /api/v1/health cumple exactamente ADR-010 y no consulta dependencias.
-[ ] /api/v1/health/details cumple acceso y semántica 200/503.
-[ ] El error envelope y traceId cumplen api-guidelines.
-[ ] Los logs superan las pruebas de redacción.
-[ ] Prisma conecta con PostgreSQL sin modelos, migraciones ni seeds.
-[ ] El contrato OpenAPI runtime es determinista, válido y sin drift.
-[ ] Los esqueletos de auth, tenant y permisos fallan cerrados.
-[ ] Auditoría no afirma persistencia inexistente.
-[ ] Compose e imagen resident-api funcionan con la base runtime.
-[ ] Todos los gates obligatorios pasan en CI.
-[ ] No existe lógica de negocio ni implementación adelantada de Sprint 2.
-[ ] El diff fue revisado y el cierre documental fue registrado.
+[x] Todos los elementos del alcance autorizado están implementados.
+[x] La configuración falla temprano y sin filtrar valores sensibles.
+[x] /api/v1/health cumple exactamente ADR-010 y no consulta dependencias.
+[x] /api/v1/health/details cumple acceso y semántica 200/503.
+[x] El error envelope y traceId cumplen api-guidelines.
+[x] Los logs superan las pruebas de redacción.
+[x] Prisma conecta con PostgreSQL sin modelos, migraciones ni seeds.
+[x] El contrato OpenAPI runtime es determinista, válido y sin drift.
+[x] Los esqueletos de auth, tenant y permisos fallan cerrados.
+[x] Auditoría no afirma persistencia inexistente.
+[x] Compose e imagen resident-api funcionan con la base runtime.
+[x] Todos los gates obligatorios pasan en CI.
+[x] No existe lógica de negocio ni implementación adelantada de Sprint 2.
+[x] El diff fue revisado y el candidato de cierre documental fue registrado.
 ```
 
 ---

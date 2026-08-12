@@ -205,7 +205,7 @@ apps/api/src/modules/users-roles/
 │   │   ├── revoke-membership.use-case.ts
 │   │   ├── get-current-user.use-case.ts
 │   │   ├── get-current-user-tenants.use-case.ts
-│   │   ├── switch-current-tenant.use-case.ts
+│   │   ├── resolve-tenant-context.use-case.ts
 │   │   └── get-effective-permissions.use-case.ts
 │   │
 │   ├── services/
@@ -327,7 +327,6 @@ apps/api/src/modules/users-roles/
 │   ├── accept-invitation.dto.ts
 │   ├── assign-role.dto.ts
 │   ├── revoke-membership.dto.ts
-│   ├── switch-tenant.dto.ts
 │   ├── user-profile-response.dto.ts
 │   ├── tenant-user-response.dto.ts
 │   ├── membership-response.dto.ts
@@ -1255,14 +1254,16 @@ Responsabilidad:
 
 ---
 
-## 11.14. SwitchCurrentTenantUseCase
+## 11.14. ResolveTenantContextUseCase
 
 Responsabilidad:
 
-* validar que usuario pertenece al tenant solicitado;
-* validar tenant activo;
-* actualizar tenant activo en sesión o emitir respuesta de contexto;
-* no confiar solo en header.
+* exigir un único `X-Tenant-Id` UUID en endpoints tenant-scoped;
+* tratar el header como selector no confiable;
+* validar `UserProfile`, tenant y membership activos;
+* resolver roles y permisos para ese tenant;
+* construir un `TenantContext` inmutable y request-scoped;
+* no persistir selección ni emitir un segundo token.
 
 ---
 
@@ -1281,7 +1282,7 @@ Entrada:
 
 ```text id="ivsvai"
 userProfileId
-tenantId opcional
+tenantId resuelto y obligatorio para scope tenant
 ```
 
 Salida:
@@ -1553,7 +1554,6 @@ Endpoints:
 GET  /
 GET  /tenants
 GET  /permissions
-POST /switch-tenant
 ```
 
 Responsabilidad:
@@ -1561,7 +1561,8 @@ Responsabilidad:
 * devolver contexto del usuario autenticado;
 * tenants disponibles;
 * permisos efectivos;
-* tenant activo.
+* exigir y resolver `X-Tenant-Id` solamente en `/permissions`;
+* no mantener un tenant activo server-side.
 
 ---
 
@@ -1694,17 +1695,7 @@ reason
 
 ---
 
-## 15.8. SwitchTenantDto
-
-Campos:
-
-```text id="8e214r"
-tenantId
-```
-
----
-
-## 15.9. EffectivePermissionsResponseDto
+## 15.8. EffectivePermissionsResponseDto
 
 Campos:
 

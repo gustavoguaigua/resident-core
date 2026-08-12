@@ -228,7 +228,6 @@ Ruta:
 /api/v1/me
 /api/v1/me/tenants
 /api/v1/me/permissions
-/api/v1/me/switch-tenant
 ```
 
 Riesgos:
@@ -841,16 +840,20 @@ Controles:
 
 ---
 
-## 8.18. `POST /api/v1/me/switch-tenant`
+## 8.18. Resolución del contexto de tenant
 
 Controles:
 
 * autenticación;
-* tenant solicitado existe;
-* tenant activo;
+* un único `X-Tenant-Id` UUID en endpoints tenant-scoped;
+* header tratado únicamente como selector no confiable;
+* tenant solicitado existe y está activo;
 * membership activa;
-* no confiar solo en header;
-* no permitir tenant revoked/suspended/archived.
+* roles y permisos del mismo tenant;
+* contexto inmutable durante el request;
+* sin persistencia en sesión, cookie, Redis o base de datos;
+* sin endpoint de cambio ni tenant token;
+* denegación indistinguible para tenant inexistente, inactivo o sin membership.
 
 ---
 
@@ -995,6 +998,10 @@ Para operación ordinaria:
 ```text id="m0b46g"
 Tenant.status = active
 ```
+
+El tenant se selecciona para cada solicitud mediante `X-Tenant-Id`; Core no confía en
+el header y solo crea contexto después de validar identidad, tenant y membership. La
+selección no se persiste y `tenantId` en query/body no puede reemplazarla.
 
 ### 11.3. Role del mismo tenant
 
@@ -1472,7 +1479,6 @@ Aplicar rate limiting recomendado en:
 POST /api/v1/tenant/invitations
 GET /api/v1/invitations/{token}
 POST /api/v1/invitations/{token}/accept
-POST /api/v1/me/switch-tenant
 ```
 
 Objetivos:

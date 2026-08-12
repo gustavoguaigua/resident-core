@@ -303,7 +303,9 @@ TenantAdmin de Villa Club intenta modificar branding de Altos del Norte.
 
 * `TenantGuard`;
 * `TenantPermissionGuard`;
-* validación de tenant activo;
+* `X-Tenant-Id` obligatorio como selector no confiable por solicitud;
+* validación de tenant y membership activos antes de crear contexto;
+* prohibición de contexto desde query/body o estado de sesión;
 * permisos tenant-scoped;
 * pruebas multitenant;
 * auditoría de intentos denegados si aplica.

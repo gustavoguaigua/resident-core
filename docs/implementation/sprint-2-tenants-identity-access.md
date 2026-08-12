@@ -5,7 +5,8 @@
 - Estado de definición de alcance: `complete`
 - Estado de autorización de implementación: `blocked`
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
-- Gaps resueltos por este documento y sus contratos: `GAP-S2-002`, `GAP-S2-003`
+- Gaps resueltos por este documento y sus contratos: `GAP-S2-002`, `GAP-S2-003`,
+  `GAP-S2-004`
 
 Este documento es el runbook autoritativo de Sprint 2. Define su frontera, sus
 incrementos y sus criterios de salida. No concede por sí mismo autorización para
@@ -48,13 +49,12 @@ Sprint 2 solo puede comenzar después de que una nueva evaluación formal emita
 `GO`. Como mínimo deben estar cerrados los gaps críticos restantes de la
 compuerta y aprobados los contratos que afectan a implementación:
 
-1. aprobar un único contrato de tenant activo;
-2. aprobar el contrato operativo de Keycloak;
-3. resolver la propiedad de configuración entre Specs 001 y 025;
-4. fijar semántica mínima de auditoría;
-5. convertir los gates descritos aquí en validaciones reproducibles;
-6. aprobar las Specs y anexos contractuales necesarios;
-7. reevaluar formalmente la compuerta de readiness.
+1. aprobar el contrato operativo de Keycloak;
+2. resolver la propiedad de configuración entre Specs 001 y 025;
+3. fijar semántica mínima de auditoría;
+4. convertir los gates descritos aquí en validaciones reproducibles;
+5. aprobar las Specs y anexos contractuales necesarios;
+6. reevaluar formalmente la compuerta de readiness.
 
 ## 5. Frontera funcional exacta
 
@@ -115,11 +115,12 @@ Incluido:
 - expiración, revocación y uso único de invitaciones;
 - autorización por permisos efectivos y tenant activo.
 
-La operación para seleccionar o cambiar el tenant activo queda reservada hasta
-cerrar `GAP-S2-004`. No se implementarán simultáneamente contratos alternativos
-como `/auth/switch-tenant` y `/me/switch-tenant`.
+El tenant activo usa el contrato único de `GAP-S2-004`: `X-Tenant-Id` obligatorio en
+cada endpoint tenant-scoped, validado por Core como selector no confiable. No existen
+endpoints de cambio, tenant token ni persistencia de selección; `/me/tenants` permite
+descubrir memberships y la UI conserva la selección local.
 
-Superficie API máxima, salvo la ruta reservada de cambio de tenant activo:
+Superficie API máxima:
 
 - `GET /api/v1/platform/users`;
 - `POST /api/v1/platform/users`;
@@ -349,5 +350,7 @@ Sprint 2 se considera completo únicamente cuando:
 
 Este runbook cerró `GAP-S2-002` al fijar una frontera única. El contrato
 `GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` elimina además la circularidad de
-bootstrap entre Specs 001 y 002. No cierra ni reduce por inferencia los demás
-gaps. La decisión continúa siendo `NO_GO` hasta una reevaluación formal.
+bootstrap entre Specs 001 y 002. El contrato
+`GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md` fija el contexto request-scoped y
+cierra las rutas y transportes alternativos. No cierra ni reduce por inferencia los
+demás gaps. La decisión continúa siendo `NO_GO` hasta una reevaluación formal.

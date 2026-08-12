@@ -1,9 +1,9 @@
-# RESIDENT Core — API Guidelines v0.2
+# RESIDENT Core — API Guidelines v0.3
 
 ## 1. Información
 Ruta: `docs/sdd/api-guidelines.md`  
-Versión: 0.2  
-Cambio: Bearer token temporal propio o emitido por Keycloak en objetivo.
+Versión: 0.3
+Cambio: contrato request-scoped único para tenant activo.
 
 ## 2. Principios
 API-first, privada por defecto, multitenancy obligatorio, contratos estables, trazabilidad e identidad desacoplada.
@@ -12,7 +12,9 @@ API-first, privada por defecto, multitenancy obligatorio, contratos estables, tr
 REST API versionada en `/api/v1`.
 
 ## 4. Auth temporal
-Si se usa auth propia: `/auth/login`, `/auth/refresh`, `/auth/logout`, `/auth/forgot-password`, `/auth/reset-password`, `/auth/switch-tenant`, `/auth/me`.
+Si se usa auth propia temporal: `/auth/login`, `/auth/refresh`, `/auth/logout`,
+`/auth/forgot-password`, `/auth/reset-password`, `/auth/me`. No existe una operación
+`switch-tenant` en la superficie de autenticación ni en `/me`.
 
 Con Keycloak, login/refresh/password reset se trasladan al IdP y Core valida tokens.
 
@@ -23,7 +25,11 @@ Authorization: Bearer <access_token>
 MVP: token del Core. Objetivo: token Keycloak. Validar firma, expiración, issuer, audience, subject, estado local, membership y permisos.
 
 ## 6. Tenant resolution
-Tenant activo se resuelve desde token, UserProfile, tenant seleccionado, membership, rol y permisos. El body no acepta tenantId libremente.
+Los endpoints tenant-scoped exigen `X-Tenant-Id: <tenant-uuid>`. Es un selector no
+confiable por solicitud: Core lo valida contra token, `UserProfile`, tenant, membership,
+rol y permisos antes de crear el contexto. No se persiste la selección, no se emite un
+segundo token y no se acepta `tenantId` en query o body para seleccionar contexto.
+`GET /me/tenants` descubre memberships y la UI conserva su selección local.
 
 ## 7. Autorización
 Cada endpoint declara permiso. Ejemplos: `payments.read`, `payments.confirm`, `reports.financial.read`.

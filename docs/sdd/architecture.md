@@ -100,6 +100,12 @@ Pipeline con install, lint, typecheck, tests, multitenant tests, build, docker b
 ## 17. Observabilidad
 Logs con timestamp, traceId, tenantId, userProfileId o keycloakSubjectId, acción y resultado. No tokens ni secretos.
 
+El `tenantId` de logs y auditoría procede exclusivamente del `TenantContext` validado.
+En endpoints tenant-scoped, ese contexto se crea por solicitud a partir de
+`X-Tenant-Id`, tratado como selector no confiable, y de la validación Core de identidad,
+tenant, membership y permisos. No existe sesión, cookie, tenant token ni endpoint de
+cambio de tenant en el backend.
+
 ## 18. Microservicios futuros
 Antes de extraer servicios: Keycloak implementado, validación OIDC, tenant y permisos de negocio, contratos, gateway y observabilidad distribuida.
 

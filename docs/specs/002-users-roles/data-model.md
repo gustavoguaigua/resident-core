@@ -43,6 +43,11 @@ El objetivo es establecer:
 * reglas de seguridad;
 * reglas de migración.
 
+El tenant seleccionado por la interfaz no se persiste como atributo de
+`UserProfile`, membership, sesión o token. `tenantId` en este modelo representa
+propiedad o alcance de datos; el tenant activo se resuelve por solicitud conforme a
+ADR-004 y no requiere una tabla o columna adicional.
+
 Este modelo implementa la base real de autorización de RESIDENT Core.
 
 ---

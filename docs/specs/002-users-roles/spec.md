@@ -529,6 +529,10 @@ Para operar ordinariamente, el tenant debe estar activo.
 
 Si el tenant está suspendido o archivado, los permisos ordinarios quedan bloqueados.
 
+El tenant activo es contexto por solicitud. La UI envía `X-Tenant-Id` en endpoints
+tenant-scoped y Core valida identidad, tenant y membership en cada solicitud. El
+header no concede acceso; no existe estado persistido ni endpoint de cambio de tenant.
+
 ---
 
 ### BR-013 — Usuario activo requerido
@@ -1517,9 +1521,11 @@ POST   /api/v1/tenant/memberships/{membershipId}/revoke
 ```text id="hwe4bg"
 GET /api/v1/me
 GET /api/v1/me/tenants
-GET /api/v1/me/permissions?tenantId={tenantId}
-POST /api/v1/me/switch-tenant
+GET /api/v1/me/permissions
 ```
+
+`GET /api/v1/me/permissions` es tenant-scoped y exige `X-Tenant-Id`. `/me` y
+`/me/tenants` descubren el contexto disponible y no cambian estado en el servidor.
 
 ---
 

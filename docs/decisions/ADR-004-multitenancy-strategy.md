@@ -1,4 +1,4 @@
-# ADR-004 — Multitenancy Strategy: Shared Schema with Tenant Isolation v0.3
+# ADR-004 — Multitenancy Strategy: Shared Schema with Tenant Isolation v0.4
 
 ## Estado
 
@@ -26,7 +26,19 @@ Tenants de negocio se gestionan en Core.
 Shared schema reduce costo y complejidad. Realm único permite usuarios multi-tenant y evita duplicar configuración. La autorización financiera depende del dominio y queda en Core.
 
 ## 3. Resolución tenant activo
-Validar token propio/Keycloak, identificar subject, mapear UserProfile, identificar tenant, validar membership, validar estado, cargar rol/permisos y ejecutar con tenant_id.
+
+El tenant activo es contexto por solicitud, no estado de sesión. Todo endpoint
+tenant-scoped exige `X-Tenant-Id: <tenant-uuid>`. El header es un selector no
+confiable: Core valida el access token de Keycloak, identifica el subject, mapea un
+`UserProfile` activo, carga un tenant y una membership activos, resuelve roles y
+permisos y crea un `TenantContext` inmutable para ejecutar con `tenant_id`.
+
+No existen `/auth/switch-tenant` ni `/api/v1/me/switch-tenant`, tenant token, cookie o
+persistencia server-side del tenant seleccionado. La UI cambia su selección local y la
+siguiente solicitud lleva el header. `tenantId` no puede seleccionar contexto desde
+query o body; un `tenantId` de path en endpoints globales identifica el recurso, no
+autoriza al actor. El contrato completo y sus errores están en
+`docs/changes/GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md`.
 
 ## 4. Membership y roles
 UserTenantMembership contiene userProfileId, tenantId, status, invitedBy, joinedAt y timestamps; sus roles se asignan mediante MembershipRole. Globales: SuperAdmin, PlatformAdmin, PlatformOperator, PlatformSupport, PlatformAuditor. Tenant: TenantAdmin, Treasurer, BoardMember, Resident, PropertyOwner, Guard, TenantAuditor.
@@ -37,7 +49,10 @@ misma transacción PostgreSQL que el tenant. Una invitación pendiente no autori
 activar el tenant.
 
 ## 5. DB/API/cache/jobs/eventos/archivos
-Toda tabla operativa tiene tenant_id. Endpoints privados no aceptan tenantId libre en body. Cache usa `tenant:{tenantId}:...`. Jobs/eventos incluyen tenantId. Archivos se separan por tenant.
+Toda tabla operativa tiene tenant_id. Endpoints tenant-scoped no aceptan tenantId en
+query o body. Cache usa `tenant:{tenantId}:...` y, si cachea autorización, incorpora
+subject y versión de autorización. Jobs/eventos incluyen tenantId. Archivos se separan
+por tenant.
 
 ## 6. Auditoría
 Incluye tenantId, userProfileId, keycloakSubjectId, action, resourceType, resourceId, occurredAt, traceId y result.

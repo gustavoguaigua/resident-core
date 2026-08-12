@@ -1575,6 +1575,10 @@ Mitigación:
 * pruebas multitenant;
 * repositorios con tenant context.
 
+El tenant seleccionado por la UI no se almacena en estas tablas. El contexto se
+resuelve por solicitud desde `X-Tenant-Id` y la validación Core; `tenantId` en el
+modelo expresa propiedad de datos, no autoridad del cliente.
+
 ---
 
 ### 41.3. Riesgo de cambio accidental de estado

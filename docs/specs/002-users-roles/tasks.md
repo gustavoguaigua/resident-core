@@ -954,7 +954,6 @@ list-invitations-query.dto.ts
 current-user-response.dto.ts
 current-user-tenant-response.dto.ts
 effective-permissions-response.dto.ts
-switch-tenant.dto.ts
 ```
 
 ### Criterios de aceptación
@@ -1710,7 +1709,7 @@ CreateTenantBaseRolesUseCase
 GetCurrentUserUseCase
 GetCurrentUserTenantsUseCase
 GetEffectivePermissionsUseCase
-SwitchCurrentTenantUseCase
+ResolveTenantContextUseCase
 ```
 
 ### Criterios de aceptación
@@ -1718,7 +1717,8 @@ SwitchCurrentTenantUseCase
 * Devuelve usuario actual.
 * Devuelve tenants disponibles.
 * Calcula permisos efectivos.
-* Cambia tenant solo con membership activa.
+* Resuelve `X-Tenant-Id` por solicitud solo con membership activa.
+* No persiste tenant activo ni emite tenant token.
 * Bloquea disabled user.
 * Bloquea tenant suspended/archived.
 
@@ -1890,7 +1890,6 @@ POST   /api/v1/tenant/memberships/:membershipId/revoke
 GET  /api/v1/me
 GET  /api/v1/me/tenants
 GET  /api/v1/me/permissions
-POST /api/v1/me/switch-tenant
 ```
 
 ### Criterios de aceptación
@@ -1898,7 +1897,8 @@ POST /api/v1/me/switch-tenant
 * Requiere auth.
 * Bloquea disabled.
 * Devuelve permisos efectivos.
-* Switch tenant valida membership.
+* `/me/permissions` exige `X-Tenant-Id` y valida tenant y membership en cada request.
+* No persiste tenant activo ni expone un endpoint de cambio.
 
 ---
 
@@ -2035,7 +2035,7 @@ POST /api/v1/invitations/:token/accept
 * `/me` documentado.
 * `/me/tenants` documentado.
 * `/me/permissions` documentado.
-* `/me/switch-tenant` documentado.
+* `X-Tenant-Id` requerido en endpoints tenant-scoped documentado.
 
 ---
 
@@ -2328,7 +2328,7 @@ current-user.api.spec.ts
 * `/me`.
 * `/me/tenants`.
 * `/me/permissions`.
-* `/me/switch-tenant`.
+* resolución request-scoped de `X-Tenant-Id`.
 * Bloquea disabled.
 * Bloquea sin membership.
 

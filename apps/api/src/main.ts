@@ -9,6 +9,7 @@ import { AppModule } from "./app.module.js";
 import { APPLICATION_CONFIG_NAMESPACE } from "./platform/config/application-config.js";
 import { configureApplication } from "./platform/http/application-bootstrap.js";
 import { SanitizedLogger } from "./platform/logging/sanitized-logger.service.js";
+import { configureOpenApi } from "./platform/openapi/openapi-document.js";
 
 async function bootstrap(): Promise<void> {
   const logger = new SanitizedLogger();
@@ -21,6 +22,7 @@ async function bootstrap(): Promise<void> {
     );
 
     configureApplication(app, logger);
+    configureOpenApi(app, environment);
     await app.listen(environment.API_PORT, "0.0.0.0");
 
     logger.log({

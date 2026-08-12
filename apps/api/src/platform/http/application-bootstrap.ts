@@ -10,6 +10,8 @@ import { SecureExceptionFilter } from "./secure-exception.filter.js";
 import { traceContextMiddleware } from "./trace-context.js";
 import type { SanitizedLogger } from "../logging/sanitized-logger.service.js";
 
+export const API_GLOBAL_PREFIX = "api/v1";
+
 export function createStrictValidationPipe(): ValidationPipe {
   return new ValidationPipe({
     forbidNonWhitelisted: true,
@@ -28,7 +30,7 @@ export function configureApplication(
   );
   const allowedOrigins = new Set(environment.CORS_ALLOWED_ORIGINS);
 
-  application.setGlobalPrefix("api/v1");
+  application.setGlobalPrefix(API_GLOBAL_PREFIX);
   application.use(traceContextMiddleware);
   application.use(helmet());
   application.enableCors({

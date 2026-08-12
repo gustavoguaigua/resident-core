@@ -19,7 +19,7 @@
     "lint": "eslint src test",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "validate": "redocly lint --config redocly.yaml openapi/tooling.yaml"
+    "validate": "redocly lint --config redocly.yaml openapi/resident-core.v1.json"
   },
   "devDependencies": {
     "@redocly/cli": "2.46.0"

@@ -9,7 +9,7 @@
 | Sprint | Sprint 1 |
 | Documento | Backend Platform Base Implementation Runbook |
 | Ruta | `docs/implementation/sprint-1-backend-platform-base.md` |
-| Estado | `validated` — CI remota exitosa; cierre formal pendiente del merge del PR 4 (#7) |
+| Estado | `completed` — cierre formal sustentado por `SPRINT-1-CLOSURE-2026-08-11` |
 | Fecha | 2026-08-11 |
 | Commit base evaluado | `09310d5` |
 | Naturaleza | Plataforma backend runtime, sin lógica de negocio |
@@ -285,7 +285,7 @@ y `audit` de la arquitectura:
 [x] Confirmar ausencia de modelos, migraciones, seeds y endpoints de dominio.
 [x] Ejecutar todos los gates de Sprint 1 localmente.
 [x] Revisar Docker Compose completo y la imagen resident-api.
-[x] Registrar el candidato de cierre y actualizar el estado documental.
+[x] Registrar el cierre formal y actualizar el estado documental.
 ```
 
 Cada PR debe incluir las pruebas y gates de su propio cambio. No se pospone la cobertura
@@ -371,7 +371,7 @@ La ejecución no debe usar datos reales ni secretos reales.
 [x] Compose e imagen resident-api funcionan con la base runtime.
 [x] Todos los gates obligatorios pasan en CI.
 [x] No existe lógica de negocio ni implementación adelantada de Sprint 2.
-[x] El diff fue revisado y el candidato de cierre documental fue registrado.
+[x] El diff fue revisado y el cierre documental fue registrado.
 ```
 
 ---

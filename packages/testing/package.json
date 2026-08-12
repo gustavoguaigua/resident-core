@@ -18,6 +18,7 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src test tools",
     "security:secrets": "node tools/secret-scan.mjs",
+    "sprint1:boundary": "node tools/verify-sprint-1-boundary.mjs",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

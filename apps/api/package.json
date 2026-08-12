@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "predev": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
+    "predev": "pnpm --filter @resident/config build && pnpm --filter @resident/auth build && pnpm --workspace-root prisma:generate",
     "dev": "tsx watch src/main.ts",
     "prebuild": "pnpm --workspace-root prisma:generate",
     "build": "tsc -p tsconfig.build.json",
@@ -15,11 +15,11 @@
     "openapi:check": "tsx tools/generate-openapi.ts --check",
     "openapi:generate": "tsx tools/generate-openapi.ts",
     "start": "node dist/main.js",
-    "pretest": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
+    "pretest": "pnpm --filter @resident/config build && pnpm --filter @resident/auth build && pnpm --workspace-root prisma:generate",
     "test": "vitest run --exclude test/integration/**",
-    "pretest:api": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
+    "pretest:api": "pnpm --filter @resident/config build && pnpm --filter @resident/auth build && pnpm --workspace-root prisma:generate",
     "test:api": "vitest run test/application-bootstrap.spec.ts test/health.api.spec.ts test/openapi.api.spec.ts",
-    "pretest:integration": "pnpm --filter @resident/config build && pnpm --workspace-root prisma:generate",
+    "pretest:integration": "pnpm --filter @resident/config build && pnpm --filter @resident/auth build && pnpm --workspace-root prisma:generate",
     "test:integration": "vitest run test/integration",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
@@ -31,6 +31,7 @@
     "@nestjs/swagger": "11.4.6",
     "@nestjs/throttler": "6.5.0",
     "@prisma/client": "6.19.2",
+    "@resident/auth": "workspace:*",
     "@resident/config": "workspace:*",
     "class-transformer": "0.5.1",
     "class-validator": "0.15.1",

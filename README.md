@@ -616,7 +616,7 @@ Cierre formal de Sprint 0: PASS (2026-08-11)
 Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: NO_GO (2026-08-11)
-Sprint 2 y lógica de negocio: no autorizados; 4 gaps críticos y 3 altos abiertos
+Sprint 2 y lógica de negocio: no autorizados; 3 gaps críticos y 3 altos abiertos
 ```
 
 Evidencia:
@@ -629,13 +629,14 @@ docs/changes/READINESS-SPRINT-1-2026-08-11.md
 docs/changes/SPRINT-1-CLOSURE-2026-08-11.md
 docs/changes/READINESS-SPRINT-2-2026-08-11.md
 docs/implementation/sprint-2-tenants-identity-access.md
+docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md
 ```
 
 Sprint 1 está cerrado. La compuerta de Sprint 2 emitió `NO_GO` porque las specs 001,
 002, 007 y 025 permanecen `needs-review` y todavía no existen contratos cerrados para
-bootstrap de identidad, tenant activo, Keycloak, propiedad de configuración y
-auditoría. El runbook delimita Sprint 2, pero permanece bloqueado y no constituye un
-plan funcional autorizado mientras la decisión sea `NO_GO`.
+tenant activo, Keycloak, propiedad de configuración y auditoría. El bootstrap
+transaccional ya está definido y el runbook delimita Sprint 2, pero permanece bloqueado
+y no constituye un plan funcional autorizado mientras la decisión sea `NO_GO`.
 
 ---
 

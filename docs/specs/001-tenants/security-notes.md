@@ -715,7 +715,7 @@ Controles:
 * permiso `platform.tenants.activate`;
 * estado permitido;
 * configuración mínima;
-* roles base placeholder;
+* roles base persistidos y membership TenantAdmin activa;
 * auditoría;
 * evento.
 
@@ -1493,7 +1493,7 @@ Motivo:
 | Riesgo                                        | Estado                 | Justificación                            |
 | --------------------------------------------- | ---------------------- | ---------------------------------------- |
 | Keycloak no integrado completamente           | Aceptado temporalmente | Se integra en fase identity/users        |
-| Roles base reales diferidos                   | Aceptado temporalmente | Se implementan en `002-users-roles`      |
+| Integración transaccional con Spec 002        | Obligatoria             | Gates conjuntos de onboarding            |
 | Rate limit puede iniciar en gateway o backend | Aceptado con control   | Debe existir antes de producción pública |
 | No hay alias de slug                          | Aceptado               | No necesario en MVP                      |
 | No hay dominios personalizados                | Aceptado               | No necesario en MVP                      |
@@ -1597,3 +1597,20 @@ pruebas de seguridad
 ```
 
 La implementación no será aceptada si permite modificación cross-tenant, expone datos internos por el endpoint público, omite auditoría en operaciones críticas o permite eliminación física ordinaria de tenants.
+
+---
+
+## 32. Controles del bootstrap inicial
+
+- `POST /platform/tenants` exige `PlatformAdmin` autenticado y permiso efectivo.
+- El body solo aporta `initialAdmin.email`; Core obtiene el subject desde Keycloak.
+- La identidad debe estar habilitada y con email verificado antes de escribir.
+- Tenant, perfil, roles, membership, TenantAdmin y auditoría se confirman o
+  revierten en una única transacción PostgreSQL.
+- No se permite activación directa, endpoint anónimo, rol implícito ni
+  placeholder de autorización.
+- Una invitación pendiente no habilita la activación.
+- Logs, errores y auditoría no exponen subject completo, tokens ni credenciales.
+
+El contrato normativo se encuentra en
+`docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md`.

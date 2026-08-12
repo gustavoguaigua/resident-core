@@ -657,7 +657,9 @@ Responsabilidad:
 * crear branding si aplica;
 * crear configuration;
 * crear WordPress mapping si aplica;
-* crear roles base;
+* resolver la identidad inicial mediante el puerto de directorio Keycloak;
+* crear o enlazar UserProfile mediante `002-users-roles`;
+* crear roles base, membership activa y asignación TenantAdmin;
 * registrar auditoría;
 * emitir evento.
 
@@ -668,6 +670,10 @@ CreateTenantDto
 actorUserId
 traceId
 ```
+
+`CreateTenantDto` incluye `initialAdmin.email`, pero no acepta
+`keycloakSubjectId`, roles, estado activo ni IDs internos. La resolución de
+identidad ocurre antes de abrir la transacción.
 
 Salida:
 
@@ -688,7 +694,9 @@ TENANT_PERMISSION_DENIED
 Transacción:
 
 ```text id="ii5e4r"
-Sí
+Sí. Tenant, entidades iniciales autorizadas, UserProfile, roles base,
+membership, asignación TenantAdmin y auditoría se confirman o revierten juntos
+en PostgreSQL.
 ```
 
 ---
@@ -711,12 +719,12 @@ Responsabilidad:
 * validar estado actual;
 * validar configuración mínima;
 * validar existencia de roles base;
-* validar existencia de TenantAdmin o invitación pendiente;
+* validar existencia de membership activa con TenantAdmin activo;
 * activar tenant;
 * registrar auditoría;
 * emitir evento.
 
-En MVP, si todavía no existe `002-users-roles`, esta validación puede quedar temporalmente como placeholder documentado.
+No se permite placeholder ni invitación pendiente como prueba de administrador.
 
 ---
 
@@ -831,8 +839,13 @@ createDefaultConfiguration()
 createDefaultProfile()
 createDefaultBranding()
 createDefaultWordPressMapping()
-createBaseRoles()
+resolveInitialAdminIdentity()
+createInitialAccessGraph()
 ```
+
+`createInitialAccessGraph()` delega las escrituras de identidad, roles,
+membership y asignación a `002-users-roles`, compartiendo la misma unidad de
+trabajo PostgreSQL.
 
 ---
 
@@ -895,7 +908,8 @@ ExternalAccountant
 
 Nota:
 
-La implementación real puede depender de `002-users-roles`. Si ese módulo todavía no existe, se debe crear una interfaz o placeholder explícito para no acoplar mal el diseño.
+La implementación pertenece a `002-users-roles`. Este servicio no tiene una
+implementación placeholder y debe participar en la transacción de onboarding.
 
 ---
 
@@ -1457,43 +1471,34 @@ Debe prepararse para:
 
 ---
 
-## 24. Integración con roles base
+## 24. Integración transaccional con identidad y acceso
 
-La creación de roles base depende de la spec futura:
+La creación de roles, perfiles y membresías pertenece a:
 
 ```text id="8yd1rm"
 002-users-roles
 ```
 
-Para evitar bloqueo, se propone:
-
-### Opción A — Crear placeholder temporal
-
-Crear un puerto:
+Spec 001 conserva un puerto de orquestación:
 
 ```text id="f4x5ht"
 TenantBaseRolesPort
 ```
 
-Con implementación temporal que registre el evento pero no persista roles hasta que exista `002-users-roles`.
-
-### Opción B — Crear tablas mínimas de roles ahora
-
-Crear tablas mínimas:
+Su implementación real por Spec 002 debe crear, dentro de la unidad de trabajo
+recibida:
 
 ```text id="6lz594"
-roles
-permissions
-role_permissions
+UserProfile creado o enlazado
+roles y permisos base del tenant
+UserTenantMembership activa
+MembershipRole TenantAdmin activa
 ```
 
-Pero esto invade `002-users-roles`.
-
-### Decisión recomendada
-
-```text id="bihbgv"
-Usar puerto TenantBaseRolesPort y diferir persistencia completa a 002-users-roles.
-```
+El contrato completo, preflight y recuperación se define en
+`docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md`. No existe una opción
+de persistencia parcial ni un evento que complete pasos obligatorios después del
+commit.
 
 ---
 
@@ -1973,7 +1978,9 @@ Keycloak autentica.
 RESIDENT Core autoriza.
 ```
 
-La primera versión diferirá la persistencia completa de roles base hacia la spec `002-users-roles`, usando un puerto temporal para mantener el diseño desacoplado.
+La primera versión delegará a `002-users-roles` la propiedad de roles,
+permisos y membresías mediante un puerto real que participa en la misma
+transacción de onboarding; no se admite implementación temporal.
 
 El módulo no permitirá eliminación física de tenants y deberá auditar todos los cambios críticos.
 

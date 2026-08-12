@@ -1809,6 +1809,9 @@ No se permitirá eliminación física ordinaria.
 
 El endpoint público usará un DTO específico para evitar exposición accidental de datos internos.
 
-La persistencia completa de roles, permisos y membresías se difiere a `002-users-roles`.
+La propiedad de roles, permisos y membresías corresponde a `002-users-roles`,
+pero el onboarding inicial debe persistir esas relaciones dentro de la misma
+transacción que crea el tenant. No se acepta un tenant parcial ni un placeholder
+de roles.
 
 Este modelo permite implementar el onboarding inicial de conjuntos residenciales y habilita los módulos posteriores de usuarios, propiedades, alícuotas, pagos, reportes y auditoría.

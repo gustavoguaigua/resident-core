@@ -57,6 +57,7 @@ contratos y gates verificables.
 | OpenAPI | Contrato runtime de plataforma presente; no existen endpoints funcionales de Sprint 2 |
 | CI | Gates de Sprint 1 activos; acciones `@v6` sobre runtime Node.js 24 |
 | Runbook de Sprint 2 | Frontera, incrementos, exclusiones y gates definidos; implementación bloqueada por `NO_GO` |
+| Bootstrap de plataforma y tenant | Contrato transaccional cerrado; sin endpoint anónimo, bypass ni placeholder |
 | Secretos o datos reales requeridos | Ninguno |
 
 ## 5. Registro de gaps
@@ -92,13 +93,14 @@ reserva a sus gaps propietarios las decisiones todavía abiertas. Esta correcci�
 | Campo | Valor |
 | --- | --- |
 | Severidad | Crítica |
-| Estado | open |
+| Estado | closed — 2026-08-11 |
 
-001 crea tenant, configuración, roles base e invitación de administrador; también exige
-un `TenantAdmin` para activar. 002 es propietaria de usuarios, roles, permisos,
-memberships e invitaciones y depende de 001. No está cerrado el flujo transaccional y
-autorizado para crear el primer PlatformAdmin, tenant, perfil, membership y TenantAdmin
-sin bypass, cuenta implícita ni dependencia circular.
+`docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` separa el bootstrap
+one-shot del primer PlatformAdmin y el onboarding autenticado de cada tenant. La
+identidad se verifica primero en Keycloak; todas las escrituras Core de cada operación
+se confirman en una transacción PostgreSQL. Specs 001 y 002 asignan propiedad explícita
+sin placeholder, cuenta implícita, endpoint anónimo, bypass ni activación basada en una
+invitación pendiente.
 
 ### GAP-S2-004 — Contrato de tenant activo contradictorio
 
@@ -189,12 +191,12 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 | Baseline técnico falla cerrado | Cumple | guards y adaptadores de Sprint 1 |
 | Specs funcionales aplicables están aprobadas | No cumple | 28 de 28 documentos `needs-review` |
 | Alcance de 007/025 base es verificable | Cumple | `sprint-2-tenants-identity-access.md` |
-| Bootstrap tenant-identidad está cerrado | No cumple | Responsabilidades circulares 001/002 |
+| Bootstrap tenant-identidad está cerrado | Cumple | `GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` |
 | Tenant activo tiene contrato único | No cumple | Rutas y autoridad no unificadas |
 | Keycloak es reproducible y testeable | No cumple | No existe realm/client config versionada |
 | Modelo Prisma inicial no tiene superposiciones | No cumple | 001/025 requieren decisión de propiedad |
 | Gates de Sprint 2 están automatizados | No cumple | Definidos en runbook; scripts y workflow pendientes |
-| No existen gaps críticos o altos abiertos | No cumple | 4 críticos y 3 altos abiertos |
+| No existen gaps críticos o altos abiertos | No cumple | 3 críticos y 3 altos abiertos |
 
 ## 8. Decisión vigente
 
@@ -202,7 +204,7 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 Decision: NO_GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
 Effective date: 2026-08-11
-Critical gaps open: 4
+Critical gaps open: 3
 High gaps open: 3
 Authorized plan: none
 Base commit: b7cbc84fd03aeb44714a32cd27d28b5405a9d30e
@@ -215,7 +217,7 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 
 ## 9. Orden recomendado para alcanzar GO
 
-1. Cerrar el bootstrap inicial y el contrato único de tenant activo entre 001 y 002.
+1. Cerrar el contrato único de tenant activo entre 001 y 002.
 2. Fijar el contrato reproducible de Keycloak y sus pruebas negativas.
 3. Unificar propiedad de configuración, modelos Prisma, audit base y secuencia de
    migraciones.
@@ -229,7 +231,7 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, la observación de Node.js 20 en GitHub
-Actions está corregida y `GAP-S2-002` queda cerrado con un runbook que no aprueba
-implícitamente decisiones abiertas. Sprint 2 todavía no está listo para comenzar: la
-decisión continúa siendo `NO_GO`, con cuatro gaps críticos y tres altos. El siguiente
-paso permitido recomendado es cerrar `GAP-S2-003`.
+Actions está corregida y los gaps `GAP-S2-002` y `GAP-S2-003` están cerrados sin
+aprobar implícitamente decisiones abiertas. Sprint 2 todavía no está listo para
+comenzar: la decisión continúa siendo `NO_GO`, con tres gaps críticos y tres altos. El
+siguiente paso permitido recomendado es cerrar `GAP-S2-004`.

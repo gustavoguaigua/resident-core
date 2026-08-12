@@ -5,7 +5,7 @@
 - Estado de definición de alcance: `complete`
 - Estado de autorización de implementación: `blocked`
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
-- Gap que resuelve este documento: `GAP-S2-002`
+- Gaps resueltos por este documento y sus contratos: `GAP-S2-002`, `GAP-S2-003`
 
 Este documento es el runbook autoritativo de Sprint 2. Define su frontera, sus
 incrementos y sus criterios de salida. No concede por sí mismo autorización para
@@ -48,14 +48,13 @@ Sprint 2 solo puede comenzar después de que una nueva evaluación formal emita
 `GO`. Como mínimo deben estar cerrados los gaps críticos restantes de la
 compuerta y aprobados los contratos que afectan a implementación:
 
-1. resolver el bootstrap de tenant, identidad y primer administrador;
-2. aprobar un único contrato de tenant activo;
-3. aprobar el contrato operativo de Keycloak;
-4. resolver la propiedad de configuración entre Specs 001 y 025;
-5. fijar semántica mínima de auditoría;
-6. convertir los gates descritos aquí en validaciones reproducibles;
-7. aprobar las Specs y anexos contractuales necesarios;
-8. reevaluar formalmente la compuerta de readiness.
+1. aprobar un único contrato de tenant activo;
+2. aprobar el contrato operativo de Keycloak;
+3. resolver la propiedad de configuración entre Specs 001 y 025;
+4. fijar semántica mínima de auditoría;
+5. convertir los gates descritos aquí en validaciones reproducibles;
+6. aprobar las Specs y anexos contractuales necesarios;
+7. reevaluar formalmente la compuerta de readiness.
 
 ## 5. Frontera funcional exacta
 
@@ -171,6 +170,23 @@ Incluido, una vez cerrado `GAP-S2-005`:
 Keycloak autentica. RESIDENT Core conserva la autoridad sobre tenants,
 membresías, roles de negocio, permisos y estados de acceso.
 
+### 5.3.1 Bootstrap de plataforma y tenant
+
+El contrato autoritativo es
+`docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md`.
+
+- El primer PlatformAdmin se crea mediante comando operativo one-shot, nunca HTTP.
+- Su identidad debe existir, estar habilitada y verificada en Keycloak.
+- Roles globales, UserProfile y PlatformAdmin se confirman en una transacción
+  serializable, con auditoría durable.
+- `POST /api/v1/platform/tenants` exige `initialAdmin.email`.
+- Core resuelve el subject; ningún DTO de bootstrap puede imponerlo.
+- Tenant `pendingSetup`, entidades iniciales autorizadas, UserProfile, roles base,
+  membership activa, TenantAdmin y auditoría comparten una transacción PostgreSQL.
+- La activación es posterior y explícita; una invitación pendiente no basta.
+- No existen placeholders, cuentas implícitas, bypass de guards ni finalización
+  obligatoria por eventos post-commit.
+
 ### 5.4 Spec 007 — Audit Log, base de Sprint 2
 
 Incluido:
@@ -275,12 +291,13 @@ Los incrementos se ejecutarán en este orden y en ramas/PR cortos:
 0. Cerrar prerrequisitos documentales y obtener `GO`.
 1. Hacer reproducible Keycloak y cerrar el contrato OIDC.
 2. Crear la persistencia mínima de Specs 001 y 002 mediante migraciones.
-3. Implementar resolución de identidad, membresías y autorización.
-4. Implementar ciclo de vida y API de tenants.
-5. Implementar invitaciones y administración de membresías.
-6. Persistir la auditoría base de Spec 007.
-7. Implementar la configuración mínima de Spec 025.
-8. Consolidar contrato OpenAPI, pruebas cruzadas y evidencia de cierre.
+3. Persistir la auditoría base necesaria para mutaciones de acceso.
+4. Implementar el comando one-shot del primer PlatformAdmin.
+5. Implementar resolución de identidad, membresías y autorización.
+6. Implementar onboarding transaccional, ciclo de vida y API de tenants.
+7. Implementar invitaciones y administración posterior de membresías.
+8. Implementar la configuración mínima de Spec 025.
+9. Consolidar contrato OpenAPI, pruebas cruzadas y evidencia de cierre.
 
 Un incremento no debe comenzar si depende de un contrato todavía abierto. Cada
 PR debe ser desplegable, mantener los gates existentes y evitar mezclar más de
@@ -295,6 +312,11 @@ Compose config ya vigentes, Sprint 2 requiere:
 - verificación de estado y drift de migraciones;
 - validación reproducible del realm y clientes de Keycloak;
 - prueba OIDC real contra el stack local;
+- concurrencia e idempotencia del primer PlatformAdmin;
+- ausencia de endpoint de bootstrap y de subject en DTOs de bootstrap;
+- rollback total del onboarding ante fallos en cada escritura;
+- rechazo de activación sin TenantAdmin activo o con invitación pendiente;
+- protección del último TenantAdmin activo;
 - rechazo de firma, issuer, audience, expiración y sujeto inválidos;
 - escenarios con al menos dos tenants y pruebas negativas cross-tenant;
 - rechazo de tenant, usuario o membresía deshabilitados/revocados;
@@ -325,6 +347,7 @@ Sprint 2 se considera completo únicamente cuando:
 
 ## 11. Trazabilidad de la corrección
 
-Este runbook cierra exclusivamente `GAP-S2-002`: ya existe una frontera única y
-ejecutable para Sprint 2. No cierra ni reduce por inferencia los demás gaps de la
-compuerta. La decisión continúa siendo `NO_GO` hasta una reevaluación formal.
+Este runbook cerró `GAP-S2-002` al fijar una frontera única. El contrato
+`GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` elimina además la circularidad de
+bootstrap entre Specs 001 y 002. No cierra ni reduce por inferencia los demás
+gaps. La decisión continúa siendo `NO_GO` hasta una reevaluación formal.

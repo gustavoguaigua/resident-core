@@ -2256,4 +2256,10 @@ invitations
 
 El modelo es compatible con Keycloak, pero mantiene la autorización en RESIDENT Core.
 
+Para bootstrap, las ocho tablas no se amplían. Las constraints únicas de email,
+`keycloakSubjectId`, roles y asignaciones respaldan la transacción serializable.
+El primer PlatformAdmin y el grafo inicial de acceso del tenant deben escribirse
+atómicamente; no se introduce una tabla de credenciales, un usuario implícito ni
+un registro parcial de onboarding.
+
 Este modelo completa el diferido de `001-tenants` y habilita la implementación segura de módulos posteriores como residentes, propiedades, alícuotas, pagos, estados de cuenta, auditoría, reportes y automatizaciones.

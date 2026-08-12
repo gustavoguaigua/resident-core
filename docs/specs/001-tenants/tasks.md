@@ -1022,7 +1022,7 @@ apps/api/src/modules/tenants/infrastructure/events/tenant-events.adapter.ts
 
 ---
 
-## TASK-037 — Crear puerto `TenantBaseRolesPort`
+## TASK-037 — Crear puerto transaccional `TenantBaseRolesPort`
 
 **Estado:** `[ ] Pending`
 
@@ -1034,14 +1034,15 @@ apps/api/src/modules/tenants/application/ports/tenant-base-roles.port.ts
 
 ### Descripción
 
-Crear puerto temporal para creación de roles base sin invadir `002-users-roles`.
+Crear el contrato de orquestación hacia `002-users-roles` para construir el
+grafo inicial de acceso dentro de la misma unidad de trabajo del tenant.
 
 ### Criterios de aceptación
 
-* Define `createBaseRolesForTenant(tenantId, actorUserId, traceId)`.
-* La implementación puede ser placeholder.
-* Registra evento o auditoría.
-* No crea tablas de roles todavía.
+* Recibe tenant, identidad inicial verificada, actor, trace y unidad de trabajo.
+* Crea realmente roles base, membership y asignación `TenantAdmin`.
+* Su implementación pertenece a `002-users-roles`.
+* No admite placeholder, persistencia parcial ni finalización por evento.
 
 ---
 
@@ -1067,8 +1068,9 @@ Orquestar configuración inicial del tenant.
 * Crea branding.
 * Crea configuration.
 * Crea WordPress mapping si aplica.
-* Invoca `TenantBaseRolesPort`.
-* No implementa usuarios reales.
+* Resuelve previamente `initialAdmin.email` mediante el directorio Keycloak.
+* Invoca `TenantBaseRolesPort` dentro de la transacción.
+* Delega a `002-users-roles` el UserProfile, roles, membership y TenantAdmin.
 
 ---
 
@@ -1139,7 +1141,8 @@ apps/api/src/modules/tenants/application/use-cases/create-tenant.use-case.ts
 * Valida unicidad.
 * Crea tenant en transacción.
 * Crea entidades secundarias.
-* Invoca roles base port.
+* Exige `initialAdmin.email` y no acepta un subject en el DTO.
+* Crea o enlaza identidad, roles base, membership y TenantAdmin en la misma transacción.
 * Registra auditoría.
 * Emite eventos.
 * Devuelve `TenantDetailDto`.
@@ -1204,7 +1207,7 @@ API-CREATE-001 a API-CREATE-014
 
 * Valida transición.
 * Valida requisitos mínimos.
-* Considera placeholder de roles base.
+* Exige roles base y TenantAdmin persistidos, sin placeholder.
 * Registra auditoría.
 * Emite `TenantActivated`.
 * Devuelve status `active`.
@@ -2146,18 +2149,21 @@ docs/specs/002-users-roles/
 
 ---
 
-## TASK-097 — Diferir persistencia real de roles base
+## TASK-097 — Integrar persistencia real de acceso inicial
 
-**Estado:** `[-] Deferred`
+**Estado:** `[ ] Pending`
 
 ### Razón
 
-La matriz real de roles/permisos corresponde a `002-users-roles`.
+La matriz real de roles/permisos corresponde a `002-users-roles`, pero el
+onboarding no puede completarse parcialmente.
 
-### Implementación temporal
+### Implementación requerida
 
 ```text
-TenantBaseRolesPort placeholder
+TenantBaseRolesPort implementado por 002-users-roles
+misma transacción PostgreSQL del onboarding
+UserProfile + roles base + membership active + TenantAdmin
 ```
 
 ---
@@ -2256,7 +2262,7 @@ Orden sugerido para implementación real:
 
 | Riesgo                                      | Impacto    | Mitigación                             |
 | ------------------------------------------- | ---------- | -------------------------------------- |
-| Implementar roles completos en esta spec    | Medio      | Usar `TenantBaseRolesPort` placeholder |
+| Duplicar propiedad de roles en esta spec    | Alto       | Puerto real implementado por Spec 002  |
 | Omitir autorización tenant-scoped           | Crítico    | Tests AUTH y MT obligatorios           |
 | Exponer campos internos en endpoint público | Alto       | DTO público + contract tests           |
 | Crear migración con cascade delete          | Crítico    | Revisión SQL + migration tests         |

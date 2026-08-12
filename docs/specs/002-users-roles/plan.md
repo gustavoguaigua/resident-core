@@ -1008,6 +1008,39 @@ Notas:
 
 ## 11. Casos de uso principales
 
+## 11.0. BootstrapFirstPlatformAdminUseCase
+
+Responsabilidad:
+
+* ejecutarse solo desde un comando operativo interno;
+* resolver por email una identidad habilitada y verificada en Keycloak;
+* impedir carreras mediante transacción serializable y exclusión mutua;
+* crear idempotentemente permisos y roles globales base;
+* crear o enlazar UserProfile por email y subject;
+* asignar el primer rol global PlatformAdmin;
+* auditar y confirmar todos los cambios juntos;
+* rechazar un subject distinto cuando el bootstrap ya fue completado.
+
+No expone controller HTTP ni acepta `keycloakSubjectId` sin verificar.
+La interfaz prevista es
+`pnpm bootstrap:platform-admin -- --email <email>`.
+
+## 11.0.1. ProvisionInitialTenantAccessUseCase
+
+Responsabilidad:
+
+* recibir una identidad ya resuelta por el servidor y una unidad de trabajo;
+* crear o enlazar UserProfile sin conflictos email/subject;
+* crear roles y permisos base del tenant;
+* crear membership activa;
+* asignar TenantAdmin;
+* registrar auditoría dentro de la misma transacción del tenant.
+
+Este caso de uso implementa el contrato requerido por Spec 001 y no puede
+confirmar cambios por separado.
+
+---
+
 ## 11.1. CreateUserProfileUseCase
 
 Responsabilidad:
@@ -1094,7 +1127,8 @@ Responsabilidad:
 
 * crear roles base para un tenant;
 * asignar permisos base;
-* implementar realmente el puerto diferido `TenantBaseRolesPort` de `001-tenants`.
+* participar en la unidad de trabajo de `001-tenants`;
+* no persistir de forma independiente durante el onboarding.
 
 Roles:
 
@@ -1773,7 +1807,7 @@ propuesto en `001-tenants`.
 Implementación real:
 
 ```text id="xg8r8u"
-CreateTenantBaseRolesUseCase
+ProvisionInitialTenantAccessUseCase
 ```
 
 Además debe habilitar:
@@ -1782,6 +1816,17 @@ Además debe habilitar:
 * validación real de membership en TenantGuard;
 * creación de roles base al crear tenant;
 * activación de tenant con administrador inicial.
+
+Secuencia obligatoria:
+
+1. Spec 001 valida actor, request e identidad Keycloak fuera de la transacción.
+2. Spec 001 abre la unidad de trabajo y crea el tenant `pendingSetup`.
+3. Spec 002 crea/enlaza UserProfile, roles, permisos, membership y TenantAdmin.
+4. Auditoría durable se persiste antes del commit.
+5. Spec 001 confirma todo o revierte todo.
+
+`TenantCreated` y otros eventos son notificaciones post-commit; nunca completan
+roles o membresías obligatorias.
 
 ---
 

@@ -100,7 +100,9 @@ revisor elegible y se reevaluará antes del primer ambiente o despliegue product
 - GitHub Actions informa que `actions/checkout@v4`, `actions/setup-node@v4` y
   `pnpm/action-setup@v4` declaran runtime Node.js 20 y están siendo forzadas a Node.js
   24. El workflow pasa, pero las acciones deberán actualizarse mediante un cambio
-  separado y validado.
+  separado y validado. **Resuelta el 2026-08-11:** el workflow y los ejemplos
+  canónicos migraron a las acciones `@v6`, basadas en Node.js 24, como parte de
+  `READINESS-SPRINT-2-2026-08-11`.
 - El build Docker informa que Prisma no detecta OpenSSL en la imagen slim. Sprint 0 no
   ejecuta Prisma en runtime, por lo que no bloquea este cierre técnico; debe resolverse
   antes de introducir `PrismaService` en Sprint 1.

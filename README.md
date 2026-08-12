@@ -614,8 +614,9 @@ Decisión Sprint 0: GO; alcance implementado y cerrado
 Definition of Done técnico de Sprint 0: PASS (2026-08-11)
 Cierre formal de Sprint 0: PASS (2026-08-11)
 Implementation Readiness Sprint 1: GO (2026-08-11)
-Sprint 1: Backend Platform Base autorizado; implementación aún no iniciada
-Sprint 2 y lógica de negocio: no autorizados
+Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
+Implementation Readiness Sprint 2: NO_GO (2026-08-11)
+Sprint 2 y lógica de negocio: no autorizados; 5 gaps críticos y 3 altos abiertos
 ```
 
 Evidencia:
@@ -625,11 +626,14 @@ docs/changes/READINESS-031-2026-08-10.md
 docs/changes/SPRINT-0-CLOSURE-2026-08-11.md
 docs/implementation/sprint-1-backend-platform-base.md
 docs/changes/READINESS-SPRINT-1-2026-08-11.md
+docs/changes/SPRINT-1-CLOSURE-2026-08-11.md
+docs/changes/READINESS-SPRINT-2-2026-08-11.md
 ```
 
-Los gaps críticos y altos registrados para la compuerta de Sprint 1 están cerrados. El
-`GO` vigente autoriza exclusivamente Backend Platform Base; no autoriza Sprint 2 ni
-lógica de negocio.
+Sprint 1 está cerrado. La compuerta de Sprint 2 emitió `NO_GO` porque las specs 001,
+002, 007 y 025 permanecen `needs-review` y todavía no existe una frontera implementable
+para tenant activo, bootstrap de identidad, Keycloak y las porciones base de auditoría y
+configuración. No existe un plan funcional autorizado para Sprint 2.
 
 ---
 

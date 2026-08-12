@@ -4,10 +4,12 @@ packages:
 allowBuilds:
   "@prisma/client": true
   "@prisma/engines": true
+  "@scarf/scarf": false
   esbuild: true
   prisma: true
 overrides:
   "@prisma/config@6.19.2>effect": "3.20.0"
+  "@nestjs/swagger@11.4.6>js-yaml": "5.2.2"
 minimumReleaseAgeExclude:
   - "@nestjs/common@11.1.29"
   - "@nestjs/core@11.1.29"

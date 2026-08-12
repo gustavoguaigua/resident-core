@@ -1,1 +1,1 @@
-export const OPENAPI_CLIENT_STATUS = "tooling-only" as const;
+export const OPENAPI_CLIENT_STATUS = "contract-only" as const;

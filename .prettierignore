@@ -3,6 +3,7 @@ coverage/
 dist/
 node_modules/
 .pnpm-store/
+packages/openapi-client/openapi/resident-core.v1.json
 
 AGENTS.md
 README.md

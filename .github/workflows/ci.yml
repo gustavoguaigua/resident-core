@@ -71,7 +71,10 @@ jobs:
       - name: API bootstrap security tests
         run: pnpm test:api
 
-      - name: Validate OpenAPI tooling
+      - name: Check OpenAPI runtime contract drift
+        run: pnpm openapi:check
+
+      - name: Validate OpenAPI runtime contract
         run: pnpm openapi:validate
 
       - name: Generate Prisma Client

@@ -1,0 +1,285 @@
+{
+  "components": {
+    "schemas": {
+      "ApiErrorDto": {
+        "properties": {
+          "code": {
+            "example": "FORBIDDEN",
+            "type": "string"
+          },
+          "details": {
+            "example": null,
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "message": {
+            "example": "Access denied.",
+            "type": "string"
+          },
+          "traceId": {
+            "example": "550e8400-e29b-41d4-a716-446655440000",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "details",
+          "traceId"
+        ],
+        "type": "object"
+      },
+      "ApiErrorEnvelopeDto": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ApiErrorDto"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "HealthLivenessResponseDto": {
+        "properties": {
+          "service": {
+            "enum": [
+              "resident-api"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ok"
+            ],
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "service",
+          "timestamp"
+        ],
+        "type": "object"
+      },
+      "HealthReadinessChecksDto": {
+        "properties": {
+          "keycloak": {
+            "$ref": "#/components/schemas/InactiveHealthCheckResponseDto"
+          },
+          "postgres": {
+            "$ref": "#/components/schemas/PostgresHealthCheckResponseDto"
+          },
+          "redis": {
+            "$ref": "#/components/schemas/InactiveHealthCheckResponseDto"
+          },
+          "storage": {
+            "$ref": "#/components/schemas/InactiveHealthCheckResponseDto"
+          }
+        },
+        "required": [
+          "postgres",
+          "redis",
+          "storage",
+          "keycloak"
+        ],
+        "type": "object"
+      },
+      "HealthReadinessResponseDto": {
+        "properties": {
+          "checks": {
+            "$ref": "#/components/schemas/HealthReadinessChecksDto"
+          },
+          "service": {
+            "enum": [
+              "resident-api"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "service",
+          "checks",
+          "timestamp"
+        ],
+        "type": "object"
+      },
+      "InactiveHealthCheckResponseDto": {
+        "properties": {
+          "status": {
+            "enum": [
+              "notConfigured"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      },
+      "PostgresHealthCheckResponseDto": {
+        "properties": {
+          "status": {
+            "enum": [
+              "ok",
+              "unavailable"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "Keycloak-issued access token.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "contact": {},
+    "description": "Technical runtime contract for RESIDENT Core.",
+    "title": "RESIDENT Core API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "operationId": "healthLiveness",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthLivenessResponseDto"
+                }
+              }
+            },
+            "description": "The API process is alive."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": "An uncontrolled platform failure occurred."
+          }
+        },
+        "security": [],
+        "summary": "Report API process liveness",
+        "tags": [
+          "Health"
+        ],
+        "x-auth-required": false,
+        "x-health-endpoint": true,
+        "x-platform-only": false,
+        "x-public": true,
+        "x-response-envelope": false,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/health/details": {
+      "get": {
+        "description": "Local environments allow direct access. Other environments fail closed until the platform authorization adapter is introduced.",
+        "operationId": "healthReadiness",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthReadinessResponseDto"
+                }
+              }
+            },
+            "description": "All configured platform dependencies are ready."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": "The caller is not authorized to inspect platform readiness."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": "An uncontrolled platform failure occurred."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthReadinessResponseDto"
+                }
+              }
+            },
+            "description": "At least one configured platform dependency is unavailable."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Report platform dependency readiness",
+        "tags": [
+          "Health"
+        ],
+        "x-auth-required": true,
+        "x-health-endpoint": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platform.health.read",
+        "x-response-envelope": false,
+        "x-tenant-context-required": false
+      }
+    }
+  },
+  "servers": [],
+  "tags": [
+    {
+      "description": "Operational liveness and readiness endpoints.",
+      "name": "Health"
+    }
+  ]
+}

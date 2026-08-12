@@ -47,6 +47,13 @@ Realm `resident`, no realm por tenant en MVP, redirect URIs exactas, web origins
 ## 11. DB y logs
 DB con mínimos privilegios, no pública, migraciones revisadas y backups. Logs con tenantId, userProfileId, keycloakSubjectId, acción, recurso, resultado y traceId; nunca contraseñas, tokens o secretos.
 
+Para endpoints tenant-scoped, `X-Tenant-Id` es obligatorio pero nunca autoritativo.
+Core revalida en cada solicitud el `UserProfile`, tenant, membership, roles, permisos y
+ownership; ausencia o formato inválido fallan antes de acceder al dominio. Tenant
+inexistente, inactivo o sin membership usa una denegación indistinguible para evitar
+enumeración. Está prohibido seleccionar contexto mediante query/body o registrar el
+header como tenant validado antes de completar esas comprobaciones.
+
 ## 12. WordPress/n8n
 WordPress no autentica ni maneja pagos. n8n usa APIs Core, credenciales mínimas y service account limitada si Keycloak.
 

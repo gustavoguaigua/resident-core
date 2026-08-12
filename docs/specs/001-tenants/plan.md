@@ -1227,6 +1227,11 @@ TenantGuard
 TenantPermissionGuard
 ```
 
+`TenantGuard` exige un único `X-Tenant-Id` UUID en endpoints tenant-scoped, lo trata
+como selector no confiable y construye un contexto inmutable después de validar
+identidad, tenant y membership. No usa query/body, sesión, cookie ni tenant token para
+seleccionar contexto.
+
 ---
 
 ## 17.4. Reglas

@@ -169,6 +169,7 @@ El módulo define cinco grupos principales:
 | `Authorization`    | Sí en endpoints privados | Bearer token                       |
 | `Content-Type`     |         Sí en POST/PATCH | `application/json`                 |
 | `Accept`           |              Recomendado | `application/json`                 |
+| `X-Tenant-Id`      | Sí en endpoints tenant-scoped | Selector UUID no confiable     |
 | `X-Request-Id`     |                 Opcional | ID de request provisto por cliente |
 | `X-Correlation-Id` |                 Opcional | ID de correlación                  |
 
@@ -240,6 +241,10 @@ Para endpoints privados, el backend debe validar:
 8. Recurso dentro del tenant correcto.
 9. Restricción de estado.
 ```
+
+En el paso 4, `X-Tenant-Id` selecciona el tenant para esa solicitud pero no lo
+autoriza. Está prohibido sustituirlo con `tenantId` en query/body o conservar la
+selección como estado de sesión.
 
 ---
 
@@ -1417,14 +1422,14 @@ GET /api/v1/me/tenants
 ### Endpoint
 
 ```http id="g9w57f"
-GET /api/v1/me/permissions?tenantId={tenantId}
+GET /api/v1/me/permissions
 ```
 
-### Query params
+### Header requerido
 
-| Nombre     | Tipo        |                  Requerido |
-| ---------- | ----------- | -------------------------: |
-| `tenantId` | UUID/string | No si existe tenant activo |
+| Nombre        | Tipo | Requerido |
+| --- | --- | ---: |
+| `X-Tenant-Id` | UUID | Sí |
 
 ### Response 200
 
@@ -1463,47 +1468,16 @@ No devolver permisos operativos si:
 
 ---
 
-## 14.4. Cambiar tenant activo
+## 14.4. Selección local de tenant
 
-### Endpoint
+No existe endpoint de cambio de tenant. El cliente obtiene las memberships mediante
+`GET /api/v1/me/tenants`, conserva localmente la selección y envía `X-Tenant-Id` en la
+siguiente solicitud tenant-scoped. Core no persiste esa selección ni emite un tenant
+token; revalida tenant y membership en cada solicitud.
 
-```http id="o7bul5"
-POST /api/v1/me/switch-tenant
-```
-
-### Request body
-
-```json id="lmewys"
-{
-  "tenantId": "tenant_uuid"
-}
-```
-
-### Response 200
-
-```json id="0cdbf3"
-{
-  "data": {
-    "tenantId": "tenant_uuid",
-    "slug": "villa-club",
-    "name": "Villa Club",
-    "membershipStatus": "active",
-    "roles": [
-      "TenantAdmin"
-    ]
-  },
-  "meta": {
-    "traceId": "req_123456"
-  }
-}
-```
-
-### Reglas
-
-* El usuario debe tener membership activa en el tenant.
-* El tenant debe estar activo.
-* No confiar solo en headers.
-* El cambio debe ser compatible con sesión/cookie/token según estrategia de auth.
+`X-Tenant-Id` no está permitido en query o body como fuente de contexto. Los errores
+canónicos son `TENANT_CONTEXT_REQUIRED` (400), `TENANT_CONTEXT_INVALID` (400),
+`TENANT_ACCESS_DENIED` (403) y `TENANT_CONTEXT_CONFLICT` (422).
 
 ---
 
@@ -1976,7 +1950,6 @@ Rate limiting recomendado para:
 POST /api/v1/tenant/invitations
 GET  /api/v1/invitations/{token}
 POST /api/v1/invitations/{token}/accept
-POST /api/v1/me/switch-tenant
 ```
 
 Objetivo:
@@ -2001,6 +1974,10 @@ Access-Control-Allow-Origin: *
 ```
 
 para endpoints autenticados.
+
+Los orígenes privados autorizados deben permitir explícitamente `Authorization`,
+`Content-Type` y `X-Tenant-Id`; no se habilitan headers mediante wildcard en
+producción.
 
 ---
 
@@ -2179,7 +2156,7 @@ Probar:
 * `/me`;
 * `/me/tenants`;
 * `/me/permissions`;
-* `/me/switch-tenant`;
+* resolución request-scoped mediante `X-Tenant-Id`;
 * usuario sin membership;
 * tenant suspendido;
 * usuario disabled.
@@ -2223,8 +2200,7 @@ Probar:
 | POST   | `/api/v1/tenant/memberships/{membershipId}/revoke`         |                   Sí | `users.membership.revoke`   | `membership.revoked`      |
 | GET    | `/api/v1/me`                                               |                   Sí | Authenticated               | No obligatoria            |
 | GET    | `/api/v1/me/tenants`                                       |                   Sí | Authenticated               | No obligatoria            |
-| GET    | `/api/v1/me/permissions`                                   |                   Sí | Authenticated               | opcional                  |
-| POST   | `/api/v1/me/switch-tenant`                                 |                   Sí | Authenticated + membership  | No obligatoria            |
+| GET    | `/api/v1/me/permissions`                                   |                   Sí | Authenticated + `X-Tenant-Id` validado | opcional       |
 | GET    | `/api/v1/invitations/{token}`                              |  No/session optional | Token válido                | No obligatoria            |
 | POST   | `/api/v1/invitations/{token}/accept`                       | Opcional según flujo | Token válido                | `invitation.accepted`     |
 
@@ -2249,7 +2225,7 @@ Probar:
 | Invitación ya aceptada                          | 409                      |
 | Invitación intenta usar role global             | 422/403                  |
 | Aceptación genera membership duplicada          | 409                      |
-| Switch tenant sin membership                    | 403                      |
+| `X-Tenant-Id` sin membership                    | 403                      |
 | Consultar permisos con tenant suspendido        | 403 o permisos limitados |
 | Token válido sin UserProfile local              | 403/404 según política   |
 

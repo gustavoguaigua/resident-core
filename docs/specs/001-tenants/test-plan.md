@@ -820,7 +820,7 @@ Casos:
 | ------------------- | ------------------------------- | --------------------------------------- |
 | API-PROFILE-GET-001 | TenantAdmin A consulta perfil A | 200                                     |
 | API-PROFILE-GET-002 | Sin token                       | 401                                     |
-| API-PROFILE-GET-003 | Sin tenant activo               | 403                                     |
+| API-PROFILE-GET-003 | Sin `X-Tenant-Id`               | 400 `TENANT_CONTEXT_REQUIRED`           |
 | API-PROFILE-GET-004 | Sin permiso                     | 403                                     |
 | API-PROFILE-GET-005 | Tenant suspendido               | 403 o permitido limitado según política |
 
@@ -862,7 +862,7 @@ Casos:
 | API-BRAND-GET-001 | Consulta autorizada | 200                |
 | API-BRAND-GET-002 | Sin token           | 401                |
 | API-BRAND-GET-003 | Sin permiso         | 403                |
-| API-BRAND-GET-004 | Sin tenant activo   | 403                |
+| API-BRAND-GET-004 | Sin `X-Tenant-Id`   | 400 `TENANT_CONTEXT_REQUIRED` |
 
 ---
 
@@ -902,7 +902,7 @@ Casos:
 | API-CONF-GET-001 | Consulta autorizada | 200                |
 | API-CONF-GET-002 | Sin token           | 401                |
 | API-CONF-GET-003 | Sin permiso         | 403                |
-| API-CONF-GET-004 | Sin tenant activo   | 403                |
+| API-CONF-GET-004 | Sin `X-Tenant-Id`   | 400 `TENANT_CONTEXT_REQUIRED` |
 
 ---
 

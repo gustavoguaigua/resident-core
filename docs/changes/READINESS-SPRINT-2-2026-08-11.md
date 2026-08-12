@@ -7,6 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
+| Última actualización | 2026-08-12 — cierre documental de `GAP-S2-004` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
 | Commit base inspeccionado | `b7cbc84fd03aeb44714a32cd27d28b5405a9d30e` |
 | Rama de evaluación | `codex/sprint-2-readiness` |
@@ -58,6 +59,7 @@ contratos y gates verificables.
 | CI | Gates de Sprint 1 activos; acciones `@v6` sobre runtime Node.js 24 |
 | Runbook de Sprint 2 | Frontera, incrementos, exclusiones y gates definidos; implementación bloqueada por `NO_GO` |
 | Bootstrap de plataforma y tenant | Contrato transaccional cerrado; sin endpoint anónimo, bypass ni placeholder |
+| Contexto de tenant activo | Contrato request-scoped cerrado; selector único `X-Tenant-Id` validado por Core |
 | Secretos o datos reales requeridos | Ninguno |
 
 ## 5. Registro de gaps
@@ -107,13 +109,14 @@ invitación pendiente.
 | Campo | Valor |
 | --- | --- |
 | Severidad | Crítica |
-| Estado | open |
+| Estado | closed — 2026-08-12 |
 
-Las guías API mencionan `/auth/switch-tenant`; la spec 002 define
-`POST /api/v1/me/switch-tenant` y también consultas con `tenantId` opcional. No está
-definido un único transporte autoritativo para seleccionar y resolver tenant activo con
-tokens de Keycloak, ni su persistencia, expiración y validación contra membership. El
-cliente no puede convertirse en autoridad de `tenantId`.
+`docs/changes/GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md` elimina
+`/auth/switch-tenant`, `/api/v1/me/switch-tenant` y la selección mediante `tenantId` en
+query/body. Los endpoints tenant-scoped exigen `X-Tenant-Id` como selector no
+confiable y Core revalida identidad, tenant, membership, roles y permisos en cada
+solicitud. No existe estado persistido, cookie ni tenant token; el contexto expira con
+la solicitud.
 
 ### GAP-S2-005 — Contrato operativo de Keycloak incompleto
 
@@ -192,11 +195,11 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 | Specs funcionales aplicables están aprobadas | No cumple | 28 de 28 documentos `needs-review` |
 | Alcance de 007/025 base es verificable | Cumple | `sprint-2-tenants-identity-access.md` |
 | Bootstrap tenant-identidad está cerrado | Cumple | `GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` |
-| Tenant activo tiene contrato único | No cumple | Rutas y autoridad no unificadas |
+| Tenant activo tiene contrato único | Cumple | `GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md` |
 | Keycloak es reproducible y testeable | No cumple | No existe realm/client config versionada |
 | Modelo Prisma inicial no tiene superposiciones | No cumple | 001/025 requieren decisión de propiedad |
 | Gates de Sprint 2 están automatizados | No cumple | Definidos en runbook; scripts y workflow pendientes |
-| No existen gaps críticos o altos abiertos | No cumple | 3 críticos y 3 altos abiertos |
+| No existen gaps críticos o altos abiertos | No cumple | 2 críticos y 3 altos abiertos |
 
 ## 8. Decisión vigente
 
@@ -204,7 +207,7 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 Decision: NO_GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
 Effective date: 2026-08-11
-Critical gaps open: 3
+Critical gaps open: 2
 High gaps open: 3
 Authorized plan: none
 Base commit: b7cbc84fd03aeb44714a32cd27d28b5405a9d30e
@@ -217,21 +220,20 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 
 ## 9. Orden recomendado para alcanzar GO
 
-1. Cerrar el contrato único de tenant activo entre 001 y 002.
-2. Fijar el contrato reproducible de Keycloak y sus pruebas negativas.
-3. Unificar propiedad de configuración, modelos Prisma, audit base y secuencia de
+1. Fijar el contrato reproducible de Keycloak y sus pruebas negativas.
+2. Unificar propiedad de configuración, modelos Prisma, audit base y secuencia de
    migraciones.
-4. Normalizar los 28 documentos aplicables a `accepted` sólo después de resolver sus
+3. Normalizar los 28 documentos aplicables a `accepted` sólo después de resolver sus
    decisiones abiertas y comprobar consistencia cruzada.
-5. Implementar los gates CI y la comprobación automática de frontera definidos por el
+4. Implementar los gates CI y la comprobación automática de frontera definidos por el
    runbook.
-6. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión `GO` puede autorizar
+5. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión `GO` puede autorizar
    funcionalidad.
 
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, la observación de Node.js 20 en GitHub
-Actions está corregida y los gaps `GAP-S2-002` y `GAP-S2-003` están cerrados sin
+Actions está corregida y los gaps `GAP-S2-002`, `GAP-S2-003` y `GAP-S2-004` están cerrados sin
 aprobar implícitamente decisiones abiertas. Sprint 2 todavía no está listo para
-comenzar: la decisión continúa siendo `NO_GO`, con tres gaps críticos y tres altos. El
-siguiente paso permitido recomendado es cerrar `GAP-S2-004`.
+comenzar: la decisión continúa siendo `NO_GO`, con dos gaps críticos y tres altos. El
+siguiente paso permitido recomendado es cerrar `GAP-S2-005`.

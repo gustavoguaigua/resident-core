@@ -267,6 +267,7 @@ Debe aplicar:
 | `Authorization`    | Sí en endpoints privados | Bearer token                       |
 | `Content-Type`     |         Sí en POST/PATCH | `application/json`                 |
 | `Accept`           |              Recomendado | `application/json`                 |
+| `X-Tenant-Id`      | Sí en endpoints tenant-scoped | Selector UUID no confiable     |
 | `X-Request-Id`     |                 Opcional | ID de request provisto por cliente |
 | `X-Correlation-Id` |                 Opcional | ID de correlación                  |
 | `Idempotency-Key`  |          Opcional/futuro | Para operaciones idempotentes      |
@@ -1158,6 +1159,12 @@ TenantArchived
 
 # 16. Active Tenant API
 
+Todos los endpoints de esta sección exigen `X-Tenant-Id: <tenant-uuid>`. El header
+selecciona contexto para una sola solicitud y no constituye autoridad: Core valida
+`UserProfile`, tenant, membership y permisos antes de acceder a datos. No se acepta
+`tenantId` en query o body para sustituirlo y no existe estado server-side de tenant
+activo.
+
 ---
 
 ## 16.1. Consultar perfil del tenant activo
@@ -1180,7 +1187,7 @@ tenants.profile.read
 
 ### Tenant activo
 
-Requerido.
+Requerido mediante un único `X-Tenant-Id` UUID válido.
 
 ### Response 200
 

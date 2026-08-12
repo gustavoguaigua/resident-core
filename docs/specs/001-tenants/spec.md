@@ -266,6 +266,11 @@ No se permite activación directa en la operación de creación.
 
 Solo tenants en estado `active` pueden ejecutar operaciones transaccionales ordinarias.
 
+En endpoints tenant-scoped, “tenant activo” también designa el contexto inmutable de
+una solicitud: el cliente envía `X-Tenant-Id` como selector no confiable y Core valida
+tenant, membership y permisos. La selección no se persiste ni se cambia mediante un
+endpoint.
+
 ---
 
 ### BR-005 — Tenant suspendido

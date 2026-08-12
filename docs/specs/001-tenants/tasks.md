@@ -1336,11 +1336,11 @@ Proteger endpoints privados.
 
 ### Criterios de aceptación
 
-* Resuelve tenant activo.
-* Valida membresía futura o mock temporal.
-* Rechaza usuario sin tenant.
-* Rechaza tenant suspendido según política.
-* No confía solo en header.
+* Exige un único `X-Tenant-Id` UUID en endpoints tenant-scoped.
+* Trata el header como selector no confiable.
+* Valida `UserProfile`, tenant y membership activos en cada solicitud.
+* Rechaza ausencia, formato inválido, tenant inactivo y membership inexistente.
+* Construye contexto request-scoped inmutable y no persiste la selección.
 
 ---
 

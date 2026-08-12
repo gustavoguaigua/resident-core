@@ -1141,18 +1141,24 @@ POST /api/v1/tenant/memberships/{membershipId}/revoke
 | API-MEPERM-004 | Membership revoked                | 403                       |
 | API-MEPERM-005 | No mezcla permisos de otro tenant | pasa                      |
 | API-MEPERM-006 | Permisos deduplicados             | pasa                      |
+| API-MEPERM-007 | Sin `X-Tenant-Id`                  | 400 `TENANT_CONTEXT_REQUIRED` |
+| API-MEPERM-008 | Header duplicado o UUID inválido   | 400 `TENANT_CONTEXT_INVALID` |
+| API-MEPERM-009 | `tenantId` en query                | 422 `TENANT_CONTEXT_CONFLICT` |
 
 ---
 
-## 16.4. `/me/switch-tenant`
+## 16.4. Contexto request-scoped
 
-| ID             | Caso                                   | Resultado esperado |
-| -------------- | -------------------------------------- | ------------------ |
-| API-SWITCH-001 | Cambiar a tenant con membership active | 200                |
-| API-SWITCH-002 | Cambiar a tenant sin membership        | 403                |
-| API-SWITCH-003 | Cambiar a tenant suspended             | 403                |
-| API-SWITCH-004 | Cambiar a tenant archived              | 403                |
-| API-SWITCH-005 | Usuario disabled                       | 403                |
+| ID             | Caso | Resultado esperado |
+| --- | --- | --- |
+| API-TCTX-001 | Header con tenant y membership activos | contexto resuelto |
+| API-TCTX-002 | Tenant sin membership | 403 `TENANT_ACCESS_DENIED` |
+| API-TCTX-003 | Tenant suspendido o archivado | 403 `TENANT_ACCESS_DENIED` |
+| API-TCTX-004 | Usuario disabled | 403 |
+| API-TCTX-005 | Dos pestañas envían tenants distintos | contextos aislados |
+| API-TCTX-006 | Membership revocada entre requests | siguiente request 403 |
+| API-TCTX-007 | `tenantId` inyectado en body | 422 `TENANT_CONTEXT_CONFLICT` |
+| API-TCTX-008 | Recurso pertenece a otro tenant | 403/404 sin fuga |
 
 ---
 
@@ -1240,7 +1246,7 @@ POST /api/v1/invitations/{token}/accept
 | MT-005 | Role A no asignable a membership B                               | rechazado          |
 | MT-006 | Role global no asignable como membershipRole                     | rechazado          |
 | MT-007 | Auditoría de acción A registra tenantId A                        | pasa               |
-| MT-008 | Switch tenant requiere membership activa                         | pasa               |
+| MT-008 | Contexto de tenant requiere membership activa                     | pasa               |
 | MT-009 | Tenant suspended bloquea operación ordinaria                     | pasa               |
 | MT-010 | Usuario con roles distintos por tenant recibe permisos distintos | pasa               |
 

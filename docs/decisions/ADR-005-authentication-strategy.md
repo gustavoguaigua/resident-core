@@ -1,4 +1,4 @@
-# ADR-005 — Authentication Strategy: Evolutionary Authentication with Keycloak Target v0.2
+# ADR-005 — Authentication Strategy: Evolutionary Authentication with Keycloak Target v0.3
 
 ## Estado
 
@@ -38,7 +38,10 @@ Redirección a Keycloak, token OIDC, Core valida issuer/audience/firma/expiraci�
 MVP: JWT corto, refresh revocable, hash en DB, payload mínimo. Objetivo: token Keycloak con claims mínimos. No incluir saldos, deudas, comprobantes o permisos financieros extensos.
 
 ## 7. Tenant activo
-Si usuario tiene varios tenants, selecciona tenant activo. Core valida membership aunque token sea Keycloak.
+Si un usuario tiene varios tenants, la interfaz mantiene su selección local y envía
+`X-Tenant-Id` en cada solicitud tenant-scoped. El header no es autoridad: Core valida
+tenant y membership en cada solicitud aunque el token sea Keycloak. La selección no se
+persiste en sesión ni se incorpora al token, y Core no expone un endpoint `switch-tenant`.
 
 ## 8. Invitaciones y WordPress
 Invitaciones de negocio siguen en Core. WordPress no autentica Core:

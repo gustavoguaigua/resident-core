@@ -40,7 +40,7 @@ El objetivo es verificar que RESIDENT Core administre correctamente:
 * cálculo de permisos efectivos;
 * autorización global;
 * autorización tenant-scoped;
-* integración conceptual con Keycloak;
+* integración base real con Keycloak local/CI;
 * aislamiento multitenant;
 * auditoría de cambios de acceso;
 * seguridad de tokens de invitación;
@@ -385,11 +385,11 @@ Archivo sugerido:
 auth-provider.vo.spec.ts
 ```
 
-| ID            | Caso                    | Resultado esperado |
-| ------------- | ----------------------- | ------------------ |
-| UT-AUTHPR-001 | `keycloak` válido       | válido             |
-| UT-AUTHPR-002 | `local` válido temporal | válido             |
-| UT-AUTHPR-003 | valor inválido          | error              |
+| ID            | Caso              | Resultado esperado |
+| ------------- | ----------------- | ------------------ |
+| UT-AUTHPR-001 | `keycloak` válido | válido             |
+| UT-AUTHPR-002 | `local`            | error              |
+| UT-AUTHPR-003 | valor inválido    | error              |
 
 ---
 
@@ -1114,7 +1114,7 @@ POST /api/v1/tenant/memberships/{membershipId}/revoke
 | ---------- | ---------------------------- | ------------------ |
 | API-ME-001 | Usuario autenticado          | 200                |
 | API-ME-002 | Sin token                    | 401                |
-| API-ME-003 | Token válido sin UserProfile | 403/404            |
+| API-ME-003 | Token válido sin UserProfile | 403 `IDENTITY_NOT_PROVISIONED` |
 | API-ME-004 | Usuario disabled             | 403                |
 
 ---
@@ -1301,6 +1301,39 @@ POST /api/v1/invitations/{token}/accept
 | SEC-LOG-003 | invitation token no aparece          | pasa               |
 | SEC-LOG-004 | tokenHash no aparece                 | pasa               |
 | SEC-LOG-005 | stack trace no aparece en producción | pasa               |
+
+---
+
+## 20.5. Keycloak/OIDC
+
+| ID | Caso | Resultado esperado |
+| --- | --- | --- |
+| KC-REALM-001 | Import en base vacía | realm `resident` disponible |
+| KC-REALM-002 | Segundo arranque | import omitido y verificador sin drift |
+| KC-REALM-003 | JSON versionado | sin users, passwords o secrets |
+| KC-CLIENT-001 | Admin Web Authorization Code + PKCE S256 | token válido |
+| KC-CLIENT-002 | Resident Web Authorization Code + PKCE S256 | token válido |
+| KC-CLIENT-003 | PKCE ausente o distinto de S256 | rechazado |
+| KC-CLIENT-004 | Redirect/origin no registrado | rechazado |
+| KC-CLIENT-005 | Implicit o password grant | rechazado |
+| KC-TOKEN-001 | RS256, issuer, audience, azp y tiempos válidos | principal resuelto |
+| KC-TOKEN-002 | Firma o algoritmo inválido | 401 `INVALID_ACCESS_TOKEN` |
+| KC-TOKEN-003 | Issuer incorrecto | 401 `INVALID_ACCESS_TOKEN` |
+| KC-TOKEN-004 | Audience sin `resident-api` | 401 `INVALID_ACCESS_TOKEN` |
+| KC-TOKEN-005 | `azp` no aprobado o ID token | 401 `INVALID_ACCESS_TOKEN` |
+| KC-TOKEN-006 | Token expirado/no vigente | 401 `INVALID_ACCESS_TOKEN` |
+| KC-TOKEN-007 | `kid` desconocido tras refresh | 401 `INVALID_ACCESS_TOKEN` |
+| KC-TOKEN-008 | JWKS indisponible sin cache válido | 503 `IDENTITY_PROVIDER_UNAVAILABLE` |
+| KC-IDENT-001 | Subject sin UserProfile | 403 `IDENTITY_NOT_PROVISIONED` |
+| KC-IDENT-002 | Perfil Core disabled/archived | 403 `USER_DISABLED` |
+| KC-IDENT-003 | Email humano no verificado | 401 `INVALID_ACCESS_TOKEN` |
+| KC-ADMIN-001 | Cliente técnico consulta users | éxito |
+| KC-ADMIN-002 | Cliente técnico intenta escribir/admin realm | rechazado |
+| KC-LOG-001 | Logs/auditoría tras rechazo | sin token, claims o subject completo |
+
+Los claims manipulados pueden probarse con JWT/JWKS sintéticos. CI debe importar
+Keycloak 26.7.0 real y ejecutar al menos los flujos PKCE positivos y la verificación de
+invariantes. No se habilita un cliente inseguro para facilitar tests.
 
 ---
 

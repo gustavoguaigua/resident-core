@@ -1,5 +1,11 @@
 # RESIDENT Core — Constitución SDD v0.2
 
+> **Archivo histórico de consolidación.** Conserva la fotografía documental de la
+> adopción inicial de Keycloak y no sustituye fuentes vigentes. Las decisiones
+> operativas posteriores, incluidas las preguntas aquí marcadas como pendientes, se
+> resuelven en ADR-006 v0.3 y
+> `docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md`.
+
 ## 1. Información
 Ruta: `docs/sdd/constitution.md`  
 Versión: 0.2  

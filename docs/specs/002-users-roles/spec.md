@@ -388,19 +388,19 @@ Depende de:
 ## 8. Supuestos
 
 1. `001-tenants` ya define tenants.
-2. Keycloak será el IdP objetivo.
-3. Durante MVP puede existir auth propia temporal o mock auth en desarrollo.
-4. RESIDENT Core mantendrá `UserProfile`.
-5. RESIDENT Core mantendrá membresías y roles por tenant.
-6. Los roles base se crearán por tenant.
-7. Un usuario puede pertenecer a varios tenants.
-8. Un usuario puede tener roles distintos en tenants distintos.
-9. Un usuario puede tener roles globales y roles tenant-scoped.
-10. WordPress no administra usuarios del Core.
-11. n8n usará service accounts futuras.
-12. La autorización final siempre se valida en RESIDENT Core.
-13. Los residentes como personas/unidades se modelarán en `003-residents-properties`.
-14. La primera identidad de plataforma existe y está verificada en Keycloak antes
+2. Sprint 2 adopta Keycloak como único IdP; no implementa auth propia ni mock que
+   conceda acceso.
+3. RESIDENT Core mantendrá `UserProfile`.
+4. RESIDENT Core mantendrá membresías y roles por tenant.
+5. Los roles base se crearán por tenant.
+6. Un usuario puede pertenecer a varios tenants.
+7. Un usuario puede tener roles distintos en tenants distintos.
+8. Un usuario puede tener roles globales y roles tenant-scoped.
+9. WordPress no administra usuarios del Core.
+10. n8n usará service accounts futuras.
+11. La autorización final siempre se valida en RESIDENT Core.
+12. Los residentes como personas/unidades se modelarán en `003-residents-properties`.
+13. La primera identidad de plataforma existe y está verificada en Keycloak antes
     de crear su perfil local.
 
 ---
@@ -1548,6 +1548,13 @@ Requieren:
 Authorization: Bearer <access_token>
 ```
 
+En Sprint 2 el access token es emitido por el realm Keycloak `resident`. Los
+frontends obtienen tokens mediante Authorization Code + PKCE S256. Core valida firma
+RS256/JWKS, issuer exacto, audience `resident-api`, `azp` aprobado, tipo Bearer,
+tiempos, `sub` y `email_verified=true` antes de resolver un `UserProfile` activo.
+No se aceptan ID tokens, password grant, implicit flow ni roles Keycloak como
+autorización funcional.
+
 ---
 
 ### 20.2. Endpoints de invitación
@@ -1919,7 +1926,7 @@ La spec se considera implementada si:
 | Revocar última membresía TenantAdmin          | 409 si regla activa    |
 | Usuario disabled consulta permisos            | 403                    |
 | Usuario sin membership cambia tenant          | 403                    |
-| Token Keycloak válido sin UserProfile         | 403/404 según política |
+| Token Keycloak válido sin UserProfile         | 403 `IDENTITY_NOT_PROVISIONED` |
 | Service account sin scope                     | 403                    |
 
 ---

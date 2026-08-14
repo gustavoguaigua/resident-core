@@ -1370,16 +1370,24 @@ payload completo innecesario
 
 ### 19.1. Validaciones de token
 
-Cuando Keycloak esté activo, la API debe validar:
+Sprint 2 debe validar, antes de crear un principal:
 
 ```text id="x6m2xa"
-issuer
-audience
-signature
-expiration
-subject
-client
+JWT de tres segmentos y tamaño acotado
+algoritmo RS256
+firma contra JWKS configurado y kid conocido
+issuer público exacto
+audience contiene resident-api
+azp es resident-admin-web o resident-resident-web
+typ es Bearer
+exp, iat y nbf con skew máximo de 30 segundos
+subject no vacío
+email_verified es true
 ```
+
+Se rechazan ID tokens, `alg=none`, HMAC, introspection por request, keys embebidas,
+Implicit Flow y Direct Access Grants. Ante `kid` desconocido se permite una sola
+actualización JWKS controlada; sin key válida se falla cerrado.
 
 ### 19.2. Mapeo local
 
@@ -1413,6 +1421,16 @@ membership completa
 ```
 
 Estos datos pueden estar desactualizados o manipulados si la configuración es incorrecta.
+
+### 19.5. Clientes y secretos
+
+Los clientes web son públicos y usan Authorization Code + PKCE S256. `resident-api`
+no tiene grants. El único cliente técnico de Sprint 2 es `resident-identity-admin`,
+con secret fuera de Git y permisos exclusivos `query-users`/`view-users`. Las
+credenciales bootstrap admin nunca se entregan a Core.
+
+Realm JSON y fixtures no contienen users, passwords o secrets. Redirects y origins son
+exactos, sin wildcard. Tokens permanecen en memoria del frontend y nunca se registran.
 
 ---
 
@@ -1773,8 +1791,8 @@ Debe definir:
 * refresh token policy;
 * admin console protection;
 * realm backup;
-* client secrets;
-* redirect URIs;
+* almacenamiento y rotación de secrets operativos;
+* redirect URIs/origins HTTPS exactos de dominios aprobados;
 * brute force protection.
 
 ---

@@ -1,4 +1,4 @@
-# ADR-005 — Authentication Strategy: Evolutionary Authentication with Keycloak Target v0.3
+# ADR-005 — Authentication Strategy: Evolutionary Authentication with Keycloak Target v0.4
 
 ## Estado
 
@@ -18,6 +18,10 @@ Arquitectura objetivo: Keycloak como Identity Provider central.
 
 Auth propia en NestJS no será permanente. Antes de microservicios físicos, Keycloak deberá estar implementado.
 
+La autorización histórica de auth propia temporal no aplica a Sprint 2: su runbook
+adopta exclusivamente Keycloak y prohíbe implementar una autenticación paralela. Los
+guards de Sprint 1 continúan fail-closed hasta disponer del adaptador OIDC autorizado.
+
 ## 2. Responsabilidades
 | Responsabilidad | MVP | Objetivo |
 |---|---|---|
@@ -32,7 +36,10 @@ Autenticación no es autorización. Usuario autenticado no accede a todos los te
 Email/password, validación Core, tenants disponibles, sesión, tokens, selección de tenant y carga de permisos.
 
 ## 5. Flujo objetivo
-Redirección a Keycloak, token OIDC, Core valida issuer/audience/firma/expiración, mapea sub a UserProfile, valida membership y autoriza negocio.
+Los frontends usan Authorization Code + PKCE S256 contra Keycloak. Core acepta sólo
+access tokens RS256 con issuer exacto, audience `resident-api`, cliente autorizado y
+claims temporales válidos; luego mapea sub a UserProfile, valida estado, membership y
+autoriza negocio.
 
 ## 6. Tokens
 MVP: JWT corto, refresh revocable, hash en DB, payload mínimo. Objetivo: token Keycloak con claims mínimos. No incluir saldos, deudas, comprobantes o permisos financieros extensos.
@@ -60,7 +67,8 @@ Auth propia permanente, token mal validado, Keycloak mal configurado, confundir 
 
 ## Consecuencias
 
-- Una implementación temporal propia debe diseñarse para migración y posterior retiro.
+- La autenticación propia temporal queda como antecedente histórico y no se implementa
+  desde Sprint 2.
 - Core debe separar autenticación técnica de autorización funcional desde el inicio.
 - La transición requiere mapear identidades a `UserProfile` sin perder memberships ni auditoría.
 - Keycloak deberá estar operativo antes de extraer microservicios físicos.
@@ -68,7 +76,8 @@ Auth propia permanente, token mal validado, Keycloak mal configurado, confundir 
 ## Alternativas consideradas
 
 - Mantener autenticación propia permanentemente: descartado por deuda de seguridad y duplicación de capacidades de identidad.
-- Exigir Keycloak para toda la primera iteración: no se impone como condición absoluta del MVP, aunque sigue siendo el objetivo.
+- Exigir Keycloak desde Sprint 2: adoptado para eliminar la transición y cerrar el
+  contrato operativo de identidad.
 - Reutilizar sesiones de WordPress: descartado porque WordPress no autentica ni autoriza RESIDENT Core.
 
 ## Relación con documentos
@@ -82,4 +91,6 @@ Auth propia permanente, token mal validado, Keycloak mal configurado, confundir 
 - `docs/decisions/ADR-007-authorization-strategy.md`
 
 ## 12. Decisión final
-Auth propia en NestJS solo como transición. Keycloak será proveedor central antes de microservicios. Core conserva membership, roles funcionales, permisos, autorización por recurso, auditoría y reglas financieras.
+Keycloak es el único proveedor de identidad autorizado desde Sprint 2. Core conserva
+membership, roles funcionales, permisos, autorización por recurso, auditoría y reglas
+financieras.

@@ -50,6 +50,11 @@ ADR-004 y no requiere una tabla o columna adicional.
 
 Este modelo implementa la base real de autorización de RESIDENT Core.
 
+Keycloak conserva credenciales, sesiones y tokens. El modelo Core no añade tablas o
+columnas para passwords, access/refresh tokens, authorization codes, JWKS o client
+secrets. `keycloakSubjectId` es el vínculo estable y único; email/nombres del token son
+informativos y no reemplazan ese subject ni se sincronizan implícitamente.
+
 ---
 
 ## 3. Principios del modelo
@@ -735,15 +740,16 @@ enum UserType {
 Valores:
 
 ```text id="jhtsdf"
-local
 keycloak
 ```
+
+Sprint 2 admite únicamente `keycloak`. Agregar otro proveedor requiere actualizar el
+contrato de identidad y la decisión arquitectónica correspondiente.
 
 Prisma:
 
 ```prisma id="ho2mk6"
 enum AuthProvider {
-  LOCAL    @map("local")
   KEYCLOAK @map("keycloak")
 
   @@map("auth_provider")
@@ -853,7 +859,6 @@ enum UserType {
 }
 
 enum AuthProvider {
-  LOCAL    @map("local")
   KEYCLOAK @map("keycloak")
 
   @@map("auth_provider")

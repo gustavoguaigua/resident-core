@@ -1,9 +1,9 @@
-# RESIDENT Core — Architecture v0.2
+# RESIDENT Core — Architecture v0.3
 
 ## 1. Información
 Ruta: `docs/sdd/architecture.md`  
-Versión: 0.2  
-Cambio: Keycloak como componente objetivo de identidad antes de microservicios.
+Versión: 0.3
+Cambio: contrato operativo OIDC reproducible de Keycloak para Sprint 2.
 
 ## 2. Decisión arquitectónica inicial
 ```text
@@ -60,7 +60,11 @@ Interface, Application, Domain e Infrastructure. Controladores no contienen regl
 platform, tenants, identity-integration, access-control, residents-properties, financial, payments, reconciliation, reservations, fines, meetings, communications, reports, audit, integrations.
 
 ## 7. Identity Integration
-Valida tokens, mapea `sub` de Keycloak a UserProfile, soporta auth temporal propia, transición a Keycloak y configuración OIDC.
+Valida access tokens Keycloak RS256 mediante issuer exacto y JWKS configurado, exige
+audience `resident-api`, cliente aprobado y claims temporales válidos, y mapea `sub` a
+un UserProfile activo. Sprint 2 no implementa auth propia paralela. El issuer público
+y el JWKS backchannel pueden usar URLs diferentes sin relajar la comparación de
+issuer.
 
 ## 8. Access Control
 Gestiona memberships, roles por tenant, permisos funcionales, validaciones por recurso, políticas financieras y pruebas cross-tenant.
@@ -69,7 +73,10 @@ Gestiona memberships, roles por tenant, permisos funcionales, validaciones por r
 Single database + shared schema + tenant_id obligatorio. Keycloak no tendrá realm por tenant en MVP; los tenants de negocio viven en Core.
 
 ## 10. Identidad
-Keycloak objetivo para login, password reset, MFA, refresh tokens y SSO. Core para membership, roles funcionales, permisos, autorización y auditoría.
+Keycloak para login, password reset, refresh tokens y SSO; los frontends usan
+Authorization Code + PKCE S256. Core conserva membership, roles funcionales, permisos,
+autorización y auditoría. El realm reproducible de desarrollo/CI y sus clientes se
+rigen por GAP-S2-005; MFA y hardening de producción siguen siendo gates de despliegue.
 
 ## 11. Base de datos
 PostgreSQL con Prisma, tenant_id, Decimal, transacciones ACID, migraciones versionadas, auditoría y preparación para `keycloakSubjectId`.

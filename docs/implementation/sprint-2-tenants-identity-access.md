@@ -6,7 +6,7 @@
 - Estado de autorización de implementación: `blocked`
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
 - Gaps resueltos por este documento y sus contratos: `GAP-S2-002`, `GAP-S2-003`,
-  `GAP-S2-004`
+  `GAP-S2-004`, `GAP-S2-005`
 
 Este documento es el runbook autoritativo de Sprint 2. Define su frontera, sus
 incrementos y sus criterios de salida. No concede por sí mismo autorización para
@@ -49,12 +49,11 @@ Sprint 2 solo puede comenzar después de que una nueva evaluación formal emita
 `GO`. Como mínimo deben estar cerrados los gaps críticos restantes de la
 compuerta y aprobados los contratos que afectan a implementación:
 
-1. aprobar el contrato operativo de Keycloak;
-2. resolver la propiedad de configuración entre Specs 001 y 025;
-3. fijar semántica mínima de auditoría;
-4. convertir los gates descritos aquí en validaciones reproducibles;
-5. aprobar las Specs y anexos contractuales necesarios;
-6. reevaluar formalmente la compuerta de readiness.
+1. resolver la propiedad de configuración entre Specs 001 y 025;
+2. fijar semántica mínima de auditoría;
+3. convertir los gates descritos aquí en validaciones reproducibles;
+4. aprobar las Specs y anexos contractuales necesarios;
+5. reevaluar formalmente la compuerta de readiness.
 
 ## 5. Frontera funcional exacta
 
@@ -155,7 +154,8 @@ Excluido:
 
 ### 5.3 Integración base con Keycloak
 
-Incluido, una vez cerrado `GAP-S2-005`:
+Incluido conforme al contrato cerrado
+`docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md`:
 
 - realm versionado y reproducible `resident` para desarrollo y pruebas;
 - clientes, audiences, scopes y claims con identificadores canónicos;
@@ -167,6 +167,12 @@ Incluido, una vez cerrado `GAP-S2-005`:
   arquitectura;
 - health check de Keycloak cuando la dependencia quede activada;
 - pruebas positivas y negativas del contrato OIDC.
+
+Los clientes web usan Authorization Code + PKCE S256; `resident-api` es resource
+server sin grants y recibe audience mediante mapper; `resident-identity-admin` es el
+único cliente técnico y sólo consulta identidades. Issuer público y JWKS backchannel
+son configuraciones separadas. WordPress/n8n, password grant, implicit flow, auth
+propia paralela y hardening de producción quedan fuera de este incremento.
 
 Keycloak autentica. RESIDENT Core conserva la autoridad sobre tenants,
 membresías, roles de negocio, permisos y estados de acceso.
@@ -352,5 +358,7 @@ Este runbook cerró `GAP-S2-002` al fijar una frontera única. El contrato
 `GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` elimina además la circularidad de
 bootstrap entre Specs 001 y 002. El contrato
 `GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md` fija el contexto request-scoped y
-cierra las rutas y transportes alternativos. No cierra ni reduce por inferencia los
-demás gaps. La decisión continúa siendo `NO_GO` hasta una reevaluación formal.
+cierra las rutas y transportes alternativos. El contrato
+`GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md` fija realm, clientes, OIDC,
+bootstrap y gates reproducibles. No cierra ni reduce por inferencia los demás gaps. La
+decisión continúa siendo `NO_GO` hasta una reevaluación formal.

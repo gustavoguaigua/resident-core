@@ -1,9 +1,9 @@
-# RESIDENT Core — API Guidelines v0.3
+# RESIDENT Core — API Guidelines v0.4
 
 ## 1. Información
 Ruta: `docs/sdd/api-guidelines.md`  
-Versión: 0.3
-Cambio: contrato request-scoped único para tenant activo.
+Versión: 0.4
+Cambio: contrato Bearer Keycloak fail-closed y tenant request-scoped.
 
 ## 2. Principios
 API-first, privada por defecto, multitenancy obligatorio, contratos estables, trazabilidad e identidad desacoplada.
@@ -11,18 +11,19 @@ API-first, privada por defecto, multitenancy obligatorio, contratos estables, tr
 ## 3. Estilo
 REST API versionada en `/api/v1`.
 
-## 4. Auth temporal
-Si se usa auth propia temporal: `/auth/login`, `/auth/refresh`, `/auth/logout`,
-`/auth/forgot-password`, `/auth/reset-password`, `/auth/me`. No existe una operación
-`switch-tenant` en la superficie de autenticación ni en `/me`.
+## 4. Autenticación desde Sprint 2
 
-Con Keycloak, login/refresh/password reset se trasladan al IdP y Core valida tokens.
+Login, refresh y password reset pertenecen a Keycloak. Core no expone autenticación
+propia ni una operación `switch-tenant` en la superficie de autenticación o `/me`.
 
 ## 5. Autenticación API
 ```text
 Authorization: Bearer <access_token>
 ```
-MVP: token del Core. Objetivo: token Keycloak. Validar firma, expiración, issuer, audience, subject, estado local, membership y permisos.
+Sprint 2 adopta access token Keycloak. Validar RS256 y firma contra JWKS configurado,
+issuer exacto, audience `resident-api`, `azp` permitido, `typ=Bearer`, expiración,
+subject, email verificado, estado local, membership y permisos. ID tokens, algoritmos
+inesperados, password grant y claims de roles como autoridad se rechazan.
 
 ## 6. Tenant resolution
 Los endpoints tenant-scoped exigen `X-Tenant-Id: <tenant-uuid>`. Es un selector no
@@ -75,4 +76,5 @@ WordPress consume públicos y redirige a Core/Keycloak. n8n usa APIs Core y serv
 Cada endpoint documenta auth, permiso, tenant, request, response, errores, auditoría e idempotencia. Pruebas: token inválido, issuer/audience, permisos, otro tenant, estado e idempotencia.
 
 ## 15. Conclusión
-La API valida tokens temporales del Core o tokens Keycloak objetivo; autorización de negocio sigue en Core.
+La API valida exclusivamente access tokens Keycloak; la autorización de negocio sigue
+en Core.

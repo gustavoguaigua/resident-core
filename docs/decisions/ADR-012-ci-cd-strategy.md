@@ -8,7 +8,7 @@
 | Documento       | ADR-012                                                                                                                                                      |
 | Título          | CI/CD Strategy: GitHub Actions with Protected Branches, Environment Gates and Progressive Deployment                                                         |
 | Ruta            | `docs/decisions/ADR-012-ci-cd-strategy.md`                                                                                                                   |
-| Versión         | 0.2                                                                                                                                                          |
+| Versión         | 0.3                                                                                                                                                          |
 | Estado          | accepted                                                                                                                                                     |
 | Fecha           | 2026-07-12                                                                                                                                                   |
 | Actualización   | 2026-08-11 — `CI-001-single-maintainer-branch-protection.md`                                                                                                  |
@@ -639,7 +639,7 @@ DATABASE_URL_DEV
 DATABASE_URL_STAGING
 DATABASE_URL_PRODUCTION
 REDIS_URL
-KEYCLOAK_CLIENT_SECRET
+KEYCLOAK_IDENTITY_ADMIN_CLIENT_SECRET
 STORAGE_ACCESS_KEY
 STORAGE_SECRET_KEY
 DEPLOY_SSH_KEY
@@ -671,7 +671,11 @@ APP_ENV
 LOG_LEVEL
 API_BASE_URL
 KEYCLOAK_ISSUER
+KEYCLOAK_JWKS_URL
 KEYCLOAK_REALM
+KEYCLOAK_API_AUDIENCE
+KEYCLOAK_ADMIN_WEB_CLIENT_ID
+KEYCLOAK_RESIDENT_WEB_CLIENT_ID
 CORS_ALLOWED_ORIGINS
 STORAGE_BUCKET
 ```

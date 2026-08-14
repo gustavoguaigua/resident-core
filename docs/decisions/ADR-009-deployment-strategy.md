@@ -8,7 +8,7 @@
 | Documento       | ADR-009                                                                                                                                                                                                                             |
 | Título          | Deployment Strategy: Progressive Deployment from Docker Compose to Managed Cloud                                                                                                                                                    |
 | Ruta            | `docs/decisions/ADR-009-deployment-strategy.md`                                                                                                                                                                                     |
-| Versión         | 0.1                                                                                                                                                                                                                                 |
+| Versión         | 0.2                                                                                                                                                                                                                                 |
 | Estado          | accepted                                                                                                                                                                                                                            |
 | Fecha           | 2026-07-12                                                                                                                                                                                                                          |
 | Relacionado con | `ADR-001-architecture-style.md`, `ADR-002-backend-framework.md`, `ADR-003-database-strategy.md`, `ADR-006-identity-provider-strategy.md`, `ADR-008-api-gateway-strategy.md`, `architecture.md`, `security.md`, `data-governance.md` |
@@ -694,8 +694,10 @@ DATABASE_URL
 REDIS_URL
 JWT_ISSUER
 KEYCLOAK_ISSUER
-KEYCLOAK_CLIENT_ID
-KEYCLOAK_CLIENT_SECRET
+KEYCLOAK_JWKS_URL
+KEYCLOAK_API_AUDIENCE
+KEYCLOAK_IDENTITY_ADMIN_CLIENT_ID
+KEYCLOAK_IDENTITY_ADMIN_CLIENT_SECRET
 STORAGE_ENDPOINT
 STORAGE_BUCKET
 STORAGE_ACCESS_KEY

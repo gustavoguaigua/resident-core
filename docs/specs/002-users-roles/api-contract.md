@@ -195,12 +195,10 @@ Requieren:
 Authorization: Bearer <access_token>
 ```
 
-Durante MVP, el token puede provenir de auth propia temporal o de un contexto simulado controlado.
-
-Arquitectura objetivo:
+Contrato de Sprint 2:
 
 ```text id="m75tav"
-Bearer token OIDC/OAuth2 emitido por Keycloak.
+Access token OIDC emitido por el realm Keycloak `resident`.
 ```
 
 ---
@@ -1786,6 +1784,10 @@ Reglas:
 | Código                            | HTTP | Descripción                    |
 | --------------------------------- | ---: | ------------------------------ |
 | `UNAUTHORIZED`                    |  401 | No autenticado                 |
+| `AUTHENTICATION_REQUIRED`         |  401 | Bearer ausente                 |
+| `INVALID_ACCESS_TOKEN`            |  401 | Access token inválido          |
+| `IDENTITY_PROVIDER_UNAVAILABLE`   |  503 | IdP/JWKS no disponible         |
+| `IDENTITY_NOT_PROVISIONED`        |  403 | Subject sin perfil local       |
 | `FORBIDDEN`                       |  403 | Sin permiso                    |
 | `VALIDATION_ERROR`                |  422 | Error de validación            |
 | `USER_PROFILE_NOT_FOUND`          |  404 | Usuario no encontrado          |
@@ -1993,31 +1995,43 @@ https://app.resident.example.com
 
 ---
 
-## 25. Compatibilidad con Keycloak
+## 25. Contrato Keycloak
 
-Cuando Keycloak esté activo:
+El contrato autoritativo es
+`docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md`.
 
-1. El frontend autentica contra Keycloak.
-2. La API valida token.
-3. La API extrae `sub`.
-4. La API busca `UserProfile.keycloakSubjectId`.
-5. La API valida `UserProfile.status`.
-6. La API valida membership, roles y permisos en Core.
+Flujo de acceso protegido:
 
-Claims esperados:
+1. Admin/Resident Web autentica mediante Authorization Code + PKCE S256.
+2. El frontend envía exclusivamente el access token como Bearer.
+3. La API valida JWT RS256 contra el JWKS configurado.
+4. Exige issuer exacto, `aud` con `resident-api`, `azp` frontend aprobado,
+   `typ=Bearer`, tiempos válidos, `sub` y email verificado.
+5. Busca `UserProfile.keycloakSubjectId = sub` y exige estado local activo.
+6. Evalúa membership, tenant, roles, permisos y recurso en Core.
+
+Claims obligatorios:
 
 ```text id="sw7lgd"
-sub
-email
-preferred_username
-name
-iss
-aud
-exp
-iat
+iss aud sub exp iat azp typ email email_verified
 ```
 
-No usar claims como fuente final de permisos tenant.
+Claims informativos permitidos: `preferred_username`, `name`, `given_name` y
+`family_name`. Claims de roles, email o nombres no conceden permisos ni actualizan
+automáticamente el perfil local.
+
+Errores adicionales:
+
+| Condición | HTTP | Código |
+| --- | --- | --- |
+| Bearer ausente | 401 | `AUTHENTICATION_REQUIRED` |
+| Token inválido o claims OIDC incorrectos | 401 | `INVALID_ACCESS_TOKEN` |
+| JWKS no disponible sin cache válido | 503 | `IDENTITY_PROVIDER_UNAVAILABLE` |
+| Subject válido sin perfil local | 403 | `IDENTITY_NOT_PROVISIONED` |
+| Perfil local inactivo | 403 | `USER_DISABLED` |
+
+Las respuestas no distinguen internamente firma, issuer, audience, `kid` o existencia
+de identidad. Logs y auditoría nunca incluyen tokens o claims completos.
 
 ---
 
@@ -2227,7 +2241,7 @@ Probar:
 | Aceptación genera membership duplicada          | 409                      |
 | `X-Tenant-Id` sin membership                    | 403                      |
 | Consultar permisos con tenant suspendido        | 403 o permisos limitados |
-| Token válido sin UserProfile local              | 403/404 según política   |
+| Token válido sin UserProfile local              | 403 `IDENTITY_NOT_PROVISIONED` |
 
 ---
 

@@ -1,4 +1,4 @@
-# ADR-006 — Identity Provider Strategy: Keycloak as Target Identity Provider v0.2
+# ADR-006 — Identity Provider Strategy: Keycloak as Target Identity Provider v0.3
 
 ## Estado
 
@@ -15,7 +15,9 @@ multitenant ni las reglas funcionales y financieras de RESIDENT Core.
 Keycloak será el Identity Provider objetivo de RESIDENT Core antes de migrar a microservicios físicos.
 ```
 
-Durante MVP se permite auth propia temporal si acelera el desarrollo y permite migración limpia.
+Versiones anteriores permitían auth propia temporal durante el MVP. Esa opción queda
+retirada para Sprint 2: Keycloak es el único IdP autorizado y no se implementará una
+ruta de autenticación paralela.
 
 ## 2. Separación
 Keycloak: autenticación, login, credenciales, sesiones, refresh tokens, password reset, MFA, SSO, identity brokering, tokens OIDC/OAuth2.
@@ -23,7 +25,9 @@ Keycloak: autenticación, login, credenciales, sesiones, refresh tokens, passwor
 Core: tenants, memberships, roles de negocio, permisos funcionales, autorización por recurso, auditoría funcional, reglas financieras y trazabilidad.
 
 ## 3. Fases
-MVP: auth propia temporal permitida. Antes de producción real con varios tenants: recomendado Keycloak. Antes de microservicios físicos: Keycloak obligatorio.
+Sprint 2 y posteriores: Keycloak obligatorio como único IdP. Antes de producción real
+con varios tenants deben completarse además los controles operativos de producción
+descritos en este ADR y en el contrato de GAP-S2-005.
 
 ## 4. Justificación
 Keycloak centraliza autenticación, evita login duplicado, soporta OIDC/OAuth2, prepara SSO, facilita MFA, proveedores externos, microservicios y reduce deuda de seguridad.
@@ -39,8 +43,15 @@ Identificadores iniciales canónicos:
 | Admin Web App | `resident-admin-web` |
 | Resident Web App (`apps/resident-web`) | `resident-resident-web` |
 | RESIDENT Core API | `resident-api` |
+| Adaptador administrativo de identidades | `resident-identity-admin` |
 | WordPress | `resident-wordpress` |
 | n8n | `resident-n8n` |
+
+Para Sprint 2, `resident-admin-web` y `resident-resident-web` son clientes públicos
+OIDC con Authorization Code + PKCE S256; `resident-api` es resource server sin grants;
+y `resident-identity-admin` es el único cliente confidencial técnico, limitado a
+consultar identidades mediante Client Credentials. Los clientes WordPress/n8n quedan
+reservados y no se provisionan todavía.
 
 El nombre de aplicación `resident-web` no debe utilizarse como `client_id`; el cliente
 OIDC del frontend residente es siempre `resident-resident-web`. Clientes futuros:
@@ -51,7 +62,11 @@ files-service.
 Keycloak puede tener roles técnicos generales. Roles funcionales por tenant se gestionan en Core. Keycloak no reemplaza autorización de negocio; Core valida tenant, membership, rol, permiso, recurso y reglas.
 
 ## 8. Claims
-Permitidos: sub, email, preferred_username, name, roles mínimos, iss, aud, exp, iat. Evitar saldos, deudas, comprobantes, datos sensibles o permisos financieros extensos.
+Obligatorios para acceso humano: iss, aud, sub, exp, iat, azp, typ, email y
+email_verified. Permitidos como información: preferred_username, name, given_name y
+family_name. El access token debe usar RS256, `aud` debe contener `resident-api` y
+`azp` debe ser uno de los dos frontends aprobados. No se transportan roles de negocio,
+memberships, saldos, deudas, comprobantes, datos sensibles o permisos funcionales.
 
 ## 9. UserProfile
 ```text
@@ -77,6 +92,13 @@ Agregar keycloakSubjectId, levantar Keycloak, crear realm, crear clients, migrar
 
 ## 13. Seguridad operacional
 MFA para admins, backups, actualizaciones, redirect URIs exactas, web origins restringidos, rotación de secretos, monitoreo, mappers revisados y no claims sensibles.
+
+El contrato operativo completo, incluidos realm `resident`, expiraciones, endpoints,
+separación issuer/JWKS, redirects locales, bootstrap sintético, validación fail-closed y
+gates, es
+`docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md`. Sprint 2 no
+autoriza password grant, implicit flow, autenticación propia paralela ni secretos en el
+realm versionado.
 
 ## 14. Criterios
 Realm `resident`, clients iniciales, API valida tokens, Core mantiene keycloakSubjectId, membership y roles funcionales siguen en Core, WordPress redirige, n8n usa client técnico, MFA planificado/activo y pruebas OIDC.
@@ -105,4 +127,5 @@ Realm `resident`, clients iniciales, API valida tokens, Core mantiene keycloakSu
 - `docs/decisions/ADR-007-authorization-strategy.md`
 
 ## 15. Decisión final
-Keycloak es proveedor objetivo. Auth propia queda como transición. Antes de microservicios físicos, Keycloak deberá estar implementado. Core conserva autorización de negocio y reglas por recurso.
+Keycloak es el único proveedor de identidad autorizado desde Sprint 2. Core conserva
+autorización de negocio y reglas por recurso; no existe autenticación propia paralela.

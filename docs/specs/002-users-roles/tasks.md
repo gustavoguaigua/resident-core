@@ -477,15 +477,14 @@ domain/value-objects/auth-provider.vo.ts
 ### Valores
 
 ```text id="4t7w84"
-local
 keycloak
 ```
 
 ### Criterios de aceptación
 
 * Acepta `keycloak`.
-* Permite `local` temporal.
-* Rechaza valores inválidos.
+* Rechaza `local` y cualquier otro valor no autorizado.
+* No implementa una ruta de autenticación propia paralela.
 
 ---
 
@@ -1304,9 +1303,50 @@ application/ports/keycloak-user.port.ts
 
 ### Criterios de aceptación
 
-* Permite validar/vincular subject futuro.
+* Permite consultar una identidad Keycloak por email y vincular su subject.
 * No contiene autorización de negocio.
-* Puede tener implementación mock temporal.
+* Usa el cliente `resident-identity-admin` con `query-users`/`view-users`.
+* No acepta credenciales bootstrap admin ni secrets versionados.
+* Falla cerrado; no existe implementación mock que conceda identidad.
+
+---
+
+## TASK-050A — Versionar realm Keycloak de Sprint 2
+
+**Estado:** `[ ] Pending`
+
+### Archivos
+
+```text
+infra/keycloak/realm/resident-realm.json
+infra/keycloak/fixtures/local-identities.json
+tools/keycloak/bootstrap-local.mjs
+tools/keycloak/verify-realm.mjs
+```
+
+### Criterios de aceptación
+
+* Realm `resident` compatible con Keycloak 26.7.0.
+* Clients, PKCE S256, redirects, origins y audience conforme a GAP-S2-005.
+* JSON sin users, passwords, admin credentials o client secrets.
+* Import desde base vacía y segundo arranque idempotente.
+* Verificador detecta drift y no elimina volúmenes automáticamente.
+* Fixture contiene únicamente emails sintéticos `@example.com`.
+
+---
+
+## TASK-050B — Implementar validador OIDC Keycloak
+
+**Estado:** `[ ] Pending`
+
+### Criterios de aceptación
+
+* Distingue issuer público, JWKS backchannel y audience.
+* Valida RS256, firma, issuer, audience, `azp`, `typ`, tiempos, `sub` y email verificado.
+* Cachea JWKS con TTL y refresca una vez ante `kid` desconocido.
+* Rechaza ID token, algoritmos inesperados y claims inválidos.
+* Resuelve exclusivamente un `UserProfile` activo.
+* No usa introspection por request ni claims Keycloak como permisos.
 
 ---
 
@@ -1732,11 +1772,12 @@ ResolveTenantContextUseCase
 
 ### Criterios de aceptación
 
-* Valida token o contexto temporal.
+* Exige Bearer access token Keycloak y usa el validador OIDC aprobado.
 * Resuelve UserProfile local.
 * Bloquea usuario disabled.
 * Bloquea usuario archived.
-* Compatible con Keycloak futuro.
+* Devuelve errores canónicos sin revelar claims o detalles de Keycloak.
+* No acepta auth propia, ID token ni contexto temporal.
 
 ---
 
@@ -1934,6 +1975,10 @@ POST /api/v1/invitations/:token/accept
 * `USER_PROFILE_NOT_FOUND` → 404.
 * `USER_EMAIL_ALREADY_EXISTS` → 409.
 * `KEYCLOAK_SUBJECT_ALREADY_LINKED` → 409.
+* `AUTHENTICATION_REQUIRED` → 401.
+* `INVALID_ACCESS_TOKEN` → 401.
+* `IDENTITY_PROVIDER_UNAVAILABLE` → 503.
+* `IDENTITY_NOT_PROVISIONED` → 403.
 * `USER_DISABLED` → 403.
 * `ROLE_NOT_FOUND` → 404.
 * `ROLE_ASSIGNMENT_NOT_ALLOWED` → 403.

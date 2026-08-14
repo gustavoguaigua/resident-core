@@ -668,11 +668,10 @@ human
 Valores:
 
 ```text id="32atkp"
-local
 keycloak
 ```
 
-MVP puede iniciar con `local` temporal, pero objetivo es `keycloak`.
+Sprint 2 admite únicamente `keycloak`; no existe proveedor `local` temporal.
 
 ---
 
@@ -799,7 +798,6 @@ enum UserType {
 }
 
 enum AuthProvider {
-  LOCAL    @map("local")
   KEYCLOAK @map("keycloak")
 
   @@map("auth_provider")
@@ -1734,15 +1732,17 @@ No deben revelar:
 
 ---
 
-### 16.3. Keycloak futuro
+### 16.3. Keycloak de Sprint 2
 
-Cuando Keycloak esté activo:
+Flujo obligatorio:
 
-1. API valida token.
-2. Obtiene `sub`.
-3. Busca `UserProfile.keycloakSubjectId`.
-4. Valida `UserProfile.status`.
+1. Frontend obtiene access token con Authorization Code + PKCE S256.
+2. API valida RS256/JWKS, issuer, audience, `azp`, tipo y tiempos.
+3. Obtiene `sub` y exige email verificado.
+4. Busca `UserProfile.keycloakSubjectId` y valida estado activo.
 5. Valida membership y permisos en Core.
+
+No existe auth propia paralela ni un mock que produzca un principal autenticado.
 
 ---
 
@@ -1782,6 +1782,38 @@ ServiceAccountGuard futuro
 * Un TenantAdmin no puede asignar roles globales.
 * Un role de Tenant A no puede asignarse a membresía de Tenant B.
 * Usuario disabled no puede operar.
+
+### 17.4. Adaptador Keycloak de Sprint 2
+
+Artefactos declarativos previstos:
+
+```text
+infra/keycloak/realm/resident-realm.json
+infra/keycloak/fixtures/local-identities.json
+tools/keycloak/bootstrap-local.mjs
+tools/keycloak/verify-realm.mjs
+```
+
+El realm se importa en una base vacía mediante `--import-realm`; el verificador falla
+ante drift porque Keycloak omite imports si el realm ya existe. Ningún script elimina
+volúmenes automáticamente ni versiona users, passwords o secrets.
+
+El adaptador `KeycloakIdentityResolver` implementa el puerto existente y:
+
+* valida access tokens offline mediante issuer/JWKS configurados;
+* exige RS256, audience `resident-api`, `azp` frontend y tiempos válidos;
+* refresca JWKS una vez ante `kid` desconocido y falla cerrado;
+* resuelve `sub` a `UserProfile` activo;
+* no hace introspection por request;
+* no concede memberships, roles ni permisos.
+
+`KeycloakUserPort` usa el cliente técnico `resident-identity-admin` únicamente para
+consultar identidades habilitadas y verificadas por email. El secret viene del entorno
+y el service account sólo recibe `query-users`/`view-users`.
+
+La configuración distingue issuer público, JWKS backchannel y audience. El contrato
+local exacto está en GAP-S2-005; staging/producción requieren issuer HTTPS y redirects
+exactos aprobados.
 
 ---
 

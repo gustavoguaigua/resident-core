@@ -1,9 +1,9 @@
-# RESIDENT Core — Security Architecture v0.2
+# RESIDENT Core — Security Architecture v0.3
 
 ## 1. Información
 Ruta: `docs/sdd/security.md`  
-Versión: 0.2  
-Cambio: Keycloak como IdP objetivo y separación auth/autorización.
+Versión: 0.3
+Cambio: baseline operativo OIDC/PKCE y validación fail-closed de Keycloak.
 
 ## 2. Propósito
 Proteger datos personales, aislar tenants, proteger finanzas, prevenir accesos indebidos, mantener trazabilidad y preparar Keycloak.
@@ -15,11 +15,13 @@ OWASP ASVS nivel objetivo 2, OWASP API Security Top 10, OWASP Top 10, buenas pr�
 Acceso cross-tenant, escalamiento, robo de token, token mal validado, Keycloak mal configurado, manipulación de pagos, archivos maliciosos, secretos en Git, logs con datos personales, n8n con permisos excesivos y código IA inseguro.
 
 ## 5. Autenticación
-MVP: auth propia temporal permitida. Objetivo: Keycloak como IdP central.
+La autorización histórica de auth propia temporal terminó antes de Sprint 2. Keycloak
+es el único IdP autorizado; Core no emite access o refresh tokens propios.
 
-Si auth propia: email/password, hash fuerte, access corto, refresh revocable, sesiones, rate limiting, recuperación segura, auditoría.
-
-Con Keycloak: validar firma, issuer, audience, expiración, subject, estado local, membership, permisos y recurso.
+Con Keycloak: frontends públicos usan Authorization Code + PKCE S256; Core valida
+RS256, firma/JWKS, issuer exacto, audience `resident-api`, `azp`, tipo Bearer,
+expiración, subject, email verificado, estado local, membership, permisos y recurso.
+Implicit Flow y Direct Access Grants están prohibidos.
 
 ## 6. Autorización
 Keycloak autentica. Core autoriza tenant, membership, rol, permiso, recurso, estado y reglas financieras.
@@ -42,7 +44,11 @@ autorizada con `platform.health.read`. El detalle nunca expone hosts, puertos, c
 stack traces, configuración, secretos ni datos de tenant o usuario.
 
 ## 10. Keycloak
-Realm `resident`, no realm por tenant en MVP, redirect URIs exactas, web origins restringidos, HTTPS, MFA para admins, backup DB, no claims sensibles, mappers revisados, rotación de secretos, service accounts limitadas.
+Realm `resident`, no realm por tenant, redirects/origins exactos, audience mapper para
+`resident-api`, access tokens de cinco minutos, refresh rotation, no claims sensibles,
+JWKS cacheado con actualización controlada y service account de sólo consulta para
+identidades. Secrets, users y passwords no se versionan. HTTPS, MFA para admins,
+backup, rotación y dominios exactos son obligatorios antes de producción.
 
 ## 11. DB y logs
 DB con mínimos privilegios, no pública, migraciones revisadas y backups. Logs con tenantId, userProfileId, keycloakSubjectId, acción, recurso, resultado y traceId; nunca contraseñas, tokens o secretos.
@@ -67,4 +73,5 @@ Token inválido/expirado, issuer/audience incorrectos, acceso sin permiso, otro 
 No aceptar funcionalidad sin tenant, permisos, pruebas, auditoría crítica o que contradiga ADR-006.
 
 ## 16. Conclusión
-Keycloak será IdP objetivo; Core conserva autorización de negocio, multitenancy, auditoría financiera y reglas por recurso.
+Keycloak es el IdP de Sprint 2; Core conserva autorización de negocio, multitenancy,
+auditoría financiera y reglas por recurso.

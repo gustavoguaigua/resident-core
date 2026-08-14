@@ -27,7 +27,9 @@
     "openapi:validate": "pnpm --filter @resident/openapi-client validate",
     "security:dependencies": "pnpm audit --audit-level high",
     "security:secrets": "pnpm --filter @resident/testing security:secrets",
-    "sprint1:boundary": "pnpm --filter @resident/testing sprint1:boundary"
+    "sprint1:boundary": "pnpm --filter @resident/testing sprint1:boundary",
+    "sprint2:boundary": "pnpm --filter @resident/testing sprint2:boundary",
+    "sprint2:gates": "pnpm --filter @resident/testing sprint2:gates"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

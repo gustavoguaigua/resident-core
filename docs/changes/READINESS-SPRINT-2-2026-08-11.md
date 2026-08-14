@@ -7,7 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-13 — cierre documental de `GAP-S2-007` |
+| Última actualización | 2026-08-14 — cierre técnico de `GAP-S2-008` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
 | Commit base inspeccionado | `b7cbc84fd03aeb44714a32cd27d28b5405a9d30e` |
 | Rama de evaluación | `codex/sprint-2-readiness` |
@@ -161,13 +161,13 @@ Consultas, exportaciones, UI y categorías de dominios posteriores quedan diferi
 | Campo | Valor |
 | --- | --- |
 | Severidad | Alta |
-| Estado | open |
+| Estado | closed — 2026-08-14 |
 
-El runbook ya define la secuencia de incrementos y los gates esperados para migraciones,
-realm Keycloak, validación JWT, aislamiento multitenant, autorización negativa,
-auditoría durable y drift OpenAPI funcional. El gap permanece abierto porque todavía no
-existen scripts y workflows reproducibles que ejecuten esa frontera y generen evidencia
-en CI.
+`docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md` fija una secuencia
+versionada de fases, activa acumulativamente gates de capacidad, comprueba la frontera
+Prisma/API y el orden de migraciones, y genera evidencia JSON publicada por
+`Required CI gates`. Con `NO_GO`, la fase `0` rechaza realm, modelos, migraciones y
+endpoints funcionales de Sprint 2.
 
 ## 6. Corrección de CI incluida en esta compuerta
 
@@ -199,8 +199,8 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 | Keycloak tiene contrato reproducible y testeable | Cumple | `GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md` |
 | Modelo Prisma inicial no tiene superposiciones | Cumple | `GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md` |
 | Audit base tiene semántica y ownership únicos | Cumple | `GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` |
-| Gates de Sprint 2 están automatizados | No cumple | Definidos en runbook; scripts y workflow pendientes |
-| No existen gaps críticos o altos abiertos | No cumple | 1 crítico y 1 alto abiertos |
+| Gates de Sprint 2 están automatizados | Cumple | `GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md` |
+| No existen gaps críticos o altos abiertos | No cumple | 1 crítico abierto |
 
 ## 8. Decisión vigente
 
@@ -209,7 +209,7 @@ Decision: NO_GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
 Effective date: 2026-08-11
 Critical gaps open: 1
-High gaps open: 1
+High gaps open: 0
 Authorized plan: none
 Base commit: b7cbc84fd03aeb44714a32cd27d28b5405a9d30e
 ```
@@ -221,17 +221,16 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 
 ## 9. Orden recomendado para alcanzar GO
 
-1. Implementar los gates CI y la comprobación automática de frontera definidos por el
-   runbook (`GAP-S2-008`).
-2. Normalizar los 28 documentos aplicables a `accepted` sólo después de resolver sus
+1. Normalizar los 28 documentos aplicables a `accepted` después de resolver sus
    decisiones abiertas y comprobar consistencia cruzada.
-3. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión `GO` puede autorizar
+2. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión `GO` puede autorizar
    funcionalidad.
 
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, la observación de Node.js 20 en GitHub
-Actions está corregida y los gaps `GAP-S2-002` a `GAP-S2-007` están cerrados sin
+Actions está corregida y los gaps `GAP-S2-002` a `GAP-S2-008` están cerrados sin
 aprobar implícitamente decisiones abiertas. Sprint 2 todavía no está listo para
-comenzar: la decisión continúa siendo `NO_GO`, con un gap crítico y uno alto. El
-siguiente paso permitido recomendado es cerrar `GAP-S2-008`.
+comenzar: la decisión continúa siendo `NO_GO`, con un gap crítico. El siguiente paso
+permitido recomendado es cerrar `GAP-S2-001` mediante la normalización formal de las 28
+specs aplicables.

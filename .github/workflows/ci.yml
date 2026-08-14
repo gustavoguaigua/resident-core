@@ -83,9 +83,6 @@ jobs:
       - name: Validate Prisma schema
         run: pnpm prisma:validate
 
-      - name: Verify Sprint 1 scope boundary
-        run: pnpm sprint1:boundary
-
       - name: Validate Docker Compose
         run: docker compose config --quiet
 
@@ -100,3 +97,16 @@ jobs:
 
       - name: Build resident-api image
         run: docker compose build resident-api
+
+      - name: Run progressive Sprint 2 gates
+        run: pnpm sprint2:gates
+
+      - name: Publish Sprint 2 gate evidence
+        shell: bash
+        run: |
+          {
+            echo "## Sprint 2 progressive gates"
+            echo '```json'
+            cat artifacts/sprint-2-gates/evidence.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

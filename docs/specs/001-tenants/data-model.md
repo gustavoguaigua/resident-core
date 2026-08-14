@@ -1,5 +1,11 @@
 # Data Model — Spec 001 Tenants Management
 
+> **Ownership vigente para Sprint 2:** GAP-S2-006 retira `TenantConfiguration`,
+> `tenant_configurations` y su relación Prisma. El slice canónico de Spec 001 contiene
+> `Tenant`, `TenantProfile`, `TenantBranding` y `TenantWordPressMapping`; `timezone` y
+> `currency` existen sólo en `Tenant`. Los bloques posteriores incompatibles quedan
+> supersedidos por el contrato de ownership.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                                         |

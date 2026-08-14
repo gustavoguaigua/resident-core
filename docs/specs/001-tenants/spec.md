@@ -1,5 +1,11 @@
 # Spec 001 — Tenants Management
 
+> **Ownership vigente para Sprint 2:**
+> `docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md` retira
+> `TenantConfiguration` y su API. Spec 001 conserva `timezone` y `currency` en
+> `Tenant`; todos los demás settings pertenecen exclusivamente a Spec 025. Las
+> referencias posteriores al modelo o endpoints retirados quedan supersedidas.
+
 ## 1. Información del documento
 
 | Campo        | Valor                                                                                                                                                                                                   |

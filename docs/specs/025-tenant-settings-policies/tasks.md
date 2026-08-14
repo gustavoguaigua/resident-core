@@ -1,5 +1,10 @@
 # Tasks — 025 Tenant Settings and Policies
 
+> **Slice vigente de Sprint 2:** sólo se ejecutan tareas necesarias para
+> `SettingDefinition`, `TenantSettingValue`, lectura de definitions/settings, update de
+> override y seed `general.locale`. Las tareas de policies, scheduling, history,
+> exports y mutación de definitions quedan diferidas por GAP-S2-006.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                         |
@@ -1302,9 +1307,7 @@ Crear seeds iniciales de definitions y policies.
 ## Tasks
 
 ```text id="tsp-task-epic-27"
-[ ] Crear seed general.timezone.
 [ ] Crear seed general.locale.
-[ ] Crear seed general.currency.
 [ ] Crear seed general.defaultPageSize.
 [ ] Crear seed general.defaultExportFormat.
 [ ] Crear seed security.publicSettingsApiEnabled.
@@ -1550,7 +1553,7 @@ Validar flujos completos del módulo.
 ## Smoke base
 
 ```text id="tsp-task-smoke-base"
-[ ] PlatformAdmin crea settingDefinition general.timezone.
+[ ] PlatformAdmin consulta settingDefinition general.locale.
 [ ] PlatformAdmin crea policyDefinition accessControl.visitorAccessPolicy.
 [ ] TenantAdminA consulta settings efectivos.
 [ ] TenantAdminA actualiza accessControl.defaultAccessPassTtlMinutes.

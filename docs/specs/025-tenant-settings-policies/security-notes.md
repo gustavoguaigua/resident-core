@@ -1,5 +1,9 @@
 # Security Notes — 025 Tenant Settings and Policies
 
+> **Slice vigente de Sprint 2:** GAP-S2-006 limita la superficie a definitions de sólo
+> lectura y overrides tipados tenant-scoped. Las prohibiciones de secretos, código
+> ejecutable, exposición pública y acceso cross-tenant siguen siendo obligatorias.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                         |

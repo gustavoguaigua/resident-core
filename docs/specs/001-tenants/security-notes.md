@@ -1,5 +1,10 @@
 # Security Notes — Spec 001 Tenants Management
 
+> **Frontera vigente:** GAP-S2-006 retira la superficie paralela de
+> `TenantConfiguration`. La seguridad de settings se aplica exclusivamente en Spec 025
+> con contexto tenant validado; las reglas generales de aislamiento de este documento
+> permanecen obligatorias.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                      |

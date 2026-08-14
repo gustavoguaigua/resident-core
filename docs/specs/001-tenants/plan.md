@@ -1,5 +1,9 @@
 # Plan — Spec 001 Tenants Management
 
+> **Frontera vigente:** GAP-S2-006 elimina `TenantConfiguration` del plan y asigna los
+> settings a Spec 025. No se crean entidad, repositorio, DTO, use case, controller,
+> migración, seed o evento de configuración paralelos en Spec 001.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                            |

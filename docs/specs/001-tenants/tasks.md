@@ -1,5 +1,10 @@
 # Tasks — Spec 001 Tenants Management
 
+> **Frontera vigente:** las tareas que crean o consumen `TenantConfiguration`,
+> `tenant_configurations`, `/tenant/configuration` o `TenantConfigurationUpdated`
+> quedan retiradas por GAP-S2-006 y no deben ejecutarse. Los settings pertenecen a
+> Spec 025.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                    |

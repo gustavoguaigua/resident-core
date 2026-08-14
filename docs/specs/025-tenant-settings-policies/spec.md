@@ -1,5 +1,11 @@
 # Spec — 025 Tenant Settings and Policies
 
+> **Slice vigente de Sprint 2:** GAP-S2-006 asigna a esta spec el ownership exclusivo
+> de settings mediante `SettingDefinition` y `TenantSettingValue`. Sólo
+> `general.locale` integra el catálogo inicial. Policies, scheduling, historial y
+> exportaciones permanecen diferidos; `timezone` y `currency` pertenecen a `Tenant` en
+> Spec 001.
+
 ## 1. Información del documento
 
 | Campo                 | Valor                                                                                         |
@@ -23,7 +29,11 @@
 
 El módulo `025-tenant-settings-policies` centraliza la configuración operativa, parámetros funcionales y políticas internas aplicables a cada tenant dentro de RESIDENT Core.
 
-Este módulo permite que cada conjunto residencial configure reglas como zonas horarias, moneda, períodos operativos, vencimientos, recargos, políticas de reservas, multas, comunicaciones, documentos, privacidad, acceso de residentes, control de visitantes, mantenimiento, inventario, proveedores, reportes, retención documental y activación de módulos.
+Este módulo permite que cada conjunto residencial configure parámetros tipados y,
+en incrementos posteriores, políticas de períodos operativos, vencimientos, recargos,
+reservas, multas, comunicaciones, documentos, privacidad, acceso, mantenimiento,
+inventario, proveedores, reportes y retención documental. La zona horaria y moneda
+canónicas pertenecen al lifecycle de `Tenant`.
 
 Regla central del módulo:
 
@@ -265,9 +275,7 @@ Si una política no está configurada, el sistema debe aplicar un default seguro
 Configuración general del tenant.
 
 ```text id="tsp-general-settings"
-- timezone;
 - locale;
-- currency;
 - dateFormat;
 - timeFormat;
 - fiscalYearStartMonth;
@@ -280,8 +288,6 @@ Configuración general del tenant.
 Reglas:
 
 ```text id="tsp-general-rules"
-- timezone default = America/Guayaquil.
-- currency default = USD.
 - locale default = es-EC.
 - enabledModules no habilita endpoints públicos por sí solo.
 ```
@@ -2268,9 +2274,7 @@ Reglas:
 ### 25.1. General
 
 ```text id="tsp-default-general"
-timezone = America/Guayaquil
 locale = es-EC
-currency = USD
 defaultPageSize = 25
 defaultExportFormat = xlsx
 ```
@@ -2319,7 +2323,6 @@ residentDownloadAllowed = true
 ### 25.5. Financial
 
 ```text id="tsp-default-financial"
-currency = USD
 paymentValidationRequired = true
 receiptRequired = true
 partialPaymentsAllowed = true

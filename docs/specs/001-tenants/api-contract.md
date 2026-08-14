@@ -1,5 +1,11 @@
 # API Contract — Spec 001 Tenants Management
 
+> **Ownership vigente para Sprint 2:** GAP-S2-006 retira
+> `GET/PATCH /api/v1/tenant/configuration`. `timezone` y `currency` se administran en
+> la API de plataforma de `Tenant`; los settings configurables usan exclusivamente la
+> API `/api/v1/tenant/settings` de Spec 025. Las rutas, permisos y eventos de
+> configuración paralelos descritos después quedan supersedidos.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                                    |

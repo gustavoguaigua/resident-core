@@ -1,5 +1,10 @@
 # Test Plan — Spec 001 Tenants Management
 
+> **Frontera vigente:** GAP-S2-006 retira los tests de `TenantConfiguration` y
+> `/tenant/configuration`. Spec 001 prueba `timezone`/`currency` únicamente como campos
+> de `Tenant`; las pruebas de settings y aislamiento de overrides pertenecen a Spec
+> 025.
+
 ## 1. Información del documento
 
 | Campo                    | Valor                                    |

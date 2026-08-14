@@ -19,6 +19,8 @@
     "lint": "eslint src test tools",
     "security:secrets": "node tools/secret-scan.mjs",
     "sprint1:boundary": "node tools/verify-sprint-1-boundary.mjs",
+    "sprint2:boundary": "node tools/verify-sprint-2-boundary.mjs",
+    "sprint2:gates": "node tools/run-sprint-2-gates.mjs",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

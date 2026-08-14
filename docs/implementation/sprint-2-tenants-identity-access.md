@@ -354,8 +354,13 @@ Compose config ya vigentes, Sprint 2 requiere:
 - comprobación automatizada de la frontera de Sprint 2;
 - smoke test del stack con las imágenes fijadas.
 
-Este documento define los gates; `GAP-S2-008` permanece abierto hasta que sus
-comandos y workflows sean reproducibles y produzcan evidencia verificable.
+Los gates se automatizan mediante
+`packages/testing/config/sprint-2-gates.json`, `pnpm sprint2:boundary` y
+`pnpm sprint2:gates`, conforme al contrato cerrado
+`docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md`. La fase permanece en
+`0` mientras readiness sea `NO_GO`; las fases posteriores activan acumulativamente sus
+comandos y fallan si falta un gate o artefacto requerido. CI publica evidencia JSON en
+el summary del status check `Required CI gates`.
 
 ## 10. Criterio de cierre de Sprint 2
 
@@ -384,6 +389,8 @@ bootstrap y gates reproducibles. El contrato
 `TenantConfiguration`, asigna settings a Spec 025 y fija los slices Prisma y unidades
 de migración aplicables. El contrato
 `GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` fija ownership, modelo mínimo,
-catálogo, atomicidad, sanitización y garantía append-only de Audit base. No cierra ni
-reduce por inferencia los demás gaps. La decisión continúa siendo `NO_GO` hasta una
-reevaluación formal.
+catálogo, atomicidad, sanitización y garantía append-only de Audit base. El contrato
+`GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md` automatiza la secuencia, los gates
+progresivos, la frontera Prisma/API y su evidencia CI. No cierra ni reduce por
+inferencia los demás gaps. La decisión continúa siendo `NO_GO` hasta una reevaluación
+formal.

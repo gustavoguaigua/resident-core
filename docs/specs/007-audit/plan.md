@@ -1,5 +1,10 @@
 # Plan — Spec 007 Audit, Traceability and Compliance Events
 
+> **Plan vigente para Sprint 2:** ejecutar sólo la escritura base delimitada en
+> `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md`. No se implementarán
+> servicios de consulta/exportación, UI, eventos de dominios futuros ni escrituras
+> `best effort` para mutaciones confirmadas.
+
 ## 1. Información del documento
 
 | Campo          | Valor                                                                                                                   |

@@ -1,5 +1,10 @@
 # Test Plan — Spec 007 Audit, Traceability and Compliance Events
 
+> **Gates de Sprint 2:** se ejecutará únicamente la matriz mínima de atomicidad,
+> durabilidad, aislamiento tenant, sanitización, correlación y append-only definida en
+> `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md`. Pruebas de consulta,
+> exportación y dominios posteriores quedan diferidas.
+
 ## 1. Información del documento
 
 | Campo                    | Valor                                                                                                                   |

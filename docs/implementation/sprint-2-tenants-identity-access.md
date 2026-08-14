@@ -199,10 +199,13 @@ El contrato autoritativo es
 
 ### 5.4 Spec 007 — Audit Log, base de Sprint 2
 
-Incluido:
+Incluido conforme al contrato cerrado
+`docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md`:
 
-- modelo `AuditLog` y enums mínimos requeridos;
-- adaptador PostgreSQL durable para el puerto de auditoría existente;
+- un único modelo `AuditLog` y los enums mínimos `AuditActorType`, `AuditCategory` y
+  `AuditOutcome` enumerados por el contrato;
+- puerto de auditoría de dominio y adaptador PostgreSQL durable que sustituyen el
+  skeleton técnico no persistente de Sprint 1;
 - registro append-only de actor, tenant cuando aplique, acción, recurso,
   resultado, trace/correlation id y timestamp;
 - sanitización de payloads para excluir secretos, credenciales, tokens y datos
@@ -211,20 +214,27 @@ Incluido:
   invitaciones, autenticación y autorización de este sprint;
 - pruebas de durabilidad, aislamiento y sanitización.
 
-Catálogo mínimo de eventos:
+Catálogo mínimo canónico:
 
-- ciclo de vida de tenant;
-- ciclo de vida y enlace de `UserProfile`;
-- ciclo de vida de invitación;
-- ciclo de vida de membresía;
-- asignación y retiro de roles de membresía y globales;
+- `platformAdmin.bootstrap.completed`;
+- `tenant.created`, `tenant.baseRoles.created`, `tenant.updated`,
+  `tenant.activated`, `tenant.suspended`, `tenant.reactivated`, `tenant.archived`,
+  `tenant.profile.updated`, `tenant.branding.updated` y
+  `tenant.wordpressMapping.updated`;
+- `user.created`, `user.updated`, `user.disabled`, `user.enabled` y
+  `user.keycloakLinked`;
+- `globalRole.assigned`, `globalRole.removed`, `invitation.created`,
+  `invitation.accepted`, `invitation.revoked`, `invitation.expired`,
+  `membership.created`, `membership.suspended`, `membership.revoked`,
+  `membership.roleAssigned` y `membership.roleRemoved`;
 - `authentication.denied`;
 - `authorization.denied`;
 - `tenantAccess.denied`.
 
-Esta lista fija las categorías que pertenecen al sprint. Los nombres canónicos,
-payloads, causalidad y garantías transaccionales deben cerrarse en `GAP-S2-007`
-antes de implementar el adaptador durable.
+Las mutaciones confirmadas y sus eventos comparten transacción PostgreSQL y hacen
+rollback ante un fallo de auditoría. Las denegaciones usan una transacción corta
+independiente; un fallo de escritura conserva la denegación y genera sólo evidencia
+técnica sanitizada. No existe `best effort` para una mutación confirmada.
 
 Excluido:
 
@@ -372,5 +382,8 @@ cierra las rutas y transportes alternativos. El contrato
 bootstrap y gates reproducibles. El contrato
 `GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md` retira
 `TenantConfiguration`, asigna settings a Spec 025 y fija los slices Prisma y unidades
-de migración aplicables. No cierra ni reduce por inferencia los demás gaps. La decisión
-continúa siendo `NO_GO` hasta una reevaluación formal.
+de migración aplicables. El contrato
+`GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` fija ownership, modelo mínimo,
+catálogo, atomicidad, sanitización y garantía append-only de Audit base. No cierra ni
+reduce por inferencia los demás gaps. La decisión continúa siendo `NO_GO` hasta una
+reevaluación formal.

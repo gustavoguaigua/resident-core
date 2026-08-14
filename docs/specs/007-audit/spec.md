@@ -1,5 +1,12 @@
 # Spec 007 — Audit, Traceability and Compliance Events
 
+> **Slice canónico de Sprint 2:**
+> `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` autoriza únicamente
+> escritura durable, sanitizada, transaccional y append-only para el catálogo de Specs
+> 001/002. El modelo, enums, eventos y causalidad de ese contrato superseden para este
+> sprint las alternativas del documento completo; consultas, exportaciones y dominios
+> posteriores permanecen diferidos.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                                                          |

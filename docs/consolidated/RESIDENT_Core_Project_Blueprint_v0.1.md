@@ -930,13 +930,14 @@ Evidencia: docs/changes/READINESS-SPRINT-1-2026-08-11.md.
 Sprint 1: implementado y cerrado con PASS el 2026-08-11.
 Evidencia de cierre: docs/changes/SPRINT-1-CLOSURE-2026-08-11.md.
 Readiness de Sprint 2: NO_GO el 2026-08-11.
-Gaps abiertos: 1 crítico y 3 altos.
+Gaps abiertos: 1 crítico y 2 altos.
 Plan autorizado para Sprint 2: ninguno.
 Evidencia: docs/changes/READINESS-SPRINT-2-2026-08-11.md.
 Runbook delimitado pero bloqueado: docs/implementation/sprint-2-tenants-identity-access.md.
 Bootstrap transaccional: docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md.
 Tenant activo request-scoped: docs/changes/GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md.
 Contrato Keycloak: docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md.
+Ownership configuración/Prisma: docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md.
 ```
 
 Condición:
@@ -945,10 +946,10 @@ Condición:
 Sprint 0 fue ejecutado dentro del alcance estricto de su runbook y queda formalmente
 cerrado. Sprint 1 fue implementado y cerrado formalmente con `PASS`. La compuerta de
 Sprint 2 emitió `NO_GO` el 2026-08-11: las specs 001, 002, 007 y 025 permanecen
-`needs-review` y existe un gap crítico y tres altos. La frontera, el bootstrap
-transaccional, el tenant activo request-scoped y el contrato operativo de Keycloak
-están definidos, pero Sprint 2 y la lógica de negocio permanecen fuera de alcance hasta
-una nueva reevaluación `GO`.
+`needs-review` y existe un gap crítico y dos altos. La frontera, el bootstrap
+transaccional, el tenant activo request-scoped, Keycloak y el ownership de
+configuración/Prisma están definidos, pero Sprint 2 y la lógica de negocio permanecen
+fuera de alcance hasta una nueva reevaluación `GO`.
 ```
 
 Evidencia vigente:
@@ -958,6 +959,7 @@ docs/changes/SPRINT-1-CLOSURE-2026-08-11.md
 docs/changes/READINESS-SPRINT-2-2026-08-11.md
 docs/implementation/sprint-2-tenants-identity-access.md
 docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md
+docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md
 ```
 
 ---

@@ -1,5 +1,11 @@
 # Data Model — 025 Tenant Settings and Policies
 
+> **Slice vigente de Sprint 2:** el Prisma autorizado por GAP-S2-006 contiene sólo los
+> enums mínimos, `SettingDefinition` y `TenantSettingValue`. Los modelos de policies,
+> activaciones, excepciones, change logs y exports quedan fuera. `general.timezone` y
+> `general.currency` no son definitions porque sus columnas canónicas están en
+> `Tenant`.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                                                                                         |
@@ -188,9 +194,7 @@ No pertenece a un tenant específico.
 ### 6.4. Ejemplos de keys
 
 ```text id="tsp-setting-keys"
-general.timezone
 general.locale
-general.currency
 financial.paymentValidationRequired
 documents.downloadAuditRequired
 accessControl.defaultAccessPassTtlMinutes
@@ -1853,9 +1857,7 @@ rejected -> active
 ### 27.1. Setting definitions
 
 ```text id="tsp-setting-definitions-seed"
-general.timezone = America/Guayaquil
 general.locale = es-EC
-general.currency = USD
 general.defaultPageSize = 25
 general.defaultExportFormat = xlsx
 

@@ -88,12 +88,15 @@ Superficie API máxima de este incremento:
 - `PATCH /api/v1/tenant/wordpress-mapping`;
 - `GET /api/v1/public/tenants/{slug}`.
 
-Excluido hasta cerrar `GAP-S2-006`:
+Retirado por el contrato cerrado de `GAP-S2-006`:
 
 - `TenantConfiguration`;
 - `GET /tenant/configuration`;
 - `PATCH /tenant/configuration`;
-- cualquier duplicación entre configuración del tenant y Spec 025.
+- permisos, eventos, defaults o persistencia paralelos de configuración.
+
+Spec 001 conserva `timezone` y `currency` como columnas de `Tenant`; Spec 025 es el
+owner exclusivo de los demás settings configurables.
 
 ### 5.2 Spec 002 — Identity and Access
 
@@ -232,10 +235,12 @@ Excluido:
 
 ### 5.5 Spec 025 — Configurable Settings, base de Sprint 2
 
-Incluido, sujeto al cierre de `GAP-S2-006`:
+Incluido conforme a
+`docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md`:
 
 - modelos `SettingDefinition` y `TenantSettingValue`, con enums mínimos;
-- catálogo determinista cargado mediante migración o seed versionado;
+- catálogo determinista inicial `general.locale = es-EC`, cargado mediante seed
+  versionado;
 - validación por esquema y tipo;
 - default de plataforma y override por tenant;
 - resolución interna del valor efectivo actual;
@@ -258,6 +263,10 @@ Excluido:
 - valores secretos;
 - scripts, SQL o efectos laterales ejecutables como valores;
 - duplicación de campos cuyo dueño contractual sea Spec 001.
+
+El Prisma de este slice contiene exclusivamente los enums mínimos,
+`SettingDefinition` y `TenantSettingValue`. Policies, activaciones, excepciones,
+change logs y exports permanecen fuera de Sprint 2.
 
 ## 6. Reglas transversales obligatorias
 
@@ -360,5 +369,8 @@ bootstrap entre Specs 001 y 002. El contrato
 `GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md` fija el contexto request-scoped y
 cierra las rutas y transportes alternativos. El contrato
 `GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md` fija realm, clientes, OIDC,
-bootstrap y gates reproducibles. No cierra ni reduce por inferencia los demás gaps. La
-decisión continúa siendo `NO_GO` hasta una reevaluación formal.
+bootstrap y gates reproducibles. El contrato
+`GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md` retira
+`TenantConfiguration`, asigna settings a Spec 025 y fija los slices Prisma y unidades
+de migración aplicables. No cierra ni reduce por inferencia los demás gaps. La decisión
+continúa siendo `NO_GO` hasta una reevaluación formal.

@@ -1,5 +1,10 @@
 # Test Plan — 025 Tenant Settings and Policies
 
+> **Slice vigente de Sprint 2:** los gates aplicables cubren catálogo `general.locale`,
+> default/override, validación tipada, aislamiento tenant y API autorizada. Los casos de
+> policies, scheduling, history, exports y mutación de definitions quedan diferidos por
+> GAP-S2-006.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                         |
@@ -296,9 +301,7 @@ anonymousUser
 ### 7.3. Setting definitions
 
 ```text id="tsp-test-setting-definitions"
-general.timezone
 general.locale
-general.currency
 general.defaultPageSize
 
 security.publicSettingsApiEnabled
@@ -386,7 +389,7 @@ traceIdB
 ### 8.1. SettingKey
 
 ```text id="tsp-test-vo-setting-key"
-[ ] Acepta general.timezone.
+[ ] Acepta general.locale.
 [ ] Acepta accessControl.defaultAccessPassTtlMinutes.
 [ ] Rechaza string vacío.
 [ ] Rechaza espacios.
@@ -1861,7 +1864,7 @@ tenantB:
 ### 41.1. Smoke flow — definitions iniciales
 
 ```text id="tsp-smoke-definitions"
-[ ] PlatformAdmin crea settingDefinition general.timezone.
+[ ] PlatformAdmin consulta settingDefinition general.locale.
 [ ] PlatformAdmin crea policyDefinition accessControl.visitorAccessPolicy.
 [ ] Sistema valida schema.
 [ ] Sistema rechaza secrets.
@@ -1875,7 +1878,7 @@ tenantB:
 ```text id="tsp-smoke-update-setting"
 [ ] TenantAdminA inicia sesión.
 [ ] TenantAdminA consulta settings efectivos.
-[ ] Sistema devuelve platform default general.timezone.
+[ ] Sistema devuelve platform default general.locale.
 [ ] TenantAdminA actualiza accessControl.defaultAccessPassTtlMinutes.
 [ ] Sistema valida valueType integer.
 [ ] Sistema crea tenant override.

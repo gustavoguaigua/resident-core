@@ -7,7 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-13 — verificación formal de `GAP-S2-005` |
+| Última actualización | 2026-08-13 — cierre documental de `GAP-S2-006` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
 | Commit base inspeccionado | `b7cbc84fd03aeb44714a32cd27d28b5405a9d30e` |
 | Rama de evaluación | `codex/sprint-2-readiness` |
@@ -137,13 +137,12 @@ El realm y scripts permanecen sin implementar deliberadamente hasta `GO`.
 | Campo | Valor |
 | --- | --- |
 | Severidad | Alta |
-| Estado | open |
+| Estado | closed — 2026-08-13 |
 
-001 propone `TenantConfiguration`; 025 propone definitions, values y policies como
-fuente transversal de configuración. Debe decidirse qué configuración mínima pertenece
-al lifecycle de Tenant y qué datos pertenecen exclusivamente a 025, evitando tablas,
-defaults y APIs duplicadas. También falta fijar el conjunto exacto de modelos y
-migraciones del sprint.
+`docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md` retira
+`TenantConfiguration`, conserva `timezone`/`currency` únicamente en `Tenant`, asigna
+los settings configurables a Spec 025 y fija el Prisma exacto de los slices 001/025.
+También delimita las unidades y el orden de migración sin ejecutar cambios runtime.
 
 ### GAP-S2-007 — Semántica exacta de Audit base no definida
 
@@ -198,9 +197,9 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 | Bootstrap tenant-identidad está cerrado | Cumple | `GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` |
 | Tenant activo tiene contrato único | Cumple | `GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md` |
 | Keycloak tiene contrato reproducible y testeable | Cumple | `GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md` |
-| Modelo Prisma inicial no tiene superposiciones | No cumple | 001/025 requieren decisión de propiedad |
+| Modelo Prisma inicial no tiene superposiciones | Cumple | `GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md` |
 | Gates de Sprint 2 están automatizados | No cumple | Definidos en runbook; scripts y workflow pendientes |
-| No existen gaps críticos o altos abiertos | No cumple | 1 crítico y 3 altos abiertos |
+| No existen gaps críticos o altos abiertos | No cumple | 1 crítico y 2 altos abiertos |
 
 ## 8. Decisión vigente
 
@@ -209,7 +208,7 @@ Decision: NO_GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
 Effective date: 2026-08-11
 Critical gaps open: 1
-High gaps open: 3
+High gaps open: 2
 Authorized plan: none
 Base commit: b7cbc84fd03aeb44714a32cd27d28b5405a9d30e
 ```
@@ -221,8 +220,7 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 
 ## 9. Orden recomendado para alcanzar GO
 
-1. Unificar propiedad de configuración, modelos Prisma, audit base y secuencia de
-   migraciones.
+1. Fijar la semántica exacta de auditoría base y su porción Prisma.
 2. Normalizar los 28 documentos aplicables a `accepted` sólo después de resolver sus
    decisiones abiertas y comprobar consistencia cruzada.
 3. Implementar los gates CI y la comprobación automática de frontera definidos por el
@@ -233,7 +231,7 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, la observación de Node.js 20 en GitHub
-Actions está corregida y los gaps `GAP-S2-002` a `GAP-S2-005` están cerrados sin
+Actions está corregida y los gaps `GAP-S2-002` a `GAP-S2-006` están cerrados sin
 aprobar implícitamente decisiones abiertas. Sprint 2 todavía no está listo para
-comenzar: la decisión continúa siendo `NO_GO`, con un gap crítico y tres altos. El
-siguiente paso permitido recomendado es cerrar `GAP-S2-006`.
+comenzar: la decisión continúa siendo `NO_GO`, con un gap crítico y dos altos. El
+siguiente paso permitido recomendado es cerrar `GAP-S2-007`.

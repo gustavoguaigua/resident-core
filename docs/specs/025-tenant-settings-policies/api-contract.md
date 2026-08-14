@@ -1,5 +1,10 @@
 # API Contract — 025 Tenant Settings and Policies
 
+> **Slice vigente de Sprint 2:** GAP-S2-006 autoriza sólo lectura de definitions,
+> lectura de settings efectivos y `PATCH /api/v1/tenant/settings/{key}`. No autoriza
+> mutaciones de definitions, policies, scheduling, historial o exportación. El catálogo
+> inicial contiene únicamente `general.locale`.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                         |
@@ -274,8 +279,8 @@ Request prohibido:
 ```json id="tsp-api-tenantid-forbidden"
 {
   "tenantId": "uuid",
-  "key": "general.timezone",
-  "value": "America/Guayaquil"
+  "key": "general.locale",
+  "value": "es-EC"
 }
 ```
 
@@ -487,12 +492,12 @@ Response:
   "data": [
     {
       "id": "uuid",
-      "key": "general.timezone",
+      "key": "general.locale",
       "category": "general",
       "valueType": "string",
-      "defaultValue": "America/Guayaquil",
+      "defaultValue": "es-EC",
       "allowedValues": null,
-      "description": "Zona horaria operativa del tenant.",
+      "description": "Locale de presentación por defecto.",
       "sensitivity": "internal",
       "isTenantOverridable": true,
       "isRuntimeCritical": false,
@@ -530,16 +535,16 @@ Request:
 
 ```json id="tsp-api-request-create-setting-definition"
 {
-  "key": "general.timezone",
+  "key": "general.locale",
   "category": "general",
   "valueType": "string",
-  "defaultValue": "America/Guayaquil",
-  "allowedValues": ["America/Guayaquil", "UTC"],
+  "defaultValue": "es-EC",
+  "allowedValues": ["es-EC", "en-US"],
   "schema": {
     "type": "string",
-    "enum": ["America/Guayaquil", "UTC"]
+    "enum": ["es-EC", "en-US"]
   },
-  "description": "Zona horaria operativa del tenant.",
+  "description": "Locale de presentación por defecto.",
   "sensitivity": "internal",
   "isTenantOverridable": true,
   "isRuntimeCritical": false,
@@ -571,7 +576,7 @@ Response:
 {
   "data": {
     "id": "uuid",
-    "key": "general.timezone",
+    "key": "general.locale",
     "category": "general",
     "status": "active",
     "createdAt": "2026-07-31T06:03:00.000Z"
@@ -614,7 +619,7 @@ Request:
 
 ```json id="tsp-api-request-update-setting-definition"
 {
-  "description": "Zona horaria principal usada para fechas operativas.",
+  "description": "Locale de presentación usado por defecto.",
   "isTenantOverridable": true,
   "residentVisible": false
 }
@@ -880,10 +885,10 @@ Response:
 {
   "data": [
     {
-      "key": "general.timezone",
+      "key": "general.locale",
       "category": "general",
       "valueType": "string",
-      "value": "America/Guayaquil",
+      "value": "es-EC",
       "source": "platformDefault",
       "settingDefinitionId": "uuid",
       "settingValueId": null,

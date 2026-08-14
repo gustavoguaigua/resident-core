@@ -1,5 +1,9 @@
 # Technical Plan — 025 Tenant Settings and Policies
 
+> **Slice vigente de Sprint 2:** implementar exclusivamente `SettingDefinition`,
+> `TenantSettingValue`, resolución efectiva actual y el seed `general.locale`. El resto
+> del plan queda diferido por GAP-S2-006.
+
 ## 1. Información del documento
 
 | Campo                 | Valor                                                                                         |
@@ -1571,9 +1575,7 @@ TENANT_SETTINGS_RETROACTIVE_ACTIVATION_ENABLED=true solo se permite con ADR, per
 ### 30.1. Setting definitions iniciales
 
 ```text id="tsp-seed-setting-definitions"
-general.timezone
 general.locale
-general.currency
 general.defaultPageSize
 general.defaultExportFormat
 

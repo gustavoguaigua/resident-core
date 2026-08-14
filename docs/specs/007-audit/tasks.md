@@ -1,5 +1,10 @@
 # Tasks — Spec 007 Audit, Traceability and Compliance Events
 
+> **Backlog autorizado de Sprint 2:** sólo las tareas indispensables para el contrato
+> `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md`. Las tareas posteriores
+> de consulta, exportación, UI, catálogos futuros y `writeBestEffort` no forman parte de
+> este sprint aunque continúen documentadas como backlog de la spec completa.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                   |

@@ -1,5 +1,10 @@
 # API Contract — Spec 007 Audit, Traceability and Compliance Events
 
+> **Frontera de Sprint 2:** no existe API pública de Audit. Los endpoints de consulta,
+> detalle, modificación, eliminación y exportación de este documento están diferidos.
+> La única superficie autorizada es el puerto interno de escritura definido en
+> `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md`.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                   |

@@ -1,5 +1,11 @@
 # Data Model — Spec 007 Audit, Traceability and Compliance Events
 
+> **Modelo canónico de Sprint 2:** sólo se implementarán `AuditLog`, los campos y los
+> enums enumerados en
+> `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md`. `AuditExport`, campos
+> extensivos, categorías futuras y cualquier modelo opcional descrito después quedan
+> diferidos. La garantía append-only y las relaciones se rigen por ese contrato.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                                                                                                                   |

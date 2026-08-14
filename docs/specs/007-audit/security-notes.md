@@ -1,5 +1,11 @@
 # Security Notes — Spec 007 Audit, Traceability and Compliance Events
 
+> **Controles canónicos de Sprint 2:** atomicidad fail-closed para mutaciones
+> confirmadas, denegación conservada ante fallo de auditoría, tenant derivado sólo de
+> contexto validado, allowlist de metadata y protección append-only conforme a
+> `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md`. Las alternativas
+> `writeCritical`/`writeBestEffort` posteriores quedan supersedidas para este sprint.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                   |

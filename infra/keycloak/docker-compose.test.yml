@@ -1,0 +1,50 @@
+name: resident-core-keycloak-phase1
+
+services:
+  keycloak-test-postgres:
+    image: postgres:17.10-bookworm
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: "${KEYCLOAK_PHASE1_DB_PASSWORD:?required}"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak -d keycloak"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - keycloak-phase1
+
+  keycloak-test:
+    image: quay.io/keycloak/keycloak:26.7.0
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak-test-postgres
+      KC_DB_URL_PORT: 5432
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: "${KEYCLOAK_PHASE1_DB_PASSWORD:?required}"
+      KC_HEALTH_ENABLED: "true"
+      KC_HOSTNAME: http://localhost:8080
+      KC_BOOTSTRAP_ADMIN_USERNAME: "${KEYCLOAK_ADMIN_USER:?required}"
+      KC_BOOTSTRAP_ADMIN_PASSWORD: "${KEYCLOAK_ADMIN_PASSWORD:?required}"
+    depends_on:
+      keycloak-test-postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./realm/resident-realm.json:/opt/keycloak/data/import/resident-realm.json:ro
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/9000'"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+      start_period: 20s
+    networks:
+      - keycloak-phase1
+
+networks:
+  keycloak-phase1:
+    name: resident-core-keycloak-phase1

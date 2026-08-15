@@ -7,7 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Gap | `GAP-S2-005` |
 | Fecha | 2026-08-12 |
-| Última verificación | 2026-08-13 — consistencia y formato aprobados |
+| Última verificación | 2026-08-14 — contrato implementado en Sprint 2 Fase 1 |
 | Estado | `closed` |
 | Alcance | Realm, clientes, OIDC, validación Bearer, bootstrap y pruebas |
 | Spec afectada | 002 — Users, Roles and Access Management |
@@ -287,10 +287,10 @@ un cliente inseguro con password grant para simplificar CI.
 
 ## 12. Consecuencia para readiness
 
-`GAP-S2-005` queda cerrado documentalmente. `infra/keycloak/`, scripts, configuración
-runtime y tests siguen ausentes deliberadamente y pertenecen a la implementación de
-Sprint 2 después de `GO`. La compuerta permanece `NO_GO`: queda un gap crítico y tres
-altos, además de la aprobación documental exigida.
+`GAP-S2-005` cerró inicialmente el contrato documental. Después del `GO`, Sprint 2
+Fase `1` implementó realm, fixtures, bootstrap, verificador y pruebas OIDC, con evidencia
+en `SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md`. La autenticación runtime y la persistencia
+Core permanecen fuera de esta fase.
 
 ## 13. Referencias oficiales
 

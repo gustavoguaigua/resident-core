@@ -4,6 +4,7 @@
 
 - Estado de definición de alcance: `complete`
 - Estado de autorización de implementación: `authorized`
+- Fase implementada actual: `1` — `keycloak-contract` (`PASS`)
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
 - Gaps resueltos por este documento y sus contratos: `GAP-S2-001` a `GAP-S2-008`
 
@@ -317,7 +318,7 @@ Quedan expresamente fuera:
 Los incrementos se ejecutarán en este orden y en ramas/PR cortos:
 
 0. Cerrar prerrequisitos documentales y obtener `GO`.
-1. Hacer reproducible Keycloak y cerrar el contrato OIDC.
+1. Hacer reproducible Keycloak y cerrar el contrato OIDC. `PASS` — 2026-08-14.
 2. Crear la persistencia mínima de Specs 001 y 002 mediante migraciones.
 3. Persistir la auditoría base necesaria para mutaciones de acceso.
 4. Implementar el comando one-shot del primer PlatformAdmin.
@@ -360,10 +361,10 @@ Los gates se automatizan mediante
 `packages/testing/config/sprint-2-gates.json`, `pnpm sprint2:boundary` y
 `pnpm sprint2:gates`, conforme al contrato cerrado
 `docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md`. La fase permanece en
-`0` mientras readiness sea `NO_GO`; después del `GO`, permanece en `0` hasta que el PR
-de fase `1` aporte atómicamente todos sus artefactos y gates. Las fases posteriores
-activan acumulativamente sus comandos y fallan si falta un gate o artefacto requerido.
-CI publica evidencia JSON en el summary del status check `Required CI gates`.
+`0` mientras readiness sea `NO_GO`. La Fase `1` activa `keycloak:verify` y
+`test:keycloak`; las fases posteriores activan acumulativamente sus comandos y fallan
+si falta un gate o artefacto requerido. CI publica evidencia JSON en el summary del
+status check `Required CI gates`.
 
 ## 10. Criterio de cierre de Sprint 2
 
@@ -395,5 +396,6 @@ de migración aplicables. El contrato
 catálogo, atomicidad, sanitización y garantía append-only de Audit base. El contrato
 `GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md` automatiza la secuencia, los gates
 progresivos, la frontera Prisma/API y su evidencia CI. `GAP-S2-001` cerró la aprobación
-de los 28 documentos aplicables. La reevaluación formal del 2026-08-14 emite `GO` en
-fase `0` y autoriza como siguiente incremento únicamente la fase `1`.
+de los 28 documentos aplicables. La reevaluación formal del 2026-08-14 emitió `GO`; la
+evidencia `SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md` registra la Fase `1` en `PASS`. El
+siguiente incremento permitido es únicamente la Fase `2`.

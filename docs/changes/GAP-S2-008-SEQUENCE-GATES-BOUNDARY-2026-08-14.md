@@ -113,6 +113,7 @@ publica si todos los gates previos y progresivos finalizaron correctamente.
 
 ## 9. Consecuencia para readiness
 
-`GAP-S2-008` queda cerrado. Sprint 2 conserva `NO_GO` y fase `0` porque
-`GAP-S2-001` permanece abierto: los 28 documentos aplicables todavía requieren
-normalización formal a `accepted`. Este cierre no autoriza implementar las fases 1–9.
+Al cerrar `GAP-S2-008`, Sprint 2 conservó `NO_GO` y fase `0` porque `GAP-S2-001`
+permanecía abierto. `GAP-S2-001` cerró posteriormente la aprobación documental y la
+reevaluación formal del 2026-08-14 emitió `GO`. La fase permanece en `0` hasta que el PR
+de fase `1` aporte atómicamente sus artefactos y gates.

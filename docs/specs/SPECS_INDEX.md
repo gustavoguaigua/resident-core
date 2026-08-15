@@ -453,10 +453,10 @@ Estado vigente:
 Definition of Done técnico de Sprint 0: PASS.
 Cierre formal de Sprint 0: PASS; no existen gaps de cierre abiertos.
 Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
-Implementation Readiness Sprint 2: NO_GO; 0 gaps críticos o altos abiertos, pendiente
-de reevaluación formal sobre `main`.
-Sprint 2 permanece fuera del alcance autorizado; su runbook define la frontera pero
-está bloqueado hasta una nueva decisión `GO`.
+Implementation Readiness Sprint 2: GO desde 2026-08-14; 0 gaps críticos o altos
+abiertos; manifest en fase 0.
+Sprint 2 está autorizado exclusivamente dentro de la frontera y secuencia progresiva de
+su runbook.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
@@ -472,7 +472,8 @@ docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md
 docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md
 docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md
 docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
-Decision: NO_GO
+Decision: GO
+Current phase: 0
 ```
 
 ---

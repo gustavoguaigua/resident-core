@@ -7,12 +7,12 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-14 — cierre documental de `GAP-S2-001` |
+| Última actualización | 2026-08-14 — reevaluación formal con decisión `GO` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
-| Commit base inspeccionado | `b7cbc84fd03aeb44714a32cd27d28b5405a9d30e` |
-| Rama de evaluación | `codex/sprint-2-readiness` |
-| Decisión | `NO_GO` |
-| Plan autorizado | Ninguno |
+| Commit base inspeccionado | `6c1ee9402667881d6939769436fbf3d588416d6b` |
+| Rama de evaluación | `codex/sprint-2-formal-readiness` |
+| Decisión | `GO` |
+| Plan autorizado | `docs/implementation/sprint-2-tenants-identity-access.md` |
 | Naturaleza | Gate documental y técnico previo a funcionalidad |
 
 ## 2. Propósito y método
@@ -26,7 +26,7 @@ aceptados, Blueprint, specs 001, 002, 007 y 025, arquitectura, seguridad, API, g
 de datos, índice maestro, cierre de Sprint 1 y código existente. La compuerta no añade
 modelos, migraciones, endpoints, realm de Keycloak ni lógica funcional.
 
-## 3. Alcance candidato, todavía no autorizado
+## 3. Alcance autorizado
 
 Las fuentes de roadmap sitúan en Sprint 2:
 
@@ -57,7 +57,7 @@ contratos y gates verificables.
 | Auditoría runtime | Puerto técnico sin persistencia, conforme a Sprint 1 |
 | OpenAPI | Contrato runtime de plataforma presente; no existen endpoints funcionales de Sprint 2 |
 | CI | Gates de Sprint 1 activos; acciones `@v6` sobre runtime Node.js 24 |
-| Runbook de Sprint 2 | Frontera, incrementos, exclusiones y gates definidos; implementación bloqueada por `NO_GO` |
+| Runbook de Sprint 2 | Frontera, incrementos, exclusiones y gates definidos; autorizado por esta reevaluación |
 | Bootstrap de plataforma y tenant | Contrato transaccional cerrado; sin endpoint anónimo, bypass ni placeholder |
 | Contexto de tenant activo | Contrato request-scoped cerrado; selector único `X-Tenant-Id` validado por Core |
 | Contrato Keycloak | Realm, clientes, OIDC/PKCE, validación, bootstrap y gates cerrados documentalmente |
@@ -205,29 +205,33 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 ## 8. Decisión vigente
 
 ```text id="sprint2-readiness-decision"
-Decision: NO_GO
+Decision: GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
-Effective date: 2026-08-11
+Effective date: 2026-08-14
 Critical gaps open: 0
 High gaps open: 0
-Authorized plan: none
-Base commit: b7cbc84fd03aeb44714a32cd27d28b5405a9d30e
+Authorized plan: docs/implementation/sprint-2-tenants-identity-access.md
+Gate phase: 0
+Base commit: 6c1ee9402667881d6939769436fbf3d588416d6b
 ```
 
-No se autoriza implementar funcionalidad de Sprint 2, modelos Prisma de dominio,
-migraciones, endpoints funcionales, realm Keycloak, autenticación OIDC, persistencia de
-auditoría ni adaptadores que concedan tenant o permisos. El `NO_GO` no revierte el cierre
-de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar estos gaps.
+Se autoriza iniciar Sprint 2 exclusivamente en el orden y dentro de la frontera del
+runbook. El manifest permanece en fase `0` hasta que el PR del primer incremento aporte
+el realm, bootstrap y verificadores Keycloak completos y eleve atómicamente
+`currentPhase` a `1`. Este `GO` no autoriza adelantar fases ni ampliar la superficie
+Prisma, OpenAPI o funcional definida.
 
-## 9. Orden recomendado para alcanzar GO
+## 9. Orden autorizado después de GO
 
-1. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión formal `GO` puede
-   autorizar funcionalidad.
+1. Implementar exclusivamente la fase `1`, realm y contrato Keycloak, en una rama y PR
+   cortos.
+2. Elevar `currentPhase` a `1` únicamente en el mismo cambio que aporte todos sus
+   artefactos, scripts y pruebas y deje `pnpm sprint2:gates` en verde.
 
 ## 10. Resultado
 
-El baseline técnico de Sprint 1 está sano, la observación de Node.js 20 en GitHub
-Actions está corregida y los gaps `GAP-S2-001` a `GAP-S2-008` están cerrados. Los 28
-documentos aplicables están `accepted` y no quedan gaps críticos o altos abiertos. La
-decisión continúa siendo `NO_GO` hasta ejecutar una reevaluación formal separada sobre
-`main`; este cierre no autoriza implementación funcional.
+El baseline técnico de Sprint 1 está sano, los gaps `GAP-S2-001` a `GAP-S2-008` están
+cerrados, los 28 documentos aplicables están `accepted` y no existen gaps críticos o
+altos abiertos. La frontera automática y los gates reproducibles pasan sobre el commit
+base inspeccionado. Sprint 2 obtiene `GO` formal en fase `0`; el siguiente incremento
+autorizado es únicamente la fase `1` del runbook.

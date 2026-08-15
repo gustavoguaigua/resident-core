@@ -38,7 +38,8 @@ Total normalizado: **28 documentos**.
 - Los contratos cerrados por `GAP-S2-005`, `GAP-S2-006`, `GAP-S2-007` y
   `GAP-S2-008` conservan precedencia explícita y no presentan contradicción directa.
 - No quedan gaps críticos o altos abiertos en la compuerta de Sprint 2.
-- Sprint 2 permanece `NO_GO` hasta una reevaluación formal separada sobre `main`.
+- Al cerrar este gap, Sprint 2 permaneció `NO_GO` hasta la reevaluación formal separada
+  del 2026-08-14, que emitió `GO` en fase `0`.
 
 ## Resultado
 

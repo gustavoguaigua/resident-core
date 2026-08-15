@@ -33,12 +33,12 @@ afterEach(() => {
 });
 
 describe("Sprint 2 boundary verifier", () => {
-  it("accepts the current NO_GO repository boundary", () => {
+  it("accepts the current GO repository boundary", () => {
     const result = runVerifier();
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain(
-      "Sprint 2 boundary is valid at phase 0 (NO_GO).",
+      "Sprint 2 boundary is valid at phase 0 (GO).",
     );
   });
 

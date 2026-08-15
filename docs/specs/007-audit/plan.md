@@ -15,7 +15,7 @@
 | Documento      | Implementation Plan                                                                                                     |
 | Ruta           | `docs/specs/007-audit/plan.md`                                                                                          |
 | Versión        | 0.1                                                                                                                     |
-| Estado         | needs-review                                                                                                            |
+| Estado         | accepted                                                                                                            |
 | Fecha          | 2026-07-14                                                                                                              |
 | Documento base | `docs/specs/007-audit/spec.md`                                                                                          |
 | Depende de     | `001-tenants`, `002-users-roles`, `003-residents-properties`, `004-dues-fees`, `005-payments`, `006-account-statements` |

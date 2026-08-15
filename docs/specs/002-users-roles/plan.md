@@ -10,7 +10,7 @@
 | Documento              | Implementation Plan                           |
 | Ruta                   | `docs/specs/002-users-roles/plan.md`          |
 | Versión                | 0.1                                           |
-| Estado                 | needs-review                                  |
+| Estado                 | accepted                                  |
 | Fecha                  | 2026-07-13                                    |
 | Documento base         | `docs/specs/002-users-roles/spec.md`          |
 | Depende de             | `docs/specs/001-tenants/`                     |

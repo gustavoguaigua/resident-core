@@ -604,7 +604,8 @@ baseline.
 
 ```text
 Implementation Readiness Sprint 0: GO (2026-08-10)
-Specs 001-030: needs-review
+Specs 001, 002, 007 y 025: accepted
+Specs 003-006, 008-024 y 026-030: needs-review
 Spec 031: complete
 Blueprint: creado
 Specs Index: creado
@@ -616,7 +617,8 @@ Cierre formal de Sprint 0: PASS (2026-08-11)
 Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: NO_GO (2026-08-11)
-Sprint 2 y lógica de negocio: no autorizados; 1 gap crítico abierto
+Sprint 2 y lógica de negocio: no autorizados; 0 gaps críticos o altos abiertos,
+pendiente reevaluación formal
 ```
 
 Evidencia:
@@ -635,14 +637,14 @@ docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md
 docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md
 docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md
 docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md
+docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 ```
 
-Sprint 1 está cerrado. La compuerta de Sprint 2 mantiene `NO_GO` porque las specs 001,
-002, 007 y 025 permanecen `needs-review`. El bootstrap transaccional, el contexto
-request-scoped de tenant activo, Keycloak, el ownership de configuración/Prisma, la
-auditoría base y los gates/frontera automáticos ya están definidos; la fase ejecutable
-permanece en `0` y el runbook no constituye un plan funcional autorizado mientras la
-decisión sea `NO_GO`.
+Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025
+están `accepted` y los gaps de Sprint 2 están cerrados. La compuerta mantiene `NO_GO`
+hasta una reevaluación formal separada sobre `main`; la fase ejecutable permanece en
+`0` y el runbook no constituye un plan funcional autorizado mientras esa decisión siga
+vigente.
 
 ---
 

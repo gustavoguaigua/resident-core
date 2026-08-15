@@ -16,7 +16,7 @@
 | Documento             | Functional Specification                                                                      |
 | Ruta                  | `docs/specs/025-tenant-settings-policies/spec.md`                                             |
 | Versión               | 0.1                                                                                           |
-| Estado                | needs-review                                                                                  |
+| Estado                | accepted                                                                                  |
 | Fecha                 | 2026-07-31                                                                                    |
 | Fase                  | FASE 2 — RESIDENT Core                                                                        |
 | Arquitectura objetivo | Monolito modular preparado para microservicios                                                |

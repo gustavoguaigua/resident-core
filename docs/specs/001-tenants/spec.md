@@ -16,7 +16,7 @@
 | Documento    | Functional Specification                                                                                                                                                                                |
 | Ruta         | `docs/specs/001-tenants/spec.md`                                                                                                                                                                        |
 | Versión      | 0.1                                                                                                                                                                                                     |
-| Estado       | needs-review                                                                                                                                                                                            |
+| Estado       | accepted                                                                                                                                                                                            |
 | Fecha        | 2026-07-12                                                                                                                                                                                              |
 | Prioridad    | Alta                                                                                                                                                                                                    |
 | Dependencias | `constitution.md`, `domain-map.md`, `architecture.md`, `security.md`, `api-guidelines.md`, `data-governance.md`, `ADR-004`, `ADR-006`, `ADR-007`, `ADR-008`, `ADR-009`, `ADR-010`, `ADR-011`, `ADR-012` |
@@ -1799,18 +1799,18 @@ docs/specs/001-tenants/
 
 ---
 
-## 36. Preguntas abiertas
+## 36. Cierre de preguntas para Sprint 2
 
 1. Resuelta: el MVP crea tenants mediante la API autenticada de plataforma.
 2. Resuelta: el tenant permanece `pendingSetup`; la activación es posterior y explícita.
-3. ¿Qué campos públicos exactos deben sincronizarse desde WordPress hacia Core o desde Core hacia WordPress?
-4. ¿El branding se almacena inicialmente en Core o se sigue editando solo en WordPress?
-5. ¿Se permitirá dominio personalizado por tenant en fase posterior?
-6. ¿Qué política comercial aplicará para tenants suspendidos?
-7. ¿Se manejarán planes SaaS desde el MVP o se difiere?
-8. ¿Quién aprueba archivado de tenant?
-9. ¿Qué pasa si un slug cambia después de estar vinculado a WordPress?
-10. ¿Debe existir importación inicial desde los CPT actuales de WordPress?
+3. Diferida: la sincronización transaccional con WordPress y la importación desde CPT no forman parte de Sprint 2; Core expone únicamente el resolver público y el mapping definido por el runbook.
+4. Resuelta: `TenantBranding`, propiedad de Spec 025, es la fuente de branding en Core.
+5. Diferida: los dominios personalizados quedan fuera de Sprint 2.
+6. Diferida: la política comercial de suspensión y los planes SaaS quedan fuera de Sprint 2.
+7. Diferida: los planes SaaS no se implementan en Sprint 2.
+8. Resuelta: el archivado exige `platform.tenants.archive` y corresponde a un actor de plataforma autorizado.
+9. Resuelta para Sprint 2: el contrato público no permite modificar `slug`; cualquier cambio posterior requiere una decisión contractual específica.
+10. Diferida: no se importa contenido WordPress/CPT en Sprint 2.
 
 ---
 

@@ -518,13 +518,13 @@ Inventario documental presente; el estado refleja revisión formal, no calendari
 
 | Spec ID | Paquete                        | Estado documental |
 | ------: | ------------------------------ | ------------------ |
-|     001 | `tenants`                      | needs-review |
-|     002 | `users-roles`                  | needs-review |
+|     001 | `tenants`                      | accepted |
+|     002 | `users-roles`                  | accepted |
 |     003 | `residents-properties`         | needs-review |
 |     004 | `dues-fees`                    | needs-review |
 |     005 | `payments`                     | needs-review |
 |     006 | `account-statements`           | needs-review |
-|     007 | `audit`                        | needs-review |
+|     007 | `audit`                        | accepted |
 |     008 | `basic-reports`                | needs-review |
 |     009 | `wordpress-integration-basic`  | needs-review |
 |     010 | `reservations-common-areas`    | needs-review |
@@ -542,7 +542,7 @@ Inventario documental presente; el estado refleja revisión formal, no calendari
 |     022 | `maintenance-work-orders`      | needs-review |
 |     023 | `inventory-basic`              | needs-review |
 |     024 | `access-control-visitors`      | needs-review |
-|     025 | `tenant-settings-policies`     | needs-review |
+|     025 | `tenant-settings-policies`     | accepted |
 |     026 | `automation-workflows-basic`   | needs-review |
 |     027 | `dashboard-kpis`               | needs-review |
 |     028 | `data-import-migration`        | needs-review |
@@ -930,7 +930,7 @@ Evidencia: docs/changes/READINESS-SPRINT-1-2026-08-11.md.
 Sprint 1: implementado y cerrado con PASS el 2026-08-11.
 Evidencia de cierre: docs/changes/SPRINT-1-CLOSURE-2026-08-11.md.
 Readiness de Sprint 2: NO_GO el 2026-08-11.
-Gaps abiertos: 1 crítico.
+Gaps abiertos: 0 críticos y 0 altos; pendiente reevaluación formal.
 Plan autorizado para Sprint 2: ninguno.
 Evidencia: docs/changes/READINESS-SPRINT-2-2026-08-11.md.
 Runbook delimitado pero bloqueado: docs/implementation/sprint-2-tenants-identity-access.md.
@@ -940,6 +940,7 @@ Contrato Keycloak: docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-1
 Ownership configuración/Prisma: docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md.
 Contrato Audit base: docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md.
 Secuencia/gates/frontera: docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md.
+Aprobación documental: docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md.
 ```
 
 Condición:
@@ -947,9 +948,9 @@ Condición:
 ```text id="blueprint-readiness-condition"
 Sprint 0 fue ejecutado dentro del alcance estricto de su runbook y queda formalmente
 cerrado. Sprint 1 fue implementado y cerrado formalmente con `PASS`. La compuerta de
-Sprint 2 emitió `NO_GO` el 2026-08-11: las specs 001, 002, 007 y 025 permanecen
-`needs-review` y existe un gap crítico. La frontera, el bootstrap
-transaccional, el tenant activo request-scoped, Keycloak, el ownership de
+Sprint 2 emitió `NO_GO` el 2026-08-11. Los 28 documentos aplicables de las specs 001,
+002, 007 y 025 están `accepted` y no quedan gaps críticos o altos abiertos. La frontera,
+el bootstrap transaccional, el tenant activo request-scoped, Keycloak, el ownership de
 configuración/Prisma, Audit base y los gates progresivos están definidos, pero Sprint 2
 y la lógica de negocio permanecen fuera de alcance hasta una nueva reevaluación `GO`.
 ```
@@ -964,6 +965,7 @@ docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md
 docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md
 docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md
 docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md
+docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 ```
 
 ---

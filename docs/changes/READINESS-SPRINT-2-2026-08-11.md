@@ -7,7 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-14 — cierre técnico de `GAP-S2-008` |
+| Última actualización | 2026-08-14 — cierre documental de `GAP-S2-001` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
 | Commit base inspeccionado | `b7cbc84fd03aeb44714a32cd27d28b5405a9d30e` |
 | Rama de evaluación | `codex/sprint-2-readiness` |
@@ -48,8 +48,8 @@ contratos y gates verificables.
 | --- | --- |
 | Cierre formal de Sprint 1 | `PASS`; PR y CI post-merge exitosos |
 | Constitución y ADR 003–007, 010–012 | Vigentes y suficientes como dirección arquitectónica |
-| Specs 001, 002, 007 y 025 | Los 28 documentos permanecen `needs-review` |
-| Preguntas abiertas de las specs | Existen decisiones funcionales y técnicas sin cerrar |
+| Specs 001, 002, 007 y 025 | Los 28 documentos están `accepted` |
+| Preguntas abiertas de las specs | Sin blockers contractuales dentro del alcance de Sprint 2 |
 | Índice y Blueprint | Definen componentes generales, no el significado implementable de “base” |
 | Prisma | Sin modelos, enums, migraciones ni seeds de dominio, conforme al cierre de Sprint 1 |
 | Keycloak local | Servicio fijado en Compose; `infra/keycloak/` no contiene realm o clients versionados |
@@ -70,12 +70,12 @@ contratos y gates verificables.
 | Campo | Valor |
 | --- | --- |
 | Severidad | Crítica |
-| Estado | open |
+| Estado | closed — 2026-08-14 |
 
-Las specs 001, 002, 007 y 025 y todos sus documentos derivados siguen en
-`needs-review`. El estándar documental define ese estado como “requiere revisión antes
-de implementar” y ADR-003 exige expresamente specs aprobadas para introducir `Tenant`,
-`UserProfile`, roles, permisos y memberships.
+Los 28 documentos derivados de las specs 001, 002, 007 y 025 se normalizan a
+`accepted` después de comprobar los contratos cerrados por `GAP-S2-002` a
+`GAP-S2-008`. Las preguntas residuales quedan resueltas o diferidas explícitamente y
+`GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md` registra la evidencia de aprobación.
 
 ### GAP-S2-002 — Frontera de Sprint 2 no ejecutable
 
@@ -192,7 +192,7 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 | Sprint 1 está cerrado | Cumple | `SPRINT-1-CLOSURE-2026-08-11.md` |
 | Arquitectura y ADR aplicables están aceptados | Cumple | ADR 003–007 y 010–012 |
 | Baseline técnico falla cerrado | Cumple | guards y adaptadores de Sprint 1 |
-| Specs funcionales aplicables están aprobadas | No cumple | 28 de 28 documentos `needs-review` |
+| Specs funcionales aplicables están aprobadas | Cumple | 28 de 28 documentos `accepted` |
 | Alcance de 007/025 base es verificable | Cumple | `sprint-2-tenants-identity-access.md` |
 | Bootstrap tenant-identidad está cerrado | Cumple | `GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md` |
 | Tenant activo tiene contrato único | Cumple | `GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md` |
@@ -200,7 +200,7 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 | Modelo Prisma inicial no tiene superposiciones | Cumple | `GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md` |
 | Audit base tiene semántica y ownership únicos | Cumple | `GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` |
 | Gates de Sprint 2 están automatizados | Cumple | `GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md` |
-| No existen gaps críticos o altos abiertos | No cumple | 1 crítico abierto |
+| No existen gaps críticos o altos abiertos | Cumple | 0 críticos y 0 altos abiertos |
 
 ## 8. Decisión vigente
 
@@ -208,7 +208,7 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 Decision: NO_GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
 Effective date: 2026-08-11
-Critical gaps open: 1
+Critical gaps open: 0
 High gaps open: 0
 Authorized plan: none
 Base commit: b7cbc84fd03aeb44714a32cd27d28b5405a9d30e
@@ -221,16 +221,13 @@ de Sprint 1 ni impide correcciones documentales y de CI destinadas a cerrar esto
 
 ## 9. Orden recomendado para alcanzar GO
 
-1. Normalizar los 28 documentos aplicables a `accepted` después de resolver sus
-   decisiones abiertas y comprobar consistencia cruzada.
-2. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión `GO` puede autorizar
-   funcionalidad.
+1. Reevaluar esta compuerta sobre `main`; sólo una nueva decisión formal `GO` puede
+   autorizar funcionalidad.
 
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, la observación de Node.js 20 en GitHub
-Actions está corregida y los gaps `GAP-S2-002` a `GAP-S2-008` están cerrados sin
-aprobar implícitamente decisiones abiertas. Sprint 2 todavía no está listo para
-comenzar: la decisión continúa siendo `NO_GO`, con un gap crítico. El siguiente paso
-permitido recomendado es cerrar `GAP-S2-001` mediante la normalización formal de las 28
-specs aplicables.
+Actions está corregida y los gaps `GAP-S2-001` a `GAP-S2-008` están cerrados. Los 28
+documentos aplicables están `accepted` y no quedan gaps críticos o altos abiertos. La
+decisión continúa siendo `NO_GO` hasta ejecutar una reevaluación formal separada sobre
+`main`; este cierre no autoriza implementación funcional.

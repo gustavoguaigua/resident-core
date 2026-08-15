@@ -10,7 +10,7 @@
 | Documento       | Functional Specification                                                                                                                                       |
 | Ruta            | `docs/specs/002-users-roles/spec.md`                                                                                                                           |
 | Versión         | 0.1                                                                                                                                                            |
-| Estado          | needs-review                                                                                                                                                   |
+| Estado          | accepted                                                                                                                                                   |
 | Fecha           | 2026-07-13                                                                                                                                                     |
 | Prioridad       | Alta                                                                                                                                                           |
 | Depende de      | `docs/specs/001-tenants/spec.md`                                                                                                                               |
@@ -1971,18 +1971,18 @@ docs/specs/002-users-roles/
 
 ---
 
-## 34. Preguntas abiertas
+## 34. Cierre de preguntas para Sprint 2
 
-1. ¿Se implementará Keycloak desde esta spec o se permitirá mock/auth temporal hasta terminar usuarios?
-2. ¿Quién puede asignar un segundo TenantAdmin?
-3. ¿Debe existir aprobación dual para asignar Treasurer?
-4. ¿Resident y PropertyOwner se asignan aquí o después de `003-residents-properties`?
-5. ¿Las invitaciones enviarán email desde el MVP o quedarán como token generado?
-6. ¿Se permitirá múltiples roles por membresía desde MVP?
-7. ¿Se permitirá crear roles personalizados por tenant desde MVP?
-8. ¿Se permitirá desactivar usuario globalmente desde TenantAdmin o solo revocar membresía?
-9. ¿Cómo se manejará un usuario que cambia de email en Keycloak?
-10. ¿Se usará service account desde esta spec o se difiere a integración n8n?
+1. Resuelta: Keycloak se integra con el contrato reproducible de `GAP-S2-005`; no se permite autenticación temporal o mock.
+2. Resuelta: un actor con `users.roles.assign` en el tenant validado puede asignar otro `TenantAdmin`, sujeto a las protecciones del último administrador activo.
+3. Diferida: la aprobación dual para `Treasurer` no forma parte de Sprint 2.
+4. Resuelta: los roles base pueden existir, pero su asignación de dominio se realiza cuando Spec 003 esté autorizada.
+5. Diferida: Sprint 2 no envía emails reales de invitación.
+6. Resuelta: una membresía admite múltiples roles.
+7. Diferida: Sprint 2 no expone creación de roles personalizados.
+8. Resuelta: `TenantAdmin` revoca la membresía del tenant; la desactivación global requiere permiso y superficie de plataforma.
+9. Resuelta para Sprint 2: el email local no es mutable por esta API ni se sincroniza implícitamente desde claims; una reconciliación futura requiere contrato explícito.
+10. Resuelta: el único cliente técnico del alcance es `resident-identity-admin`; service accounts de negocio o n8n quedan diferidas.
 
 ---
 

@@ -616,9 +616,8 @@ Definition of Done técnico de Sprint 0: PASS (2026-08-11)
 Cierre formal de Sprint 0: PASS (2026-08-11)
 Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
-Implementation Readiness Sprint 2: NO_GO (2026-08-11)
-Sprint 2 y lógica de negocio: no autorizados; 0 gaps críticos o altos abiertos,
-pendiente reevaluación formal
+Implementation Readiness Sprint 2: GO (2026-08-14)
+Sprint 2: autorizado dentro del runbook; fase actual 0; siguiente incremento fase 1
 ```
 
 Evidencia:
@@ -641,10 +640,10 @@ docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 ```
 
 Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025
-están `accepted` y los gaps de Sprint 2 están cerrados. La compuerta mantiene `NO_GO`
-hasta una reevaluación formal separada sobre `main`; la fase ejecutable permanece en
-`0` y el runbook no constituye un plan funcional autorizado mientras esa decisión siga
-vigente.
+están `accepted`, los gaps de Sprint 2 están cerrados y la reevaluación formal emitió
+`GO` el 2026-08-14. El manifest permanece en fase `0`; el siguiente incremento
+autorizado es exclusivamente la fase `1` del runbook, que debe elevar la fase en el
+mismo cambio que aporte todos sus artefactos y gates.
 
 ---
 

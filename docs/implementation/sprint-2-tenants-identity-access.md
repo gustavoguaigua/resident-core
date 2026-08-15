@@ -3,15 +3,14 @@
 ## 1. Estado del documento
 
 - Estado de definición de alcance: `complete`
-- Estado de autorización de implementación: `blocked`
+- Estado de autorización de implementación: `authorized`
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
-- Gaps resueltos por este documento y sus contratos: `GAP-S2-002`, `GAP-S2-003`,
-  `GAP-S2-004`, `GAP-S2-005`
+- Gaps resueltos por este documento y sus contratos: `GAP-S2-001` a `GAP-S2-008`
 
 Este documento es el runbook autoritativo de Sprint 2. Define su frontera, sus
-incrementos y sus criterios de salida. No concede por sí mismo autorización para
-implementar. Mientras la compuerta de readiness mantenga la decisión `NO_GO`, no
-debe iniciarse ningún incremento funcional descrito aquí.
+incrementos y sus criterios de salida. La compuerta aplicable emitió `GO` el 2026-08-14;
+la implementación queda autorizada únicamente en su orden progresivo y sin ampliar la
+frontera.
 
 ## 2. Objetivo
 
@@ -54,6 +53,9 @@ compuerta y aprobados los contratos que afectan a implementación:
 3. convertir los gates descritos aquí en validaciones reproducibles;
 4. aprobar las Specs y anexos contractuales necesarios;
 5. reevaluar formalmente la compuerta de readiness.
+
+Las cinco condiciones están satisfechas por los contratos `GAP-S2-001` a
+`GAP-S2-008` y la decisión formal `GO` del 2026-08-14.
 
 ## 5. Frontera funcional exacta
 
@@ -358,9 +360,10 @@ Los gates se automatizan mediante
 `packages/testing/config/sprint-2-gates.json`, `pnpm sprint2:boundary` y
 `pnpm sprint2:gates`, conforme al contrato cerrado
 `docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md`. La fase permanece en
-`0` mientras readiness sea `NO_GO`; las fases posteriores activan acumulativamente sus
-comandos y fallan si falta un gate o artefacto requerido. CI publica evidencia JSON en
-el summary del status check `Required CI gates`.
+`0` mientras readiness sea `NO_GO`; después del `GO`, permanece en `0` hasta que el PR
+de fase `1` aporte atómicamente todos sus artefactos y gates. Las fases posteriores
+activan acumulativamente sus comandos y fallan si falta un gate o artefacto requerido.
+CI publica evidencia JSON en el summary del status check `Required CI gates`.
 
 ## 10. Criterio de cierre de Sprint 2
 
@@ -391,6 +394,6 @@ de migración aplicables. El contrato
 `GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` fija ownership, modelo mínimo,
 catálogo, atomicidad, sanitización y garantía append-only de Audit base. El contrato
 `GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md` automatiza la secuencia, los gates
-progresivos, la frontera Prisma/API y su evidencia CI. No cierra ni reduce por
-inferencia los demás gaps. La decisión continúa siendo `NO_GO` hasta una reevaluación
-formal.
+progresivos, la frontera Prisma/API y su evidencia CI. `GAP-S2-001` cerró la aprobación
+de los 28 documentos aplicables. La reevaluación formal del 2026-08-14 emite `GO` en
+fase `0` y autoriza como siguiente incremento únicamente la fase `1`.

@@ -929,11 +929,11 @@ Plan autorizado: docs/implementation/sprint-1-backend-platform-base.md.
 Evidencia: docs/changes/READINESS-SPRINT-1-2026-08-11.md.
 Sprint 1: implementado y cerrado con PASS el 2026-08-11.
 Evidencia de cierre: docs/changes/SPRINT-1-CLOSURE-2026-08-11.md.
-Readiness de Sprint 2: NO_GO el 2026-08-11.
-Gaps abiertos: 0 críticos y 0 altos; pendiente reevaluación formal.
-Plan autorizado para Sprint 2: ninguno.
+Readiness de Sprint 2: GO el 2026-08-14.
+Gaps abiertos: 0 críticos y 0 altos.
+Plan autorizado para Sprint 2: docs/implementation/sprint-2-tenants-identity-access.md.
 Evidencia: docs/changes/READINESS-SPRINT-2-2026-08-11.md.
-Runbook delimitado pero bloqueado: docs/implementation/sprint-2-tenants-identity-access.md.
+Runbook autorizado: docs/implementation/sprint-2-tenants-identity-access.md.
 Bootstrap transaccional: docs/changes/GAP-S2-003-BOOTSTRAP-CONTRACT-2026-08-11.md.
 Tenant activo request-scoped: docs/changes/GAP-S2-004-ACTIVE-TENANT-CONTRACT-2026-08-12.md.
 Contrato Keycloak: docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md.
@@ -948,11 +948,12 @@ Condición:
 ```text id="blueprint-readiness-condition"
 Sprint 0 fue ejecutado dentro del alcance estricto de su runbook y queda formalmente
 cerrado. Sprint 1 fue implementado y cerrado formalmente con `PASS`. La compuerta de
-Sprint 2 emitió `NO_GO` el 2026-08-11. Los 28 documentos aplicables de las specs 001,
-002, 007 y 025 están `accepted` y no quedan gaps críticos o altos abiertos. La frontera,
-el bootstrap transaccional, el tenant activo request-scoped, Keycloak, el ownership de
-configuración/Prisma, Audit base y los gates progresivos están definidos, pero Sprint 2
-y la lógica de negocio permanecen fuera de alcance hasta una nueva reevaluación `GO`.
+Sprint 2 obtuvo `GO` formal el 2026-08-14. Los 28 documentos aplicables de las specs
+001, 002, 007 y 025 están `accepted` y no quedan gaps críticos o altos abiertos. La
+frontera, el bootstrap transaccional, el tenant activo request-scoped, Keycloak, el
+ownership de configuración/Prisma, Audit base y los gates progresivos están definidos.
+El manifest permanece en fase `0` y autoriza como siguiente incremento únicamente la
+fase `1` del runbook.
 ```
 
 Evidencia vigente:

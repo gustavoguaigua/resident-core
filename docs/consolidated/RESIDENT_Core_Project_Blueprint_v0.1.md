@@ -941,6 +941,7 @@ Ownership configuración/Prisma: docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OW
 Contrato Audit base: docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md.
 Secuencia/gates/frontera: docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md.
 Aprobación documental: docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md.
+Fase 1 Keycloak: docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md.
 ```
 
 Condición:
@@ -952,8 +953,8 @@ Sprint 2 obtuvo `GO` formal el 2026-08-14. Los 28 documentos aplicables de las s
 001, 002, 007 y 025 están `accepted` y no quedan gaps críticos o altos abiertos. La
 frontera, el bootstrap transaccional, el tenant activo request-scoped, Keycloak, el
 ownership de configuración/Prisma, Audit base y los gates progresivos están definidos.
-El manifest permanece en fase `0` y autoriza como siguiente incremento únicamente la
-fase `1` del runbook.
+La Fase `1` de realm y contrato Keycloak está en `PASS`; el manifest queda en fase `1`
+y permite como siguiente incremento únicamente la Fase `2` del runbook.
 ```
 
 Evidencia vigente:
@@ -967,6 +968,7 @@ docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md
 docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md
 docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md
 docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
+docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md
 ```
 
 ---

@@ -1,0 +1,31 @@
+{
+  "identities": [
+    {
+      "key": "platformAdmin",
+      "username": "platform.admin@example.com",
+      "email": "platform.admin@example.com",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Platform",
+      "lastName": "Admin"
+    },
+    {
+      "key": "tenantAdmin",
+      "username": "tenant.admin@example.com",
+      "email": "tenant.admin@example.com",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Tenant",
+      "lastName": "Admin"
+    },
+    {
+      "key": "residentUser",
+      "username": "resident.user@example.com",
+      "email": "resident.user@example.com",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Resident",
+      "lastName": "User"
+    }
+  ]
+}

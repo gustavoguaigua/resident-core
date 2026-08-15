@@ -14,7 +14,7 @@
 | Documento       | Security Notes                                                                                |
 | Ruta            | `docs/specs/025-tenant-settings-policies/security-notes.md`                                   |
 | Versión         | 0.1                                                                                           |
-| Estado          | needs-review                                                                                  |
+| Estado          | accepted                                                                                  |
 | Fecha           | 2026-07-31                                                                                    |
 | Documento base  | `docs/specs/025-tenant-settings-policies/spec.md`                                             |
 | Plan técnico    | `docs/specs/025-tenant-settings-policies/plan.md`                                             |

@@ -16,7 +16,7 @@
 | Documento              | Data Model                                                                                                              |
 | Ruta                   | `docs/specs/007-audit/data-model.md`                                                                                    |
 | Versión                | 0.1                                                                                                                     |
-| Estado                 | needs-review                                                                                                            |
+| Estado                 | accepted                                                                                                            |
 | Fecha                  | 2026-07-14                                                                                                              |
 | Documento base         | `docs/specs/007-audit/spec.md`                                                                                          |
 | Plan técnico           | `docs/specs/007-audit/plan.md`                                                                                          |

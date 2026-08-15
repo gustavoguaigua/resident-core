@@ -16,7 +16,7 @@
 | Documento              | API Contract                             |
 | Ruta                   | `docs/specs/001-tenants/api-contract.md` |
 | Versión                | 0.1                                      |
-| Estado                 | needs-review                             |
+| Estado                 | accepted                             |
 | Fecha                  | 2026-07-12                               |
 | Documento base         | `docs/specs/001-tenants/spec.md`         |
 | Plan técnico           | `docs/specs/001-tenants/plan.md`         |

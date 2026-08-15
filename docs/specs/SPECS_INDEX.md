@@ -59,7 +59,8 @@ Estados documentales permitidos:
 draft         documento en elaboración
 in-review     documento bajo revisión formal activa
 needs-review  documento existente y pendiente de revisión formal
-complete      documento revisado y listo como referencia aprobada
+accepted      documento funcional revisado y aprobado dentro de su alcance
+complete      expediente documental o de gobernanza terminado
 blocked       revisión documental detenida por un gap crítico
 ```
 
@@ -74,13 +75,13 @@ pendiente de revisión.
 
 | Spec | Módulo                         | Dominio                      | Prioridad  | Estado documental | Implementación sugerida |
 | ---: | ------------------------------ | ---------------------------- | ---------- | ------------------ | ----------------------- |
-|  001 | `tenants`                      | Platform / Tenant Management | Crítica    | needs-review       | Sprint 2                |
-|  002 | `users-roles`                  | Identity and Access          | Crítica    | needs-review       | Sprint 2                |
+|  001 | `tenants`                      | Platform / Tenant Management | Crítica    | accepted           | Sprint 2                |
+|  002 | `users-roles`                  | Identity and Access          | Crítica    | accepted           | Sprint 2                |
 |  003 | `residents-properties`         | Residents and Properties     | Crítica    | needs-review       | Sprint 3                |
 |  004 | `dues-fees`                    | Financial Management         | Crítica    | needs-review       | Sprint 3                |
 |  005 | `payments`                     | Payments                     | Crítica    | needs-review       | Sprint 3                |
 |  006 | `account-statements`           | Financial Statements         | Crítica    | needs-review       | Sprint 3                |
-|  007 | `audit`                        | Audit and Compliance         | Crítica    | needs-review       | Sprint 2-3              |
+|  007 | `audit`                        | Audit and Compliance         | Crítica    | accepted           | Sprint 2-3              |
 |  008 | `basic-reports`                | Reporting                    | Media      | needs-review       | Sprint 7                |
 |  009 | `wordpress-integration-basic`  | External Integration         | Media      | needs-review       | Sprint 7                |
 |  010 | `reservations-common-areas`    | Reservations                 | Alta       | needs-review       | Sprint 6                |
@@ -98,7 +99,7 @@ pendiente de revisión.
 |  022 | `maintenance-work-orders`      | Maintenance                  | Alta       | needs-review       | Sprint 6                |
 |  023 | `inventory-basic`              | Inventory                    | Media      | needs-review       | Sprint 7 / Post-MVP     |
 |  024 | `access-control-visitors`      | Access / Visitors            | Alta       | needs-review       | Sprint 6                |
-|  025 | `tenant-settings-policies`     | Tenant Configuration         | Crítica    | needs-review       | Sprint 2-3              |
+|  025 | `tenant-settings-policies`     | Tenant Configuration         | Crítica    | accepted           | Sprint 2-3              |
 |  026 | `automation-workflows-basic`   | Automation                   | Media      | needs-review       | Post-MVP                |
 |  027 | `dashboard-kpis`               | Dashboards / KPIs            | Media-Alta | needs-review       | Sprint 7                |
 |  028 | `data-import-migration`        | Data Import / Migration      | Media-Alta | needs-review       | Sprint 7                |
@@ -414,7 +415,8 @@ No inventes endpoints, tablas, permisos ni reglas fuera de las specs.
 ```text id="specs-index-current-state"
 docs/sdd/                         completo
 docs/decisions/                   completo
-docs/specs/001-030/               needs-review
+docs/specs/{001-tenants,002-users-roles,007-audit,025-tenant-settings-policies}/ accepted
+docs/specs/003-006,008-024,026-030/ needs-review
 docs/specs/031-implementation-readiness/ complete
 docs/changes/                     contiene cambios, readiness y cierres formales
 docs/implementation/              contiene los runbooks cerrados de Sprint 0 y Sprint 1
@@ -451,7 +453,8 @@ Estado vigente:
 Definition of Done técnico de Sprint 0: PASS.
 Cierre formal de Sprint 0: PASS; no existen gaps de cierre abiertos.
 Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
-Implementation Readiness Sprint 2: NO_GO; 1 gap crítico abierto.
+Implementation Readiness Sprint 2: NO_GO; 0 gaps críticos o altos abiertos, pendiente
+de reevaluación formal sobre `main`.
 Sprint 2 permanece fuera del alcance autorizado; su runbook define la frontera pero
 está bloqueado hasta una nueva decisión `GO`.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
@@ -468,6 +471,7 @@ docs/changes/GAP-S2-005-KEYCLOAK-OPERATING-CONTRACT-2026-08-12.md
 docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md
 docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md
 docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md
+docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 Decision: NO_GO
 ```
 

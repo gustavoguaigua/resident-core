@@ -10,7 +10,7 @@
 | Documento                | Test Plan                                    |
 | Ruta                     | `docs/specs/002-users-roles/test-plan.md`    |
 | Versión                  | 0.1                                          |
-| Estado                   | needs-review                                 |
+| Estado                   | accepted                                 |
 | Fecha                    | 2026-07-13                                   |
 | Documento base           | `docs/specs/002-users-roles/spec.md`         |
 | Plan técnico             | `docs/specs/002-users-roles/plan.md`         |

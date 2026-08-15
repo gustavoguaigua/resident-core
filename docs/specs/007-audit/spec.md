@@ -17,7 +17,7 @@
 | Documento       | Functional Specification                                                                                                                                       |
 | Ruta            | `docs/specs/007-audit/spec.md`                                                                                                                                 |
 | Versión         | 0.1                                                                                                                                                            |
-| Estado          | needs-review                                                                                                                                                   |
+| Estado          | accepted                                                                                                                                                   |
 | Fecha           | 2026-07-14                                                                                                                                                     |
 | Prioridad       | Alta                                                                                                                                                           |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `004-dues-fees`, `005-payments`, `006-account-statements`                                        |
@@ -2212,23 +2212,9 @@ docs/specs/007-audit/
 
 ---
 
-## 35. Preguntas abiertas
+## 35. Cierre de preguntas para Sprint 2
 
-1. ¿Se implementará `AuditExport` como tabla desde MVP o solo se auditará la exportación?
-2. ¿Se conservará auditoría indefinidamente en MVP o se definirá retención mínima?
-3. ¿Qué eventos de login estarán disponibles si Keycloak maneja autenticación?
-4. ¿Keycloak enviará eventos de auth al Core o se auditará solo autorización Core?
-5. ¿Se permitirá a TenantAdmin consultar auditoría financiera o solo a Treasurer/TenantAuditor?
-6. ¿Qué campos oldValue/newValue son visibles por categoría?
-7. ¿Se implementará hash encadenado en MVP o queda diferido?
-8. ¿Qué acciones de soporte platform requieren motivo obligatorio?
-9. ¿Se auditarán consultas sensibles como `viewedSensitive` desde MVP?
-10. ¿Se exportará auditoría en CSV, JSON o ambos en MVP?
-11. ¿Se incluirá IP y userAgent en todos los eventos HTTP?
-12. ¿Se aplicará rate limiting especial a consultas de auditoría?
-13. ¿Se auditarán eventos fallidos de validación o solo accesos denegados críticos?
-14. ¿Cómo se correlacionarán eventos de jobs batch?
-15. ¿La auditoría se mantendrá en la misma base de datos o se separará en futuro?
+El contrato `GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` resuelve el alcance base: Sprint 2 implementa únicamente eventos durables del catálogo cerrado y denegaciones de autorización; no incluye consultas, exportaciones, `AuditExport`, eventos de Keycloak, lecturas sensibles, valores anteriores/nuevos, IP, user agent, jobs, hash encadenado, retención/purga ni rate limiting específico. `audit_logs` permanece en PostgreSQL Core, append-only y con sanitización obligatoria. Las capacidades diferidas requieren autorización de un sprint posterior y no bloquean el alcance base.
 
 ---
 

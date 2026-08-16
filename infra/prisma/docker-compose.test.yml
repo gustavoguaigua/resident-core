@@ -1,0 +1,16 @@
+services:
+  postgres-phase2:
+    image: postgres:17.10-bookworm
+    environment:
+      POSTGRES_DB: resident_phase2
+      POSTGRES_USER: resident_phase2
+      POSTGRES_PASSWORD: ${PRISMA_PHASE2_DB_PASSWORD:?required}
+    ports:
+      - "127.0.0.1:55434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U resident_phase2 -d resident_phase2"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    tmpfs:
+      - /var/lib/postgresql/data

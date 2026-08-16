@@ -38,7 +38,7 @@ describe("Sprint 2 boundary verifier", () => {
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain(
-      "Sprint 2 boundary is valid at phase 1 (GO).",
+      "Sprint 2 boundary is valid at phase 2 (GO).",
     );
   });
 

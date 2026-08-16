@@ -6,3 +6,318 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum TenantStatus {
+  PENDING_SETUP @map("pendingSetup")
+  ACTIVE        @map("active")
+  SUSPENDED     @map("suspended")
+  INACTIVE      @map("inactive")
+  ARCHIVED      @map("archived")
+
+  @@map("tenant_status")
+}
+
+enum UserStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  DISABLED @map("disabled")
+  PENDING  @map("pending")
+  ARCHIVED @map("archived")
+
+  @@map("user_status")
+}
+
+enum UserType {
+  HUMAN           @map("human")
+  SERVICE_ACCOUNT @map("serviceAccount")
+
+  @@map("user_type")
+}
+
+enum AuthProvider {
+  KEYCLOAK @map("keycloak")
+
+  @@map("auth_provider")
+}
+
+enum RoleScope {
+  GLOBAL @map("global")
+  TENANT @map("tenant")
+
+  @@map("role_scope")
+}
+
+enum MembershipStatus {
+  ACTIVE    @map("active")
+  INVITED   @map("invited")
+  SUSPENDED @map("suspended")
+  REVOKED   @map("revoked")
+  LEFT      @map("left")
+  ARCHIVED  @map("archived")
+
+  @@map("membership_status")
+}
+
+enum InvitationStatus {
+  PENDING   @map("pending")
+  ACCEPTED  @map("accepted")
+  EXPIRED   @map("expired")
+  REVOKED   @map("revoked")
+  CANCELLED @map("cancelled")
+
+  @@map("invitation_status")
+}
+
+model Tenant {
+  id               String       @id @default(uuid())
+  name             String
+  legalName        String?      @map("legal_name")
+  slug             String       @unique
+  status           TenantStatus @default(PENDING_SETUP)
+  timezone         String       @default("America/Guayaquil")
+  currency         String       @default("USD")
+  planCode         String?      @map("plan_code")
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
+  suspendedAt      DateTime?    @map("suspended_at")
+  suspendedBy      String?      @map("suspended_by")
+  suspensionReason String?      @map("suspension_reason")
+  archivedAt       DateTime?    @map("archived_at")
+  archivedBy       String?      @map("archived_by")
+
+  profile          TenantProfile?
+  branding         TenantBranding?
+  wordpressMapping TenantWordPressMapping?
+  roles            Role[]
+  memberships      UserTenantMembership[]
+  invitations      Invitation[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([createdAt])
+  @@map("tenants")
+}
+
+model TenantProfile {
+  id           String   @id @default(uuid())
+  tenantId     String   @unique @map("tenant_id")
+  displayName  String   @map("display_name")
+  slogan       String?
+  description  String?
+  contactEmail String?  @map("contact_email")
+  contactPhone String?  @map("contact_phone")
+  whatsapp     String?
+  address      String?
+  city         String?
+  province     String?
+  country      String?  @default("Ecuador")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+
+  @@index([displayName])
+  @@map("tenant_profiles")
+}
+
+model TenantBranding {
+  id             String   @id @default(uuid())
+  tenantId       String   @unique @map("tenant_id")
+  logoUrl        String?  @map("logo_url")
+  bannerUrl      String?  @map("banner_url")
+  primaryColor   String?  @map("primary_color")
+  secondaryColor String?  @map("secondary_color")
+  accentColor    String?  @map("accent_color")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+
+  @@map("tenant_branding")
+}
+
+model TenantWordPressMapping {
+  id                    String   @id @default(uuid())
+  tenantId              String   @unique @map("tenant_id")
+  wordpressSiteUrl      String?  @map("wordpress_site_url")
+  wordpressConjuntoSlug String?  @map("wordpress_conjunto_slug")
+  wordpressConjuntoId   String?  @map("wordpress_conjunto_id")
+  accessUrl             String?  @map("access_url")
+  isActive              Boolean  @default(false) @map("is_active")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+
+  @@index([wordpressConjuntoSlug])
+  @@map("tenant_wordpress_mappings")
+}
+
+model UserProfile {
+  id                String       @id @default(uuid())
+  email             String       @unique
+  displayName       String       @map("display_name")
+  firstName         String?      @map("first_name")
+  lastName          String?      @map("last_name")
+  status            UserStatus   @default(PENDING)
+  userType          UserType     @default(HUMAN) @map("user_type")
+  authProvider      AuthProvider @default(KEYCLOAK) @map("auth_provider")
+  keycloakSubjectId String?      @unique @map("keycloak_subject_id")
+  createdAt         DateTime     @default(now()) @map("created_at")
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+  disabledAt        DateTime?    @map("disabled_at")
+  disabledBy        String?      @map("disabled_by")
+  disabledReason    String?      @map("disabled_reason")
+
+  memberships UserTenantMembership[]
+  globalRoles UserGlobalRole[]
+
+  @@index([email])
+  @@index([status])
+  @@index([userType])
+  @@map("user_profiles")
+}
+
+model Role {
+  id          String    @id @default(uuid())
+  tenantId    String?   @map("tenant_id")
+  name        String
+  code        String
+  scope       RoleScope
+  description String?
+  isSystem    Boolean   @default(true) @map("is_system")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  tenant          Tenant?          @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  permissions     RolePermission[]
+  membershipRoles MembershipRole[]
+  globalUsers     UserGlobalRole[]
+  invitations     Invitation[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@index([scope])
+  @@index([code])
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  module      String
+  action      String
+  description String?
+  isSystem    Boolean  @default(true) @map("is_system")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  roles RolePermission[]
+
+  @@index([module])
+  @@index([action])
+  @@map("permissions")
+}
+
+model RolePermission {
+  id           String   @id @default(uuid())
+  roleId       String   @map("role_id")
+  permissionId String   @map("permission_id")
+  createdAt    DateTime @default(now()) @map("created_at")
+  createdBy    String?  @map("created_by")
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Restrict)
+
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([permissionId])
+  @@map("role_permissions")
+}
+
+model UserGlobalRole {
+  id            String    @id @default(uuid())
+  userProfileId String    @map("user_profile_id")
+  roleId        String    @map("role_id")
+  assignedAt    DateTime  @default(now()) @map("assigned_at")
+  assignedBy    String?   @map("assigned_by")
+  removedAt     DateTime? @map("removed_at")
+  removedBy     String?   @map("removed_by")
+
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Restrict)
+  role        Role        @relation(fields: [roleId], references: [id], onDelete: Restrict)
+
+  @@unique([userProfileId, roleId])
+  @@index([userProfileId])
+  @@index([roleId])
+  @@map("user_global_roles")
+}
+
+model UserTenantMembership {
+  id            String           @id @default(uuid())
+  userProfileId String           @map("user_profile_id")
+  tenantId      String           @map("tenant_id")
+  status        MembershipStatus @default(INVITED)
+  joinedAt      DateTime?        @map("joined_at")
+  invitedBy     String?          @map("invited_by")
+  revokedAt     DateTime?        @map("revoked_at")
+  revokedBy     String?          @map("revoked_by")
+  revokedReason String?          @map("revoked_reason")
+  createdAt     DateTime         @default(now()) @map("created_at")
+  updatedAt     DateTime         @updatedAt @map("updated_at")
+
+  userProfile UserProfile      @relation(fields: [userProfileId], references: [id], onDelete: Restrict)
+  tenant      Tenant           @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  roles       MembershipRole[]
+
+  @@unique([userProfileId, tenantId])
+  @@index([tenantId])
+  @@index([userProfileId])
+  @@index([status])
+  @@map("user_tenant_memberships")
+}
+
+model MembershipRole {
+  id           String    @id @default(uuid())
+  membershipId String    @map("membership_id")
+  roleId       String    @map("role_id")
+  assignedAt   DateTime  @default(now()) @map("assigned_at")
+  assignedBy   String?   @map("assigned_by")
+  removedAt    DateTime? @map("removed_at")
+  removedBy    String?   @map("removed_by")
+
+  membership UserTenantMembership @relation(fields: [membershipId], references: [id], onDelete: Restrict)
+  role       Role                 @relation(fields: [roleId], references: [id], onDelete: Restrict)
+
+  @@unique([membershipId, roleId])
+  @@index([membershipId])
+  @@index([roleId])
+  @@map("membership_roles")
+}
+
+model Invitation {
+  id         String           @id @default(uuid())
+  tenantId   String           @map("tenant_id")
+  email      String
+  roleId     String           @map("role_id")
+  status     InvitationStatus @default(PENDING)
+  tokenHash  String           @map("token_hash")
+  invitedBy  String?          @map("invited_by")
+  acceptedBy String?          @map("accepted_by")
+  expiresAt  DateTime         @map("expires_at")
+  acceptedAt DateTime?        @map("accepted_at")
+  revokedAt  DateTime?        @map("revoked_at")
+  revokedBy  String?          @map("revoked_by")
+  createdAt  DateTime         @default(now()) @map("created_at")
+  updatedAt  DateTime         @updatedAt @map("updated_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  role   Role   @relation(fields: [roleId], references: [id], onDelete: Restrict)
+
+  @@index([tenantId])
+  @@index([email])
+  @@index([roleId])
+  @@index([status])
+  @@index([expiresAt])
+  @@map("invitations")
+}

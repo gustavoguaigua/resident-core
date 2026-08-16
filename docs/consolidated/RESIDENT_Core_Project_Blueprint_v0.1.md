@@ -942,6 +942,7 @@ Contrato Audit base: docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md.
 Secuencia/gates/frontera: docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md.
 Aprobación documental: docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md.
 Fase 1 Keycloak: docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md.
+Fase 2 Tenant/Identity persistence: docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md.
 ```
 
 Condición:
@@ -953,8 +954,9 @@ Sprint 2 obtuvo `GO` formal el 2026-08-14. Los 28 documentos aplicables de las s
 001, 002, 007 y 025 están `accepted` y no quedan gaps críticos o altos abiertos. La
 frontera, el bootstrap transaccional, el tenant activo request-scoped, Keycloak, el
 ownership de configuración/Prisma, Audit base y los gates progresivos están definidos.
-La Fase `1` de realm y contrato Keycloak está en `PASS`; el manifest queda en fase `1`
-y permite como siguiente incremento únicamente la Fase `2` del runbook.
+Las Fases `1` de Keycloak y `2` de persistencia Tenant/Identity están en `PASS`; el
+manifest queda en fase `2` y permite como siguiente incremento únicamente la Fase `3`
+del runbook.
 ```
 
 Evidencia vigente:
@@ -969,6 +971,7 @@ docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md
 docs/changes/GAP-S2-008-SEQUENCE-GATES-BOUNDARY-2026-08-14.md
 docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md
+docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md
 ```
 
 ---

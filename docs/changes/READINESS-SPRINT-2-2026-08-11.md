@@ -7,7 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-15 — Fase 2 Tenant/Identity persistence completada con `PASS` |
+| Última actualización | 2026-08-16 — Fase 3 Audit base completada con `PASS` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
 | Commit base inspeccionado | `6c1ee9402667881d6939769436fbf3d588416d6b` |
 | Rama de evaluación | `codex/sprint-2-formal-readiness` |
@@ -54,7 +54,7 @@ contratos y gates verificables.
 | Prisma | Persistencia mínima de Specs 001/002 versionada; migración desde vacío, estado, drift y constraints en `PASS` |
 | Keycloak local | Realm, clientes, fixtures, bootstrap y verificador versionados; gates reales en `PASS` |
 | Identidad y acceso runtime | Puertos y guards fail-closed; no autentican ni conceden permisos |
-| Auditoría runtime | Puerto técnico sin persistencia, conforme a Sprint 1 |
+| Auditoría runtime | `AuditLog`, writer transaccional, sanitización, aislamiento y append-only en `PASS` |
 | OpenAPI | Contrato runtime de plataforma presente; no existen endpoints funcionales de Sprint 2 |
 | CI | Gates de Sprint 1 activos; acciones `@v6` sobre runtime Node.js 24 |
 | Runbook de Sprint 2 | Frontera, incrementos, exclusiones y gates definidos; autorizado por esta reevaluación |
@@ -211,26 +211,26 @@ Effective date: 2026-08-14
 Critical gaps open: 0
 High gaps open: 0
 Authorized plan: docs/implementation/sprint-2-tenants-identity-access.md
-Gate phase: 2
+Gate phase: 3
 Base commit: 6c1ee9402667881d6939769436fbf3d588416d6b
 ```
 
 Sprint 2 continúa autorizado exclusivamente en el orden y dentro de la frontera del
-runbook. Las Fases `1` y `2` aportan respectivamente el contrato Keycloak y la
-persistencia mínima Tenant/Identity; el manifest queda en `currentPhase = 2`. Este
-`GO` no autoriza adelantar fases ni ampliar la superficie Prisma, OpenAPI o funcional
-definida.
+runbook. Las Fases `1` a `3` aportan Keycloak, persistencia Tenant/Identity y Audit
+base; el manifest queda en `currentPhase = 3`. Este `GO` no autoriza adelantar fases ni
+ampliar la superficie Prisma, OpenAPI o funcional definida.
 
 ## 9. Orden autorizado después de GO
 
-1. Integrar la Fase `2` únicamente después de que todos sus gates pasen en CI.
-2. Implementar después exclusivamente la Fase `3`, persistencia de Audit base, en una
-   rama y PR cortos y elevar su fase atómicamente con sus artefactos y gates.
+1. Integrar la Fase `3` únicamente después de que todos sus gates pasen en CI.
+2. Implementar después exclusivamente la Fase `4`, bootstrap one-shot del primer
+   PlatformAdmin, en una rama y PR cortos y elevar su fase atómicamente con sus
+   artefactos y gates.
 
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, los gaps `GAP-S2-001` a `GAP-S2-008` están
 cerrados, los 28 documentos aplicables están `accepted` y no existen gaps críticos o
 altos abiertos. La frontera automática y los gates reproducibles pasan sobre el commit
-base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` y `2` quedan implementadas
-con `PASS` y el siguiente incremento permitido es únicamente la Fase `3` del runbook.
+base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `3` quedan implementadas
+con `PASS` y el siguiente incremento permitido es únicamente la Fase `4` del runbook.

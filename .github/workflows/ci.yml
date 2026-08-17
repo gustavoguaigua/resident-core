@@ -65,6 +65,9 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Apply Prisma migrations
+        run: pnpm exec prisma migrate deploy --schema prisma/schema.prisma
+
       - name: PostgreSQL integration tests
         run: pnpm test:integration
 

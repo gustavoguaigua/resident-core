@@ -68,6 +68,31 @@ enum InvitationStatus {
   @@map("invitation_status")
 }
 
+enum AuditActorType {
+  USER      @map("user")
+  SYSTEM    @map("system")
+  ANONYMOUS @map("anonymous")
+
+  @@map("audit_actor_type")
+}
+
+enum AuditCategory {
+  PLATFORM @map("platform")
+  TENANT   @map("tenant")
+  IDENTITY @map("identity")
+  ACCESS   @map("access")
+  SECURITY @map("security")
+
+  @@map("audit_category")
+}
+
+enum AuditOutcome {
+  SUCCESS @map("success")
+  DENIED  @map("denied")
+
+  @@map("audit_outcome")
+}
+
 model Tenant {
   id               String       @id @default(uuid())
   name             String
@@ -91,6 +116,7 @@ model Tenant {
   roles            Role[]
   memberships      UserTenantMembership[]
   invitations      Invitation[]
+  auditLogs        AuditLog[]
 
   @@index([slug])
   @@index([status])
@@ -171,6 +197,7 @@ model UserProfile {
 
   memberships UserTenantMembership[]
   globalRoles UserGlobalRole[]
+  auditLogs   AuditLog[]
 
   @@index([email])
   @@index([status])
@@ -269,6 +296,7 @@ model UserTenantMembership {
   userProfile UserProfile      @relation(fields: [userProfileId], references: [id], onDelete: Restrict)
   tenant      Tenant           @relation(fields: [tenantId], references: [id], onDelete: Restrict)
   roles       MembershipRole[]
+  auditLogs   AuditLog[]
 
   @@unique([userProfileId, tenantId])
   @@index([tenantId])
@@ -320,4 +348,40 @@ model Invitation {
   @@index([status])
   @@index([expiresAt])
   @@map("invitations")
+}
+
+model AuditLog {
+  id                 String         @id @default(uuid())
+  tenantId           String?        @map("tenant_id")
+  actorType          AuditActorType @map("actor_type")
+  actorUserProfileId String?        @map("actor_user_profile_id")
+  actorMembershipId  String?        @map("actor_membership_id")
+  action             String
+  category           AuditCategory
+  outcome            AuditOutcome
+  resourceType       String         @map("resource_type")
+  resourceId         String?        @map("resource_id")
+  reasonCode         String?        @map("reason_code")
+  metadata           Json?
+  traceId            String         @map("trace_id")
+  correlationId      String?        @map("correlation_id")
+  occurredAt         DateTime       @map("occurred_at")
+  createdAt          DateTime       @default(now()) @map("created_at")
+
+  tenant          Tenant?               @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  actorUser       UserProfile?          @relation(fields: [actorUserProfileId], references: [id], onDelete: Restrict)
+  actorMembership UserTenantMembership? @relation(fields: [actorMembershipId], references: [id], onDelete: Restrict)
+
+  @@index([tenantId])
+  @@index([actorUserProfileId])
+  @@index([actorMembershipId])
+  @@index([action])
+  @@index([category])
+  @@index([outcome])
+  @@index([resourceType, resourceId])
+  @@index([traceId])
+  @@index([correlationId])
+  @@index([occurredAt])
+  @@index([tenantId, occurredAt])
+  @@map("audit_logs")
 }

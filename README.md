@@ -617,7 +617,7 @@ Cierre formal de Sprint 0: PASS (2026-08-11)
 Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: GO (2026-08-14)
-Sprint 2: autorizado dentro del runbook; fases 1–3 PASS; siguiente incremento fase 4
+Sprint 2: autorizado dentro del runbook; fases 1–4 PASS; siguiente incremento fase 5
 ```
 
 Evidencia:
@@ -640,13 +640,15 @@ docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md
 docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md
+docs/changes/SPRINT-2-PHASE-4-PLATFORM-ADMIN-BOOTSTRAP-2026-08-17.md
 ```
 
 Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025
 están `accepted`, los gaps de Sprint 2 están cerrados y la reevaluación formal emitió
-`GO` el 2026-08-14. Las Fases `1` a `3`, incluidos Keycloak, persistencia
-Tenant/Identity y Audit base, están en `PASS`; el manifest queda en fase `3` y el
-siguiente incremento permitido es exclusivamente la Fase `4` del runbook.
+`GO` el 2026-08-14. Las Fases `1` a `4`, incluidos Keycloak, persistencia
+Tenant/Identity, Audit base y el bootstrap one-shot del primer PlatformAdmin, están en
+`PASS`; el manifest queda en fase `4` y el siguiente incremento permitido es
+exclusivamente la Fase `5` del runbook.
 
 ---
 

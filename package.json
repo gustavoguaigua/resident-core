@@ -24,6 +24,8 @@
     "prisma:validate": "prisma validate --schema prisma/schema.prisma",
     "prisma:migrate:check": "node tools/prisma/run-phase-2-gate.mjs",
     "test:audit": "node tools/audit/run-phase-3-gate.mjs",
+    "bootstrap:platform-admin": "tsx --tsconfig apps/api/tsconfig.json apps/api/tools/bootstrap-platform-admin.ts",
+    "test:bootstrap": "node tools/bootstrap/run-phase-4-gate.mjs",
     "openapi:check": "pnpm --filter @resident/api openapi:check",
     "openapi:generate": "pnpm --filter @resident/api openapi:generate",
     "openapi:validate": "pnpm --filter @resident/openapi-client validate",

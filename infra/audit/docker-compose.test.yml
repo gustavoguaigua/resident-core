@@ -1,0 +1,16 @@
+services:
+  postgres-audit:
+    image: postgres:17.10-bookworm
+    environment:
+      POSTGRES_DB: resident_audit
+      POSTGRES_USER: resident_audit
+      POSTGRES_PASSWORD: ${AUDIT_PHASE3_DB_PASSWORD:?required}
+    ports:
+      - "127.0.0.1:55435:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U resident_audit -d resident_audit"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    tmpfs:
+      - /var/lib/postgresql/data

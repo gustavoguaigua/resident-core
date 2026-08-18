@@ -1,13 +1,16 @@
 import {
   ForbiddenException,
+  BadRequestException,
   Inject,
   Injectable,
+  UnprocessableEntityException,
   type CanActivate,
   type ExecutionContext,
 } from "@nestjs/common";
 
 import {
   TENANT_CONTEXT_RESOLVER_PORT,
+  TenantContextError,
   type TenantContextResolverPort,
 } from "@resident/auth";
 
@@ -35,7 +38,23 @@ export class TenantGuard implements CanActivate {
       throw new ForbiddenException();
     }
 
-    const tenant = await this.tenantResolver.resolve(principal, request);
+    let tenant;
+    try {
+      tenant = await this.tenantResolver.resolve(principal, request);
+    } catch (error) {
+      if (error instanceof TenantContextError) {
+        if (
+          error.code === "TENANT_CONTEXT_REQUIRED" ||
+          error.code === "TENANT_CONTEXT_INVALID"
+        ) {
+          throw new BadRequestException();
+        }
+        if (error.code === "TENANT_CONTEXT_CONFLICT") {
+          throw new UnprocessableEntityException();
+        }
+      }
+      throw new ForbiddenException();
+    }
 
     if (tenant === null || tenant.tenantId.trim().length === 0) {
       throw new ForbiddenException();

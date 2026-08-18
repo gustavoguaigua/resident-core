@@ -26,6 +26,8 @@
     "test:audit": "node tools/audit/run-phase-3-gate.mjs",
     "bootstrap:platform-admin": "tsx --tsconfig apps/api/tsconfig.json apps/api/tools/bootstrap-platform-admin.ts",
     "test:bootstrap": "node tools/bootstrap/run-phase-4-gate.mjs",
+    "test:authorization": "node tools/authorization/run-phase-5-gate.mjs authorization",
+    "test:multitenancy": "node tools/authorization/run-phase-5-gate.mjs multitenancy",
     "openapi:check": "pnpm --filter @resident/api openapi:check",
     "openapi:generate": "pnpm --filter @resident/api openapi:generate",
     "openapi:validate": "pnpm --filter @resident/openapi-client validate",

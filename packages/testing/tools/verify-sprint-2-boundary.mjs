@@ -311,6 +311,15 @@ const phaseSignals = [
     label: "PlatformAdmin bootstrap",
   },
   {
+    phase: 5,
+    active:
+      exists(
+        "apps/api/src/modules/identity-integration/prisma-identity-resolver.ts",
+      ) ||
+      exists("apps/api/src/modules/access-control/prisma-access-control.ts"),
+    label: "identity/membership authorization",
+  },
+  {
     phase: 6,
     active: actualOperations.includes("POST /api/v1/platform/tenants"),
     label: "tenant onboarding API",
@@ -370,6 +379,19 @@ if (
   !rootPackage.scripts?.["bootstrap:platform-admin"]
 ) {
   failures.push("Active bootstrap phase requires bootstrap:platform-admin.");
+}
+if (
+  manifest.currentPhase >= 5 &&
+  (!exists(
+    "apps/api/src/modules/identity-integration/prisma-identity-resolver.ts",
+  ) ||
+    !exists("apps/api/src/modules/access-control/prisma-access-control.ts") ||
+    !rootPackage.scripts?.["test:authorization"] ||
+    !rootPackage.scripts?.["test:multitenancy"])
+) {
+  failures.push(
+    "Active authorization phase requires identity, access-control and both Phase 5 gates.",
+  );
 }
 if (
   manifest.currentPhase >= 6 &&

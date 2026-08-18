@@ -7,7 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-16 — Fase 3 Audit base completada con `PASS` |
+| Última actualización | 2026-08-17 — Fase 4 PlatformAdmin bootstrap completada con `PASS` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
 | Commit base inspeccionado | `6c1ee9402667881d6939769436fbf3d588416d6b` |
 | Rama de evaluación | `codex/sprint-2-formal-readiness` |
@@ -211,26 +211,27 @@ Effective date: 2026-08-14
 Critical gaps open: 0
 High gaps open: 0
 Authorized plan: docs/implementation/sprint-2-tenants-identity-access.md
-Gate phase: 3
+Gate phase: 4
 Base commit: 6c1ee9402667881d6939769436fbf3d588416d6b
 ```
 
 Sprint 2 continúa autorizado exclusivamente en el orden y dentro de la frontera del
-runbook. Las Fases `1` a `3` aportan Keycloak, persistencia Tenant/Identity y Audit
-base; el manifest queda en `currentPhase = 3`. Este `GO` no autoriza adelantar fases ni
-ampliar la superficie Prisma, OpenAPI o funcional definida.
+runbook. Las Fases `1` a `4` aportan Keycloak, persistencia Tenant/Identity, Audit base
+y el bootstrap one-shot del primer PlatformAdmin; el manifest queda en
+`currentPhase = 4`. Este `GO` no autoriza adelantar fases ni ampliar la superficie
+Prisma, OpenAPI o funcional definida.
 
 ## 9. Orden autorizado después de GO
 
-1. Integrar la Fase `3` únicamente después de que todos sus gates pasen en CI.
-2. Implementar después exclusivamente la Fase `4`, bootstrap one-shot del primer
-   PlatformAdmin, en una rama y PR cortos y elevar su fase atómicamente con sus
-   artefactos y gates.
+1. Integrar la Fase `4` únicamente después de que todos sus gates pasen en CI.
+2. Implementar después exclusivamente la Fase `5`, resolución de identidad,
+   memberships y autorización, en una rama y PR cortos y elevar su fase atómicamente
+   con sus artefactos y gates.
 
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, los gaps `GAP-S2-001` a `GAP-S2-008` están
 cerrados, los 28 documentos aplicables están `accepted` y no existen gaps críticos o
 altos abiertos. La frontera automática y los gates reproducibles pasan sobre el commit
-base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `3` quedan implementadas
-con `PASS` y el siguiente incremento permitido es únicamente la Fase `4` del runbook.
+base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `4` quedan implementadas
+con `PASS` y el siguiente incremento permitido es únicamente la Fase `5` del runbook.

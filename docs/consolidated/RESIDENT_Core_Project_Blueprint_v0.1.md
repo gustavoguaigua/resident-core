@@ -944,6 +944,7 @@ Aprobación documental: docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md.
 Fase 1 Keycloak: docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md.
 Fase 2 Tenant/Identity persistence: docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md.
 Fase 3 Audit base: docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md.
+Fase 4 PlatformAdmin bootstrap: docs/changes/SPRINT-2-PHASE-4-PLATFORM-ADMIN-BOOTSTRAP-2026-08-17.md.
 ```
 
 Condición:
@@ -955,9 +956,9 @@ Sprint 2 obtuvo `GO` formal el 2026-08-14. Los 28 documentos aplicables de las s
 001, 002, 007 y 025 están `accepted` y no quedan gaps críticos o altos abiertos. La
 frontera, el bootstrap transaccional, el tenant activo request-scoped, Keycloak, el
 ownership de configuración/Prisma, Audit base y los gates progresivos están definidos.
-Las Fases `1` a `3`, incluidos Keycloak, persistencia Tenant/Identity y Audit base,
-están en `PASS`; el manifest queda en fase `3` y permite como siguiente incremento
-únicamente la Fase `4` del runbook.
+Las Fases `1` a `4`, incluidos Keycloak, persistencia Tenant/Identity, Audit base y el
+bootstrap one-shot del primer PlatformAdmin, están en `PASS`; el manifest queda en
+fase `4` y permite como siguiente incremento únicamente la Fase `5` del runbook.
 ```
 
 Evidencia vigente:

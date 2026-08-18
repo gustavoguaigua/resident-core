@@ -4,7 +4,7 @@
 
 - Estado de definición de alcance: `complete`
 - Estado de autorización de implementación: `authorized`
-- Fase implementada actual: `1` — `keycloak-contract` (`PASS`)
+- Fase implementada actual: `4` — `platform-admin-bootstrap` (`PASS`)
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
 - Gaps resueltos por este documento y sus contratos: `GAP-S2-001` a `GAP-S2-008`
 
@@ -321,7 +321,7 @@ Los incrementos se ejecutarán en este orden y en ramas/PR cortos:
 1. Hacer reproducible Keycloak y cerrar el contrato OIDC. `PASS` — 2026-08-14.
 2. Crear la persistencia mínima de Specs 001 y 002 mediante migraciones. `PASS` — 2026-08-15.
 3. Persistir la auditoría base necesaria para mutaciones de acceso. `PASS` — 2026-08-16.
-4. Implementar el comando one-shot del primer PlatformAdmin.
+4. Implementar el comando one-shot del primer PlatformAdmin. `PASS` — 2026-08-17.
 5. Implementar resolución de identidad, membresías y autorización.
 6. Implementar onboarding transaccional, ciclo de vida y API de tenants.
 7. Implementar invitaciones y administración posterior de membresías.
@@ -399,5 +399,6 @@ progresivos, la frontera Prisma/API y su evidencia CI. `GAP-S2-001` cerró la ap
 de los 28 documentos aplicables. La reevaluación formal del 2026-08-14 emitió `GO`; la
 evidencia `SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md` registra la Fase `1` en `PASS` y
 `SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md` registra la Fase `2` en
-`PASS` y `SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md` registra la Fase `3` en `PASS`.
-El siguiente incremento permitido es únicamente la Fase `4`.
+`PASS`, `SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md` registra la Fase `3` en `PASS` y
+`SPRINT-2-PHASE-4-PLATFORM-ADMIN-BOOTSTRAP-2026-08-17.md` registra la Fase `4` en
+`PASS`. El siguiente incremento permitido es únicamente la Fase `5`.

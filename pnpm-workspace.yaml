@@ -9,6 +9,7 @@ allowBuilds:
   prisma: true
 overrides:
   "@prisma/config@6.19.2>effect": "3.20.0"
+  "@prisma/config@6.19.2>deepmerge-ts": "8.0.0"
   "@nestjs/swagger@11.4.6>js-yaml": "5.2.2"
 minimumReleaseAgeExclude:
   - "@nestjs/common@11.1.29"

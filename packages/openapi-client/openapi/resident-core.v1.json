@@ -43,6 +43,151 @@
         ],
         "type": "object"
       },
+      "CreatedTenantDataDto": {
+        "properties": {
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "branding": {
+            "nullable": true,
+            "type": "object"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "initialAdmin": {
+            "$ref": "#/components/schemas/InitialAdminResponseDto"
+          },
+          "legalName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "object"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "pendingSetup",
+              "active",
+              "suspended",
+              "inactive",
+              "archived"
+            ],
+            "type": "string"
+          },
+          "suspendedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "suspensionReason": {
+            "nullable": true,
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "wordpressMapping": {
+            "nullable": true,
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "status",
+          "updatedAt",
+          "name",
+          "timezone",
+          "currency",
+          "initialAdmin",
+          "profile",
+          "createdAt"
+        ],
+        "type": "object"
+      },
+      "CreateTenantDto": {
+        "properties": {
+          "branding": {
+            "$ref": "#/components/schemas/TenantBrandingInputDto"
+          },
+          "currency": {
+            "default": "USD",
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "initialAdmin": {
+            "$ref": "#/components/schemas/InitialAdminDto"
+          },
+          "legalName": {
+            "example": "Villa Club",
+            "type": "string"
+          },
+          "name": {
+            "example": "Villa Club",
+            "type": "string"
+          },
+          "profile": {
+            "$ref": "#/components/schemas/TenantProfileInputDto"
+          },
+          "slug": {
+            "example": "villa-club",
+            "type": "string"
+          },
+          "timezone": {
+            "default": "America/Guayaquil",
+            "type": "string"
+          },
+          "wordpressMapping": {
+            "$ref": "#/components/schemas/TenantWordPressMappingInputDto"
+          }
+        },
+        "required": [
+          "name",
+          "initialAdmin"
+        ],
+        "type": "object"
+      },
+      "CreateTenantResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CreatedTenantDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/TenantResponseMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
       "HealthLivenessResponseDto": {
         "properties": {
           "service": {
@@ -137,6 +282,48 @@
         ],
         "type": "object"
       },
+      "InitialAdminDto": {
+        "properties": {
+          "email": {
+            "example": "tenant.admin@example.com",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "type": "object"
+      },
+      "InitialAdminResponseDto": {
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "membershipStatus": {
+            "enum": [
+              "active"
+            ],
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "TenantAdmin"
+            ],
+            "type": "string"
+          },
+          "userProfileId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "userProfileId",
+          "email",
+          "membershipStatus",
+          "role"
+        ],
+        "type": "object"
+      },
       "PostgresHealthCheckResponseDto": {
         "properties": {
           "status": {
@@ -150,6 +337,175 @@
         "required": [
           "status"
         ],
+        "type": "object"
+      },
+      "TenantBrandingInputDto": {
+        "properties": {
+          "accentColor": {
+            "example": "#FFC107",
+            "type": "string"
+          },
+          "bannerUrl": {
+            "format": "uri",
+            "type": "string"
+          },
+          "logoUrl": {
+            "format": "uri",
+            "type": "string"
+          },
+          "primaryColor": {
+            "example": "#1E88E5",
+            "type": "string"
+          },
+          "secondaryColor": {
+            "example": "#90CAF9",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TenantLifecycleDataDto": {
+        "properties": {
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "pendingSetup",
+              "active",
+              "suspended",
+              "inactive",
+              "archived"
+            ],
+            "type": "string"
+          },
+          "suspendedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "suspensionReason": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "status",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "TenantLifecycleResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/TenantLifecycleDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/TenantResponseMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "TenantProfileInputDto": {
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "contactEmail": {
+            "type": "string"
+          },
+          "contactPhone": {
+            "type": "string"
+          },
+          "country": {
+            "default": "Ecuador",
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "displayName": {
+            "example": "Villa Club",
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "slogan": {
+            "type": "string"
+          },
+          "whatsapp": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "TenantResponseMetaDto": {
+        "properties": {
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "traceId"
+        ],
+        "type": "object"
+      },
+      "TenantTransitionReasonDto": {
+        "properties": {
+          "reason": {
+            "maxLength": 500,
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "type": "object"
+      },
+      "TenantWordPressMappingInputDto": {
+        "properties": {
+          "accessUrl": {
+            "format": "uri",
+            "type": "string"
+          },
+          "isActive": {
+            "default": false,
+            "type": "boolean"
+          },
+          "wordpressConjuntoId": {
+            "type": "string"
+          },
+          "wordpressConjuntoSlug": {
+            "type": "string"
+          },
+          "wordpressSiteUrl": {
+            "format": "uri",
+            "type": "string"
+          }
+        },
         "type": "object"
       }
     },
@@ -271,6 +627,496 @@
         "x-public": false,
         "x-required-permission": "platform.health.read",
         "x-response-envelope": false,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/platform/tenants": {
+      "post": {
+        "operationId": "createTenant",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTenantDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTenantResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Onboard a tenant",
+        "tags": [
+          "Tenants"
+        ],
+        "x-audit-event": "tenant.created",
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platform.tenants.create",
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/platform/tenants/{tenantId}/activate": {
+      "post": {
+        "operationId": "activateTenant",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantLifecycleResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Activate a tenant",
+        "tags": [
+          "Tenants"
+        ],
+        "x-audit-event": "tenant.activated",
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platform.tenants.activate",
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/platform/tenants/{tenantId}/archive": {
+      "post": {
+        "operationId": "archiveTenant",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantTransitionReasonDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantLifecycleResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Archive a tenant",
+        "tags": [
+          "Tenants"
+        ],
+        "x-audit-event": "tenant.archived",
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platform.tenants.archive",
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/platform/tenants/{tenantId}/reactivate": {
+      "post": {
+        "operationId": "reactivateTenant",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantLifecycleResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Reactivate a tenant",
+        "tags": [
+          "Tenants"
+        ],
+        "x-audit-event": "tenant.reactivated",
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platform.tenants.reactivate",
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/platform/tenants/{tenantId}/suspend": {
+      "post": {
+        "operationId": "suspendTenant",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantTransitionReasonDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantLifecycleResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Suspend a tenant",
+        "tags": [
+          "Tenants"
+        ],
+        "x-audit-event": "tenant.suspended",
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platform.tenants.suspend",
+        "x-response-envelope": true,
         "x-tenant-context-required": false
       }
     }

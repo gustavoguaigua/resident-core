@@ -7,7 +7,7 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-18 — Fase 5 identity/membership authorization completada con `PASS` |
+| Última actualización | 2026-08-18 — Fase 6 tenant onboarding/lifecycle completada con `PASS` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
 | Commit base inspeccionado | `6c1ee9402667881d6939769436fbf3d588416d6b` |
 | Rama de evaluación | `codex/sprint-2-formal-readiness` |
@@ -211,27 +211,28 @@ Effective date: 2026-08-14
 Critical gaps open: 0
 High gaps open: 0
 Authorized plan: docs/implementation/sprint-2-tenants-identity-access.md
-Gate phase: 4
+Gate phase: 6
 Base commit: 6c1ee9402667881d6939769436fbf3d588416d6b
 ```
 
 Sprint 2 continúa autorizado exclusivamente en el orden y dentro de la frontera del
-runbook. Las Fases `1` a `5` aportan Keycloak, persistencia Tenant/Identity, Audit base,
-el bootstrap one-shot del primer PlatformAdmin y autorización Core fail-closed; el
-manifest queda en `currentPhase = 5`. Este `GO` no autoriza adelantar fases ni ampliar la superficie
-Prisma, OpenAPI o funcional definida.
+runbook. Las Fases `1` a `6` aportan Keycloak, persistencia Tenant/Identity, Audit base,
+el bootstrap one-shot del primer PlatformAdmin, autorización Core fail-closed y
+onboarding/lifecycle transaccional de tenants; el manifest queda en `currentPhase = 6`.
+Este `GO` no autoriza adelantar fases ni ampliar la superficie Prisma, OpenAPI o
+funcional definida.
 
 ## 9. Orden autorizado después de GO
 
-1. Integrar la Fase `5` únicamente después de que todos sus gates pasen en CI.
-2. Implementar después exclusivamente la Fase `6`, onboarding y ciclo de vida de
-   tenants, en una rama y PR cortos y elevar su fase atómicamente con sus artefactos y
-   gates.
+1. Integrar la Fase `6` únicamente después de que todos sus gates pasen en CI.
+2. Implementar después exclusivamente la Fase `7`, invitaciones y administración
+   posterior de memberships, en una rama y PR cortos y elevar su fase atómicamente con
+   sus artefactos y gates.
 
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, los gaps `GAP-S2-001` a `GAP-S2-008` están
 cerrados, los 28 documentos aplicables están `accepted` y no existen gaps críticos o
 altos abiertos. La frontera automática y los gates reproducibles pasan sobre el commit
-base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `5` quedan implementadas
-con `PASS` y el siguiente incremento permitido es únicamente la Fase `6` del runbook.
+base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `6` quedan implementadas
+con `PASS` y el siguiente incremento permitido es únicamente la Fase `7` del runbook.

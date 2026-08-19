@@ -13,6 +13,7 @@ import { AccessControlModule } from "./modules/access-control/access-control.mod
 import { AuditModule } from "./modules/audit/audit.module.js";
 import { IdentityIntegrationModule } from "./modules/identity-integration/identity-integration.module.js";
 import { HealthModule } from "./modules/platform/health/health.module.js";
+import { TenantsModule } from "./modules/tenants/tenants.module.js";
 import { PrismaModule } from "./platform/database/prisma.module.js";
 
 const applicationConfigModule = ConfigModule.forRoot({
@@ -30,6 +31,7 @@ const applicationConfigModule = ConfigModule.forRoot({
     AuditModule,
     PrismaModule,
     HealthModule,
+    TenantsModule,
     ThrottlerModule.forRootAsync({
       inject: [applicationConfig.KEY],
       imports: [applicationConfigModule],

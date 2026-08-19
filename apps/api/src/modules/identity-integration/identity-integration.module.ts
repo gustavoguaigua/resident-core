@@ -11,12 +11,14 @@ import {
 import { AuthGuard } from "./auth.guard.js";
 import { EnvironmentKeycloakAccessTokenVerifier } from "./keycloak-access-token-verifier.js";
 import { PrismaIdentityResolver } from "./prisma-identity-resolver.js";
+import { TenantOnboardingAccess } from "./tenant-onboarding-access.js";
 
 @Module({
-  exports: [AuthGuard, IDENTITY_RESOLVER_PORT],
+  exports: [AuthGuard, IDENTITY_RESOLVER_PORT, TenantOnboardingAccess],
   imports: [AuditModule],
   providers: [
     AuthGuard,
+    TenantOnboardingAccess,
     {
       provide: IDENTITY_RESOLVER_PORT,
       inject: [PrismaService, AUDIT_WRITER_PORT],

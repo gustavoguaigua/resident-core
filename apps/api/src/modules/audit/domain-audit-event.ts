@@ -274,6 +274,7 @@ export class AuditContractError extends Error {}
 const UUID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu;
 const STABLE_CODE = /^[A-Za-z][A-Za-z0-9._-]{0,127}$/u;
+const TRACE_IDENTIFIER = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u;
 const FORBIDDEN_FIELD =
   /(?:password|token|secret|authorization|cookie|api.?key|private.?key|raw.?body|payload|file.?content|receipt.?content|bank)/iu;
 
@@ -296,6 +297,16 @@ const requireStableText = (
     !STABLE_CODE.test(value)
   ) {
     throw new AuditContractError(`${field} must be a stable code.`);
+  }
+  return value;
+};
+
+const requireTraceIdentifier = (
+  value: string | undefined,
+  field: string,
+): string => {
+  if (value === undefined || !TRACE_IDENTIFIER.test(value)) {
+    throw new AuditContractError(`${field} must be a safe identifier.`);
   }
   return value;
 };
@@ -431,11 +442,11 @@ export function prepareAuditRecord(
     throw new AuditContractError("Denied events cannot expose a resource id.");
   }
 
-  const traceId = requireStableText(context.traceId, "traceId");
+  const traceId = requireTraceIdentifier(context.traceId, "traceId");
   const correlationId =
     context.correlationId === undefined
       ? null
-      : requireStableText(context.correlationId, "correlationId");
+      : requireTraceIdentifier(context.correlationId, "correlationId");
   const reasonCode =
     event.reasonCode === undefined
       ? null

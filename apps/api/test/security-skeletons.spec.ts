@@ -30,7 +30,10 @@ describe("fail-closed security skeletons", () => {
   it("denies tenant access while no tenant adapter exists", async () => {
     const guard = new TenantGuard(new UnavailableTenantContextResolver());
     const request = {};
-    setAuthenticatedPrincipal(request, { subject: "subject-1" });
+    setAuthenticatedPrincipal(request, {
+      subject: "subject-1",
+      userProfileId: "00000000-0000-4000-8000-000000000001",
+    });
 
     await expect(
       guard.canActivate(createContext(request)),
@@ -49,7 +52,10 @@ describe("fail-closed security skeletons", () => {
       "platform.example",
       handler,
     );
-    setAuthenticatedPrincipal(request, { subject: "subject-1" });
+    setAuthenticatedPrincipal(request, {
+      subject: "subject-1",
+      userProfileId: "00000000-0000-4000-8000-000000000001",
+    });
 
     await expect(
       guard.canActivate(createContext(request, handler)),

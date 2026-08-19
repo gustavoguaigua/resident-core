@@ -17,6 +17,7 @@ import {
   getAuthenticatedPrincipal,
   getTenantContext,
 } from "../../platform/security/request-security-context.js";
+import { getOrCreateTraceId } from "../../platform/http/trace-context.js";
 
 export const REQUIRED_PERMISSION_METADATA = "resident:required-permission";
 
@@ -52,6 +53,7 @@ export class PermissionGuard implements CanActivate {
       permission,
       principal,
       tenant: getTenantContext(request) ?? null,
+      traceId: getOrCreateTraceId(request),
     });
 
     if (!allowed) {

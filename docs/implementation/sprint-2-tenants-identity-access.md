@@ -4,7 +4,7 @@
 
 - Estado de definición de alcance: `complete`
 - Estado de autorización de implementación: `authorized`
-- Fase implementada actual: `5` — `identity-membership-authorization` (`PASS`)
+- Fase implementada actual: `6` — `tenant-onboarding-lifecycle` (`PASS`)
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
 - Gaps resueltos por este documento y sus contratos: `GAP-S2-001` a `GAP-S2-008`
 
@@ -323,7 +323,7 @@ Los incrementos se ejecutarán en este orden y en ramas/PR cortos:
 3. Persistir la auditoría base necesaria para mutaciones de acceso. `PASS` — 2026-08-16.
 4. Implementar el comando one-shot del primer PlatformAdmin. `PASS` — 2026-08-17.
 5. Implementar resolución de identidad, membresías y autorización. `PASS` — 2026-08-18.
-6. Implementar onboarding transaccional, ciclo de vida y API de tenants.
+6. Implementar onboarding transaccional, ciclo de vida y API de tenants. `PASS` — 2026-08-18.
 7. Implementar invitaciones y administración posterior de membresías.
 8. Implementar la configuración mínima de Spec 025.
 9. Consolidar contrato OpenAPI, pruebas cruzadas y evidencia de cierre.
@@ -402,4 +402,6 @@ evidencia `SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md` registra la Fase `1` en `PAS
 `PASS`, `SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md` registra la Fase `3` en `PASS` y
 `SPRINT-2-PHASE-4-PLATFORM-ADMIN-BOOTSTRAP-2026-08-17.md` registra la Fase `4` en
 `PASS` y `SPRINT-2-PHASE-5-IDENTITY-MEMBERSHIP-AUTHORIZATION-2026-08-18.md` registra
-la Fase `5` en `PASS`. El siguiente incremento permitido es únicamente la Fase `6`.
+la Fase `5` en `PASS`. `SPRINT-2-PHASE-6-TENANT-ONBOARDING-LIFECYCLE-2026-08-18.md`
+registra la Fase `6` en `PASS`. El siguiente incremento permitido es únicamente la
+Fase `7`.

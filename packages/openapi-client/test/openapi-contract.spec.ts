@@ -13,7 +13,10 @@ interface OpenApiContract {
   readonly components: {
     readonly securitySchemes: Record<string, unknown>;
   };
-  readonly paths: Record<string, { readonly get?: OpenApiOperation }>;
+  readonly paths: Record<
+    string,
+    { readonly get?: OpenApiOperation; readonly post?: OpenApiOperation }
+  >;
 }
 
 const contract = JSON.parse(
@@ -24,14 +27,57 @@ const contract = JSON.parse(
 ) as OpenApiContract;
 
 describe("canonical OpenAPI contract", () => {
-  it("defines bearer authentication and only the current Health operations", () => {
+  it("defines bearer authentication and only the operations active through Phase 6", () => {
     expect(contract.openapi).toMatch(/^3\./u);
     expect(contract.components.securitySchemes).toHaveProperty("bearerAuth");
     expect(Object.keys(contract.paths).sort()).toEqual([
       "/api/v1/health",
       "/api/v1/health/details",
+      "/api/v1/platform/tenants",
+      "/api/v1/platform/tenants/{tenantId}/activate",
+      "/api/v1/platform/tenants/{tenantId}/archive",
+      "/api/v1/platform/tenants/{tenantId}/reactivate",
+      "/api/v1/platform/tenants/{tenantId}/suspend",
     ]);
   });
+
+  it.each([
+    ["/api/v1/platform/tenants", "platform.tenants.create", "tenant.created"],
+    [
+      "/api/v1/platform/tenants/{tenantId}/activate",
+      "platform.tenants.activate",
+      "tenant.activated",
+    ],
+    [
+      "/api/v1/platform/tenants/{tenantId}/archive",
+      "platform.tenants.archive",
+      "tenant.archived",
+    ],
+    [
+      "/api/v1/platform/tenants/{tenantId}/reactivate",
+      "platform.tenants.reactivate",
+      "tenant.reactivated",
+    ],
+    [
+      "/api/v1/platform/tenants/{tenantId}/suspend",
+      "platform.tenants.suspend",
+      "tenant.suspended",
+    ],
+  ] as const)(
+    "documents the protected tenant operation %s",
+    (path, permission, auditEvent) => {
+      expect(contract.paths[path]?.post).toMatchObject({
+        security: [{ bearerAuth: [] }],
+        "x-audit-event": auditEvent,
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": permission,
+        "x-response-envelope": true,
+        "x-tenant-context-required": false,
+      });
+    },
+  );
 
   it("documents the flat public liveness contract", () => {
     expect(contract.paths["/api/v1/health"]?.get).toMatchObject({

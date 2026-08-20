@@ -1,6 +1,66 @@
 {
   "components": {
     "schemas": {
+      "AcceptedInvitationDataDto": {
+        "properties": {
+          "acceptedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "membershipId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "membershipStatus": {
+            "enum": [
+              "active"
+            ],
+            "type": "string"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/PublicRoleSummaryDto"
+            },
+            "type": "array"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "tenantSlug": {
+            "type": "string"
+          },
+          "userId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "userId",
+          "membershipId",
+          "tenantId",
+          "tenantSlug",
+          "membershipStatus",
+          "roles",
+          "acceptedAt"
+        ],
+        "type": "object"
+      },
+      "AcceptedInvitationResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AcceptedInvitationDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
       "ApiErrorDto": {
         "properties": {
           "code": {
@@ -40,6 +100,94 @@
         },
         "required": [
           "error"
+        ],
+        "type": "object"
+      },
+      "ApiMetaDto": {
+        "properties": {
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "traceId"
+        ],
+        "type": "object"
+      },
+      "AssignMembershipRoleDto": {
+        "properties": {
+          "roleId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "roleId"
+        ],
+        "type": "object"
+      },
+      "CreatedInvitationDataDto": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "invitationUrl": {
+            "type": "string"
+          },
+          "revokedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleSummaryDto"
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "accepted",
+              "expired",
+              "revoked",
+              "cancelled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "role",
+          "status",
+          "expiresAt",
+          "createdAt",
+          "invitationUrl"
+        ],
+        "type": "object"
+      },
+      "CreatedInvitationResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CreatedInvitationDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
         ],
         "type": "object"
       },
@@ -126,6 +274,33 @@
           "initialAdmin",
           "profile",
           "createdAt"
+        ],
+        "type": "object"
+      },
+      "CreateInvitationDto": {
+        "properties": {
+          "email": {
+            "example": "resident.user@example.com",
+            "type": "string"
+          },
+          "expiresInHours": {
+            "default": 72,
+            "maximum": 168,
+            "minimum": 1,
+            "type": "number"
+          },
+          "message": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "roleId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "roleId"
         ],
         "type": "object"
       },
@@ -324,6 +499,192 @@
         ],
         "type": "object"
       },
+      "InvitationDataDto": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "revokedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleSummaryDto"
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "accepted",
+              "expired",
+              "revoked",
+              "cancelled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "role",
+          "status",
+          "expiresAt",
+          "createdAt"
+        ],
+        "type": "object"
+      },
+      "InvitationListMetaDto": {
+        "properties": {
+          "page": {
+            "type": "number"
+          },
+          "pageSize": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "totalPages": {
+            "type": "number"
+          },
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "traceId",
+          "page",
+          "pageSize",
+          "total",
+          "totalPages"
+        ],
+        "type": "object"
+      },
+      "InvitationListResponseDto": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/InvitationDataDto"
+            },
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/InvitationListMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "InvitationResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/InvitationDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "MembershipDataDto": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "revokedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "revoked"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status"
+        ],
+        "type": "object"
+      },
+      "MembershipResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MembershipDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "MembershipRoleDataDto": {
+        "properties": {
+          "assignedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "removedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "roleId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "roleId"
+        ],
+        "type": "object"
+      },
+      "MembershipRoleResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MembershipRoleDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
       "PostgresHealthCheckResponseDto": {
         "properties": {
           "status": {
@@ -336,6 +697,111 @@
         },
         "required": [
           "status"
+        ],
+        "type": "object"
+      },
+      "PublicInvitationDataDto": {
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/PublicRoleSummaryDto"
+          },
+          "status": {
+            "enum": [
+              "pending"
+            ],
+            "type": "string"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/PublicTenantSummaryDto"
+          }
+        },
+        "required": [
+          "email",
+          "tenant",
+          "role",
+          "status",
+          "expiresAt"
+        ],
+        "type": "object"
+      },
+      "PublicInvitationResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PublicInvitationDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "PublicRoleSummaryDto": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object"
+      },
+      "PublicTenantSummaryDto": {
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "displayName"
+        ],
+        "type": "object"
+      },
+      "RevokeMembershipDto": {
+        "properties": {
+          "reason": {
+            "maxLength": 500,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "RoleSummaryDto": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "name"
         ],
         "type": "object"
       },
@@ -627,6 +1093,157 @@
         "x-public": false,
         "x-required-permission": "platform.health.read",
         "x-response-envelope": false,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/invitations/{token}": {
+      "get": {
+        "operationId": "getInvitationByToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicInvitationResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [],
+        "summary": "Resolve an invitation token",
+        "tags": [
+          "Invitations"
+        ],
+        "x-auth-required": false,
+        "x-platform-only": false,
+        "x-public": true,
+        "x-public-token-endpoint": true,
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/invitations/{token}/accept": {
+      "post": {
+        "operationId": "acceptInvitation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedInvitationResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Accept an invitation",
+        "tags": [
+          "Invitations"
+        ],
+        "x-audit-event": "invitation.accepted",
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-public-token-endpoint": true,
+        "x-response-envelope": true,
         "x-tenant-context-required": false
       }
     },
@@ -1118,6 +1735,586 @@
         "x-required-permission": "platform.tenants.suspend",
         "x-response-envelope": true,
         "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/tenant/invitations": {
+      "get": {
+        "operationId": "listTenantInvitations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvitationListResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List tenant invitations",
+        "tags": [
+          "Tenant invitations"
+        ],
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "users.read",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      },
+      "post": {
+        "operationId": "createTenantInvitation",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvitationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedInvitationResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a tenant invitation",
+        "tags": [
+          "Tenant invitations"
+        ],
+        "x-audit-event": "invitation.created",
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "users.invite",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      }
+    },
+    "/api/v1/tenant/invitations/{invitationId}/revoke": {
+      "post": {
+        "operationId": "revokeTenantInvitation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "invitationId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvitationResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Revoke a tenant invitation",
+        "tags": [
+          "Tenant invitations"
+        ],
+        "x-audit-event": "invitation.revoked",
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "users.invite",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      }
+    },
+    "/api/v1/tenant/memberships/{membershipId}/revoke": {
+      "post": {
+        "operationId": "revokeTenantMembership",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "membershipId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevokeMembershipDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Revoke a tenant membership",
+        "tags": [
+          "Tenant memberships"
+        ],
+        "x-audit-event": "membership.revoked",
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "users.membership.revoke",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      }
+    },
+    "/api/v1/tenant/memberships/{membershipId}/roles": {
+      "post": {
+        "operationId": "assignTenantMembershipRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "membershipId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignMembershipRoleDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipRoleResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Assign a tenant role",
+        "tags": [
+          "Tenant memberships"
+        ],
+        "x-audit-event": "membership.roleAssigned",
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "users.roles.assign",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      }
+    },
+    "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}": {
+      "delete": {
+        "operationId": "removeTenantMembershipRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roleId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "membershipId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipRoleResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Remove a tenant role",
+        "tags": [
+          "Tenant memberships"
+        ],
+        "x-audit-event": "membership.roleRemoved",
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "users.roles.remove",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
       }
     }
   },

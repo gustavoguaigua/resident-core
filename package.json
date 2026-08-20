@@ -29,6 +29,7 @@
     "test:authorization": "node tools/authorization/run-phase-5-gate.mjs authorization",
     "test:multitenancy": "node tools/authorization/run-phase-5-gate.mjs multitenancy",
     "test:tenants": "node tools/tenants/run-phase-6-gate.mjs",
+    "test:invitations": "node tools/invitations/run-phase-7-gate.mjs",
     "openapi:check": "pnpm --filter @resident/api openapi:check",
     "openapi:generate": "pnpm --filter @resident/api openapi:generate",
     "openapi:validate": "pnpm --filter @resident/openapi-client validate",

@@ -15,7 +15,11 @@ interface OpenApiContract {
   };
   readonly paths: Record<
     string,
-    { readonly get?: OpenApiOperation; readonly post?: OpenApiOperation }
+    {
+      readonly delete?: OpenApiOperation;
+      readonly get?: OpenApiOperation;
+      readonly post?: OpenApiOperation;
+    }
   >;
 }
 
@@ -27,17 +31,24 @@ const contract = JSON.parse(
 ) as OpenApiContract;
 
 describe("canonical OpenAPI contract", () => {
-  it("defines bearer authentication and only the operations active through Phase 6", () => {
+  it("defines bearer authentication and only the operations active through Phase 7", () => {
     expect(contract.openapi).toMatch(/^3\./u);
     expect(contract.components.securitySchemes).toHaveProperty("bearerAuth");
     expect(Object.keys(contract.paths).sort()).toEqual([
       "/api/v1/health",
       "/api/v1/health/details",
+      "/api/v1/invitations/{token}",
+      "/api/v1/invitations/{token}/accept",
       "/api/v1/platform/tenants",
       "/api/v1/platform/tenants/{tenantId}/activate",
       "/api/v1/platform/tenants/{tenantId}/archive",
       "/api/v1/platform/tenants/{tenantId}/reactivate",
       "/api/v1/platform/tenants/{tenantId}/suspend",
+      "/api/v1/tenant/invitations",
+      "/api/v1/tenant/invitations/{invitationId}/revoke",
+      "/api/v1/tenant/memberships/{membershipId}/revoke",
+      "/api/v1/tenant/memberships/{membershipId}/roles",
+      "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}",
     ]);
   });
 
@@ -78,6 +89,76 @@ describe("canonical OpenAPI contract", () => {
       });
     },
   );
+
+  it.each([
+    [
+      "post",
+      "/api/v1/tenant/invitations",
+      "users.invite",
+      "invitation.created",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/invitations/{invitationId}/revoke",
+      "users.invite",
+      "invitation.revoked",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/memberships/{membershipId}/roles",
+      "users.roles.assign",
+      "membership.roleAssigned",
+    ],
+    [
+      "delete",
+      "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}",
+      "users.roles.remove",
+      "membership.roleRemoved",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/memberships/{membershipId}/revoke",
+      "users.membership.revoke",
+      "membership.revoked",
+    ],
+  ] as const)(
+    "documents tenant-scoped access for %s %s",
+    (method, path, permission, auditEvent) => {
+      expect(contract.paths[path]?.[method]).toMatchObject({
+        security: [{ bearerAuth: [] }],
+        "x-audit-event": auditEvent,
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": permission,
+        "x-response-envelope": true,
+        "x-tenant-context-required": true,
+      });
+    },
+  );
+
+  it("documents invitation lookup as token-public and acceptance as authenticated", () => {
+    expect(contract.paths["/api/v1/invitations/{token}"]?.get).toMatchObject({
+      "x-auth-required": false,
+      "x-platform-only": false,
+      "x-public": true,
+      "x-public-token-endpoint": true,
+      "x-response-envelope": true,
+      "x-tenant-context-required": false,
+    });
+    expect(
+      contract.paths["/api/v1/invitations/{token}/accept"]?.post,
+    ).toMatchObject({
+      security: [{ bearerAuth: [] }],
+      "x-audit-event": "invitation.accepted",
+      "x-auth-required": true,
+      "x-platform-only": false,
+      "x-public": false,
+      "x-public-token-endpoint": true,
+      "x-response-envelope": true,
+      "x-tenant-context-required": false,
+    });
+  });
 
   it("documents the flat public liveness contract", () => {
     expect(contract.paths["/api/v1/health"]?.get).toMatchObject({

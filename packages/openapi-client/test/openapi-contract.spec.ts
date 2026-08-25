@@ -18,6 +18,7 @@ interface OpenApiContract {
     {
       readonly delete?: OpenApiOperation;
       readonly get?: OpenApiOperation;
+      readonly patch?: OpenApiOperation;
       readonly post?: OpenApiOperation;
     }
   >;
@@ -31,7 +32,7 @@ const contract = JSON.parse(
 ) as OpenApiContract;
 
 describe("canonical OpenAPI contract", () => {
-  it("defines bearer authentication and only the operations active through Phase 7", () => {
+  it("defines bearer authentication and only the operations active through Phase 8", () => {
     expect(contract.openapi).toMatch(/^3\./u);
     expect(contract.components.securitySchemes).toHaveProperty("bearerAuth");
     expect(Object.keys(contract.paths).sort()).toEqual([
@@ -39,6 +40,8 @@ describe("canonical OpenAPI contract", () => {
       "/api/v1/health/details",
       "/api/v1/invitations/{token}",
       "/api/v1/invitations/{token}/accept",
+      "/api/v1/platform/setting-definitions",
+      "/api/v1/platform/setting-definitions/{definitionId}",
       "/api/v1/platform/tenants",
       "/api/v1/platform/tenants/{tenantId}/activate",
       "/api/v1/platform/tenants/{tenantId}/archive",
@@ -49,8 +52,35 @@ describe("canonical OpenAPI contract", () => {
       "/api/v1/tenant/memberships/{membershipId}/revoke",
       "/api/v1/tenant/memberships/{membershipId}/roles",
       "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}",
+      "/api/v1/tenant/settings",
+      "/api/v1/tenant/settings/{key}",
     ]);
   });
+
+  it.each([
+    ["get", "/api/v1/tenant/settings", "tenantSettings.read", undefined],
+    ["get", "/api/v1/tenant/settings/{key}", "tenantSettings.read", undefined],
+    [
+      "patch",
+      "/api/v1/tenant/settings/{key}",
+      "tenantSettings.update",
+      "tenantSetting.updated",
+    ],
+  ] as const)(
+    "documents the Phase 8 tenant setting operation %s %s",
+    (method, path, permission, auditEvent) => {
+      expect(contract.paths[path]?.[method]).toMatchObject({
+        security: [{ bearerAuth: [] }],
+        ...(auditEvent === undefined ? {} : { "x-audit-event": auditEvent }),
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": permission,
+        "x-response-envelope": true,
+        "x-tenant-context-required": true,
+      });
+    },
+  );
 
   it.each([
     ["/api/v1/platform/tenants", "platform.tenants.create", "tenant.created"],

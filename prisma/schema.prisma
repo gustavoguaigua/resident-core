@@ -93,6 +93,88 @@ enum AuditOutcome {
   @@map("audit_outcome")
 }
 
+enum TenantSettingCategory {
+  GENERAL             @map("general")
+  FINANCIAL           @map("financial")
+  BILLING             @map("billing")
+  PAYMENTS            @map("payments")
+  ACCOUNT_STATEMENTS  @map("accountStatements")
+  RESERVATIONS        @map("reservations")
+  FINES               @map("fines")
+  MEETINGS            @map("meetings")
+  VOTING              @map("voting")
+  COMMUNICATIONS      @map("communications")
+  DOCUMENTS           @map("documents")
+  ACCESS_CONTROL      @map("accessControl")
+  MAINTENANCE         @map("maintenance")
+  INVENTORY           @map("inventory")
+  SUPPLIERS           @map("suppliers")
+  ACCOUNTING          @map("accounting")
+  BANK_RECONCILIATION @map("bankReconciliation")
+  REPORTS             @map("reports")
+  PRIVACY             @map("privacy")
+  SECURITY            @map("security")
+  MODULES             @map("modules")
+
+  @@map("tenant_setting_category")
+}
+
+enum TenantSettingValueType {
+  STRING         @map("string")
+  NUMBER         @map("number")
+  INTEGER        @map("integer")
+  BOOLEAN        @map("boolean")
+  DECIMAL_STRING @map("decimalString")
+  DATE           @map("date")
+  TIME           @map("time")
+  DURATION       @map("duration")
+  ENUM           @map("enum")
+  STRING_ARRAY   @map("stringArray")
+  OBJECT         @map("object")
+  JSON           @map("json")
+
+  @@map("tenant_setting_value_type")
+}
+
+enum TenantSettingSensitivity {
+  PUBLIC_SUMMARY      @map("publicSummary")
+  INTERNAL            @map("internal")
+  RESTRICTED          @map("restricted")
+  SECURITY_SENSITIVE  @map("securitySensitive")
+  PRIVACY_SENSITIVE   @map("privacySensitive")
+  FINANCIAL_SENSITIVE @map("financialSensitive")
+
+  @@map("tenant_setting_sensitivity")
+}
+
+enum DefinitionStatus {
+  ACTIVE     @map("active")
+  DEPRECATED @map("deprecated")
+  ARCHIVED   @map("archived")
+
+  @@map("definition_status")
+}
+
+enum TenantSettingValueStatus {
+  DRAFT     @map("draft")
+  ACTIVE    @map("active")
+  SCHEDULED @map("scheduled")
+  EXPIRED   @map("expired")
+  ARCHIVED  @map("archived")
+
+  @@map("tenant_setting_value_status")
+}
+
+enum TenantSettingSource {
+  PLATFORM_DEFAULT @map("platformDefault")
+  TENANT_OVERRIDE  @map("tenantOverride")
+  IMPORT           @map("import")
+  MIGRATION        @map("migration")
+  SYSTEM           @map("system")
+
+  @@map("tenant_setting_source")
+}
+
 model Tenant {
   id               String       @id @default(uuid())
   name             String
@@ -117,6 +199,7 @@ model Tenant {
   memberships      UserTenantMembership[]
   invitations      Invitation[]
   auditLogs        AuditLog[]
+  settingValues    TenantSettingValue[]
 
   @@index([slug])
   @@index([status])
@@ -384,4 +467,64 @@ model AuditLog {
   @@index([occurredAt])
   @@index([tenantId, occurredAt])
   @@map("audit_logs")
+}
+
+model SettingDefinition {
+  id                  String                   @id @default(uuid())
+  key                 String                   @unique @db.VarChar(160)
+  category            TenantSettingCategory
+  valueType           TenantSettingValueType   @map("value_type")
+  defaultValue        Json                     @map("default_value")
+  allowedValues       Json?                    @map("allowed_values")
+  schema              Json?
+  description         String?
+  sensitivity         TenantSettingSensitivity @default(INTERNAL)
+  isTenantOverridable Boolean                  @default(true) @map("is_tenant_overridable")
+  isRuntimeCritical   Boolean                  @default(false) @map("is_runtime_critical")
+  requiresRestart     Boolean                  @default(false) @map("requires_restart")
+  residentVisible     Boolean                  @default(false) @map("resident_visible")
+  status              DefinitionStatus         @default(ACTIVE)
+  createdBy           String                   @map("created_by") @db.Uuid
+  updatedBy           String?                  @map("updated_by") @db.Uuid
+  archivedBy          String?                  @map("archived_by") @db.Uuid
+  createdAt           DateTime                 @default(now()) @map("created_at")
+  updatedAt           DateTime                 @updatedAt @map("updated_at")
+  archivedAt          DateTime?                @map("archived_at")
+
+  tenantValues TenantSettingValue[]
+
+  @@index([category, status])
+  @@index([sensitivity])
+  @@map("setting_definitions")
+}
+
+model TenantSettingValue {
+  id                  String                   @id @default(uuid())
+  tenantId            String                   @map("tenant_id")
+  settingDefinitionId String                   @map("setting_definition_id")
+  key                 String                   @db.VarChar(160)
+  value               Json
+  valueType           TenantSettingValueType   @map("value_type")
+  effectiveFrom       DateTime                 @map("effective_from")
+  effectiveUntil      DateTime?                @map("effective_until")
+  status              TenantSettingValueStatus @default(ACTIVE)
+  source              TenantSettingSource      @default(TENANT_OVERRIDE)
+  reason              String?
+  createdBy           String                   @map("created_by") @db.Uuid
+  updatedBy           String?                  @map("updated_by") @db.Uuid
+  activatedBy         String?                  @map("activated_by") @db.Uuid
+  archivedBy          String?                  @map("archived_by") @db.Uuid
+  createdAt           DateTime                 @default(now()) @map("created_at")
+  updatedAt           DateTime                 @updatedAt @map("updated_at")
+  activatedAt         DateTime?                @map("activated_at")
+  archivedAt          DateTime?                @map("archived_at")
+
+  tenant     Tenant            @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  definition SettingDefinition @relation(fields: [settingDefinitionId], references: [id], onDelete: Restrict)
+
+  @@unique([tenantId, settingDefinitionId])
+  @@index([tenantId, key, status])
+  @@index([tenantId, key, effectiveFrom, effectiveUntil], map: "tenant_setting_values_tenant_id_key_effective_from_effective_un")
+  @@index([tenantId, settingDefinitionId])
+  @@map("tenant_setting_values")
 }

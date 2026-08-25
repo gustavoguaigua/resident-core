@@ -40,8 +40,8 @@ describe("Audit base contract", () => {
     vi.restoreAllMocks();
   });
 
-  it("contains only the 30 canonical Sprint 2 actions", () => {
-    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(30);
+  it("contains only the 31 canonical Sprint 2 actions", () => {
+    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(31);
     expect(AUDIT_CATALOG["authentication.denied"]).toMatchObject({
       category: "SECURITY",
       outcome: "DENIED",

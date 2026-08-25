@@ -59,12 +59,7 @@ describe("canonical OpenAPI contract", () => {
 
   it.each([
     ["get", "/api/v1/tenant/settings", "tenantSettings.read", undefined],
-    [
-      "get",
-      "/api/v1/tenant/settings/{key}",
-      "tenantSettings.read",
-      undefined,
-    ],
+    ["get", "/api/v1/tenant/settings/{key}", "tenantSettings.read", undefined],
     [
       "patch",
       "/api/v1/tenant/settings/{key}",

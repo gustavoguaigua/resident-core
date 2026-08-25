@@ -60,9 +60,32 @@ const canConnectToPostgres = () =>
       resolveConnection(false);
     });
   });
+
+const isPostgresReady = () => {
+  const result = spawnSync(
+    dockerExecutable,
+    [
+      "exec",
+      containerName,
+      "pg_isready",
+      "--username",
+      "resident_bootstrap",
+      "--dbname",
+      "resident_bootstrap",
+    ],
+    {
+      cwd: repositoryRoot,
+      env: gateEnvironment,
+      stdio: "ignore",
+    },
+  );
+
+  return !result.error && result.status === 0;
+};
+
 const waitForPostgres = async () => {
   for (let attempt = 0; attempt < 60; attempt += 1) {
-    if (await canConnectToPostgres()) return;
+    if (isPostgresReady() && (await canConnectToPostgres())) return;
     await new Promise((resolveWait) => setTimeout(resolveWait, 1_000));
   }
   throw new Error("Phase 8 PostgreSQL did not become ready.");

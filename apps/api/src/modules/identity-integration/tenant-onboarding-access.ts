@@ -23,6 +23,8 @@ const TENANT_PERMISSION_CODES = [
   "tenants.profile.read",
   "tenants.profile.update",
   "tenants.wordpress.update",
+  "tenantSettings.read",
+  "tenantSettings.update",
   "users.disable",
   "users.invite",
   "users.membership.revoke",

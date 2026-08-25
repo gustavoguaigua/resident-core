@@ -211,22 +211,22 @@ Effective date: 2026-08-14
 Critical gaps open: 0
 High gaps open: 0
 Authorized plan: docs/implementation/sprint-2-tenants-identity-access.md
-Gate phase: 7
+Gate phase: 8
 Base commit: 6c1ee9402667881d6939769436fbf3d588416d6b
 ```
 
 Sprint 2 continúa autorizado exclusivamente en el orden y dentro de la frontera del
-runbook. Las Fases `1` a `7` aportan Keycloak, persistencia Tenant/Identity, Audit base,
+runbook. Las Fases `1` a `8` aportan Keycloak, persistencia Tenant/Identity, Audit base,
 el bootstrap one-shot del primer PlatformAdmin, autorización Core fail-closed,
-onboarding/lifecycle transaccional de tenants e invitaciones/memberships; el manifest
-queda en `currentPhase = 7`.
+onboarding/lifecycle transaccional de tenants, invitaciones/memberships y configuración
+mínima tenant-scoped; el manifest queda en `currentPhase = 8`.
 Este `GO` no autoriza adelantar fases ni ampliar la superficie Prisma, OpenAPI o
 funcional definida.
 
 ## 9. Orden autorizado después de GO
 
-1. Integrar la Fase `7` únicamente después de que todos sus gates pasen en CI.
-2. Implementar después exclusivamente la Fase `8`, configuración mínima de tenant,
+1. Integrar la Fase `8` únicamente después de que todos sus gates pasen en CI.
+2. Implementar después exclusivamente la Fase `9`, cierre OpenAPI y pruebas cruzadas,
    en una rama y PR cortos y elevar su fase atómicamente con sus artefactos y gates.
 
 ## 10. Resultado
@@ -234,5 +234,5 @@ funcional definida.
 El baseline técnico de Sprint 1 está sano, los gaps `GAP-S2-001` a `GAP-S2-008` están
 cerrados, los 28 documentos aplicables están `accepted` y no existen gaps críticos o
 altos abiertos. La frontera automática y los gates reproducibles pasan sobre el commit
-base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `7` quedan implementadas
-con `PASS` y el siguiente incremento permitido es únicamente la Fase `8` del runbook.
+base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `8` quedan implementadas
+con `PASS` y el siguiente incremento permitido es únicamente la Fase `9` del runbook.

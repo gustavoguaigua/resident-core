@@ -32,6 +32,7 @@ export const PLATFORM_PERMISSION_CODES = [
   "platform.roles.assign",
   "platform.permissions.read",
   "platform.audit.read",
+  "platformSettingDefinitions.read",
 ] as const;
 
 const GLOBAL_ROLE_PERMISSIONS = {

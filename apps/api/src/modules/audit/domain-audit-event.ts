@@ -89,6 +89,14 @@ export const AUDIT_CATALOG = {
     tenantRequired: true,
     actor: "USER",
   },
+  "tenantSetting.updated": {
+    category: "TENANT",
+    outcome: "SUCCESS",
+    resourceType: "TenantSettingValue",
+    metadata: "changedFields",
+    tenantRequired: true,
+    actor: "USER",
+  },
   "user.created": {
     category: "IDENTITY",
     outcome: "SUCCESS",

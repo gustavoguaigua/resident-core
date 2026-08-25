@@ -363,6 +363,109 @@
         ],
         "type": "object"
       },
+      "EffectiveSettingDataDto": {
+        "properties": {
+          "category": {
+            "example": "general",
+            "type": "string"
+          },
+          "effectiveFrom": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "effectiveUntil": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "isTenantOverridable": {
+            "type": "boolean"
+          },
+          "key": {
+            "example": "general.locale",
+            "type": "string"
+          },
+          "residentVisible": {
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "example": "internal",
+            "type": "string"
+          },
+          "settingDefinitionId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "settingValueId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "platformDefault",
+              "tenantOverride"
+            ],
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          },
+          "valueType": {
+            "example": "string",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "category",
+          "valueType",
+          "value",
+          "source",
+          "settingDefinitionId",
+          "settingValueId",
+          "effectiveFrom",
+          "effectiveUntil",
+          "sensitivity",
+          "isTenantOverridable",
+          "residentVisible"
+        ],
+        "type": "object"
+      },
+      "EffectiveSettingListResponseDto": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/EffectiveSettingDataDto"
+            },
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/PageMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "EffectiveSettingResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EffectiveSettingDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/TraceMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
       "HealthLivenessResponseDto": {
         "properties": {
           "service": {
@@ -685,6 +788,32 @@
         ],
         "type": "object"
       },
+      "PageMetaDto": {
+        "properties": {
+          "page": {
+            "example": 1,
+            "type": "number"
+          },
+          "pageSize": {
+            "example": 25,
+            "type": "number"
+          },
+          "total": {
+            "example": 1,
+            "type": "number"
+          },
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "traceId",
+          "page",
+          "pageSize",
+          "total"
+        ],
+        "type": "object"
+      },
       "PostgresHealthCheckResponseDto": {
         "properties": {
           "status": {
@@ -802,6 +931,121 @@
           "id",
           "code",
           "name"
+        ],
+        "type": "object"
+      },
+      "SettingDefinitionDataDto": {
+        "properties": {
+          "allowedValues": {
+            "nullable": true,
+            "type": "object"
+          },
+          "category": {
+            "example": "general",
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "defaultValue": {
+            "type": "object"
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "isRuntimeCritical": {
+            "type": "boolean"
+          },
+          "isTenantOverridable": {
+            "type": "boolean"
+          },
+          "key": {
+            "example": "general.locale",
+            "type": "string"
+          },
+          "requiresRestart": {
+            "type": "boolean"
+          },
+          "residentVisible": {
+            "type": "boolean"
+          },
+          "schema": {
+            "nullable": true,
+            "type": "object"
+          },
+          "sensitivity": {
+            "example": "internal",
+            "type": "string"
+          },
+          "status": {
+            "example": "active",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "valueType": {
+            "example": "string",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "category",
+          "valueType",
+          "defaultValue",
+          "allowedValues",
+          "schema",
+          "description",
+          "sensitivity",
+          "isTenantOverridable",
+          "isRuntimeCritical",
+          "requiresRestart",
+          "residentVisible",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "SettingDefinitionListResponseDto": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/SettingDefinitionDataDto"
+            },
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/PageMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "SettingDefinitionResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SettingDefinitionDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/TraceMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
         ],
         "type": "object"
       },
@@ -972,6 +1216,45 @@
             "type": "string"
           }
         },
+        "type": "object"
+      },
+      "TraceMetaDto": {
+        "properties": {
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "traceId"
+        ],
+        "type": "object"
+      },
+      "UpdateTenantSettingDto": {
+        "properties": {
+          "value": {
+            "description": "Typed JSON value governed by the setting definition",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "required": [
+          "value"
+        ],
         "type": "object"
       }
     },
@@ -1243,6 +1526,162 @@
         "x-platform-only": false,
         "x-public": false,
         "x-public-token-endpoint": true,
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/platform/setting-definitions": {
+      "get": {
+        "operationId": "listSettingDefinitions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingDefinitionListResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List active setting definitions",
+        "tags": [
+          "Platform setting definitions"
+        ],
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platformSettingDefinitions.read",
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
+    "/api/v1/platform/setting-definitions/{definitionId}": {
+      "get": {
+        "operationId": "getSettingDefinition",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "definitionId",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingDefinitionResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get an active setting definition",
+        "tags": [
+          "Platform setting definitions"
+        ],
+        "x-auth-required": true,
+        "x-platform-only": true,
+        "x-public": false,
+        "x-required-permission": "platformSettingDefinitions.read",
         "x-response-envelope": true,
         "x-tenant-context-required": false
       }
@@ -2313,6 +2752,254 @@
         "x-platform-only": false,
         "x-public": false,
         "x-required-permission": "users.roles.remove",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      }
+    },
+    "/api/v1/tenant/settings": {
+      "get": {
+        "operationId": "listEffectiveTenantSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveSettingListResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List effective settings for the active tenant",
+        "tags": [
+          "Tenant settings"
+        ],
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "tenantSettings.read",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      }
+    },
+    "/api/v1/tenant/settings/{key}": {
+      "get": {
+        "operationId": "getEffectiveTenantSetting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "example": "general.locale",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveSettingResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get an effective setting for the active tenant",
+        "tags": [
+          "Tenant settings"
+        ],
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "tenantSettings.read",
+        "x-response-envelope": true,
+        "x-tenant-context-required": true
+      },
+      "patch": {
+        "operationId": "updateTenantSetting",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "example": "general.locale",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTenantSettingDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveSettingResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Set the active tenant override",
+        "tags": [
+          "Tenant settings"
+        ],
+        "x-audit-event": "tenantSetting.updated",
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-required-permission": "tenantSettings.update",
         "x-response-envelope": true,
         "x-tenant-context-required": true
       }

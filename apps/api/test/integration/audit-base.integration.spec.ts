@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+
 import { PrismaClient } from "@prisma/client";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
@@ -6,6 +8,8 @@ import { PrismaAuditWriter } from "../../src/modules/audit/prisma-audit-writer.j
 
 const prisma = new PrismaClient();
 const writer = new PrismaAuditWriter(prisma as PrismaService);
+const fixtureId = randomUUID();
+const fixtureValue = (value: string) => `${value}-${fixtureId}`;
 
 let tenantAId: string;
 let tenantBId: string;
@@ -17,16 +21,16 @@ describe("Audit base persistence", () => {
   beforeAll(async () => {
     await prisma.$connect();
     const tenantA = await prisma.tenant.create({
-      data: { name: "Audit Tenant A", slug: "audit-tenant-a" },
+      data: { name: "Audit Tenant A", slug: fixtureValue("audit-tenant-a") },
     });
     const tenantB = await prisma.tenant.create({
-      data: { name: "Audit Tenant B", slug: "audit-tenant-b" },
+      data: { name: "Audit Tenant B", slug: fixtureValue("audit-tenant-b") },
     });
     const user = await prisma.userProfile.create({
       data: {
-        email: "audit-actor@example.test",
+        email: `audit-actor+${fixtureId}@example.test`,
         displayName: "Audit Actor",
-        keycloakSubjectId: "audit-sub-1",
+        keycloakSubjectId: fixtureValue("audit-sub"),
         status: "ACTIVE",
       },
     });
@@ -61,8 +65,8 @@ describe("Audit base persistence", () => {
             userProfileId: userId,
             membershipId: membershipAId,
           },
-          traceId: "trace.commit",
-          correlationId: "correlation.commit",
+          traceId: fixtureValue("trace.commit"),
+          correlationId: fixtureValue("correlation.commit"),
         },
         {
           action: "tenant.branding.updated",
@@ -82,8 +86,8 @@ describe("Audit base persistence", () => {
       action: "tenant.branding.updated",
       category: "TENANT",
       outcome: "SUCCESS",
-      traceId: "trace.commit",
-      correlationId: "correlation.commit",
+      traceId: fixtureValue("trace.commit"),
+      correlationId: fixtureValue("correlation.commit"),
       metadata: { changedFields: ["primaryColor"] },
     });
   });
@@ -105,7 +109,7 @@ describe("Audit base persistence", () => {
               userProfileId: userId,
               membershipId: membershipAId,
             },
-            traceId: "trace.rollback",
+            traceId: fixtureValue("trace.rollback"),
           },
           {
             action: "tenant.wordpressMapping.updated",
@@ -139,7 +143,7 @@ describe("Audit base persistence", () => {
               userProfileId: userId,
               membershipId: membershipAId,
             },
-            traceId: "trace.cross-tenant",
+            traceId: fixtureValue("trace.cross-tenant"),
           },
           {
             action: "tenant.updated",
@@ -151,7 +155,9 @@ describe("Audit base persistence", () => {
       ),
     ).rejects.toThrow("not valid for the tenant context");
     await expect(
-      prisma.auditLog.count({ where: { traceId: "trace.cross-tenant" } }),
+      prisma.auditLog.count({
+        where: { traceId: fixtureValue("trace.cross-tenant") },
+      }),
     ).resolves.toBe(0);
   });
 
@@ -166,7 +172,7 @@ describe("Audit base persistence", () => {
             userProfileId: userId,
             membershipId: membershipBId,
           },
-          traceId: "trace.tenant-b",
+          traceId: fixtureValue("trace.tenant-b"),
         },
         {
           action: "tenant.updated",
@@ -188,7 +194,10 @@ describe("Audit base persistence", () => {
   it("persists a denied pre-tenant event without changing the denial", async () => {
     await expect(
       writer.recordDenied(
-        { actor: { type: "ANONYMOUS" }, traceId: "trace.auth-denied" },
+        {
+          actor: { type: "ANONYMOUS" },
+          traceId: fixtureValue("trace.auth-denied"),
+        },
         {
           action: "authentication.denied",
           reasonCode: "INVALID_SUBJECT",
@@ -198,7 +207,7 @@ describe("Audit base persistence", () => {
     ).resolves.toEqual({ persisted: true });
     await expect(
       prisma.auditLog.findFirstOrThrow({
-        where: { traceId: "trace.auth-denied" },
+        where: { traceId: fixtureValue("trace.auth-denied") },
       }),
     ).resolves.toMatchObject({
       tenantId: null,
@@ -219,14 +228,14 @@ describe("Audit base persistence", () => {
           category: "SECURITY",
           outcome: "DENIED",
           resourceType: "Authentication",
-          traceId: "trace.invalid-catalog",
+          traceId: fixtureValue("trace.invalid-catalog"),
           occurredAt: new Date(),
         },
       }),
     ).rejects.toThrow();
 
     const auditLog = await prisma.auditLog.findFirstOrThrow({
-      where: { traceId: "trace.commit" },
+      where: { traceId: fixtureValue("trace.commit") },
     });
     await expect(
       prisma.auditLog.update({

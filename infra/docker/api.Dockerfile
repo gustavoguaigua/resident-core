@@ -21,6 +21,11 @@ RUN --mount=type=cache,id=resident-pnpm-store,target=/pnpm/store \
     pnpm install --frozen-lockfile
 RUN pnpm --filter @resident/api... build
 RUN pnpm --filter @resident/api deploy --prod --legacy /opt/resident-api \
+    && test -f /workspace/apps/api/dist/main.js \
+    && rm -rf /opt/resident-api/dist \
+    && mkdir --parents /opt/resident-api/dist \
+    && cp --archive /workspace/apps/api/dist/. /opt/resident-api/dist/ \
+    && test -f /opt/resident-api/dist/main.js \
     && generated_client_dir="$(dirname "$(find /workspace/node_modules/.pnpm -path '*/node_modules/.prisma/client/schema.prisma' -print -quit)")" \
     && deployed_client_dir="$(dirname "$(find /opt/resident-api/node_modules/.pnpm -path '*/node_modules/.prisma/client/default.js' -print -quit)")" \
     && test -n "$generated_client_dir" \
@@ -40,7 +45,6 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 COPY --from=build --chown=node:node /opt/resident-api ./
-COPY --from=build --chown=node:node /workspace/apps/api/dist ./dist
 COPY --from=build --chown=node:node /workspace/packages/auth/package.json /workspace/packages/auth/package.json
 COPY --from=build --chown=node:node /workspace/packages/auth/dist /workspace/packages/auth/dist
 COPY --from=build --chown=node:node /workspace/packages/config/package.json /workspace/packages/config/package.json

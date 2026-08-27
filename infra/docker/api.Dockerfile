@@ -20,11 +20,13 @@ COPY prisma ./prisma
 RUN --mount=type=cache,id=resident-pnpm-store,target=/pnpm/store \
     pnpm install --frozen-lockfile
 RUN pnpm --filter @resident/api... build
+RUN test -f /workspace/apps/api/dist/main.js \
+    && mkdir --parents /tmp/resident-api-dist \
+    && cp --archive /workspace/apps/api/dist/. /tmp/resident-api-dist/
 RUN pnpm --filter @resident/api deploy --prod --legacy /opt/resident-api \
-    && test -f /workspace/apps/api/dist/main.js \
     && rm -rf /opt/resident-api/dist \
     && mkdir --parents /opt/resident-api/dist \
-    && cp --archive /workspace/apps/api/dist/. /opt/resident-api/dist/ \
+    && cp --archive /tmp/resident-api-dist/. /opt/resident-api/dist/ \
     && test -f /opt/resident-api/dist/main.js \
     && generated_client_dir="$(dirname "$(find /workspace/node_modules/.pnpm -path '*/node_modules/.prisma/client/schema.prisma' -print -quit)")" \
     && deployed_client_dir="$(dirname "$(find /opt/resident-api/node_modules/.pnpm -path '*/node_modules/.prisma/client/default.js' -print -quit)")" \

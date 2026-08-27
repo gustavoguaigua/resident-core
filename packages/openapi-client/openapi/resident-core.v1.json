@@ -2179,7 +2179,17 @@
     "/api/v1/tenant/invitations": {
       "get": {
         "operationId": "listTenantInvitations",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -2256,11 +2266,22 @@
         "x-public": false,
         "x-required-permission": "users.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "createTenantInvitation",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2348,13 +2369,23 @@
         "x-public": false,
         "x-required-permission": "users.invite",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/invitations/{invitationId}/revoke": {
       "post": {
         "operationId": "revokeTenantInvitation",
         "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
           {
             "in": "path",
             "name": "invitationId",
@@ -2442,13 +2473,23 @@
         "x-public": false,
         "x-required-permission": "users.invite",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/memberships/{membershipId}/revoke": {
       "post": {
         "operationId": "revokeTenantMembership",
         "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
           {
             "in": "path",
             "name": "membershipId",
@@ -2546,13 +2587,23 @@
         "x-public": false,
         "x-required-permission": "users.membership.revoke",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/memberships/{membershipId}/roles": {
       "post": {
         "operationId": "assignTenantMembershipRole",
         "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
           {
             "in": "path",
             "name": "membershipId",
@@ -2650,13 +2701,23 @@
         "x-public": false,
         "x-required-permission": "users.roles.assign",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}": {
       "delete": {
         "operationId": "removeTenantMembershipRole",
         "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
           {
             "in": "path",
             "name": "roleId",
@@ -2753,13 +2814,24 @@
         "x-public": false,
         "x-required-permission": "users.roles.remove",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/settings": {
       "get": {
         "operationId": "listEffectiveTenantSettings",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "content": {
@@ -2826,13 +2898,23 @@
         "x-public": false,
         "x-required-permission": "tenantSettings.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/settings/{key}": {
       "get": {
         "operationId": "getEffectiveTenantSetting",
         "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
           {
             "in": "path",
             "name": "key",
@@ -2909,11 +2991,21 @@
         "x-public": false,
         "x-required-permission": "tenantSettings.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "updateTenantSetting",
         "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
           {
             "in": "path",
             "name": "key",
@@ -3001,7 +3093,8 @@
         "x-public": false,
         "x-required-permission": "tenantSettings.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     }
   },

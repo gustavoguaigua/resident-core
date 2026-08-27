@@ -40,6 +40,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 COPY --from=build --chown=node:node /opt/resident-api ./
+COPY --from=build --chown=node:node /workspace/apps/api/dist ./dist
 COPY --from=build --chown=node:node /workspace/packages/auth/package.json /workspace/packages/auth/package.json
 COPY --from=build --chown=node:node /workspace/packages/auth/dist /workspace/packages/auth/dist
 COPY --from=build --chown=node:node /workspace/packages/config/package.json /workspace/packages/config/package.json

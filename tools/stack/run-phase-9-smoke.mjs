@@ -25,6 +25,19 @@ const environment = {
   SMTP_PORT: "51025",
   MAILHOG_UI_PORT: "58025",
 };
+const secretValues = [
+  environment.KEYCLOAK_ADMIN_PASSWORD,
+  environment.KEYCLOAK_DB_PASSWORD,
+  environment.MINIO_ROOT_PASSWORD,
+  environment.POSTGRES_PASSWORD,
+];
+const redactSecrets = (value) =>
+  secretValues
+    .reduce(
+      (sanitized, secret) => sanitized.replaceAll(secret, "[REDACTED]"),
+      value,
+    )
+    .replace(/(postgres(?:ql)?:\/\/[^:\s]+:)[^@\s]+@/gu, "$1[REDACTED]@");
 
 const execute = (args, stdio = "inherit") =>
   spawnSync(dockerExecutable, args, {
@@ -36,18 +49,39 @@ const run = (args) => {
   const result = execute(args);
   if (result.error) throw result.error;
   if (result.status !== 0) {
-    throw new Error(`docker ${args.join(" ")} failed with ${result.status}.`);
+    throw Object.assign(
+      new Error(`docker ${args.join(" ")} failed with ${result.status}.`),
+      { exitCode: result.status ?? 1 },
+    );
+  }
+};
+const runStack = (args) => {
+  const result = execute(args);
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    execute([...compose, "ps"]);
+    const logs = execute(
+      [...compose, "logs", "--no-color", "resident-api"],
+      "pipe",
+    );
+    const output = `${logs.stdout?.toString() ?? ""}${logs.stderr?.toString() ?? ""}`;
+    if (output) process.stderr.write(redactSecrets(output));
+    throw Object.assign(
+      new Error(`docker ${args.join(" ")} failed with ${result.status}.`),
+      { exitCode: result.status ?? 1 },
+    );
   }
 };
 const cleanup = () =>
   execute([...compose, "down", "--volumes", "--remove-orphans"]);
 
 let stackStarted = false;
+let exitCode = 0;
 try {
   run(["version", "--format", "{{.Server.Version}}"]);
   cleanup();
   stackStarted = true;
-  run([
+  runStack([
     ...compose,
     "up",
     "--build",
@@ -82,6 +116,19 @@ try {
   process.stdout.write(
     `${JSON.stringify({ gate: "test:stack:smoke", services: running.sort(), status: "PASS" })}\n`,
   );
+} catch (error) {
+  exitCode =
+    typeof error === "object" &&
+    error !== null &&
+    "exitCode" in error &&
+    Number.isInteger(error.exitCode)
+      ? error.exitCode
+      : 1;
+  process.stderr.write(
+    `${error instanceof Error ? error.message : "Phase 9 stack smoke failed."}\n`,
+  );
 } finally {
   if (stackStarted) cleanup();
 }
+
+process.exitCode = exitCode;

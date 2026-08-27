@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "readinessDecision": "GO",
-  "currentPhase": 8,
+  "currentPhase": 9,
   "phases": [
     {
       "id": 0,

@@ -17,6 +17,7 @@ import {
   ApiBody,
   ApiExtension,
   ApiForbiddenResponse,
+  ApiHeader,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
@@ -232,6 +233,14 @@ function ReadContract(
       propertyKey,
       descriptor,
     );
+    if (tenantScoped) {
+      ApiExtension("x-tenant-scope", "tenant")(target, propertyKey, descriptor);
+      ApiHeader({
+        name: "X-Tenant-Id",
+        required: true,
+        schema: { format: "uuid", type: "string" },
+      })(target, propertyKey, descriptor);
+    }
     ApiExtension("x-public", false)(target, propertyKey, descriptor);
     ApiExtension("x-required-permission", permission)(
       target,

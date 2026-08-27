@@ -3,6 +3,12 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 interface OpenApiOperation {
+  readonly parameters?: readonly {
+    readonly in: string;
+    readonly name: string;
+    readonly required?: boolean;
+    readonly schema?: { readonly format?: string; readonly type?: string };
+  }[];
   readonly responses: Record<string, unknown>;
   readonly security?: readonly Record<string, readonly string[]>[];
   readonly [extension: `x-${string}`]: unknown;
@@ -32,7 +38,7 @@ const contract = JSON.parse(
 ) as OpenApiContract;
 
 describe("canonical OpenAPI contract", () => {
-  it("defines bearer authentication and only the operations active through Phase 8", () => {
+  it("defines bearer authentication and only the operations delivered by Sprint 2", () => {
     expect(contract.openapi).toMatch(/^3\./u);
     expect(contract.components.securitySchemes).toHaveProperty("bearerAuth");
     expect(Object.keys(contract.paths).sort()).toEqual([
@@ -55,6 +61,32 @@ describe("canonical OpenAPI contract", () => {
       "/api/v1/tenant/settings",
       "/api/v1/tenant/settings/{key}",
     ]);
+  });
+
+  it("documents the canonical tenant selector across every tenant-scoped slice", () => {
+    const tenantOperations = Object.values(contract.paths).flatMap((path) =>
+      [path.delete, path.get, path.patch, path.post].filter(
+        (operation): operation is OpenApiOperation =>
+          operation?.["x-tenant-context-required"] === true,
+      ),
+    );
+
+    expect(tenantOperations).toHaveLength(9);
+    for (const operation of tenantOperations) {
+      expect(operation).toMatchObject({
+        security: [{ bearerAuth: [] }],
+        "x-auth-required": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-tenant-scope": "tenant",
+      });
+      expect(operation.parameters).toContainEqual({
+        in: "header",
+        name: "X-Tenant-Id",
+        required: true,
+        schema: { format: "uuid", type: "string" },
+      });
+    }
   });
 
   it.each([

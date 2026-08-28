@@ -454,10 +454,8 @@ Definition of Done técnico de Sprint 0: PASS.
 Cierre formal de Sprint 0: PASS; no existen gaps de cierre abiertos.
 Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
 Implementation Readiness Sprint 2: GO desde 2026-08-14; 0 gaps críticos o altos
-abiertos; manifest en fase 4; Fases 1–4 en `PASS`; siguiente incremento permitido:
-Fase 5 — resolución de identidad, memberships y autorización.
-Sprint 2 está autorizado exclusivamente dentro de la frontera y secuencia progresiva de
-su runbook.
+abiertos. Sprint 2 está formalmente cerrado con `GO`; manifest en fase final `9`, Fases
+`0`–`9` completadas y ninguna fase siguiente dentro del sprint.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
@@ -476,8 +474,10 @@ docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md
 docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md
+docs/changes/SPRINT-2-CLOSURE-2026-08-27.md
 Decision: GO
-Current phase: 3
+Current/Final Phase: 9
+Next phase within Sprint 2: none
 ```
 
 ---

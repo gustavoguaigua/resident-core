@@ -3,8 +3,9 @@
 ## 1. Estado del documento
 
 - Estado de definición de alcance: `complete`
-- Estado de autorización de implementación: `authorized`
-- Fase implementada actual: `8` — `tenant-settings` (`PASS`)
+- Estado de implementación: `completed`
+- Cierre formal: `GO` — 2026-08-27
+- Fase implementada final: `9` — `openapi-cross-slice-closure` (`PASS`)
 - Compuerta aplicable: `docs/changes/READINESS-SPRINT-2-2026-08-11.md`
 - Gaps resueltos por este documento y sus contratos: `GAP-S2-001` a `GAP-S2-008`
 
@@ -326,11 +327,13 @@ Los incrementos se ejecutarán en este orden y en ramas/PR cortos:
 6. Implementar onboarding transaccional, ciclo de vida y API de tenants. `PASS` — 2026-08-18.
 7. Implementar invitaciones y administración posterior de membresías. `PASS` — 2026-08-19.
 8. Implementar la configuración mínima de Spec 025. `PASS` — 2026-08-24.
-9. Consolidar contrato OpenAPI, pruebas cruzadas y evidencia de cierre.
+9. Consolidar contrato OpenAPI, pruebas cruzadas y evidencia de cierre. `PASS` — 2026-08-27.
 
 Un incremento no debe comenzar si depende de un contrato todavía abierto. Cada
 PR debe ser desplegable, mantener los gates existentes y evitar mezclar más de
 un incremento salvo que la dependencia sea inseparable y esté documentada.
+La Fase `9` es la última del Sprint 2; no existe una Fase `10` ni otro incremento
+permitido dentro de este sprint.
 
 ## 9. Gates obligatorios
 
@@ -406,4 +409,6 @@ la Fase `5` en `PASS`. `SPRINT-2-PHASE-6-TENANT-ONBOARDING-LIFECYCLE-2026-08-18.
 registra la Fase `6` en `PASS` y
 `SPRINT-2-PHASE-7-INVITATIONS-MEMBERSHIPS-2026-08-19.md` registra la Fase `7` en
 `PASS` y `SPRINT-2-PHASE-8-TENANT-SETTINGS-2026-08-24.md` registra la Fase `8` en
-`PASS`. El siguiente incremento permitido es únicamente la Fase `9`.
+`PASS`. `SPRINT-2-CLOSURE-2026-08-27.md` registra la Fase `9` y el gate acumulativo en
+`PASS`, cierra formalmente Sprint 2 con `GO` y confirma que no existe una fase
+posterior dentro del sprint.

@@ -946,6 +946,11 @@ Fase 2 Tenant/Identity persistence: docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTIT
 Fase 3 Audit base: docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md.
 Fase 4 PlatformAdmin bootstrap: docs/changes/SPRINT-2-PHASE-4-PLATFORM-ADMIN-BOOTSTRAP-2026-08-17.md.
 Fase 5 Identity/Membership Authorization: docs/changes/SPRINT-2-PHASE-5-IDENTITY-MEMBERSHIP-AUTHORIZATION-2026-08-18.md.
+Fase 6 Tenant onboarding/lifecycle: docs/changes/SPRINT-2-PHASE-6-TENANT-ONBOARDING-LIFECYCLE-2026-08-18.md.
+Fase 7 Invitations/Memberships: docs/changes/SPRINT-2-PHASE-7-INVITATIONS-MEMBERSHIPS-2026-08-19.md.
+Fase 8 Tenant settings: docs/changes/SPRINT-2-PHASE-8-TENANT-SETTINGS-2026-08-24.md.
+Cierre formal de Sprint 2: GO el 2026-08-27, fase final 9.
+Evidencia de cierre: docs/changes/SPRINT-2-CLOSURE-2026-08-27.md.
 ```
 
 Condición:
@@ -957,10 +962,9 @@ Sprint 2 obtuvo `GO` formal el 2026-08-14. Los 28 documentos aplicables de las s
 001, 002, 007 y 025 están `accepted` y no quedan gaps críticos o altos abiertos. La
 frontera, el bootstrap transaccional, el tenant activo request-scoped, Keycloak, el
 ownership de configuración/Prisma, Audit base y los gates progresivos están definidos.
-Las Fases `1` a `5`, incluidos Keycloak, persistencia Tenant/Identity, Audit base, el
-bootstrap one-shot del primer PlatformAdmin y la autorización Core fail-closed, están
-en `PASS`; el manifest queda en fase `5` y permite como siguiente incremento únicamente
-la Fase `6` del runbook.
+Las Fases `0` a `9` están completadas con `PASS`; el manifest queda en fase final `9` y
+Sprint 2 está formalmente `CLOSED / COMPLETED` con decisión `GO`. No existe una Fase
+`10` ni otra fase pendiente dentro del sprint.
 ```
 
 Evidencia vigente:
@@ -977,6 +981,7 @@ docs/changes/GAP-S2-001-DOCUMENT-APPROVAL-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md
 docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md
+docs/changes/SPRINT-2-CLOSURE-2026-08-27.md
 ```
 
 ---

@@ -7,13 +7,13 @@
 | Proyecto | RESIDENT Core |
 | Evaluación | `READINESS-SPRINT-2-2026-08-11` |
 | Fecha | 2026-08-11 |
-| Última actualización | 2026-08-19 — Fase 7 invitations/memberships completada con `PASS` |
+| Última actualización | 2026-08-27 — Sprint 2 cerrado formalmente con `GO` |
 | Alcance | Preparación para Sprint 2 — Tenants, identidad y autorización |
-| Commit base inspeccionado | `6c1ee9402667881d6939769436fbf3d588416d6b` |
-| Rama de evaluación | `codex/sprint-2-formal-readiness` |
+| Commit base inspeccionado | `d13115f36f66de7a4b882698b2c37a8d591f16e3` |
+| Rama de evaluación | `main` |
 | Decisión | `GO` |
 | Plan autorizado | `docs/implementation/sprint-2-tenants-identity-access.md` |
-| Naturaleza | Gate documental y técnico previo a funcionalidad |
+| Naturaleza | Gate documental y técnico de readiness y cierre |
 
 ## 2. Propósito y método
 
@@ -55,7 +55,7 @@ contratos y gates verificables.
 | Keycloak local | Realm, clientes, fixtures, bootstrap y verificador versionados; gates reales en `PASS` |
 | Identidad y acceso runtime | Puertos y guards fail-closed; no autentican ni conceden permisos |
 | Auditoría runtime | `AuditLog`, writer transaccional, sanitización, aislamiento y append-only en `PASS` |
-| OpenAPI | Contrato runtime de plataforma presente; no existen endpoints funcionales de Sprint 2 |
+| OpenAPI | Contrato cross-slice de Sprint 2 alineado con runtime; check y validación en `PASS` |
 | CI | Gates de Sprint 1 activos; acciones `@v6` sobre runtime Node.js 24 |
 | Runbook de Sprint 2 | Frontera, incrementos, exclusiones y gates definidos; autorizado por esta reevaluación |
 | Bootstrap de plataforma y tenant | Contrato transaccional cerrado; sin endpoint anónimo, bypass ni placeholder |
@@ -208,31 +208,36 @@ Sprint 0 conserva el hecho histórico y registra su resolución.
 Decision: GO
 Scope evaluated: Sprint 2 — Tenants, identidad y autorización
 Effective date: 2026-08-14
+Formal closure date: 2026-08-27
 Critical gaps open: 0
 High gaps open: 0
 Authorized plan: docs/implementation/sprint-2-tenants-identity-access.md
-Gate phase: 8
-Base commit: 6c1ee9402667881d6939769436fbf3d588416d6b
+Gate phase: 9
+Base commit: d13115f36f66de7a4b882698b2c37a8d591f16e3
 ```
 
-Sprint 2 continúa autorizado exclusivamente en el orden y dentro de la frontera del
-runbook. Las Fases `1` a `8` aportan Keycloak, persistencia Tenant/Identity, Audit base,
-el bootstrap one-shot del primer PlatformAdmin, autorización Core fail-closed,
-onboarding/lifecycle transaccional de tenants, invitaciones/memberships y configuración
-mínima tenant-scoped; el manifest queda en `currentPhase = 8`.
-Este `GO` no autoriza adelantar fases ni ampliar la superficie Prisma, OpenAPI o
-funcional definida.
+Sprint 2 queda formalmente cerrado dentro de la frontera del runbook. Las Fases `0` a
+`9` están completadas y el manifest queda en `currentPhase = 9`. La Fase `9` es la
+última definida: no existe una Fase `10` ni otra fase pendiente dentro de Sprint 2.
 
-## 9. Orden autorizado después de GO
+## 9. Cierre formal
 
-1. Integrar la Fase `8` únicamente después de que todos sus gates pasen en CI.
-2. Implementar después exclusivamente la Fase `9`, cierre OpenAPI y pruebas cruzadas,
-   en una rama y PR cortos y elevar su fase atómicamente con sus artefactos y gates.
+```text
+Sprint 2 formal closure: GO
+Current/Final Phase: 9
+Next phase within Sprint 2: none
+```
+
+La evidencia manual acumulativa de `pnpm sprint2:gates` completó las Fases `0` a `9`
+con `PASS` y generó `artifacts/sprint-2-gates/evidence.json`. El CI requerido del PR
+`#27` también finalizó en `PASS`. La validación OpenAPI conserva una advertencia ya
+conocida y no bloqueante para `/api/v1/health` por no declarar respuesta `4XX`.
 
 ## 10. Resultado
 
 El baseline técnico de Sprint 1 está sano, los gaps `GAP-S2-001` a `GAP-S2-008` están
 cerrados, los 28 documentos aplicables están `accepted` y no existen gaps críticos o
-altos abiertos. La frontera automática y los gates reproducibles pasan sobre el commit
-base inspeccionado. Sprint 2 conserva `GO`; las Fases `1` a `8` quedan implementadas
-con `PASS` y el siguiente incremento permitido es únicamente la Fase `9` del runbook.
+altos abiertos. La frontera Prisma/OpenAPI y los gates reproducibles pasan sobre el
+estado integrado de `main`. Sprint 2 queda `CLOSED / COMPLETED` con decisión formal
+`GO`, fase final `9` y sin siguiente fase dentro del sprint. La evidencia detallada se
+registra en `docs/changes/SPRINT-2-CLOSURE-2026-08-27.md`.

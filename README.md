@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 0 cerrado; Sprint 1 Backend Platform Base autorizado
+Estado: Sprint 2 cerrado formalmente — GO
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -617,7 +617,7 @@ Cierre formal de Sprint 0: PASS (2026-08-11)
 Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: GO (2026-08-14)
-Sprint 2: autorizado dentro del runbook; fases 1–4 PASS; siguiente incremento fase 5
+Sprint 2: cerrado formalmente — GO (2026-08-27); fase final 9; siguiente fase: ninguna
 ```
 
 Evidencia:
@@ -641,14 +641,18 @@ docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md
 docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md
 docs/changes/SPRINT-2-PHASE-4-PLATFORM-ADMIN-BOOTSTRAP-2026-08-17.md
+docs/changes/SPRINT-2-PHASE-5-IDENTITY-MEMBERSHIP-AUTHORIZATION-2026-08-18.md
+docs/changes/SPRINT-2-PHASE-6-TENANT-ONBOARDING-LIFECYCLE-2026-08-18.md
+docs/changes/SPRINT-2-PHASE-7-INVITATIONS-MEMBERSHIPS-2026-08-19.md
+docs/changes/SPRINT-2-PHASE-8-TENANT-SETTINGS-2026-08-24.md
+docs/changes/SPRINT-2-CLOSURE-2026-08-27.md
 ```
 
 Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025
 están `accepted`, los gaps de Sprint 2 están cerrados y la reevaluación formal emitió
-`GO` el 2026-08-14. Las Fases `1` a `4`, incluidos Keycloak, persistencia
-Tenant/Identity, Audit base y el bootstrap one-shot del primer PlatformAdmin, están en
-`PASS`; el manifest queda en fase `4` y el siguiente incremento permitido es
-exclusivamente la Fase `5` del runbook.
+`GO` el 2026-08-14. Las Fases `0` a `9` están completadas, el manifest queda en fase
+final `9` y el cierre formal de Sprint 2 emitió `GO` el 2026-08-27. No existe una Fase
+`10` ni otro incremento pendiente dentro de Sprint 2.
 
 ---
 

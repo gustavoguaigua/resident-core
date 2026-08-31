@@ -21,6 +21,8 @@
     "sprint1:boundary": "node tools/verify-sprint-1-boundary.mjs",
     "sprint2:boundary": "node tools/verify-sprint-2-boundary.mjs",
     "sprint2:gates": "node tools/run-sprint-2-gates.mjs",
+    "sprint3:boundary": "node tools/verify-sprint-3-boundary.mjs",
+    "sprint3:gates": "node tools/run-sprint-3-gates.mjs",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

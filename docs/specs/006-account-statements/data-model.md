@@ -1,5 +1,15 @@
 # Data Model — Spec 006 Account Statements, Balances and Financial Position by Property Unit
 
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y los snapshots conservan esa moneda sin
+> conversión. Este documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para read models, fórmulas, snapshots y reconstrucción; este documento
+> queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                                                                                         |
@@ -10,7 +20,7 @@
 | Documento              | Data Model                                                                                    |
 | Ruta                   | `docs/specs/006-account-statements/data-model.md`                                             |
 | Versión                | 0.1                                                                                           |
-| Estado                 | needs-review                                                                                  |
+| Estado                 | accepted                                                                                  |
 | Fecha                  | 2026-07-14                                                                                    |
 | Documento base         | `docs/specs/006-account-statements/spec.md`                                                   |
 | Plan técnico           | `docs/specs/006-account-statements/plan.md`                                                   |

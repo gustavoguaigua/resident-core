@@ -1,5 +1,19 @@
 # Test Plan — Spec 004 Dues, Fees, Charge Concepts and Charge Generation
 
+> Permisos/Audit Sprint 3: los casos obligatorios y el catálogo canónico están en
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; prevalecen sobre
+> expectativas preliminares de este documento.
+
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y las discrepancias deben fallar cerradas.
+> Este documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para casos de Decimal, idempotencia, concurrencia y reversos; este documento
+> queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo                    | Valor                                                        |
@@ -10,7 +24,7 @@
 | Documento                | Test Plan                                                    |
 | Ruta                     | `docs/specs/004-dues-fees/test-plan.md`                      |
 | Versión                  | 0.1                                                          |
-| Estado                   | needs-review                                                 |
+| Estado                   | accepted                                                 |
 | Fecha                    | 2026-07-14                                                   |
 | Documento base           | `docs/specs/004-dues-fees/spec.md`                           |
 | Plan técnico             | `docs/specs/004-dues-fees/plan.md`                           |

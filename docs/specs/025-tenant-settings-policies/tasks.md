@@ -1,5 +1,14 @@
 # Tasks — 025 Tenant Settings and Policies
 
+> Frontera documental Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; no se ejecutan
+> tareas de settings o exports documentales en este sprint.
+
+> **Extensión autorizable de Sprint 3:** GAP-S3-004 habilita únicamente el seed y
+> validación de cinco definitions financieras enumeradas en
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`; las demás tareas
+> diferidas continúan fuera de alcance.
+
 > **Slice vigente de Sprint 2:** sólo se ejecutan tareas necesarias para
 > `SettingDefinition`, `TenantSettingValue`, lectura de definitions/settings, update de
 > override y seed `general.locale`. Las tareas de policies, scheduling, history,

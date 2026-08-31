@@ -1,5 +1,14 @@
 # Test Plan — Spec 003 Residents, Owners, Tenants and Property Units
 
+> Permisos/Audit Sprint 3: los casos obligatorios y el catálogo canónico están en
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; prevalecen sobre
+> expectativas preliminares de este documento.
+
+> Contrato Sprint 3: GAP-S3-002 está cerrado por
+> `docs/changes/GAP-S3-002-RESIDENTS-PROPERTIES-OWNERSHIP-2026-08-29.md`. Ese contrato
+> prevalece para invariantes, lifecycle y casos `.own`; este documento permanece
+> queda `accepted` tras el cierre de todos sus blockers.
+
 ## 1. Información del documento
 
 | Campo                    | Valor                                                 |
@@ -10,7 +19,7 @@
 | Documento                | Test Plan                                             |
 | Ruta                     | `docs/specs/003-residents-properties/test-plan.md`    |
 | Versión                  | 0.1                                                   |
-| Estado                   | needs-review                                          |
+| Estado                   | accepted                                          |
 | Fecha                    | 2026-07-13                                            |
 | Documento base           | `docs/specs/003-residents-properties/spec.md`         |
 | Plan técnico             | `docs/specs/003-residents-properties/plan.md`         |

@@ -1,5 +1,14 @@
 # Spec — 025 Tenant Settings and Policies
 
+> Frontera documental Sprint 3: GAP-S3-008 está cerrado por
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; configuración,
+> retención y exports documentales de esta spec no se activan en Sprint 3.
+
+> **Extensión autorizable de Sprint 3:** GAP-S3-004 añade exactamente cinco definitions
+> financieras mediante el contrato
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`; `Tenant.currency`
+> continúa perteneciendo exclusivamente a Spec 001.
+
 > **Slice vigente de Sprint 2:** GAP-S2-006 asigna a esta spec el ownership exclusivo
 > de settings mediante `SettingDefinition` y `TenantSettingValue`. Sólo
 > `general.locale` integra el catálogo inicial. Policies, scheduling, historial y

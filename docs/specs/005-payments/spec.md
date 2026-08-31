@@ -1,5 +1,28 @@
 # Spec 005 — Payments, Receipts and Payment Allocation
 
+> Política de archivos Sprint 3: GAP-S3-008 está cerrado por
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; sólo admite
+> comprobantes privados PDF/JPEG/PNG de hasta 10 MiB.
+
+> Permisos/Audit Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; prevalece sobre
+> roles, permisos, separación de funciones, eventos y payloads preliminares.
+
+> Frontera Payments/storage de Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Payments posee el lifecycle de `PaymentReceipt`; Spec 016 posee documento y archivo.
+> Este documento queda `accepted` tras el cierre de sus demás blockers.
+
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y los settings autorizados son los enumerados
+> allí. Este documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para fuentes, lifecycle, allocations, reversos e idempotencia; este
+> documento queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                                               |
@@ -10,7 +33,7 @@
 | Documento       | Functional Specification                                                                                                                            |
 | Ruta            | `docs/specs/005-payments/spec.md`                                                                                                                   |
 | Versión         | 0.1                                                                                                                                                 |
-| Estado          | needs-review                                                                                                                                        |
+| Estado          | accepted                                                                                                                                        |
 | Fecha           | 2026-07-14                                                                                                                                          |
 | Prioridad       | Alta                                                                                                                                                |
 | Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `004-dues-fees`                                                                       |
@@ -1189,10 +1212,7 @@ PaymentReceipt
 ├── id
 ├── tenantId
 ├── paymentId
-├── fileId nullable
-├── fileName nullable
-├── mimeType nullable
-├── fileSize nullable
+├── secureDocumentId
 ├── receiptNumber nullable
 ├── transactionReference nullable
 ├── status
@@ -1777,7 +1797,8 @@ docs/specs/005-payments/
 10. ¿Se permitirá reversar pagos con cargos ya cerrados en estado de cuenta?
 11. ¿Quién puede rechazar comprobantes?
 12. ¿Se requiere doble aprobación para reversos?
-13. ¿Se permitirá adjuntar más de un comprobante por pago?
+13. ¿Se permitirá adjuntar más de un comprobante por pago? Resuelto por GAP-S3-005: un
+    receipt por pago y nuevas versiones documentales sólo después de rechazo.
 14. ¿Se permitirá OCR de comprobantes en una fase futura?
 15. ¿Qué tamaño máximo de archivo se aceptará para comprobantes?
 
@@ -1793,7 +1814,7 @@ Para MVP se recomienda:
 - Requerir unidad para todo pago.
 - Mantener pagos en USD.
 - Usar Decimal para dinero.
-- Permitir comprobante básico mediante fileId o referencia.
+- Permitir comprobante mediante `secureDocumentId` y referencia financiera.
 - Usar storage privado para comprobantes.
 - Dejar pagos reportados en pendingValidation.
 - Permitir confirmar o rechazar pagos.

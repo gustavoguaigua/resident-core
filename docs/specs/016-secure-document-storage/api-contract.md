@@ -1,5 +1,21 @@
 # API Contract — Spec 016 Secure Document Storage
 
+> Frontera operativa Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; no existe API
+> documental general y el binario sólo se sirve mediante PaymentReceipt.
+
+> Superficie Sprint 3: GAP-S3-006 está cerrado por
+> `docs/changes/GAP-S3-006-API-IDEMPOTENCY-BOUNDARY-2026-08-29.md`. Spec 016 no expone
+> API general, pública o platform en este sprint; sólo puertos internos consumidos por
+> Payments. Este documento queda `accepted` tras el cierre de Audit y seguridad de
+> archivos.
+
+> Frontera Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Spec 016 ofrece un puerto tenant-scoped independiente; Payments conserva autorización
+> de negocio y lifecycle del receipt. Este documento queda `accepted` tras
+> cerrar API, permisos/Audit y seguridad de archivos.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                                                                         |
@@ -10,7 +26,7 @@
 | Documento       | API Contract                                                                                                                                                                  |
 | Ruta            | `docs/specs/016-secure-document-storage/api-contract.md`                                                                                                                      |
 | Versión         | 0.1                                                                                                                                                                           |
-| Estado          | needs-review                                                                                                                                                                  |
+| Estado          | accepted                                                                                                                                                                  |
 | Fecha           | 2026-07-21                                                                                                                                                                    |
 | Documento base  | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                              |
 | Plan técnico    | `docs/specs/016-secure-document-storage/plan.md`                                                                                                                              |
@@ -18,7 +34,7 @@
 | API Style       | REST                                                                                                                                                                          |
 | API Version     | `/api/v1`                                                                                                                                                                     |
 | Naturaleza      | Tenant-scoped / Storage-backed / Metadata-driven / Hash-aware / Access-controlled / Source-module-aware / Own-resource-aware / Audit-heavy / Non-public by default            |
-| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `005-payments`, `007-audit`, `011-fines-sanctions`, `012-communications-notifications`, `015-certified-minutes` |
+| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `007-audit`                                                                                                      |
 
 ---
 
@@ -215,7 +231,7 @@ Cache-Control: no-store
 | `Accept`           |                                                                         Recomendado | `application/json`                              |
 | `X-Request-Id`     |                                                                            Opcional | ID de request                                   |
 | `X-Correlation-Id` |                                                                            Opcional | ID de correlación                               |
-| `Idempotency-Key`  | Recomendado en upload, registro generado por sistema, restore y descargas sensibles | Prevención adicional de duplicados accidentales |
+| `Idempotency-Key`  | No aplicable a API externa en Sprint 3; puertos internos idempotentes | Contrato gobernado por GAP-S3-005/006 |
 
 ---
 
@@ -1932,218 +1948,7 @@ binary stream
 
 # 14. Configuración platform
 
-## 14.1. Obtener configuración de storage
-
-### Endpoint
-
-```http id="gc00dc"
-GET /api/v1/platform/document-storage/config
-```
-
-### Permiso
-
-```text id="kz6wdb"
-documents.storage.readConfig
-```
-
-### Response 200
-
-```json id="qqd1zh"
-{
-  "data": {
-    "provider": "s3Compatible",
-    "localStorageAllowedInProd": false,
-    "maxFileSizeMb": 20,
-    "imageMaxFileSizeMb": 10,
-    "reportMaxFileSizeMb": 50,
-    "temporaryUrlTtlSeconds": 300,
-    "temporaryUrlsEnabled": false,
-    "fileScanEnabled": false,
-    "publicDocumentsEnabled": false,
-    "allowedMimeTypes": [
-      "application/pdf",
-      "image/png",
-      "image/jpeg",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "text/csv",
-      "application/json",
-      "text/plain"
-    ],
-    "s3": {
-      "endpointConfigured": true,
-      "regionConfigured": true,
-      "bucketConfigured": true,
-      "serverSideEncryptionEnabled": true,
-      "credentialsConfigured": true
-    }
-  },
-  "meta": {
-    "traceId": "req_123456"
-  }
-}
-```
-
-### Reglas
-
-* No devuelve access keys.
-* No devuelve secret keys.
-* No devuelve connection string sensible.
-* No devuelve bucket si política lo considera sensible; puede devolver `bucketConfigured`.
-
----
-
-## 14.2. Actualizar configuración de storage
-
-### Endpoint
-
-```http id="a8a6r9"
-PATCH /api/v1/platform/document-storage/config
-```
-
-### Permiso
-
-```text id="qc3fkt"
-documents.storage.configure
-```
-
-### Request body
-
-```json id="n0vj8j"
-{
-  "provider": "s3Compatible",
-  "maxFileSizeMb": 20,
-  "imageMaxFileSizeMb": 10,
-  "reportMaxFileSizeMb": 50,
-  "temporaryUrlTtlSeconds": 300,
-  "temporaryUrlsEnabled": false,
-  "fileScanEnabled": false,
-  "publicDocumentsEnabled": false
-}
-```
-
-### Response 200
-
-```json id="g46cmk"
-{
-  "data": {
-    "provider": "s3Compatible",
-    "maxFileSizeMb": 20,
-    "imageMaxFileSizeMb": 10,
-    "reportMaxFileSizeMb": 50,
-    "temporaryUrlTtlSeconds": 300,
-    "temporaryUrlsEnabled": false,
-    "fileScanEnabled": false,
-    "publicDocumentsEnabled": false,
-    "updatedAt": "2026-07-21T12:00:00Z"
-  },
-  "meta": {
-    "traceId": "req_123456"
-  }
-}
-```
-
-### Reglas
-
-* No aceptar secretos por este endpoint en MVP salvo decisión explícita.
-* No permitir `local` en producción si `DOCUMENT_STORAGE_LOCAL_ALLOWED_IN_PROD=false`.
-* Auditar `document.storageProviderConfigured`.
-
----
-
-## 14.3. Probar conexión de storage
-
-### Endpoint
-
-```http id="dv3q6m"
-POST /api/v1/platform/document-storage/test-connection
-```
-
-### Permiso
-
-```text id="b4adqw"
-documents.storage.testConnection
-```
-
-### Request body
-
-```json id="qh6jfx"
-{
-  "provider": "s3Compatible"
-}
-```
-
-### Response 200
-
-```json id="bcm0uk"
-{
-  "data": {
-    "provider": "s3Compatible",
-    "reachable": true,
-    "canWrite": true,
-    "canRead": true,
-    "canDeleteTestObject": true,
-    "checkedAt": "2026-07-21T12:05:00Z"
-  },
-  "meta": {
-    "traceId": "req_123456"
-  }
-}
-```
-
-### Evento auditable
-
-```text id="tj4v1i"
-document.storageConnectionTested
-```
-
----
-
-## 14.4. Listar providers soportados
-
-### Endpoint
-
-```http id="hun5i2"
-GET /api/v1/platform/document-storage/providers
-```
-
-### Permiso
-
-```text id="x3s3hf"
-documents.storage.readConfig
-```
-
-### Response 200
-
-```json id="drtbxa"
-{
-  "data": [
-    {
-      "provider": "local",
-      "enabled": true,
-      "productionAllowed": false
-    },
-    {
-      "provider": "s3Compatible",
-      "enabled": true,
-      "productionAllowed": true
-    },
-    {
-      "provider": "s3",
-      "enabled": false,
-      "productionAllowed": true
-    },
-    {
-      "provider": "minio",
-      "enabled": false,
-      "productionAllowed": true
-    }
-  ],
-  "meta": {
-    "traceId": "req_123456"
-  }
-}
-```
+La configuración general de storage mediante API queda fuera de Sprint 3. En este sprint, proveedor, límites, MIME, validación y retención son configuración operativa de aplicación según [GAP-S3-008](../../changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md); no se exponen endpoints platform para leer, modificar, probar ni enumerar esa configuración.
 
 ---
 
@@ -2172,10 +1977,6 @@ documents.storage.readConfig
 | POST   | `/api/v1/me/documents`                                                  | own      | Sí   | `documents.upload.own`              |
 | POST   | `/api/v1/me/documents/{documentId}/files`                               | own      | Sí   | `documents.upload.own`              |
 | GET    | `/api/v1/me/document-files/{fileId}/download`                           | own      | Sí   | `documents.download.own`            |
-| GET    | `/api/v1/platform/document-storage/config`                              | platform | Sí   | `documents.storage.readConfig`      |
-| PATCH  | `/api/v1/platform/document-storage/config`                              | platform | Sí   | `documents.storage.configure`       |
-| POST   | `/api/v1/platform/document-storage/test-connection`                     | platform | Sí   | `documents.storage.testConnection`  |
-| GET    | `/api/v1/platform/document-storage/providers`                           | platform | Sí   | `documents.storage.readConfig`      |
 
 ---
 
@@ -2265,7 +2066,7 @@ documents.storage.readConfig
     "code": "DOCUMENT_FILE_TOO_LARGE",
     "message": "The uploaded file exceeds the maximum allowed size.",
     "details": {
-      "maxFileSizeMb": 20
+      "maxFileSizeBytes": 10485760
     },
     "traceId": "req_123456"
   }
@@ -2329,11 +2130,6 @@ documents.storage.readConfig
 application/pdf
 image/png
 image/jpeg
-application/vnd.openxmlformats-officedocument.wordprocessingml.document
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-text/csv
-application/json
-text/plain
 ```
 
 ---
@@ -2354,12 +2150,10 @@ application/vnd.android.package-archive
 
 ---
 
-## 18.3. Tamaños sugeridos
+## 18.3. Tamaño máximo
 
 ```text id="b5dphu"
-defaultMaxFileSizeMb = 20
-imageMaxFileSizeMb = 10
-reportExportMaxFileSizeMb = 50
+paymentReceiptMaxFileSizeBytes = 10485760
 ```
 
 ---

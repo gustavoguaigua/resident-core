@@ -1,5 +1,25 @@
 # Data Model — Spec 005 Payments, Receipts and Payment Allocation
 
+> Política de archivos Sprint 3: GAP-S3-008 está cerrado por
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; Spec 016 posee
+> toda metadata física y aplica la política exacta allí definida.
+
+> Frontera Payments/storage de Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> `PaymentReceipt` conserva `secureDocumentId` y metadata financiera, pero no duplica
+> metadata física de Spec 016. Este documento queda `accepted` tras el cierre de sus
+> demás blockers.
+
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y los settings autorizados son los enumerados
+> allí. Este documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para fuentes, allocations, reversos, Decimal y locks; este documento
+> queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                                                                         |
@@ -10,7 +30,7 @@
 | Documento              | Data Model                                                                    |
 | Ruta                   | `docs/specs/005-payments/data-model.md`                                       |
 | Versión                | 0.1                                                                           |
-| Estado                 | needs-review                                                                  |
+| Estado                 | accepted                                                                  |
 | Fecha                  | 2026-07-14                                                                    |
 | Documento base         | `docs/specs/005-payments/spec.md`                                             |
 | Plan técnico           | `docs/specs/005-payments/plan.md`                                             |
@@ -837,17 +857,13 @@ model PaymentReceipt {
   id                   String               @id @default(uuid())
   tenantId             String               @map("tenant_id")
   paymentId            String               @map("payment_id")
-
-  fileId               String?              @map("file_id")
-  fileName             String?              @map("file_name")
-  mimeType             String?              @map("mime_type")
-  fileSize             Int?                 @map("file_size")
+  secureDocumentId     String               @unique @map("secure_document_id")
   receiptNumber        String?              @map("receipt_number")
   transactionReference String?              @map("transaction_reference")
 
   status               PaymentReceiptStatus @default(PENDING)
   uploadedBy           String               @map("uploaded_by")
-  uploadedAt           DateTime             @default(now()) @map("uploaded_at")
+  uploadedAt           DateTime?            @map("uploaded_at")
 
   reviewedBy           String?              @map("reviewed_by")
   reviewedAt           DateTime?            @map("reviewed_at")
@@ -858,12 +874,14 @@ model PaymentReceipt {
 
   tenant               Tenant               @relation(fields: [tenantId], references: [id], onDelete: Restrict)
   payment              Payment              @relation(fields: [paymentId], references: [id], onDelete: Restrict)
+  secureDocument       SecureDocument        @relation(fields: [secureDocumentId], references: [id], onDelete: Restrict)
 
   uploadedByUser       UserProfile          @relation("PaymentReceiptUploadedBy", fields: [uploadedBy], references: [id], onDelete: Restrict)
   reviewedByUser       UserProfile?         @relation("PaymentReceiptReviewedBy", fields: [reviewedBy], references: [id], onDelete: Restrict)
 
   @@index([tenantId])
-  @@index([paymentId])
+  @@unique([tenantId, paymentId])
+  @@index([tenantId, secureDocumentId])
   @@index([uploadedBy])
   @@index([reviewedBy])
   @@index([status])
@@ -1371,16 +1389,14 @@ MVP recomendado:
 
 No almacenar contenido binario en la base de datos.
 
-Guardar solo metadata:
+`PaymentReceipt` guarda sólo la referencia de negocio:
 
 ```text id="w0yejk"
-fileId
-fileName
-mimeType
-fileSize
+secureDocumentId
 ```
 
-El archivo se almacena en storage privado:
+Filename, MIME, tamaño, hash, provider y storage key pertenecen a Spec 016. El archivo
+se almacena en storage privado:
 
 ```text id="btst5z"
 MinIO local/dev

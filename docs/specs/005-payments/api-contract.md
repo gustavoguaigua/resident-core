@@ -1,5 +1,30 @@
 # API Contract — Spec 005 Payments, Receipts and Payment Allocation
 
+> Política de archivos Sprint 3: GAP-S3-008 está cerrado por
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; sólo admite
+> comprobantes privados PDF/JPEG/PNG de hasta 10 MiB mediante las rutas de Payments.
+
+> Superficie Sprint 3: GAP-S3-006 está cerrado por
+> `docs/changes/GAP-S3-006-API-IDEMPOTENCY-BOUNDARY-2026-08-29.md`. Su allowlist,
+> DTOs, `X-Tenant-Id`, idempotencia, permisos, errores y exclusiones prevalecen. Este
+> documento queda `accepted` tras el cierre de Audit y seguridad de archivos.
+
+> Frontera Payments/storage de Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Payments conserva el lifecycle del receipt y consume el puerto de Spec 016; no
+> persiste metadata física ni conoce el provider. Este documento permanece
+> queda `accepted` tras el cierre de API, permisos/Audit y seguridad de archivos.
+
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y los settings autorizados son los enumerados
+> allí. Este documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para lifecycle, allocations, reversos e idempotencia; este documento
+> queda `accepted` tras el cierre de sus blockers de API, storage y Audit.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                         |
@@ -10,7 +35,7 @@
 | Documento       | API Contract                                                                  |
 | Ruta            | `docs/specs/005-payments/api-contract.md`                                     |
 | Versión         | 0.1                                                                           |
-| Estado          | needs-review                                                                  |
+| Estado          | accepted                                                                  |
 | Fecha           | 2026-07-14                                                                    |
 | Documento base  | `docs/specs/005-payments/spec.md`                                             |
 | Plan técnico    | `docs/specs/005-payments/plan.md`                                             |
@@ -238,7 +263,7 @@ URL temporal o stream controlado
 | `Accept`           |      Recomendado | `application/json`                                       |
 | `X-Request-Id`     |         Opcional | ID de request                                            |
 | `X-Correlation-Id` |         Opcional | ID de correlación                                        |
-| `Idempotency-Key`  |         Opcional | Recomendado para creación de pagos                       |
+| `Idempotency-Key`  | Obligatorio en `POST`/`PATCH` allowlisted de Sprint 3 | Idempotencia tenant-scoped conforme a GAP-S3-006 |
 
 ---
 
@@ -1308,7 +1333,7 @@ POST /api/v1/tenant/payment-receipts/{receiptId}/reject
 ### Permiso
 
 ```text id="iqbb38"
-paymentReceipts.reject
+paymentReceipts.review
 ```
 
 ### Request body
@@ -1783,7 +1808,7 @@ POST /api/v1/me/payments/{paymentId}/receipts
 ### Permiso
 
 ```text id="cizwv5"
-payments.receipts.upload.own
+paymentReceipts.create.own
 ```
 
 ### Content-Type
@@ -2543,14 +2568,14 @@ Probar:
 | GET    | `/api/v1/tenant/payment-receipts/{id}`            |   Sí | `paymentReceipts.read`         | No obligatoria               |
 | GET    | `/api/v1/tenant/payment-receipts/{id}/download`   |   Sí | `paymentReceipts.download`     | `paymentReceipt.downloaded`  |
 | POST   | `/api/v1/tenant/payment-receipts/{id}/accept`     |   Sí | `paymentReceipts.review`       | `paymentReceipt.accepted`    |
-| POST   | `/api/v1/tenant/payment-receipts/{id}/reject`     |   Sí | `paymentReceipts.reject`       | `paymentReceipt.rejected`    |
+| POST   | `/api/v1/tenant/payment-receipts/{id}/reject`     |   Sí | `paymentReceipts.review`       | `paymentReceipt.rejected`    |
 | GET    | `/api/v1/tenant/payments/{id}/allocations`        |   Sí | `payments.read`                | No obligatoria               |
 | GET    | `/api/v1/tenant/payment-allocations/{id}`         |   Sí | `payments.read`                | No obligatoria               |
 | POST   | `/api/v1/tenant/payment-allocations/{id}/reverse` |   Sí | `payments.allocate`            | `paymentAllocation.reversed` |
 | GET    | `/api/v1/me/payments`                             |   Sí | `payments.read.own`            | No obligatoria               |
 | POST   | `/api/v1/me/payments`                             |   Sí | `payments.create.own`          | `payment.reported`           |
 | GET    | `/api/v1/me/payments/{id}`                        |   Sí | `payments.read.own`            | No obligatoria               |
-| POST   | `/api/v1/me/payments/{id}/receipts`               |   Sí | `payments.receipts.upload.own` | `paymentReceipt.uploaded`    |
+| POST   | `/api/v1/me/payments/{id}/receipts`               |   Sí | `paymentReceipts.create.own`   | `paymentReceipt.uploaded`    |
 | GET    | `/api/v1/me/payment-receipts/{id}/download`       |   Sí | `paymentReceipts.download.own` | `paymentReceipt.downloaded`  |
 
 ---

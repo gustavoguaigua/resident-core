@@ -1,5 +1,14 @@
 # Data Model — Spec 016 Secure Document Storage
 
+> Frontera operativa Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; prevalece para
+> categoría, estados, scan, provider, cifrado y retención.
+
+> Frontera Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Spec 016 posee toda metadata física; no declara FK hacia Payments y se implementa
+> primero. Este documento queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo                  | Valor                                                                                                                                         |
@@ -10,7 +19,7 @@
 | Documento              | Data Model                                                                                                                                    |
 | Ruta                   | `docs/specs/016-secure-document-storage/data-model.md`                                                                                        |
 | Versión                | 0.1                                                                                                                                           |
-| Estado                 | needs-review                                                                                                                                  |
+| Estado                 | accepted                                                                                                                                  |
 | Fecha                  | 2026-07-21                                                                                                                                    |
 | Documento base         | `docs/specs/016-secure-document-storage/spec.md`                                                                                              |
 | Plan técnico           | `docs/specs/016-secure-document-storage/plan.md`                                                                                              |
@@ -90,14 +99,9 @@ Variables esperadas:
 
 ```text id="kkh9ir"
 DOCUMENT_STORAGE_PROVIDER
-DOCUMENT_STORAGE_LOCAL_ROOT
-DOCUMENT_STORAGE_MAX_FILE_SIZE_MB
-DOCUMENT_STORAGE_IMAGE_MAX_FILE_SIZE_MB
-DOCUMENT_STORAGE_REPORT_MAX_FILE_SIZE_MB
-DOCUMENT_STORAGE_TEMP_URL_TTL_SECONDS
+DOCUMENT_STORAGE_MAX_FILE_SIZE_BYTES
 DOCUMENT_STORAGE_ALLOWED_MIME_TYPES
 DOCUMENT_STORAGE_REQUIRE_HASH
-DOCUMENT_STORAGE_LOCAL_ALLOWED_IN_PROD
 DOCUMENT_STORAGE_S3_ENDPOINT
 DOCUMENT_STORAGE_S3_REGION
 DOCUMENT_STORAGE_S3_BUCKET
@@ -2123,9 +2127,7 @@ application/vnd.android.package-archive
 ## 25.3. Tamaños sugeridos
 
 ```text id="o6gju5"
-defaultMaxFileSizeMb = 20
-imageMaxFileSizeMb = 10
-reportExportMaxFileSizeMb = 50
+paymentReceiptMaxFileSizeBytes = 10485760
 ```
 
 ---

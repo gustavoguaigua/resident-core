@@ -1,5 +1,14 @@
 # Data Model — 025 Tenant Settings and Policies
 
+> Frontera documental Sprint 3: GAP-S3-008 está cerrado por
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`. Provider,
+> límites, MIME, scan y retención pertenecen a configuración de aplicación, no a Prisma.
+
+> **Extensión autorizable de Sprint 3:** GAP-S3-004 añade exactamente cinco definitions
+> financieras mediante el contrato
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`; no añade modelos,
+> policies, scheduling ni una segunda persistencia de moneda.
+
 > **Slice vigente de Sprint 2:** el Prisma autorizado por GAP-S2-006 contiene sólo los
 > enums mínimos, `SettingDefinition` y `TenantSettingValue`. Los modelos de policies,
 > activaciones, excepciones, change logs y exports quedan fuera. `general.timezone` y

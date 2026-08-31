@@ -1,5 +1,18 @@
 # Test Plan — Spec 016 Secure Document Storage
 
+> Frontera operativa Sprint 3: los casos obligatorios y límites exactos están en
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; prevalecen
+> sobre expectativas preliminares de este documento.
+
+> Permisos/Audit Sprint 3: los casos obligatorios y el catálogo canónico están en
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; prevalecen sobre
+> expectativas preliminares de este documento.
+
+> Frontera Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Las pruebas deben demostrar independencia de Payments, aislamiento, idempotencia,
+> compensación y reconciliación segura. Este documento queda `accepted`.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                                                              |
@@ -10,7 +23,7 @@
 | Documento       | Test Plan                                                                                                                                                          |
 | Ruta            | `docs/specs/016-secure-document-storage/test-plan.md`                                                                                                              |
 | Versión         | 0.1                                                                                                                                                                |
-| Estado          | needs-review                                                                                                                                                       |
+| Estado          | accepted                                                                                                                                                       |
 | Fecha           | 2026-07-21                                                                                                                                                         |
 | Documento base  | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                   |
 | Plan técnico    | `docs/specs/016-secure-document-storage/plan.md`                                                                                                                   |
@@ -727,9 +740,7 @@ Debe probar:
 fileSize positivo válido
 fileSize 0 inválido
 fileSize negativo inválido
-fileSize sobre defaultMaxFileSizeMb inválido
-fileSize sobre imageMaxFileSizeMb inválido para imágenes
-fileSize sobre reportMaxFileSizeMb inválido para reportes
+fileSize sobre 10485760 bytes inválido
 ```
 
 ---
@@ -1234,26 +1245,11 @@ rechaza status
 
 ---
 
-## 11.11. `UpdateDocumentStorageConfigDto`
+## 11.11. Configuración de storage
 
-Debe validar:
-
-```text id="vy14l7"
-provider válido
-maxFileSizeMb positivo
-imageMaxFileSizeMb positivo
-reportMaxFileSizeMb positivo
-temporaryUrlTtlSeconds positivo
-temporaryUrlsEnabled boolean
-fileScanEnabled boolean
-publicDocumentsEnabled boolean false en MVP
-rechaza accessKeyId
-rechaza secretAccessKey
-rechaza token
-rechaza connectionString
-rechaza bucket si política lo restringe
-rechaza local en producción si no permitido
-```
+No existe `UpdateDocumentStorageConfigDto` ni endpoint de configuración en Sprint 3.
+La configuración de aplicación se valida al arrancar y falla cerrada fuera de local si
+provider, TLS, bucket privado, credenciales o SSE no cumplen GAP-S3-008.
 
 ---
 
@@ -2558,8 +2554,7 @@ archivo 0 bytes rechazado
 archivo menor a límite aceptado
 archivo igual al límite aceptado
 archivo mayor al límite rechazado 413
-imagen mayor a imageMaxFileSizeMb rechazada
-reporte mayor a reportMaxFileSizeMb rechazado
+comprobante mayor a 10485760 bytes rechazado
 ```
 
 ---

@@ -1,5 +1,18 @@
 # Security Notes — Spec 016 Secure Document Storage
 
+> Frontera operativa Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; prevalece para
+> MIME, tamaño, scan, cuarentena, provider, descarga, cifrado y retención.
+
+> Permisos/Audit Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; no publica
+> `documents.*`, normaliza `FinancialManager` a `Treasurer` y limita el catálogo Audit.
+
+> Frontera Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Upload temporal, promoción, compensación y reconciliación son tenant-scoped y nunca
+> exponen claves internas. Este documento queda `accepted`.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                                                                         |
@@ -10,7 +23,7 @@
 | Documento       | Security Notes                                                                                                                                                                |
 | Ruta            | `docs/specs/016-secure-document-storage/security-notes.md`                                                                                                                    |
 | Versión         | 0.1                                                                                                                                                                           |
-| Estado          | needs-review                                                                                                                                                                  |
+| Estado          | accepted                                                                                                                                                                  |
 | Fecha           | 2026-07-21                                                                                                                                                                    |
 | Documento base  | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                              |
 | Plan técnico    | `docs/specs/016-secure-document-storage/plan.md`                                                                                                                              |
@@ -18,7 +31,7 @@
 | Contrato API    | `docs/specs/016-secure-document-storage/api-contract.md`                                                                                                                      |
 | Plan de pruebas | `docs/specs/016-secure-document-storage/test-plan.md`                                                                                                                         |
 | Tareas          | `docs/specs/016-secure-document-storage/tasks.md`                                                                                                                             |
-| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `005-payments`, `007-audit`, `011-fines-sanctions`, `012-communications-notifications`, `015-certified-minutes` |
+| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `007-audit`                                                                                                      |
 | Naturaleza      | Tenant-scoped / Storage-backed / Metadata-driven / Hash-aware / Access-controlled / Source-module-aware / Own-resource-aware / Audit-heavy / Non-public by default            |
 
 ---
@@ -1346,11 +1359,6 @@ failed
 application/pdf
 image/png
 image/jpeg
-application/vnd.openxmlformats-officedocument.wordprocessingml.document
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-text/csv
-application/json
-text/plain
 ```
 
 ---
@@ -1392,9 +1400,7 @@ rutas relativas
 ### 19.5. Tamaños recomendados MVP
 
 ```text id="ko9yua"
-defaultMaxFileSizeMb = 20
-imageMaxFileSizeMb = 10
-reportExportMaxFileSizeMb = 50
+paymentReceiptMaxFileSizeBytes = 10485760
 ```
 
 ---
@@ -1573,7 +1579,7 @@ root relativo inseguro
 - no ACL pública;
 - no public bucket policy;
 - credenciales fuera del repositorio;
-- server-side encryption si está disponible;
+- server-side encryption obligatoria fuera de local;
 - least privilege para credenciales;
 - no listar bucket desde cliente;
 - no exponer bucket/path;

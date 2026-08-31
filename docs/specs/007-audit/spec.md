@@ -1,5 +1,9 @@
 # Spec 007 — Audit, Traceability and Compliance Events
 
+> Extensión Sprint 3: GAP-S3-007 está cerrado por
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`. Conserva el único
+> `AuditLog` append-only y no habilita consulta, exportación o reporting.
+
 > **Slice canónico de Sprint 2:**
 > `docs/changes/GAP-S2-007-AUDIT-BASE-SEMANTICS-2026-08-13.md` autoriza únicamente
 > escritura durable, sanitizada, transaccional y append-only para el catálogo de Specs

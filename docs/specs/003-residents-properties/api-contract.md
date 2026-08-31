@@ -1,5 +1,15 @@
 # API Contract — Spec 003 Residents, Owners, Tenants and Property Units
 
+> Superficie Sprint 3: GAP-S3-006 está cerrado por
+> `docs/changes/GAP-S3-006-API-IDEMPOTENCY-BOUNDARY-2026-08-29.md`. Su allowlist,
+> DTOs, `X-Tenant-Id`, idempotencia, permisos, errores y exclusiones prevalecen. Este
+> documento queda `accepted` tras el cierre de Audit.
+
+> Contrato Sprint 3: GAP-S3-002 está cerrado por
+> `docs/changes/GAP-S3-002-RESIDENTS-PROPERTIES-OWNERSHIP-2026-08-29.md`. Ese contrato
+> prevalece para el slice, ownership, estados y `.own`; este documento permanece
+> queda `accepted` tras el cierre de sus blockers API y Audit.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                 |
@@ -10,7 +20,7 @@
 | Documento       | API Contract                                          |
 | Ruta            | `docs/specs/003-residents-properties/api-contract.md` |
 | Versión         | 0.1                                                   |
-| Estado          | needs-review                                          |
+| Estado          | accepted                                          |
 | Fecha           | 2026-07-13                                            |
 | Documento base  | `docs/specs/003-residents-properties/spec.md`         |
 | Plan técnico    | `docs/specs/003-residents-properties/plan.md`         |

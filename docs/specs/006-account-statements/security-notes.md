@@ -1,5 +1,19 @@
 # Security Notes — Spec 006 Account Statements, Balances and Financial Position by Property Unit
 
+> Permisos/Audit Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; prevalece sobre
+> roles, permisos, eventos, lecturas/exportaciones y payloads preliminares.
+
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y las discrepancias fallan cerradas. Este
+> documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para aislamiento, consistencia, locks y reconstrucción; este documento
+> queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                         |
@@ -10,7 +24,7 @@
 | Documento       | Security Notes                                                                                |
 | Ruta            | `docs/specs/006-account-statements/security-notes.md`                                         |
 | Versión         | 0.1                                                                                           |
-| Estado          | needs-review                                                                                  |
+| Estado          | accepted                                                                                  |
 | Fecha           | 2026-07-14                                                                                    |
 | Documento base  | `docs/specs/006-account-statements/spec.md`                                                   |
 | Plan técnico    | `docs/specs/006-account-statements/plan.md`                                                   |

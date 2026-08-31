@@ -1,5 +1,28 @@
 # Security Notes — Spec 005 Payments, Receipts and Payment Allocation
 
+> Política de archivos Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; prevalece sobre
+> límites, MIME, scan, provider, descarga y retención preliminares.
+
+> Permisos/Audit Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; prevalece sobre
+> roles, permisos, separación de funciones, eventos y payloads preliminares.
+
+> Frontera Payments/storage de Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Storage privado, tenant scope, compensación y no exposición de claves prevalecen;
+> este documento queda `accepted` tras el cierre de sus demás blockers.
+
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y los errores de catálogo o discrepancias
+> fallan cerrados. Este documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para atomicidad, aislamiento, locks y fail-closed financiero; este
+> documento queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                         |
@@ -10,7 +33,7 @@
 | Documento       | Security Notes                                                                |
 | Ruta            | `docs/specs/005-payments/security-notes.md`                                   |
 | Versión         | 0.1                                                                           |
-| Estado          | needs-review                                                                  |
+| Estado          | accepted                                                                  |
 | Fecha           | 2026-07-14                                                                    |
 | Documento base  | `docs/specs/005-payments/spec.md`                                             |
 | Plan técnico    | `docs/specs/005-payments/plan.md`                                             |

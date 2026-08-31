@@ -43,7 +43,9 @@
     "test:keycloak": "node tools/keycloak/run-phase-1-gate.mjs test",
     "sprint1:boundary": "pnpm --filter @resident/testing sprint1:boundary",
     "sprint2:boundary": "pnpm --filter @resident/testing sprint2:boundary",
-    "sprint2:gates": "pnpm --filter @resident/testing sprint2:gates"
+    "sprint2:gates": "pnpm --filter @resident/testing sprint2:gates",
+    "sprint3:boundary": "pnpm --filter @resident/testing sprint3:boundary",
+    "sprint3:gates": "pnpm --filter @resident/testing sprint3:gates"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

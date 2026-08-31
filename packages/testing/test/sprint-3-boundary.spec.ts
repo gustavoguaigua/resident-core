@@ -33,12 +33,12 @@ afterEach(() => {
 });
 
 describe("Sprint 3 boundary verifier", () => {
-  it("accepts the current documented NO_GO phase 0 boundary", () => {
+  it("accepts the current GO phase 0 boundary", () => {
     const result = runVerifier();
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain(
-      "Sprint 3 boundary is valid at phase 0 (NO_GO); applicable documents: 35, needs-review: 0.",
+      "Sprint 3 boundary is valid at phase 0 (GO); applicable documents: 35, needs-review: 0.",
     );
   });
 

@@ -7,16 +7,17 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-08-30 |
-| Rama evaluada | `codex/sprint-3-readiness` |
-| Decisión | `NO_GO` |
+| Fecha de actualización | 2026-08-31 |
+| Rama evaluada | `codex/sprint-3-formal-readiness` |
+| Baseline integrado | `216bd04` — PR #29 |
+| Decisión | `GO` |
 | Fase actual | `0 — readiness` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
-Decision: NO_GO
+Decision: GO
 Current Phase: 0
-Implementation authorized: no
+Implementation authorized: yes; begin with Phase 1 only
 ```
 
 ## 2. Método
@@ -153,7 +154,7 @@ paralelas ni cambios al baseline de Sprint 2.
 La frontera canónica está en
 `docs/implementation/sprint-3-residents-properties-finance-base.md`. El manifest
 `packages/testing/config/sprint-3-gates.json` define exactamente fases 0–9,
-`readinessDecision = NO_GO` y `currentPhase = 0`. No existe fase 10.
+`readinessDecision = GO` y `currentPhase = 0`. No existe fase 10.
 
 El verificador rechaza en fase 0 modelos Prisma, rutas OpenAPI y módulos runtime de
 Sprint 3, inventaría los 35 documentos y exige correspondencia entre readiness y
@@ -172,22 +173,32 @@ manifest.
 | API, permisos, auditoría y storage cerrados | Cumple |
 | Cero gaps críticos/altos abiertos | Cumple |
 
-## 9. Estado tras el cierre documental
+## 9. Reevaluación formal
+
+| Evidencia | Resultado |
+| --- | --- |
+| Baseline integrado | `216bd04`; PR #29 con Required CI gates `PASS` |
+| Documentación aplicable | 35/35 `accepted`; 0 `needs-review` |
+| Gaps de readiness | 0 críticos, 0 altos, 0 medios abiertos |
+| Manifest | fase `0`; exactamente fases `0`–`9`; sin fase `10` |
+| Frontera previa | `sprint3:boundary` `PASS` en fase 0 |
+| Pruebas de frontera | 4/4 `PASS` |
+| Prisma, OpenAPI y runtime | Sin artefactos prematuros de Sprint 3 |
 
 ```text
-Decision: NO_GO
+Decision: GO
 Current Phase: 0
 Critical gaps open: 0
 High gaps open: 0
 Medium gaps open: 0
-Implementation authorized: no
+Implementation authorized: yes; begin with Phase 1 only
 ```
 
-Todos los gaps de readiness están cerrados y los 35 documentos aplicables están
-aprobados. La compuerta conserva `NO_GO` y fase 0 hasta ejecutar una reevaluación formal
-separada; el cierre documental no cambia automáticamente la decisión.
+Todos los criterios de entrada están satisfechos y la evidencia reproducible autoriza
+Sprint 3. La decisión `GO` conserva `currentPhase = 0`: permite iniciar posteriormente
+la Fase 1, pero no implementa ni activa esa fase en esta reevaluación.
 
 ## 10. Siguiente paso recomendado
 
-Integrar el baseline documental y ejecutar una reevaluación formal separada de la
-compuerta Sprint 3 para emitir una nueva decisión `GO` o `NO_GO` basada en evidencia.
+Iniciar Sprint 3 Fase 1 — `residents-properties-persistence` en una rama corta,
+elevando `currentPhase` de 0 a 1 únicamente junto con sus artefactos y gate específico.

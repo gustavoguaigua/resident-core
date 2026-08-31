@@ -8,8 +8,8 @@
 | Documento  | Specs Index                            |
 | Ruta       | `docs/specs/SPECS_INDEX.md`            |
 | Versión    | 0.1                                    |
-| Estado     | Índice inicial                         |
-| Fecha      | 2026-08-06                             |
+| Estado     | Vigente hasta readiness inicial de Sprint 3 |
+| Fecha      | 2026-08-28                             |
 | Fase       | FASE 2 — RESIDENT Core                 |
 | Naturaleza | Índice maestro de especificaciones SDD |
 
@@ -77,10 +77,10 @@ pendiente de revisión.
 | ---: | ------------------------------ | ---------------------------- | ---------- | ------------------ | ----------------------- |
 |  001 | `tenants`                      | Platform / Tenant Management | Crítica    | accepted           | Sprint 2                |
 |  002 | `users-roles`                  | Identity and Access          | Crítica    | accepted           | Sprint 2                |
-|  003 | `residents-properties`         | Residents and Properties     | Crítica    | needs-review       | Sprint 3                |
-|  004 | `dues-fees`                    | Financial Management         | Crítica    | needs-review       | Sprint 3                |
-|  005 | `payments`                     | Payments                     | Crítica    | needs-review       | Sprint 3                |
-|  006 | `account-statements`           | Financial Statements         | Crítica    | needs-review       | Sprint 3                |
+|  003 | `residents-properties`         | Residents and Properties     | Crítica    | accepted           | Sprint 3                |
+|  004 | `dues-fees`                    | Financial Management         | Crítica    | accepted           | Sprint 3                |
+|  005 | `payments`                     | Payments                     | Crítica    | accepted           | Sprint 3                |
+|  006 | `account-statements`           | Financial Statements         | Crítica    | accepted           | Sprint 3                |
 |  007 | `audit`                        | Audit and Compliance         | Crítica    | accepted           | Sprint 2-3              |
 |  008 | `basic-reports`                | Reporting                    | Media      | needs-review       | Sprint 7                |
 |  009 | `wordpress-integration-basic`  | External Integration         | Media      | needs-review       | Sprint 7                |
@@ -90,7 +90,7 @@ pendiente de revisión.
 |  013 | `meetings-attendance`          | Meetings                     | Media-Alta | needs-review       | Sprint 7                |
 |  014 | `voting-basic`                 | Voting                       | Media-Alta | needs-review       | Sprint 7                |
 |  015 | `certified-minutes`            | Governance / Minutes         | Media-Alta | needs-review       | Sprint 7                |
-|  016 | `secure-document-storage`      | Document Storage             | Crítica    | needs-review       | Sprint 3                |
+|  016 | `secure-document-storage`      | Document Storage             | Crítica    | accepted           | Sprint 3                |
 |  017 | `bank-reconciliation`          | Reconciliation               | Avanzada   | needs-review       | Post-MVP                |
 |  018 | `payment-provider-integration` | Payment Providers            | Avanzada   | needs-review       | Post-MVP                |
 |  019 | `open-banking-integration`     | Open Banking                 | Avanzada   | needs-review       | Post-MVP                |
@@ -415,8 +415,8 @@ No inventes endpoints, tablas, permisos ni reglas fuera de las specs.
 ```text id="specs-index-current-state"
 docs/sdd/                         completo
 docs/decisions/                   completo
-docs/specs/{001-tenants,002-users-roles,007-audit,025-tenant-settings-policies}/ accepted
-docs/specs/003-006,008-024,026-030/ needs-review
+docs/specs/{001-tenants,002-users-roles,003-residents-properties,004-dues-fees,005-payments,006-account-statements,007-audit,016-secure-document-storage,025-tenant-settings-policies}/ accepted
+docs/specs/008-015,017-024,026-030/ needs-review
 docs/specs/031-implementation-readiness/ complete
 docs/changes/                     contiene cambios, readiness y cierres formales
 docs/implementation/              contiene los runbooks cerrados de Sprint 0 y Sprint 1
@@ -456,6 +456,9 @@ Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
 Implementation Readiness Sprint 2: GO desde 2026-08-14; 0 gaps críticos o altos
 abiertos. Sprint 2 está formalmente cerrado con `GO`; manifest en fase final `9`, Fases
 `0`–`9` completadas y ninguna fase siguiente dentro del sprint.
+Implementation Readiness Sprint 3: NO_GO, actualizado el 2026-08-30; manifest en fase
+`0`, 35/35 documentos aplicables `accepted` y 0 gaps abiertos; implementación
+funcional no autorizada hasta una reevaluación formal separada.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
@@ -478,6 +481,19 @@ docs/changes/SPRINT-2-CLOSURE-2026-08-27.md
 Decision: GO
 Current/Final Phase: 9
 Next phase within Sprint 2: none
+```
+
+La decisión vigente para Sprint 3 se encuentra en:
+
+```text id="specs-index-sprint3-readiness"
+docs/changes/READINESS-SPRINT-3-2026-08-28.md
+docs/implementation/sprint-3-residents-properties-finance-base.md
+docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md
+docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md
+docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md
+Decision: NO_GO
+Current Phase: 0
+Implementation authorized: no
 ```
 
 ---

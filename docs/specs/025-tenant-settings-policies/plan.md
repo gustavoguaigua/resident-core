@@ -1,5 +1,14 @@
 # Technical Plan — 025 Tenant Settings and Policies
 
+> Frontera documental Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; settings y
+> exports documentales permanecen diferidos.
+
+> **Extensión autorizable de Sprint 3:** GAP-S3-004 añade exactamente cinco definitions
+> financieras mediante el contrato
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`; el resto del plan
+> diferido continúa fuera de alcance.
+
 > **Slice vigente de Sprint 2:** implementar exclusivamente `SettingDefinition`,
 > `TenantSettingValue`, resolución efectiva actual y el seed `general.locale`. El resto
 > del plan queda diferido por GAP-S2-006.

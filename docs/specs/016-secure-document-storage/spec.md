@@ -1,5 +1,18 @@
 # Functional Specification — Spec 016 Secure Document Storage
 
+> Frontera operativa Sprint 3: GAP-S3-008 está cerrado por
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; sólo se activa
+> `PAYMENT_RECEIPT` y las categorías/integraciones posteriores quedan excluidas.
+
+> Permisos/Audit Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; no publica
+> `documents.*`, normaliza `FinancialManager` a `Treasurer` y limita el catálogo Audit.
+
+> Frontera Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> Spec 016 posee documento, versiones y archivo físico, y no depende del dominio de
+> Payments. Este documento queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                                                                                              |
@@ -10,9 +23,9 @@
 | Documento       | Functional Specification                                                                                                                                                                           |
 | Ruta            | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                                                   |
 | Versión         | 0.1                                                                                                                                                                                                |
-| Estado          | needs-review                                                                                                                                                                                       |
+| Estado          | accepted                                                                                                                                                                                       |
 | Fecha           | 2026-07-21                                                                                                                                                                                         |
-| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `005-payments`, `007-audit`, `011-fines-sanctions`, `012-communications-notifications`, `015-certified-minutes`                      |
+| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `007-audit`                                                                                                                           |
 | Relacionado con | comprobantes de pago, evidencias de multas, adjuntos de comunicaciones, PDFs de actas, reportes exportados, documentos administrativos, almacenamiento S3-compatible, auditoría, descargas seguras |
 | API Style       | REST                                                                                                                                                                                               |
 | Naturaleza      | Tenant-scoped / Storage-backed / Access-controlled / Metadata-driven / Hash-aware / Audit-heavy / Non-public by default                                                                            |
@@ -314,7 +327,7 @@ Puede gestionar documentos administrativos del tenant según permisos.
 
 ---
 
-### 8.3. FinancialManager
+### 8.3. Treasurer
 
 Puede acceder a comprobantes y documentos financieros permitidos.
 
@@ -2170,18 +2183,18 @@ No se acepta la implementación si:
 ## 31. Preguntas abiertas
 
 ```text id="cliz1d"
-1. ¿Cuál será el tamaño máximo inicial por archivo?
-2. ¿El límite será global, por tenant, por categoría o por módulo?
-3. ¿Se usará S3 AWS directamente, MinIO, Cloudflare R2 u otro storage S3-compatible?
-4. ¿Se habilitará antivirus desde MVP o solo estado preparado?
-5. ¿Qué categorías permitirán upload propio desde /me?
-6. ¿Qué documentos podrán ser descargados por residentes?
-7. ¿Cuáles documentos serán estrictamente administrativos?
-8. ¿Se requiere expiración de documentos temporales generados por reportes?
-9. ¿Se requiere cuota de almacenamiento por tenant?
-10. ¿Se requiere versionado físico de objetos en storage?
-11. ¿Se requiere cifrado con llave administrada por plataforma o por tenant?
-12. ¿Se requiere política formal de retención documental?
+1. Resuelta: máximo global de 10 MiB por comprobante.
+2. Resuelta: no existen overrides por tenant, categoría o endpoint.
+3. Resuelta: MinIO sólo local; adapter S3-compatible privado fuera de local.
+4. Resuelta: antivirus real diferido; Sprint 3 usa NOT_REQUIRED con validación estricta.
+5. Resuelta: sólo PAYMENT_RECEIPT mediante rutas propias de Payments.
+6. Resuelta: sólo comprobantes propios autorizados y en estado AVAILABLE.
+7. Resuelta: no existe API documental administrativa general en Sprint 3.
+8. Resuelta: objetos técnicos sin fila expiran a las 24 horas; reports están excluidos.
+9. Resuelta: no hay cuota tenant configurable en Sprint 3.
+10. Resuelta: Core versiona documentos; no exige versioning nativo del bucket.
+11. Resuelta: SSE es obligatorio fuera de local; llaves por tenant quedan diferidas.
+12. Resuelta: no hay purga de documentos persistidos durante Sprint 3.
 ```
 
 ---
@@ -2206,7 +2219,7 @@ Para el MVP se recomienda:
 - no implementar IA;
 - no implementar firma electrónica;
 - no implementar verificación pública;
-- integrar progresivamente Payments, Fines, Communications y Certified Minutes.
+- integrar únicamente Payments en Sprint 3; los demás dominios requieren su sprint.
 ```
 
 ---

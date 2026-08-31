@@ -1,5 +1,13 @@
 # Security Notes — 025 Tenant Settings and Policies
 
+> Frontera documental Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; ningún tenant
+> puede relajar límites, MIME, privacidad, cifrado o retención.
+
+> **Extensión autorizable de Sprint 3:** GAP-S3-004 añade cinco definitions financieras
+> sensibles con defaults seguros y resolución fail-closed mediante
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`.
+
 > **Slice vigente de Sprint 2:** GAP-S2-006 limita la superficie a definitions de sólo
 > lectura y overrides tipados tenant-scoped. Las prohibiciones de secretos, código
 > ejecutable, exposición pública y acceso cross-tenant siguen siendo obligatorias.

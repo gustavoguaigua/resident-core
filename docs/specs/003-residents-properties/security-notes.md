@@ -1,5 +1,14 @@
 # Security Notes — Spec 003 Residents, Owners, Tenants and Property Units
 
+> Permisos/Audit Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md`; prevalece sobre
+> roles, permisos, eventos y payloads preliminares de este documento.
+
+> Contrato Sprint 3: GAP-S3-002 está cerrado por
+> `docs/changes/GAP-S3-002-RESIDENTS-PROPERTIES-OWNERSHIP-2026-08-29.md`. Ese contrato
+> prevalece para aislamiento tenant, vínculo de identidad y `.own` fail-closed; este
+> documento queda `accepted` tras el cierre de todos sus blockers.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                   |
@@ -10,7 +19,7 @@
 | Documento       | Security Notes                                          |
 | Ruta            | `docs/specs/003-residents-properties/security-notes.md` |
 | Versión         | 0.1                                                     |
-| Estado          | needs-review                                            |
+| Estado          | accepted                                            |
 | Fecha           | 2026-07-14                                              |
 | Documento base  | `docs/specs/003-residents-properties/spec.md`           |
 | Plan técnico    | `docs/specs/003-residents-properties/plan.md`           |

@@ -8,9 +8,9 @@
 | Documento   | Project Blueprint                                                                      |
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
-| Estado      | Sprint 0 cerrado; Sprint 1 Backend Platform Base autorizado                            |
-| Fecha       | 2026-08-06                                                                             |
-| Fase actual | Inicio autorizado de Sprint 1 — Backend Platform Base                                 |
+| Estado      | Sprint 2 cerrado; readiness inicial de Sprint 3 en `NO_GO`                             |
+| Fecha       | 2026-08-28                                                                             |
+| Fase actual | Sprint 3 — Fase 0, readiness; implementación no autorizada                            |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -520,10 +520,10 @@ Inventario documental presente; el estado refleja revisión formal, no calendari
 | ------: | ------------------------------ | ------------------ |
 |     001 | `tenants`                      | accepted |
 |     002 | `users-roles`                  | accepted |
-|     003 | `residents-properties`         | needs-review |
-|     004 | `dues-fees`                    | needs-review |
-|     005 | `payments`                     | needs-review |
-|     006 | `account-statements`           | needs-review |
+|     003 | `residents-properties`         | accepted |
+|     004 | `dues-fees`                    | accepted |
+|     005 | `payments`                     | accepted |
+|     006 | `account-statements`           | accepted |
 |     007 | `audit`                        | accepted |
 |     008 | `basic-reports`                | needs-review |
 |     009 | `wordpress-integration-basic`  | needs-review |
@@ -533,7 +533,7 @@ Inventario documental presente; el estado refleja revisión formal, no calendari
 |     013 | `meetings-attendance`          | needs-review |
 |     014 | `voting-basic`                 | needs-review |
 |     015 | `certified-minutes`            | needs-review |
-|     016 | `secure-document-storage`      | needs-review |
+|     016 | `secure-document-storage`      | accepted |
 |     017 | `bank-reconciliation`          | needs-review |
 |     018 | `payment-provider-integration` | needs-review |
 |     019 | `open-banking-integration`     | needs-review |
@@ -951,6 +951,10 @@ Fase 7 Invitations/Memberships: docs/changes/SPRINT-2-PHASE-7-INVITATIONS-MEMBER
 Fase 8 Tenant settings: docs/changes/SPRINT-2-PHASE-8-TENANT-SETTINGS-2026-08-24.md.
 Cierre formal de Sprint 2: GO el 2026-08-27, fase final 9.
 Evidencia de cierre: docs/changes/SPRINT-2-CLOSURE-2026-08-27.md.
+Readiness inicial de Sprint 3: NO_GO el 2026-08-28, fase 0.
+Gaps abiertos de Sprint 3: 0 críticos y 0 altos.
+Runbook: docs/implementation/sprint-3-residents-properties-finance-base.md.
+Evidencia: docs/changes/READINESS-SPRINT-3-2026-08-28.md.
 ```
 
 Condición:
@@ -965,11 +969,16 @@ ownership de configuración/Prisma, Audit base y los gates progresivos están de
 Las Fases `0` a `9` están completadas con `PASS`; el manifest queda en fase final `9` y
 Sprint 2 está formalmente `CLOSED / COMPLETED` con decisión `GO`. No existe una Fase
 `10` ni otra fase pendiente dentro del sprint.
+
+Sprint 3 es el siguiente incremento. Su compuerta permanece en `NO_GO`, fase `0`: los
+35 documentos de Specs 003, 004, 005, 006 y 016 están `accepted` y no quedan gaps
+abiertos. No se autoriza implementación funcional hasta una reevaluación formal
+separada.
 ```
 
 Evidencia vigente:
 
-```text id="blueprint-sprint2-readiness-evidence"
+```text id="blueprint-readiness-evidence"
 docs/changes/SPRINT-1-CLOSURE-2026-08-11.md
 docs/changes/READINESS-SPRINT-2-2026-08-11.md
 docs/implementation/sprint-2-tenants-identity-access.md
@@ -982,6 +991,11 @@ docs/changes/SPRINT-2-PHASE-1-KEYCLOAK-2026-08-14.md
 docs/changes/SPRINT-2-PHASE-2-TENANT-IDENTITY-PERSISTENCE-2026-08-15.md
 docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md
 docs/changes/SPRINT-2-CLOSURE-2026-08-27.md
+docs/changes/READINESS-SPRINT-3-2026-08-28.md
+docs/implementation/sprint-3-residents-properties-finance-base.md
+docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md
+docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md
+docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md
 ```
 
 ---

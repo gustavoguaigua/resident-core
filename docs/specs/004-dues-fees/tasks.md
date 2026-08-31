@@ -1,5 +1,15 @@
 # Tasks — Spec 004 Dues, Fees, Charge Concepts and Charge Generation
 
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y los settings autorizados son los enumerados
+> allí. Este documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para el alcance de implementación y validación; este documento permanece
+> queda `accepted` tras el cierre de sus demás blockers.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                        |
@@ -10,7 +20,7 @@
 | Documento       | Implementation Tasks                                         |
 | Ruta            | `docs/specs/004-dues-fees/tasks.md`                          |
 | Versión         | 0.1                                                          |
-| Estado          | needs-review                                                 |
+| Estado          | accepted                                                 |
 | Fecha           | 2026-07-14                                                   |
 | Documento base  | `docs/specs/004-dues-fees/spec.md`                           |
 | Plan técnico    | `docs/specs/004-dues-fees/plan.md`                           |

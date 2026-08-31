@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 2 cerrado formalmente — GO
+Estado: Sprint 3 Implementation Readiness — NO_GO; Sprint 2 cerrado — GO
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -605,7 +605,8 @@ baseline.
 ```text
 Implementation Readiness Sprint 0: GO (2026-08-10)
 Specs 001, 002, 007 y 025: accepted
-Specs 003-006, 008-024 y 026-030: needs-review
+Specs 003-006 y 016: accepted
+Specs 008-015, 017-024 y 026-030: needs-review
 Spec 031: complete
 Blueprint: creado
 Specs Index: creado
@@ -618,6 +619,7 @@ Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: GO (2026-08-14)
 Sprint 2: cerrado formalmente — GO (2026-08-27); fase final 9; siguiente fase: ninguna
+Implementation Readiness Sprint 3: NO_GO (actualizado 2026-08-30); fase 0; 0 gaps abiertos
 ```
 
 Evidencia:
@@ -646,6 +648,11 @@ docs/changes/SPRINT-2-PHASE-6-TENANT-ONBOARDING-LIFECYCLE-2026-08-18.md
 docs/changes/SPRINT-2-PHASE-7-INVITATIONS-MEMBERSHIPS-2026-08-19.md
 docs/changes/SPRINT-2-PHASE-8-TENANT-SETTINGS-2026-08-24.md
 docs/changes/SPRINT-2-CLOSURE-2026-08-27.md
+docs/changes/READINESS-SPRINT-3-2026-08-28.md
+docs/implementation/sprint-3-residents-properties-finance-base.md
+docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md
+docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md
+docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md
 ```
 
 Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025
@@ -653,6 +660,11 @@ están `accepted`, los gaps de Sprint 2 están cerrados y la reevaluación forma
 `GO` el 2026-08-14. Las Fases `0` a `9` están completadas, el manifest queda en fase
 final `9` y el cierre formal de Sprint 2 emitió `GO` el 2026-08-27. No existe una Fase
 `10` ni otro incremento pendiente dentro de Sprint 2.
+
+Sprint 3 es el siguiente incremento de la hoja de ruta. Su compuerta inicial emitió
+`NO_GO` el 2026-08-28 y cerró todos sus gaps el 2026-08-30: el manifest permanece en
+fase `0`, los 35 documentos aplicables de Specs 003, 004, 005, 006 y 016 están
+`accepted`, y no se autoriza runtime hasta ejecutar una reevaluación formal separada.
 
 ---
 

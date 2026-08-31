@@ -1,5 +1,14 @@
 # Plan — Spec 016 Secure Document Storage
 
+> Frontera operativa Sprint 3: el contrato canónico es
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`; no añade
+> scanner, categorías posteriores ni purga documental.
+
+> Frontera Sprint 3: GAP-S3-005 está cerrado por
+> `docs/changes/GAP-S3-005-PAYMENTS-DOCUMENT-STORAGE-BOUNDARY-2026-08-29.md`.
+> El módulo base no depende de Payments; los módulos consumidores aportan validadores
+> de recurso origen a través de puertos. Este documento queda `accepted`.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                                                                                                         |
@@ -10,10 +19,10 @@
 | Documento       | Plan técnico                                                                                                                                                                  |
 | Ruta            | `docs/specs/016-secure-document-storage/plan.md`                                                                                                                              |
 | Versión         | 0.1                                                                                                                                                                           |
-| Estado          | needs-review                                                                                                                                                                  |
+| Estado          | accepted                                                                                                                                                                  |
 | Fecha           | 2026-07-21                                                                                                                                                                    |
 | Documento base  | `docs/specs/016-secure-document-storage/spec.md`                                                                                                                              |
-| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `005-payments`, `007-audit`, `011-fines-sanctions`, `012-communications-notifications`, `015-certified-minutes` |
+| Depende de      | `001-tenants`, `002-users-roles`, `003-residents-properties`, `007-audit`                                                                                                      |
 | Relacionado con | comprobantes, evidencias, adjuntos, PDFs, reportes exportados, storage S3-compatible, auditoría, control de acceso, descargas seguras                                         |
 | API Style       | REST                                                                                                                                                                          |
 | Arquitectura    | Monolito modular preparado para microservicios                                                                                                                                |
@@ -712,7 +721,7 @@ Reglas:
 - bucket privado;
 - objetos privados por defecto;
 - no ACL pública;
-- server-side encryption si está disponible;
+- server-side encryption obligatoria fuera de local;
 - credenciales en secret manager o variables seguras;
 - URLs temporales con TTL corto si se usan;
 - no URLs persistentes.
@@ -814,17 +823,12 @@ storageKey ausente en request
 
 ### 13.2. MIME types iniciales permitidos
 
-Configurables por categoría, pero base inicial:
+Allowlist fija de Sprint 3 para `PAYMENT_RECEIPT`:
 
 ```text id="qyelnk"
 application/pdf
 image/png
 image/jpeg
-application/vnd.openxmlformats-officedocument.wordprocessingml.document
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-text/csv
-application/json
-text/plain
 ```
 
 ---
@@ -845,17 +849,13 @@ application/vnd.android.package-archive
 
 ---
 
-### 13.4. Tamaño máximo inicial recomendado
-
-Decisión MVP sugerida:
+### 13.4. Tamaño máximo de Sprint 3
 
 ```text id="j7x3jq"
-defaultMaxFileSizeMb = 20
-reportExportMaxFileSizeMb = 50
-imageMaxFileSizeMb = 10
+paymentReceiptMaxFileSizeBytes = 10485760
 ```
 
-Estos valores pueden quedar configurables por ambiente.
+Este límite no se amplía por ambiente, tenant, categoría o endpoint.
 
 ---
 

@@ -1,5 +1,14 @@
 # API Contract — 025 Tenant Settings and Policies
 
+> Frontera documental Sprint 3: GAP-S3-008 está cerrado por
+> `docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md`. Provider,
+> límites, MIME, scan y retención no son API ni settings tenant; exports quedan fuera.
+
+> **Extensión autorizable de Sprint 3:** GAP-S3-004 añade exactamente cinco definitions
+> financieras mediante el contrato
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`; conserva la API
+> existente y no habilita policies, scheduling ni definitions de moneda.
+
 > **Slice vigente de Sprint 2:** GAP-S2-006 autoriza sólo lectura de definitions,
 > lectura de settings efectivos y `PATCH /api/v1/tenant/settings/{key}`. No autoriza
 > mutaciones de definitions, policies, scheduling, historial o exportación. El catálogo

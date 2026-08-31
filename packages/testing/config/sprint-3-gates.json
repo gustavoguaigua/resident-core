@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "readinessDecision": "NO_GO",
+  "currentPhase": 0,
+  "phases": [
+    {
+      "id": 0,
+      "name": "readiness",
+      "commands": []
+    },
+    {
+      "id": 1,
+      "name": "residents-properties-persistence",
+      "commands": ["test:residents:persistence"]
+    },
+    {
+      "id": 2,
+      "name": "residents-properties-api",
+      "commands": ["test:residents", "test:residents:authorization"]
+    },
+    {
+      "id": 3,
+      "name": "secure-document-storage",
+      "commands": ["test:documents"]
+    },
+    {
+      "id": 4,
+      "name": "dues-fees-foundation",
+      "commands": ["test:dues"]
+    },
+    {
+      "id": 5,
+      "name": "charge-lifecycle",
+      "commands": ["test:charges"]
+    },
+    {
+      "id": 6,
+      "name": "payments-receipts",
+      "commands": ["test:payments"]
+    },
+    {
+      "id": 7,
+      "name": "allocations-reversals",
+      "commands": ["test:allocations"]
+    },
+    {
+      "id": 8,
+      "name": "balances-statements",
+      "commands": ["test:statements", "test:financial"]
+    },
+    {
+      "id": 9,
+      "name": "openapi-cross-slice-closure",
+      "commands": [
+        "test:api",
+        "test:integration",
+        "test:stack:smoke",
+        "openapi:check",
+        "openapi:validate"
+      ]
+    }
+  ]
+}

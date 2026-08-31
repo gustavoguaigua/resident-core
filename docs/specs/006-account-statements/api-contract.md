@@ -1,5 +1,20 @@
 # API Contract — Spec 006 Account Statements, Balances and Financial Position by Property Unit
 
+> Superficie Sprint 3: GAP-S3-006 está cerrado por
+> `docs/changes/GAP-S3-006-API-IDEMPOTENCY-BOUNDARY-2026-08-29.md`. Su allowlist,
+> DTOs, `X-Tenant-Id`, idempotencia, permisos, errores y exclusiones prevalecen. Las
+> exportaciones quedan fuera; este documento queda `accepted` tras el cierre de Audit.
+
+> Moneda/settings Sprint 3: GAP-S3-004 está cerrado por
+> `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`;
+> `Tenant.currency` es la única autoridad y los statements no convierten moneda. Este
+> documento queda `accepted`.
+
+> Contrato Sprint 3: GAP-S3-003 está cerrado por
+> `docs/changes/GAP-S3-003-FINANCIAL-CROSS-SLICE-SEMANTICS-2026-08-29.md`. Ese contrato
+> prevalece para saldos, statements, regeneración e idempotencia; este documento
+> queda `accepted` tras el cierre de sus blockers de moneda, API y Audit.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                                                         |
@@ -10,7 +25,7 @@
 | Documento       | API Contract                                                                                  |
 | Ruta            | `docs/specs/006-account-statements/api-contract.md`                                           |
 | Versión         | 0.1                                                                                           |
-| Estado          | needs-review                                                                                  |
+| Estado          | accepted                                                                                  |
 | Fecha           | 2026-07-14                                                                                    |
 | Documento base  | `docs/specs/006-account-statements/spec.md`                                                   |
 | Plan técnico    | `docs/specs/006-account-statements/plan.md`                                                   |

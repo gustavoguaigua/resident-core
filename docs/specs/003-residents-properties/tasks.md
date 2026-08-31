@@ -1,5 +1,10 @@
 # Tasks — Spec 003 Residents, Owners, Tenants and Property Units
 
+> Contrato Sprint 3: GAP-S3-002 está cerrado por
+> `docs/changes/GAP-S3-002-RESIDENTS-PROPERTIES-OWNERSHIP-2026-08-29.md`. Ese contrato
+> prevalece para el slice y la frontera funcional; este documento permanece
+> queda `accepted` tras el cierre de todos sus blockers.
+
 ## 1. Información del documento
 
 | Campo           | Valor                                                 |
@@ -10,7 +15,7 @@
 | Documento       | Implementation Tasks                                  |
 | Ruta            | `docs/specs/003-residents-properties/tasks.md`        |
 | Versión         | 0.1                                                   |
-| Estado          | needs-review                                          |
+| Estado          | accepted                                          |
 | Fecha           | 2026-07-14                                            |
 | Documento base  | `docs/specs/003-residents-properties/spec.md`         |
 | Plan técnico    | `docs/specs/003-residents-properties/plan.md`         |

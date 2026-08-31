@@ -41,5 +41,6 @@ documentos**.
 
 ## Resultado
 
-`GAP-S3-001` queda `CLOSED`. Sprint 3 conserva `NO_GO` y `currentPhase = 0` hasta una
-reevaluación formal separada; este cierre no autoriza implementación funcional.
+`GAP-S3-001` queda `CLOSED`. La reevaluación formal separada del 2026-08-31 emitió
+`GO` y conservó `currentPhase = 0`; este cierre documental, por sí solo, no implementó
+funcionalidad.

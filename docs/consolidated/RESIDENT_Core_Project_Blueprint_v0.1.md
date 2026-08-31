@@ -8,9 +8,9 @@
 | Documento   | Project Blueprint                                                                      |
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
-| Estado      | Sprint 2 cerrado; readiness inicial de Sprint 3 en `NO_GO`                             |
-| Fecha       | 2026-08-28                                                                             |
-| Fase actual | Sprint 3 — Fase 0, readiness; implementación no autorizada                            |
+| Estado      | Sprint 2 cerrado; Implementation Readiness de Sprint 3 en `GO`                        |
+| Fecha       | 2026-08-31                                                                             |
+| Fase actual | Sprint 3 — Fase 0; Fase 1 autorizada, no iniciada                                    |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -952,6 +952,7 @@ Fase 8 Tenant settings: docs/changes/SPRINT-2-PHASE-8-TENANT-SETTINGS-2026-08-24
 Cierre formal de Sprint 2: GO el 2026-08-27, fase final 9.
 Evidencia de cierre: docs/changes/SPRINT-2-CLOSURE-2026-08-27.md.
 Readiness inicial de Sprint 3: NO_GO el 2026-08-28, fase 0.
+Reevaluación formal de Sprint 3: GO el 2026-08-31, fase 0.
 Gaps abiertos de Sprint 3: 0 críticos y 0 altos.
 Runbook: docs/implementation/sprint-3-residents-properties-finance-base.md.
 Evidencia: docs/changes/READINESS-SPRINT-3-2026-08-28.md.
@@ -970,10 +971,9 @@ Las Fases `0` a `9` están completadas con `PASS`; el manifest queda en fase fin
 Sprint 2 está formalmente `CLOSED / COMPLETED` con decisión `GO`. No existe una Fase
 `10` ni otra fase pendiente dentro del sprint.
 
-Sprint 3 es el siguiente incremento. Su compuerta permanece en `NO_GO`, fase `0`: los
-35 documentos de Specs 003, 004, 005, 006 y 016 están `accepted` y no quedan gaps
-abiertos. No se autoriza implementación funcional hasta una reevaluación formal
-separada.
+Sprint 3 es el siguiente incremento. Su reevaluación formal emitió `GO` en fase `0`:
+los 35 documentos de Specs 003, 004, 005, 006 y 016 están `accepted` y no quedan gaps
+abiertos. La Fase 1 queda autorizada, pero no fue iniciada por esta decisión.
 ```
 
 Evidencia vigente:

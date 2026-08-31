@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 3 Implementation Readiness — NO_GO; Sprint 2 cerrado — GO
+Estado: Sprint 3 Implementation Readiness — GO; Fase 1 autorizada, no iniciada
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -619,7 +619,7 @@ Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: GO (2026-08-14)
 Sprint 2: cerrado formalmente — GO (2026-08-27); fase final 9; siguiente fase: ninguna
-Implementation Readiness Sprint 3: NO_GO (actualizado 2026-08-30); fase 0; 0 gaps abiertos
+Implementation Readiness Sprint 3: GO (2026-08-31); fase 0; 0 gaps abiertos
 ```
 
 Evidencia:
@@ -662,9 +662,9 @@ final `9` y el cierre formal de Sprint 2 emitió `GO` el 2026-08-27. No existe u
 `10` ni otro incremento pendiente dentro de Sprint 2.
 
 Sprint 3 es el siguiente incremento de la hoja de ruta. Su compuerta inicial emitió
-`NO_GO` el 2026-08-28 y cerró todos sus gaps el 2026-08-30: el manifest permanece en
-fase `0`, los 35 documentos aplicables de Specs 003, 004, 005, 006 y 016 están
-`accepted`, y no se autoriza runtime hasta ejecutar una reevaluación formal separada.
+`NO_GO` el 2026-08-28, cerró todos sus gaps el 2026-08-30 y la reevaluación formal
+emitió `GO` el 2026-08-31. El manifest permanece en fase `0`, los 35 documentos
+aplicables están `accepted` y la Fase 1 queda autorizada, pero no iniciada.
 
 ---
 

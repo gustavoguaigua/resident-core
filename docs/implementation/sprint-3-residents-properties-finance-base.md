@@ -2,15 +2,16 @@
 
 ## 1. Estado del documento
 
-- Estado: `draft-authoritative`
-- Readiness vigente: `NO_GO`
-- Fase activa: `0 — readiness`
-- Fecha: 2026-08-28
+- Estado: `authoritative`
+- Readiness vigente: `GO`
+- Fase activa: `0 — readiness; Fase 1 autorizada, no iniciada`
+- Fecha: 2026-08-31
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
-autorizar implementación. Mientras la compuerta permanezca en `NO_GO`, no se crean
-modelos Prisma, migraciones, módulos runtime ni operaciones OpenAPI de Sprint 3.
+autorizar implementación. La compuerta emitió `GO` en fase 0; la implementación debe
+comenzar exclusivamente por Fase 1 y elevar el manifest en el mismo cambio que incorpore
+sus artefactos y gate.
 
 ## 2. Objetivo
 
@@ -217,7 +218,7 @@ fases activas, dejando evidencia en `artifacts/sprint-3-gates/evidence.json`.
 
 | Fase | Gate | Garantía mínima |
 | ---: | --- | --- |
-| 0 | `sprint3:boundary` | `NO_GO`, fase 0, 35 documentos inventariados y cero runtime nuevo |
+| 0 | `sprint3:boundary` | `GO`, fase 0, 35 documentos aprobados y cero runtime nuevo |
 | 1 | `test:residents:persistence` | migración limpia, constraints y aislamiento tenant |
 | 2 | `test:residents`, `test:residents:authorization` | API, `.own`, permisos y negativos cross-tenant |
 | 3 | `test:documents` | privacidad, hash, MIME/tamaño, storage key y compensación |

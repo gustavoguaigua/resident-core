@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "readinessDecision": "NO_GO",
+  "readinessDecision": "GO",
   "currentPhase": 0,
   "phases": [
     {

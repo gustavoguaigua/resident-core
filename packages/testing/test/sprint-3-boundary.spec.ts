@@ -33,21 +33,21 @@ afterEach(() => {
 });
 
 describe("Sprint 3 boundary verifier", () => {
-  it("accepts the current GO phase 0 boundary", () => {
+  it("accepts the current GO phase 1 boundary", () => {
     const result = runVerifier();
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain(
-      "Sprint 3 boundary is valid at phase 0 (GO); applicable documents: 35, needs-review: 0.",
+      "Sprint 3 boundary is valid at phase 1 (GO); applicable documents: 35, needs-review: 0.",
     );
   });
 
-  it("rejects a Sprint 3 Prisma model during phase 0", () => {
+  it("rejects a future Sprint 3 Prisma model during phase 1", () => {
     const directory = createTemporaryDirectory();
     const schemaPath = resolve(directory, "schema.prisma");
     writeFileSync(
       schemaPath,
-      `${readFileSync(resolve(repositoryRoot, "prisma/schema.prisma"), "utf8")}\nmodel Person {\n  id String @id\n}\n`,
+      `${readFileSync(resolve(repositoryRoot, "prisma/schema.prisma"), "utf8")}\nmodel Charge {\n  id String @id\n}\n`,
       "utf8",
     );
 
@@ -55,11 +55,11 @@ describe("Sprint 3 boundary verifier", () => {
 
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain(
-      "Sprint 3 phase 0 forbids domain models: Person.",
+      "Sprint 3 phase 1 forbids domain models: Charge.",
     );
   });
 
-  it("rejects a Sprint 3 OpenAPI path during phase 0", () => {
+  it("rejects a Sprint 3 OpenAPI path during phase 1", () => {
     const directory = createTemporaryDirectory();
     const openApiPath = resolve(directory, "openapi.json");
     const openApi = JSON.parse(
@@ -78,7 +78,7 @@ describe("Sprint 3 boundary verifier", () => {
 
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain(
-      "Sprint 3 phase 0 forbids functional API operations: GET /api/v1/tenant/persons.",
+      "Sprint 3 phase 1 forbids functional API operations: GET /api/v1/tenant/persons.",
     );
   });
 

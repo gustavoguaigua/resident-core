@@ -42,12 +42,12 @@ describe("Sprint 2 boundary verifier", () => {
     );
   });
 
-  it("rejects a Prisma model outside the Sprint 2 allowlist", () => {
+  it("continues to reject the explicitly excluded TenantConfiguration model", () => {
     const directory = createTemporaryDirectory();
     const schemaPath = resolve(directory, "schema.prisma");
     writeFileSync(
       schemaPath,
-      `${readFileSync(resolve(repositoryRoot, "prisma/schema.prisma"), "utf8")}\nmodel Payment {\n  id String @id\n}\n`,
+      `${readFileSync(resolve(repositoryRoot, "prisma/schema.prisma"), "utf8")}\nmodel TenantConfiguration {\n  id String @id\n}\n`,
       "utf8",
     );
 
@@ -55,11 +55,11 @@ describe("Sprint 2 boundary verifier", () => {
 
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain(
-      "Prisma model outside Sprint 2 boundary: Payment.",
+      "TenantConfiguration is explicitly excluded from Sprint 2.",
     );
   });
 
-  it("rejects an OpenAPI operation outside the Sprint 2 allowlist", () => {
+  it("allows later-sprint OpenAPI operations after Sprint 2 closure", () => {
     const directory = createTemporaryDirectory();
     const openApiPath = resolve(directory, "openapi.json");
     const openApi = JSON.parse(
@@ -76,9 +76,6 @@ describe("Sprint 2 boundary verifier", () => {
 
     const result = runVerifier({ SPRINT2_OPENAPI_PATH: openApiPath });
 
-    expect(result.status).not.toBe(0);
-    expect(result.stderr).toContain(
-      "OpenAPI operation outside Sprint 2 boundary: GET /api/v1/payments.",
-    );
+    expect(result.status).toBe(0);
   });
 });

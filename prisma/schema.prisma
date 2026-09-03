@@ -175,6 +175,104 @@ enum TenantSettingSource {
   @@map("tenant_setting_source")
 }
 
+enum PersonStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  ARCHIVED @map("archived")
+
+  @@map("person_status")
+}
+
+enum LegalEntityStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  ARCHIVED @map("archived")
+
+  @@map("legal_entity_status")
+}
+
+enum IdentificationType {
+  CEDULA   @map("cedula")
+  RUC      @map("ruc")
+  PASSPORT @map("passport")
+  OTHER    @map("other")
+
+  @@map("identification_type")
+}
+
+enum PropertyUnitStatus {
+  ACTIVE            @map("active")
+  INACTIVE          @map("inactive")
+  UNDER_MAINTENANCE @map("underMaintenance")
+  BLOCKED           @map("blocked")
+  ARCHIVED          @map("archived")
+
+  @@map("property_unit_status")
+}
+
+enum PropertyUnitType {
+  HOUSE      @map("house")
+  APARTMENT  @map("apartment")
+  SUITE      @map("suite")
+  LOT        @map("lot")
+  PARKING    @map("parking")
+  STORAGE    @map("storage")
+  COMMERCIAL @map("commercial")
+  MIXED      @map("mixed")
+  OTHER      @map("other")
+
+  @@map("property_unit_type")
+}
+
+enum OwnershipStatus {
+  ACTIVE   @map("active")
+  ENDED    @map("ended")
+  DISPUTED @map("disputed")
+  ARCHIVED @map("archived")
+
+  @@map("ownership_status")
+}
+
+enum OwnershipType {
+  OWNER                @map("owner")
+  CO_OWNER             @map("coOwner")
+  LEGAL_REPRESENTATIVE @map("legalRepresentative")
+  USUFRUCTUARY         @map("usufructuary")
+  OTHER                @map("other")
+
+  @@map("ownership_type")
+}
+
+enum ResidencyStatus {
+  ACTIVE    @map("active")
+  ENDED     @map("ended")
+  SUSPENDED @map("suspended")
+  ARCHIVED  @map("archived")
+
+  @@map("residency_status")
+}
+
+enum ResidencyType {
+  OWNER_RESIDENT      @map("ownerResident")
+  TENANT              @map("tenant")
+  FAMILY_MEMBER       @map("familyMember")
+  AUTHORIZED_OCCUPANT @map("authorizedOccupant")
+  CARETAKER           @map("caretaker")
+  OTHER               @map("other")
+
+  @@map("residency_type")
+}
+
+enum LeaseStatus {
+  DRAFT     @map("draft")
+  ACTIVE    @map("active")
+  ENDED     @map("ended")
+  CANCELLED @map("cancelled")
+  ARCHIVED  @map("archived")
+
+  @@map("lease_status")
+}
+
 model Tenant {
   id               String       @id @default(uuid())
   name             String
@@ -192,14 +290,20 @@ model Tenant {
   archivedAt       DateTime?    @map("archived_at")
   archivedBy       String?      @map("archived_by")
 
-  profile          TenantProfile?
-  branding         TenantBranding?
-  wordpressMapping TenantWordPressMapping?
-  roles            Role[]
-  memberships      UserTenantMembership[]
-  invitations      Invitation[]
-  auditLogs        AuditLog[]
-  settingValues    TenantSettingValue[]
+  profile            TenantProfile?
+  branding           TenantBranding?
+  wordpressMapping   TenantWordPressMapping?
+  roles              Role[]
+  memberships        UserTenantMembership[]
+  invitations        Invitation[]
+  auditLogs          AuditLog[]
+  settingValues      TenantSettingValue[]
+  persons            Person[]
+  legalEntities      LegalEntity[]
+  propertyUnits      PropertyUnit[]
+  propertyOwnerships PropertyOwnership[]
+  residencies        Residency[]
+  leases             Lease[]
 
   @@index([slug])
   @@index([status])
@@ -281,6 +385,7 @@ model UserProfile {
   memberships UserTenantMembership[]
   globalRoles UserGlobalRole[]
   auditLogs   AuditLog[]
+  persons     Person[]
 
   @@index([email])
   @@index([status])
@@ -527,4 +632,183 @@ model TenantSettingValue {
   @@index([tenantId, key, effectiveFrom, effectiveUntil], map: "tenant_setting_values_tenant_id_key_effective_from_effective_un")
   @@index([tenantId, settingDefinitionId])
   @@map("tenant_setting_values")
+}
+
+model Person {
+  id                   String              @id @default(uuid())
+  tenantId             String              @map("tenant_id")
+  userProfileId        String?             @map("user_profile_id")
+  firstName            String?             @map("first_name")
+  lastName             String?             @map("last_name")
+  displayName          String              @map("display_name")
+  identificationType   IdentificationType? @map("identification_type")
+  identificationNumber String?             @map("identification_number")
+  email                String?
+  phone                String?
+  whatsapp             String?
+  status               PersonStatus        @default(ACTIVE)
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+  archivedAt           DateTime?           @map("archived_at")
+
+  tenant         Tenant              @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  userProfile    UserProfile?        @relation(fields: [userProfileId], references: [id], onDelete: Restrict)
+  ownerships     PropertyOwnership[] @relation("PersonOwnerships")
+  residencies    Residency[]
+  leasesAsOwner  Lease[]             @relation("LeaseOwnerPerson")
+  leasesAsTenant Lease[]             @relation("LeaseTenantPerson")
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, userProfileId])
+  @@index([tenantId])
+  @@index([userProfileId])
+  @@index([status])
+  @@index([displayName])
+  @@index([tenantId, identificationType, identificationNumber])
+  @@map("persons")
+}
+
+model LegalEntity {
+  id                      String              @id @default(uuid())
+  tenantId                String              @map("tenant_id")
+  name                    String
+  taxIdentificationType   IdentificationType? @map("tax_identification_type")
+  taxIdentificationNumber String?             @map("tax_identification_number")
+  email                   String?
+  phone                   String?
+  address                 String?
+  status                  LegalEntityStatus   @default(ACTIVE)
+  createdAt               DateTime            @default(now()) @map("created_at")
+  updatedAt               DateTime            @updatedAt @map("updated_at")
+  archivedAt              DateTime?           @map("archived_at")
+
+  tenant        Tenant              @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  ownerships    PropertyOwnership[] @relation("LegalEntityOwnerships")
+  leasesAsOwner Lease[]             @relation("LeaseOwnerLegalEntity")
+
+  @@unique([id, tenantId])
+  @@index([tenantId])
+  @@index([status])
+  @@index([name])
+  @@index([tenantId, taxIdentificationType, taxIdentificationNumber])
+  @@map("legal_entities")
+}
+
+model PropertyUnit {
+  id               String             @id @default(uuid())
+  tenantId         String             @map("tenant_id")
+  code             String
+  name             String?
+  type             PropertyUnitType   @default(HOUSE)
+  block            String?
+  floor            String?
+  addressReference String?            @map("address_reference")
+  areaM2           Decimal?           @map("area_m2") @db.Decimal(12, 2)
+  status           PropertyUnitStatus @default(ACTIVE)
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+  archivedAt       DateTime?          @map("archived_at")
+
+  tenant      Tenant              @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  ownerships  PropertyOwnership[]
+  residencies Residency[]
+  leases      Lease[]
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@index([status])
+  @@index([type])
+  @@index([tenantId, block])
+  @@map("property_units")
+}
+
+model PropertyOwnership {
+  id                  String          @id @default(uuid())
+  tenantId            String          @map("tenant_id")
+  propertyUnitId      String          @map("property_unit_id")
+  personId            String?         @map("person_id")
+  legalEntityId       String?         @map("legal_entity_id")
+  ownershipType       OwnershipType   @default(OWNER) @map("ownership_type")
+  ownershipPercentage Decimal?        @map("ownership_percentage") @db.Decimal(5, 2)
+  isPrimary           Boolean         @default(false) @map("is_primary")
+  status              OwnershipStatus @default(ACTIVE)
+  startDate           DateTime        @map("start_date") @db.Date
+  endDate             DateTime?       @map("end_date") @db.Date
+  createdAt           DateTime        @default(now()) @map("created_at")
+  updatedAt           DateTime        @updatedAt @map("updated_at")
+
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit PropertyUnit @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  person       Person?      @relation("PersonOwnerships", fields: [personId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  legalEntity  LegalEntity? @relation("LegalEntityOwnerships", fields: [legalEntityId, tenantId], references: [id, tenantId], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@index([tenantId])
+  @@index([propertyUnitId])
+  @@index([personId])
+  @@index([legalEntityId])
+  @@index([status])
+  @@index([tenantId, propertyUnitId, status])
+  @@map("property_ownerships")
+}
+
+model Residency {
+  id                String          @id @default(uuid())
+  tenantId          String          @map("tenant_id")
+  propertyUnitId    String          @map("property_unit_id")
+  personId          String          @map("person_id")
+  residencyType     ResidencyType   @default(AUTHORIZED_OCCUPANT) @map("residency_type")
+  isPrimaryResident Boolean         @default(false) @map("is_primary_resident")
+  status            ResidencyStatus @default(ACTIVE)
+  startDate         DateTime        @map("start_date") @db.Date
+  endDate           DateTime?       @map("end_date") @db.Date
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit PropertyUnit @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  person       Person       @relation(fields: [personId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  lease        Lease?
+
+  @@unique([id, tenantId])
+  @@index([tenantId])
+  @@index([propertyUnitId])
+  @@index([personId])
+  @@index([status])
+  @@index([tenantId, propertyUnitId, status])
+  @@index([tenantId, personId, status])
+  @@map("residencies")
+}
+
+model Lease {
+  id                 String      @id @default(uuid())
+  tenantId           String      @map("tenant_id")
+  propertyUnitId     String      @map("property_unit_id")
+  ownerPersonId      String?     @map("owner_person_id")
+  ownerLegalEntityId String?     @map("owner_legal_entity_id")
+  tenantPersonId     String      @map("tenant_person_id")
+  residencyId        String?     @unique @map("residency_id")
+  status             LeaseStatus @default(DRAFT)
+  startDate          DateTime    @map("start_date") @db.Date
+  endDate            DateTime?   @map("end_date") @db.Date
+  createdAt          DateTime    @default(now()) @map("created_at")
+  updatedAt          DateTime    @updatedAt @map("updated_at")
+
+  tenant           Tenant       @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit     PropertyUnit @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  ownerPerson      Person?      @relation("LeaseOwnerPerson", fields: [ownerPersonId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  ownerLegalEntity LegalEntity? @relation("LeaseOwnerLegalEntity", fields: [ownerLegalEntityId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  tenantPerson     Person       @relation("LeaseTenantPerson", fields: [tenantPersonId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  residency        Residency?   @relation(fields: [residencyId, tenantId], references: [id, tenantId], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@unique([residencyId, tenantId])
+  @@index([tenantId])
+  @@index([propertyUnitId])
+  @@index([tenantPersonId])
+  @@index([ownerPersonId])
+  @@index([ownerLegalEntityId])
+  @@index([status])
+  @@map("leases")
 }

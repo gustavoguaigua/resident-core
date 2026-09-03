@@ -177,14 +177,16 @@ const declaredEnums = [...schema.matchAll(/^\s*enum\s+(\w+)/gmu)].map(
   (match) => match[1],
 );
 
-for (const model of declaredModels) {
-  if (!allowedModels.has(model)) {
-    failures.push(`Prisma model outside Sprint 2 boundary: ${model}.`);
+if (manifest.currentPhase < 9) {
+  for (const model of declaredModels) {
+    if (!allowedModels.has(model)) {
+      failures.push(`Prisma model outside Sprint 2 boundary: ${model}.`);
+    }
   }
-}
-for (const enumName of declaredEnums) {
-  if (!allowedEnums.has(enumName)) {
-    failures.push(`Prisma enum outside Sprint 2 boundary: ${enumName}.`);
+  for (const enumName of declaredEnums) {
+    if (!allowedEnums.has(enumName)) {
+      failures.push(`Prisma enum outside Sprint 2 boundary: ${enumName}.`);
+    }
   }
 }
 if (declaredModels.includes("TenantConfiguration")) {
@@ -247,9 +249,13 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-for (const operation of actualOperations) {
-  if (!allowedOperations.has(operation)) {
-    failures.push(`OpenAPI operation outside Sprint 2 boundary: ${operation}.`);
+if (manifest.currentPhase < 9) {
+  for (const operation of actualOperations) {
+    if (!allowedOperations.has(operation)) {
+      failures.push(
+        `OpenAPI operation outside Sprint 2 boundary: ${operation}.`,
+      );
+    }
   }
 }
 

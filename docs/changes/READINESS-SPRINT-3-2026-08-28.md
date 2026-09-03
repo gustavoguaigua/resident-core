@@ -8,16 +8,16 @@
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
 | Fecha de actualización | 2026-08-31 |
-| Rama evaluada | `codex/sprint-3-formal-readiness` |
-| Baseline integrado | `216bd04` — PR #29 |
+| Rama evaluada | `codex/sprint-3-phase-1-residents-properties-persistence` |
+| Baseline integrado | `f398f37` — PR #30 |
 | Decisión | `GO` |
-| Fase actual | `0 — readiness` |
+| Fase actual | `1 — residents-properties-persistence; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 0
-Implementation authorized: yes; begin with Phase 1 only
+Current Phase: 1
+Implementation authorized: yes; begin with Phase 2 only
 ```
 
 ## 2. Método
@@ -198,7 +198,18 @@ Todos los criterios de entrada están satisfechos y la evidencia reproducible au
 Sprint 3. La decisión `GO` conserva `currentPhase = 0`: permite iniciar posteriormente
 la Fase 1, pero no implementa ni activa esa fase en esta reevaluación.
 
-## 10. Siguiente paso recomendado
+## 10. Progreso de implementación
 
-Iniciar Sprint 3 Fase 1 — `residents-properties-persistence` en una rama corta,
-elevando `currentPhase` de 0 a 1 únicamente junto con sus artefactos y gate específico.
+La Fase 1 incorporó exclusivamente los seis modelos persistentes aprobados de Spec 003,
+su migración tenant-safe y el gate `test:residents:persistence`. El gate aplicó las
+cinco migraciones desde PostgreSQL vacío, confirmó ausencia de drift, constraints,
+aislamiento tenant y segunda aplicación sin pendientes.
+
+```text
+Current Phase: 1
+Phase 1: PASS
+Next permitted phase: 2 — residents-properties-api
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-1-RESIDENTS-PROPERTIES-PERSISTENCE-2026-08-31.md`.

@@ -456,8 +456,8 @@ Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
 Implementation Readiness Sprint 2: GO desde 2026-08-14; 0 gaps críticos o altos
 abiertos. Sprint 2 está formalmente cerrado con `GO`; manifest en fase final `9`, Fases
 `0`–`9` completadas y ninguna fase siguiente dentro del sprint.
-Implementation Readiness Sprint 3: GO desde 2026-08-31; manifest en fase `0`, 35/35
-documentos aplicables `accepted` y 0 gaps abiertos; Fase 1 autorizada, no iniciada.
+Implementation Readiness Sprint 3: GO desde 2026-08-31; manifest en fase `1`, 35/35
+documentos aplicables `accepted` y 0 gaps abiertos; Fase 1 de persistencia completada.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
@@ -490,9 +490,10 @@ docs/implementation/sprint-3-residents-properties-finance-base.md
 docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md
 docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md
 docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md
+docs/changes/SPRINT-3-PHASE-1-RESIDENTS-PROPERTIES-PERSISTENCE-2026-08-31.md
 Decision: GO
-Current Phase: 0
-Implementation authorized: yes; begin with Phase 1 only
+Current Phase: 1
+Next permitted phase: 2 — residents-properties-api
 ```
 
 ---

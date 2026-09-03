@@ -219,6 +219,26 @@ const sprint2Enums = new Set([
   "UserStatus",
   "UserType",
 ]);
+const phase1Models = new Set([
+  "Lease",
+  "LegalEntity",
+  "Person",
+  "PropertyOwnership",
+  "PropertyUnit",
+  "Residency",
+]);
+const phase1Enums = new Set([
+  "IdentificationType",
+  "LeaseStatus",
+  "LegalEntityStatus",
+  "OwnershipStatus",
+  "OwnershipType",
+  "PersonStatus",
+  "PropertyUnitStatus",
+  "PropertyUnitType",
+  "ResidencyStatus",
+  "ResidencyType",
+]);
 const operationsAtSprint2Closure = new Set([
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -275,29 +295,39 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase === 0) {
+if (manifest.currentPhase <= 1) {
+  const allowedModels = new Set(sprint2Models);
+  const allowedEnums = new Set(sprint2Enums);
+  if (manifest.currentPhase === 1) {
+    for (const model of phase1Models) {
+      allowedModels.add(model);
+    }
+    for (const enumName of phase1Enums) {
+      allowedEnums.add(enumName);
+    }
+  }
   const prematureModels = declaredModels.filter(
-    (model) => !sprint2Models.has(model),
+    (model) => !allowedModels.has(model),
   );
   const prematureEnums = declaredEnums.filter(
-    (enumName) => !sprint2Enums.has(enumName),
+    (enumName) => !allowedEnums.has(enumName),
   );
   const prematureOperations = actualOperations.filter(
     (operation) => !operationsAtSprint2Closure.has(operation),
   );
   if (prematureModels.length > 0) {
     failures.push(
-      `Sprint 3 phase 0 forbids domain models: ${prematureModels.join(", ")}.`,
+      `Sprint 3 phase ${manifest.currentPhase} forbids domain models: ${prematureModels.join(", ")}.`,
     );
   }
   if (prematureEnums.length > 0) {
     failures.push(
-      `Sprint 3 phase 0 forbids domain enums: ${prematureEnums.join(", ")}.`,
+      `Sprint 3 phase ${manifest.currentPhase} forbids domain enums: ${prematureEnums.join(", ")}.`,
     );
   }
   if (prematureOperations.length > 0) {
     failures.push(
-      `Sprint 3 phase 0 forbids functional API operations: ${prematureOperations.join(", ")}.`,
+      `Sprint 3 phase ${manifest.currentPhase} forbids functional API operations: ${prematureOperations.join(", ")}.`,
     );
   }
   for (const modulePath of [
@@ -308,7 +338,28 @@ if (manifest.currentPhase === 0) {
     "apps/api/src/modules/secure-document-storage",
   ]) {
     if (existsSync(resolve(repositoryRoot, modulePath))) {
-      failures.push(`Sprint 3 phase 0 forbids runtime module: ${modulePath}.`);
+      failures.push(
+        `Sprint 3 phase ${manifest.currentPhase} forbids runtime module: ${modulePath}.`,
+      );
+    }
+  }
+
+  if (manifest.currentPhase === 1) {
+    const missingModels = [...phase1Models].filter(
+      (model) => !declaredModels.includes(model),
+    );
+    const missingEnums = [...phase1Enums].filter(
+      (enumName) => !declaredEnums.includes(enumName),
+    );
+    if (missingModels.length > 0) {
+      failures.push(
+        `Sprint 3 phase 1 requires domain models: ${missingModels.join(", ")}.`,
+      );
+    }
+    if (missingEnums.length > 0) {
+      failures.push(
+        `Sprint 3 phase 1 requires domain enums: ${missingEnums.join(", ")}.`,
+      );
     }
   }
 }

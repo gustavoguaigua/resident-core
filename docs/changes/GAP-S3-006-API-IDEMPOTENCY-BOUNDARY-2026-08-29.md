@@ -212,6 +212,12 @@ derivados. Campos desconocidos producen `VALIDATION_ERROR`; no se ignoran.
 GET no usa idempotency key. Locks, constraints y transacciones de GAP-S3-003 continúan
 siendo obligatorios; la cabecera no sustituye concurrencia ni tenant isolation.
 
+El ownership, modelo `IdempotencyOperation`, hashing, canonicalización, autorización
+previa al replay, lock transaccional, atomicidad, recuperación y retención de 24 horas
+se rigen exclusivamente por
+`docs/changes/GAP-S3-010-IDEMPOTENCY-LEDGER-CONTRACT-2026-09-02.md`. Este ledger es
+infraestructura transversal de plataforma y no pertenece a ningún dominio consumidor.
+
 ## 7. Permisos canónicos
 
 | Slice | Permisos autorizados |
@@ -265,7 +271,8 @@ códigos de tamaño, MIME, cuarentena y retención se fijarán en GAP-S3-008.
 - allowlist exacta y acumulativa por fase;
 - DTOs y campos prohibidos definidos;
 - tenant context y `.own` fail-closed definidos;
-- idempotencia obligatoria con resultado único;
+- idempotencia obligatoria con resultado único y contrato técnico cerrado por
+  GAP-S3-010;
 - permisos sin aliases contradictorios;
 - errores y exclusiones uniformes;
 - readiness permanece `NO_GO`, fase 0.

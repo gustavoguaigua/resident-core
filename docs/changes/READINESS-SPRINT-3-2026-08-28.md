@@ -7,9 +7,9 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-08-31 |
-| Rama evaluada | `codex/sprint-3-phase-1-residents-properties-persistence` |
-| Baseline integrado | `f398f37` — PR #30 |
+| Fecha de actualización | 2026-09-02 |
+| Rama evaluada | `codex/gap-s3-010-idempotency-contract` |
+| Baseline integrado | `a6e641b` — PR #31 |
 | Decisión | `GO` |
 | Fase actual | `1 — residents-properties-persistence; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
@@ -17,7 +17,7 @@
 ```text
 Decision: GO
 Current Phase: 1
-Implementation authorized: yes; begin with Phase 2 only
+Implementation authorized: yes; begin with Phase 2 only after integrating GAP-S3-010
 ```
 
 ## 2. Método
@@ -132,6 +132,15 @@ Para cada spec se comprobaron `spec.md`, `plan.md`, `tasks.md`, `api-contract.md
 | Evidencia | README e índice cerraban Sprint 2 pero no registraban la compuerta de Sprint 3; metadata histórica del Blueprint conserva referencias antiguas |
 | Criterio de cierre | Cumplido en esta compuerta: README, Blueprint e índice registran Sprint 3 `NO_GO`, fase 0 y sus fuentes canónicas |
 
+### GAP-S3-010 — Ownership y persistencia del ledger de idempotencia
+
+| Campo | Valor |
+| --- | --- |
+| Severidad | Alta |
+| Estado | `closed` |
+| Evidencia | GAP-S3-003/006 fijaban efectos externos, pero no existían ownership, modelo persistente, seguridad, replay, recuperación ni retención reproducibles |
+| Criterio de cierre | Cumplido en `docs/changes/GAP-S3-010-IDEMPOTENCY-LEDGER-CONTRACT-2026-09-02.md`: owner transversal, modelo, hashing, autorización, lock, atomicidad, replay, rollback, privacidad, retención y pruebas fijados |
+
 ## 6. Ownership canónico
 
 | Capacidad | Owner |
@@ -145,6 +154,7 @@ Para cada spec se comprobaron `spec.md`, `plan.md`, `tasks.md`, `api-contract.md
 | Auditoría durable y sanitización | Spec 007 / Audit base |
 | Binarios, hashes, metadata y acceso técnico documental | Spec 016 |
 | Definitions y overrides tipados | Spec 025 |
+| Ledger de idempotencia | Platform API / GAP-S3-010 |
 
 El ownership queda aprobado por los contratos cerrados, pero no autoriza definiciones
 paralelas ni cambios al baseline de Sprint 2.
@@ -160,7 +170,7 @@ El verificador rechaza en fase 0 modelos Prisma, rutas OpenAPI y módulos runtim
 Sprint 3, inventaría los 35 documentos y exige correspondencia entre readiness y
 manifest.
 
-## 8. Matriz de decisión
+## 8. Matriz de decisión formal de readiness (snapshot de fase 0)
 
 | Criterio | Resultado |
 | --- | --- |
@@ -171,6 +181,7 @@ manifest.
 | Ownership residents/property cerrado | Cumple |
 | Contrato financiero cross-slice cerrado | Cumple |
 | API, permisos, auditoría y storage cerrados | Cumple |
+| Ledger persistente de idempotencia cerrado | Cumple |
 | Cero gaps críticos/altos abiertos | Cumple |
 
 ## 9. Reevaluación formal
@@ -194,9 +205,9 @@ Medium gaps open: 0
 Implementation authorized: yes; begin with Phase 1 only
 ```
 
-Todos los criterios de entrada están satisfechos y la evidencia reproducible autoriza
-Sprint 3. La decisión `GO` conserva `currentPhase = 0`: permite iniciar posteriormente
-la Fase 1, pero no implementa ni activa esa fase en esta reevaluación.
+Este bloque conserva la evidencia histórica de la reevaluación que autorizó Sprint 3.
+La progresión posterior se registra en la sección siguiente y mantiene vigente la
+decisión `GO`.
 
 ## 10. Progreso de implementación
 
@@ -213,3 +224,7 @@ Next permitted phase: 2 — residents-properties-api
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-1-RESIDENTS-PROPERTIES-PERSISTENCE-2026-08-31.md`.
+
+La implementación de Fase 2 detectó antes de editar que faltaba el contrato persistente
+del ledger. GAP-S3-010 lo cerró sin runtime, mantuvo `currentPhase = 1` y autorizó que
+Fase 2 incorpore el componente transversal en el mismo cambio que sus API y gates.

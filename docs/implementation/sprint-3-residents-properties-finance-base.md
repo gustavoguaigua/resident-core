@@ -5,7 +5,7 @@
 - Estado: `authoritative`
 - Readiness vigente: `GO`
 - Fase activa: `1 — residents-properties-persistence; PASS`
-- Fecha: 2026-08-31
+- Fecha: 2026-09-02
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
@@ -39,6 +39,8 @@ precisión decimal, idempotencia, historial no destructivo y auditoría durable.
    `docs/changes/GAP-S2-006-CONFIGURATION-PRISMA-OWNERSHIP-2026-08-13.md`.
 6. Este runbook y la decisión vigente en
    `docs/changes/READINESS-SPRINT-3-2026-08-28.md`.
+7. Ledger transversal de idempotencia definido por
+   `docs/changes/GAP-S3-010-IDEMPOTENCY-LEDGER-CONTRACT-2026-09-02.md`.
 
 ## 4. Condiciones previas para `GO`
 
@@ -158,11 +160,24 @@ catálogo financiero exacto contiene `financial.paymentValidationRequired`,
 `docs/changes/GAP-S3-004-FINANCIAL-CURRENCY-SETTINGS-2026-08-29.md`. No se activan
 policies, scheduling, mora ni definitions duplicadas de moneda.
 
+### 5.8 Idempotencia — Platform API
+
+La plataforma API posee el único ledger PostgreSQL/Prisma de idempotencia. Todas las
+mutaciones allowlisted lo consumen mediante un puerto compartido; ningún módulo de
+dominio crea un ledger paralelo ni usa memoria, Redis o Audit como autoridad. El
+modelo, hashing, autorización previa, lock, replay, atomicidad, recuperación y
+retención se rigen por GAP-S3-010.
+
+Fase 2 está autorizada a incorporar `IdempotencyOperation`,
+`IdempotencyOperationStatus` y su migración transversal junto con la primera
+integración runtime. Esto no amplía los seis modelos de dominio de Spec 003.
+
 ## 6. Dependencias y orden canónico
 
 | Productor | Consumidor | Contrato permitido |
 | --- | --- | --- |
 | Sprint 2 Identity/Access | todos | identidad, tenant activo, membership, roles y permisos |
+| Platform API idempotency | 003, 004, 005, 006, 016 | ledger tenant-scoped compartido para toda mutación allowlisted |
 | Spec 003 | 004, 005, 006, 016 | unidad y relaciones `.own` tenant-aware |
 | Spec 025 | 004, 005, 006, 016 | configuración tipada; nunca mutaciones de negocio |
 | Spec 004 | 005, 006 | cargos y movimientos efectivos |
@@ -197,7 +212,7 @@ Sprint 3. La Fase 3 no expone API documental general y la Fase 9 no añade endpo
 | ---: | --- | --- |
 | 0 | readiness | contratos, gaps, manifest y frontera; sin runtime |
 | 1 | residents-properties-persistence | modelos/migraciones del slice aprobado de Spec 003 |
-| 2 | residents-properties-api | casos de uso, autorización por recurso y API de Spec 003 |
+| 2 | residents-properties-api | casos de uso, autorización por recurso, API de Spec 003 y ledger transversal de idempotencia |
 | 3 | secure-document-storage | storage privado base y comprobantes preparados |
 | 4 | dues-fees-foundation | conceptos, calendarios, asignaciones y periodos |
 | 5 | charge-lifecycle | generación, cargos, ajustes y reversos |
@@ -220,7 +235,7 @@ fases activas, dejando evidencia en `artifacts/sprint-3-gates/evidence.json`.
 | ---: | --- | --- |
 | 0 | `sprint3:boundary` | `GO`, fase 0, 35 documentos aprobados y cero runtime nuevo |
 | 1 | `test:residents:persistence` | migración limpia, constraints y aislamiento tenant |
-| 2 | `test:residents`, `test:residents:authorization` | API, `.own`, permisos y negativos cross-tenant |
+| 2 | `test:residents`, `test:residents:authorization` | API, `.own`, permisos, idempotencia/rollback y negativos cross-tenant |
 | 3 | `test:documents` | privacidad, hash, MIME/tamaño, storage key y compensación |
 | 4 | `test:dues` | settings, moneda, periodos y unicidad |
 | 5 | `test:charges` | generación idempotente, concurrencia, ajustes y audit |

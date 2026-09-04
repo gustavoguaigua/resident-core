@@ -351,30 +351,30 @@ describe
         }),
       ).toThrow(/TLS/u);
     });
-  });
 
-it("archives tenant metadata without deleting its referenced private object", async () => {
-  const actor = await createActor();
-  const created = await service.uploadPaymentReceipt(input(actor), allow);
-  const file = await prisma.secureDocumentFile.findUniqueOrThrow({
-    where: { id: created.fileId },
+    it("archives tenant metadata without deleting its referenced private object", async () => {
+      const actor = await createActor();
+      const created = await service.uploadPaymentReceipt(input(actor), allow);
+      const file = await prisma.secureDocumentFile.findUniqueOrThrow({
+        where: { id: created.fileId },
+      });
+      await service.archiveMetadata(actor, created.documentId, allow);
+      await expect(
+        service.readAvailable(actor, created.documentId, allow),
+      ).rejects.toMatchObject({
+        code: "DOCUMENT_NOT_AVAILABLE",
+      });
+      await expect(storage.read(file.storageKey)).resolves.toEqual(pdf);
+      await expect(
+        prisma.secureDocument.findUniqueOrThrow({
+          where: { id: created.documentId },
+        }),
+      ).resolves.toMatchObject({
+        status: "ARCHIVED",
+        archivedAt: expect.any(Date),
+      });
+    });
   });
-  await service.archiveMetadata(actor, created.documentId, allow);
-  await expect(
-    service.readAvailable(actor, created.documentId, allow),
-  ).rejects.toMatchObject({
-    code: "DOCUMENT_NOT_AVAILABLE",
-  });
-  await expect(storage.read(file.storageKey)).resolves.toEqual(pdf);
-  await expect(
-    prisma.secureDocument.findUniqueOrThrow({
-      where: { id: created.documentId },
-    }),
-  ).resolves.toMatchObject({
-    status: "ARCHIVED",
-    archivedAt: expect.any(Date),
-  });
-});
 
 function input(
   actor: DocumentActor,

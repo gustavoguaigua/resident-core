@@ -241,6 +241,32 @@ const phase1Enums = new Set([
 ]);
 const phase2Models = new Set(["IdempotencyOperation"]);
 const phase2Enums = new Set(["IdempotencyOperationStatus"]);
+const phase3Models = new Set([
+  "SecureDocument",
+  "SecureDocumentAccessLog",
+  "SecureDocumentFile",
+  "SecureDocumentLink",
+  "SecureDocumentPolicy",
+  "SecureDocumentVersion",
+]);
+const phase3Enums = new Set([
+  "DocumentAccessOutcome",
+  "DocumentAccessType",
+  "DocumentCategory",
+  "DocumentFileStatus",
+  "DocumentLinkType",
+  "DocumentOwnerType",
+  "DocumentPolicyType",
+  "DocumentSensitivity",
+  "DocumentStatus",
+  "DocumentVersionStatus",
+  "DocumentVisibility",
+  "FileScanStatus",
+  "HashAlgorithm",
+  "MimeGroup",
+  "SourceModule",
+  "StorageProvider",
+]);
 const operationsAtSprint2Closure = new Set([
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -297,7 +323,7 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase <= 2) {
+if (manifest.currentPhase <= 3) {
   const allowedModels = new Set(sprint2Models);
   const allowedEnums = new Set(sprint2Enums);
   if (manifest.currentPhase === 1) {
@@ -308,11 +334,15 @@ if (manifest.currentPhase <= 2) {
       allowedEnums.add(enumName);
     }
   }
-  if (manifest.currentPhase === 2) {
+  if (manifest.currentPhase >= 2) {
     for (const model of phase1Models) allowedModels.add(model);
     for (const enumName of phase1Enums) allowedEnums.add(enumName);
     for (const model of phase2Models) allowedModels.add(model);
     for (const enumName of phase2Enums) allowedEnums.add(enumName);
+  }
+  if (manifest.currentPhase === 3) {
+    for (const model of phase3Models) allowedModels.add(model);
+    for (const enumName of phase3Enums) allowedEnums.add(enumName);
   }
   const prematureModels = declaredModels.filter(
     (model) => !allowedModels.has(model),
@@ -344,6 +374,7 @@ if (manifest.currentPhase <= 2) {
     "apps/api/src/modules/account-statements",
     "apps/api/src/modules/secure-document-storage",
   ];
+  if (manifest.currentPhase === 3) forbiddenModules.pop();
   if (manifest.currentPhase < 2) {
     forbiddenModules.unshift("apps/api/src/modules/residents-properties");
   }
@@ -370,6 +401,24 @@ if (manifest.currentPhase <= 2) {
     if (missingEnums.length > 0) {
       failures.push(
         `Sprint 3 phase 1 requires domain enums: ${missingEnums.join(", ")}.`,
+      );
+    }
+  }
+  if (manifest.currentPhase === 3) {
+    const missingModels = [...phase3Models].filter(
+      (model) => !declaredModels.includes(model),
+    );
+    const missingEnums = [...phase3Enums].filter(
+      (enumName) => !declaredEnums.includes(enumName),
+    );
+    if (missingModels.length > 0) {
+      failures.push(
+        `Sprint 3 phase 3 requires document models: ${missingModels.join(", ")}.`,
+      );
+    }
+    if (missingEnums.length > 0) {
+      failures.push(
+        `Sprint 3 phase 3 requires document enums: ${missingEnums.join(", ")}.`,
       );
     }
   }

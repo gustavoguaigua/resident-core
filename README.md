@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 3 — Fase 2 residents-properties-api completada
+Estado: Sprint 3 — Fase 3 secure-document-storage completada
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -619,7 +619,7 @@ Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: GO (2026-08-14)
 Sprint 2: cerrado formalmente — GO (2026-08-27); fase final 9; siguiente fase: ninguna
-Implementation Readiness Sprint 3: GO (2026-08-31); fase actual 2; 0 gaps abiertos
+Implementation Readiness Sprint 3: GO (2026-08-31); fase actual 3; 0 gaps abiertos
 ```
 
 Evidencia:
@@ -654,6 +654,7 @@ docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md
 docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md
 docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md
 docs/changes/SPRINT-3-PHASE-2-RESIDENTS-PROPERTIES-API-2026-09-03.md
+docs/changes/SPRINT-3-PHASE-3-SECURE-DOCUMENT-STORAGE-2026-09-04.md
 ```
 
 Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025

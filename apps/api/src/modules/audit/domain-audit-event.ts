@@ -145,6 +145,54 @@ export const AUDIT_CATALOG = {
   "lease.cancelled": tenantEvent("Lease", "status"),
   "lease.ended": tenantEvent("Lease", "status"),
   "lease.archived": tenantEvent("Lease", "status"),
+  "document.uploadFinalized": {
+    category: "SECURITY",
+    outcome: "SUCCESS",
+    resourceType: "SecureDocument",
+    metadata: "document",
+    tenantRequired: true,
+    actor: "USER",
+  },
+  "document.compensationFailed": {
+    category: "SECURITY",
+    outcome: "SUCCESS",
+    resourceType: "SecureDocument",
+    metadata: "document",
+    tenantRequired: true,
+    actor: "SYSTEM",
+  },
+  "document.orphanDetected": {
+    category: "SECURITY",
+    outcome: "SUCCESS",
+    resourceType: "SecureDocument",
+    metadata: "document",
+    tenantRequired: true,
+    actor: "SYSTEM",
+  },
+  "document.orphanReconciled": {
+    category: "SECURITY",
+    outcome: "SUCCESS",
+    resourceType: "SecureDocument",
+    metadata: "document",
+    tenantRequired: true,
+    actor: "SYSTEM",
+  },
+  "document.quarantined": {
+    category: "SECURITY",
+    outcome: "SUCCESS",
+    resourceType: "SecureDocument",
+    metadata: "document",
+    tenantRequired: true,
+    actor: "USER_OR_SYSTEM",
+  },
+  "document.rejected": {
+    category: "SECURITY",
+    outcome: "SUCCESS",
+    resourceType: "SecureDocument",
+    metadata: "document",
+    tenantRequired: true,
+    actor: "USER_OR_SYSTEM",
+  },
   "user.created": {
     category: "IDENTITY",
     outcome: "SUCCESS",
@@ -422,6 +470,59 @@ const metadataValidators = {
       expiresAt,
     };
   },
+  document(metadata: DomainAuditEvent["metadata"]): Prisma.InputJsonValue {
+    const allowed = [
+      "documentId",
+      "versionId",
+      "fileId",
+      "category",
+      "fileSize",
+      "verifiedMimeType",
+      "previousStatus",
+      "newStatus",
+    ];
+    if (metadata === undefined) {
+      throw new AuditContractError("Required document metadata is missing.");
+    }
+    const entries = Object.entries(metadata);
+    if (
+      entries.length === 0 ||
+      entries.some(
+        ([key]) => !allowed.includes(key) || FORBIDDEN_FIELD.test(key),
+      )
+    ) {
+      throw new AuditContractError(
+        "Document metadata contains non-allowlisted keys.",
+      );
+    }
+    const result: Record<string, string | number> = {};
+    for (const [key, value] of entries) {
+      if (["documentId", "versionId", "fileId"].includes(key)) {
+        result[key] = requireUuid(value as string, key);
+      } else if (key === "fileSize") {
+        if (
+          !Number.isInteger(value) ||
+          (value as number) < 1 ||
+          (value as number) > 10_485_760
+        ) {
+          throw new AuditContractError("fileSize is invalid.");
+        }
+        result[key] = value as number;
+      } else if (key === "verifiedMimeType") {
+        if (
+          value !== "application/pdf" &&
+          value !== "image/jpeg" &&
+          value !== "image/png"
+        ) {
+          throw new AuditContractError("verifiedMimeType is invalid.");
+        }
+        result[key] = value;
+      } else {
+        result[key] = requireStableText(value as string, key);
+      }
+    }
+    return result;
+  },
 } as const;
 
 const assertMetadataKeys = (
@@ -467,6 +568,13 @@ export function prepareAuditRecord(
   }
   if (contract.actor === "USER" && actor.type !== "USER") {
     throw new AuditContractError("The action requires a USER actor.");
+  }
+  if (
+    contract.actor === "USER_OR_SYSTEM" &&
+    actor.type !== "USER" &&
+    actor.type !== "SYSTEM"
+  ) {
+    throw new AuditContractError("The action requires a USER or SYSTEM actor.");
   }
   if (
     contract.actor === "DENIAL" &&

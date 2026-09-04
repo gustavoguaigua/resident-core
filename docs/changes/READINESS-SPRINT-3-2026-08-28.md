@@ -7,17 +7,17 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-09-03 |
-| Rama evaluada | `codex/sprint-3-phase-2-residents-properties-api` |
-| Baseline integrado | `21a2002` — PR #32 |
+| Fecha de actualización | 2026-09-04 |
+| Rama evaluada | `codex/sprint-3-phase-3-secure-document-storage` |
+| Baseline integrado | `08a614f` — PR #33 |
 | Decisión | `GO` |
-| Fase actual | `2 — residents-properties-api; PASS` |
+| Fase actual | `3 — secure-document-storage; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 2
-Implementation authorized: yes; begin with Phase 3 only
+Current Phase: 3
+Implementation authorized: yes; begin with Phase 4 only
 ```
 
 ## 2. Método
@@ -243,3 +243,18 @@ Next permitted phase: 3 — secure-document-storage
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-2-RESIDENTS-PROPERTIES-API-2026-09-03.md`.
+
+La Fase 3 incorporó la persistencia documental tenant-scoped, el puerto interno de
+storage y el adapter S3-compatible para MinIO, limitados a comprobantes privados de
+Payments. El gate aplicó siete migraciones desde PostgreSQL vacío y demostró validación
+de archivos, privacidad, autorización delegada, idempotencia, compensación y
+reconciliación tenant-aware con storage privado.
+
+```text
+Current Phase: 3
+Phase 3: PASS
+Next permitted phase: 4 — dues-fees-foundation
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-3-SECURE-DOCUMENT-STORAGE-2026-09-04.md`.

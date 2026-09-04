@@ -239,6 +239,8 @@ const phase1Enums = new Set([
   "ResidencyStatus",
   "ResidencyType",
 ]);
+const phase2Models = new Set(["IdempotencyOperation"]);
+const phase2Enums = new Set(["IdempotencyOperationStatus"]);
 const operationsAtSprint2Closure = new Set([
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -295,7 +297,7 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase <= 1) {
+if (manifest.currentPhase <= 2) {
   const allowedModels = new Set(sprint2Models);
   const allowedEnums = new Set(sprint2Enums);
   if (manifest.currentPhase === 1) {
@@ -305,6 +307,12 @@ if (manifest.currentPhase <= 1) {
     for (const enumName of phase1Enums) {
       allowedEnums.add(enumName);
     }
+  }
+  if (manifest.currentPhase === 2) {
+    for (const model of phase1Models) allowedModels.add(model);
+    for (const enumName of phase1Enums) allowedEnums.add(enumName);
+    for (const model of phase2Models) allowedModels.add(model);
+    for (const enumName of phase2Enums) allowedEnums.add(enumName);
   }
   const prematureModels = declaredModels.filter(
     (model) => !allowedModels.has(model),
@@ -330,13 +338,16 @@ if (manifest.currentPhase <= 1) {
       `Sprint 3 phase ${manifest.currentPhase} forbids functional API operations: ${prematureOperations.join(", ")}.`,
     );
   }
-  for (const modulePath of [
-    "apps/api/src/modules/residents-properties",
+  const forbiddenModules = [
     "apps/api/src/modules/dues-fees",
     "apps/api/src/modules/payments",
     "apps/api/src/modules/account-statements",
     "apps/api/src/modules/secure-document-storage",
-  ]) {
+  ];
+  if (manifest.currentPhase < 2) {
+    forbiddenModules.unshift("apps/api/src/modules/residents-properties");
+  }
+  for (const modulePath of forbiddenModules) {
     if (existsSync(resolve(repositoryRoot, modulePath))) {
       failures.push(
         `Sprint 3 phase ${manifest.currentPhase} forbids runtime module: ${modulePath}.`,
@@ -359,6 +370,33 @@ if (manifest.currentPhase <= 1) {
     if (missingEnums.length > 0) {
       failures.push(
         `Sprint 3 phase 1 requires domain enums: ${missingEnums.join(", ")}.`,
+      );
+    }
+  }
+  if (manifest.currentPhase === 2) {
+    const missingModels = [...phase2Models].filter(
+      (model) => !declaredModels.includes(model),
+    );
+    const missingEnums = [...phase2Enums].filter(
+      (enumName) => !declaredEnums.includes(enumName),
+    );
+    if (missingModels.length > 0) {
+      failures.push(
+        `Sprint 3 phase 2 requires platform models: ${missingModels.join(", ")}.`,
+      );
+    }
+    if (missingEnums.length > 0) {
+      failures.push(
+        `Sprint 3 phase 2 requires platform enums: ${missingEnums.join(", ")}.`,
+      );
+    }
+    if (
+      !existsSync(
+        resolve(repositoryRoot, "apps/api/src/modules/residents-properties"),
+      )
+    ) {
+      failures.push(
+        "Sprint 3 phase 2 requires the residents-properties runtime module.",
       );
     }
   }

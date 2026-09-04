@@ -4,14 +4,14 @@
 
 - Estado: `authoritative`
 - Readiness vigente: `GO`
-- Fase activa: `1 — residents-properties-persistence; PASS`
-- Fecha: 2026-09-02
+- Fase activa: `2 — residents-properties-api; PASS`
+- Fecha: 2026-09-03
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
-autorizar implementación. La compuerta emitió `GO` en fase 0 y la Fase 1 quedó
-completada con `PASS`; la siguiente implementación permitida es exclusivamente la
-Fase 2, elevando el manifest junto con sus artefactos y gates.
+autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 y 2
+quedaron completadas con `PASS`; la siguiente implementación permitida es
+exclusivamente la Fase 3, elevando el manifest junto con sus artefactos y gate.
 
 ## 2. Objetivo
 

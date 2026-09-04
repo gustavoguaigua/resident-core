@@ -1,5 +1,18 @@
 import { Prisma } from "@prisma/client";
 
+const tenantEvent = (
+  resourceType: string,
+  metadata: "none" | "changedFields" | "status",
+) =>
+  ({
+    actor: "USER",
+    category: "TENANT",
+    metadata,
+    outcome: "SUCCESS",
+    resourceType,
+    tenantRequired: true,
+  }) as const;
+
 export const AUDIT_CATALOG = {
   "platformAdmin.bootstrap.completed": {
     category: "PLATFORM",
@@ -97,6 +110,41 @@ export const AUDIT_CATALOG = {
     tenantRequired: true,
     actor: "USER",
   },
+  "propertyUnit.created": tenantEvent("PropertyUnit", "none"),
+  "propertyUnit.updated": tenantEvent("PropertyUnit", "changedFields"),
+  "propertyUnit.statusChanged": tenantEvent("PropertyUnit", "status"),
+  "propertyUnit.archived": tenantEvent("PropertyUnit", "status"),
+  "person.created": tenantEvent("Person", "none"),
+  "person.updated": tenantEvent("Person", "changedFields"),
+  "person.statusChanged": tenantEvent("Person", "status"),
+  "person.archived": tenantEvent("Person", "status"),
+  "person.identityLinked": tenantEvent("Person", "none"),
+  "person.identityUnlinked": tenantEvent("Person", "none"),
+  "legalEntity.created": tenantEvent("LegalEntity", "none"),
+  "legalEntity.updated": tenantEvent("LegalEntity", "changedFields"),
+  "legalEntity.statusChanged": tenantEvent("LegalEntity", "status"),
+  "legalEntity.archived": tenantEvent("LegalEntity", "status"),
+  "propertyOwnership.created": tenantEvent("PropertyOwnership", "none"),
+  "propertyOwnership.updated": tenantEvent(
+    "PropertyOwnership",
+    "changedFields",
+  ),
+  "propertyOwnership.disputed": tenantEvent("PropertyOwnership", "status"),
+  "propertyOwnership.resolved": tenantEvent("PropertyOwnership", "status"),
+  "propertyOwnership.ended": tenantEvent("PropertyOwnership", "status"),
+  "propertyOwnership.archived": tenantEvent("PropertyOwnership", "status"),
+  "residency.created": tenantEvent("Residency", "none"),
+  "residency.updated": tenantEvent("Residency", "changedFields"),
+  "residency.suspended": tenantEvent("Residency", "status"),
+  "residency.reactivated": tenantEvent("Residency", "status"),
+  "residency.ended": tenantEvent("Residency", "status"),
+  "residency.archived": tenantEvent("Residency", "status"),
+  "lease.created": tenantEvent("Lease", "none"),
+  "lease.updated": tenantEvent("Lease", "changedFields"),
+  "lease.activated": tenantEvent("Lease", "status"),
+  "lease.cancelled": tenantEvent("Lease", "status"),
+  "lease.ended": tenantEvent("Lease", "status"),
+  "lease.archived": tenantEvent("Lease", "status"),
   "user.created": {
     category: "IDENTITY",
     outcome: "SUCCESS",

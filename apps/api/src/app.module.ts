@@ -17,6 +17,7 @@ import { TenantsModule } from "./modules/tenants/tenants.module.js";
 import { TenantSettingsModule } from "./modules/tenant-settings/tenant-settings.module.js";
 import { UsersRolesModule } from "./modules/users-roles/users-roles.module.js";
 import { PrismaModule } from "./platform/database/prisma.module.js";
+import { ResidentsPropertiesModule } from "./modules/residents-properties/residents-properties.module.js";
 
 const applicationConfigModule = ConfigModule.forRoot({
   cache: true,
@@ -36,6 +37,7 @@ const applicationConfigModule = ConfigModule.forRoot({
     TenantsModule,
     TenantSettingsModule,
     UsersRolesModule,
+    ResidentsPropertiesModule,
     ThrottlerModule.forRootAsync({
       inject: [applicationConfig.KEY],
       imports: [applicationConfigModule],

@@ -273,6 +273,13 @@ enum LeaseStatus {
   @@map("lease_status")
 }
 
+enum IdempotencyOperationStatus {
+  IN_PROGRESS @map("inProgress")
+  COMPLETED   @map("completed")
+
+  @@map("idempotency_operation_status")
+}
+
 model Tenant {
   id               String       @id @default(uuid())
   name             String
@@ -290,20 +297,21 @@ model Tenant {
   archivedAt       DateTime?    @map("archived_at")
   archivedBy       String?      @map("archived_by")
 
-  profile            TenantProfile?
-  branding           TenantBranding?
-  wordpressMapping   TenantWordPressMapping?
-  roles              Role[]
-  memberships        UserTenantMembership[]
-  invitations        Invitation[]
-  auditLogs          AuditLog[]
-  settingValues      TenantSettingValue[]
-  persons            Person[]
-  legalEntities      LegalEntity[]
-  propertyUnits      PropertyUnit[]
-  propertyOwnerships PropertyOwnership[]
-  residencies        Residency[]
-  leases             Lease[]
+  profile               TenantProfile?
+  branding              TenantBranding?
+  wordpressMapping      TenantWordPressMapping?
+  roles                 Role[]
+  memberships           UserTenantMembership[]
+  invitations           Invitation[]
+  auditLogs             AuditLog[]
+  settingValues         TenantSettingValue[]
+  persons               Person[]
+  legalEntities         LegalEntity[]
+  propertyUnits         PropertyUnit[]
+  propertyOwnerships    PropertyOwnership[]
+  residencies           Residency[]
+  leases                Lease[]
+  idempotencyOperations IdempotencyOperation[]
 
   @@index([slug])
   @@index([status])
@@ -382,10 +390,11 @@ model UserProfile {
   disabledBy        String?      @map("disabled_by")
   disabledReason    String?      @map("disabled_reason")
 
-  memberships UserTenantMembership[]
-  globalRoles UserGlobalRole[]
-  auditLogs   AuditLog[]
-  persons     Person[]
+  memberships           UserTenantMembership[]
+  globalRoles           UserGlobalRole[]
+  auditLogs             AuditLog[]
+  persons               Person[]
+  idempotencyOperations IdempotencyOperation[]
 
   @@index([email])
   @@index([status])
@@ -572,6 +581,31 @@ model AuditLog {
   @@index([occurredAt])
   @@index([tenantId, occurredAt])
   @@map("audit_logs")
+}
+
+model IdempotencyOperation {
+  id                 String                     @id @default(uuid())
+  tenantId           String                     @map("tenant_id")
+  operationType      String                     @map("operation_type") @db.VarChar(160)
+  keyHash            String                     @map("key_hash") @db.Char(64)
+  requestHash        String                     @map("request_hash") @db.Char(64)
+  actorUserProfileId String                     @map("actor_user_profile_id")
+  status             IdempotencyOperationStatus @default(IN_PROGRESS)
+  httpStatus         Int?                       @map("http_status")
+  responseBody       Json?                      @map("response_body")
+  resourceType       String?                    @map("resource_type") @db.VarChar(128)
+  resourceId         String?                    @map("resource_id")
+  createdAt          DateTime                   @default(now()) @map("created_at")
+  completedAt        DateTime?                  @map("completed_at")
+  expiresAt          DateTime?                  @map("expires_at")
+
+  tenant Tenant      @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  actor  UserProfile @relation(fields: [actorUserProfileId], references: [id], onDelete: Restrict)
+
+  @@unique([tenantId, operationType, keyHash])
+  @@index([tenantId, status])
+  @@index([expiresAt])
+  @@map("idempotency_operations")
 }
 
 model SettingDefinition {

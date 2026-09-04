@@ -33,6 +33,8 @@
     "settings:seed": "node tools/settings/seed-settings.mjs",
     "test:settings": "node tools/settings/run-phase-8-gate.mjs",
     "test:residents:persistence": "node tools/residents/run-phase-1-gate.mjs",
+    "test:residents": "node tools/residents/run-phase-2-gate.mjs functional",
+    "test:residents:authorization": "node tools/residents/run-phase-2-gate.mjs authorization",
     "test:stack:smoke": "node tools/stack/run-phase-9-smoke.mjs",
     "openapi:check": "pnpm --filter @resident/api openapi:check",
     "openapi:generate": "pnpm --filter @resident/api openapi:generate",

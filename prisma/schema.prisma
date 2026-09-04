@@ -280,6 +280,138 @@ enum IdempotencyOperationStatus {
   @@map("idempotency_operation_status")
 }
 
+enum DocumentStatus {
+  DRAFT       @map("draft")
+  UPLOADED    @map("uploaded")
+  AVAILABLE   @map("available")
+  QUARANTINED @map("quarantined")
+  REJECTED    @map("rejected")
+  ARCHIVED    @map("archived")
+
+  @@map("document_status")
+}
+
+enum DocumentVersionStatus {
+  DRAFT      @map("draft")
+  ACTIVE     @map("active")
+  SUPERSEDED @map("superseded")
+  ARCHIVED   @map("archived")
+
+  @@map("document_version_status")
+}
+
+enum DocumentFileStatus {
+  PENDING     @map("pending")
+  STORED      @map("stored")
+  AVAILABLE   @map("available")
+  QUARANTINED @map("quarantined")
+  REJECTED    @map("rejected")
+  ARCHIVED    @map("archived")
+  MISSING     @map("missing")
+  FAILED      @map("failed")
+
+  @@map("document_file_status")
+}
+
+enum DocumentVisibility {
+  PRIVATE @map("private")
+
+  @@map("document_visibility")
+}
+
+enum DocumentSensitivity {
+  RESTRICTED @map("restricted")
+
+  @@map("document_sensitivity")
+}
+
+enum DocumentCategory {
+  PAYMENT_RECEIPT @map("paymentReceipt")
+
+  @@map("document_category")
+}
+
+enum SourceModule {
+  PAYMENTS @map("payments")
+
+  @@map("source_module")
+}
+
+enum StorageProvider {
+  MINIO         @map("minio")
+  S3            @map("s3")
+  S3_COMPATIBLE @map("s3Compatible")
+
+  @@map("storage_provider")
+}
+
+enum FileScanStatus {
+  NOT_REQUIRED @map("notRequired")
+  PENDING      @map("pending")
+  CLEAN        @map("clean")
+  SUSPICIOUS   @map("suspicious")
+  INFECTED     @map("infected")
+  FAILED       @map("failed")
+
+  @@map("file_scan_status")
+}
+
+enum DocumentAccessType {
+  VIEW_METADATA @map("viewMetadata")
+  DOWNLOAD      @map("download")
+  ARCHIVE       @map("archive")
+
+  @@map("document_access_type")
+}
+
+enum DocumentAccessOutcome {
+  ALLOWED     @map("allowed")
+  DENIED      @map("denied")
+  NOT_FOUND   @map("notFound")
+  QUARANTINED @map("quarantined")
+  REJECTED    @map("rejected")
+  ARCHIVED    @map("archived")
+  ERROR       @map("error")
+
+  @@map("document_access_outcome")
+}
+
+enum DocumentPolicyType {
+  SOURCE_DELEGATED @map("sourceDelegated")
+  RESTRICTED       @map("restricted")
+
+  @@map("document_policy_type")
+}
+
+enum DocumentOwnerType {
+  USER          @map("user")
+  PERSON        @map("person")
+  PROPERTY_UNIT @map("propertyUnit")
+  NONE          @map("none")
+
+  @@map("document_owner_type")
+}
+
+enum DocumentLinkType {
+  SOURCE     @map("source")
+  RECEIPT_OF @map("receiptOf")
+
+  @@map("document_link_type")
+}
+
+enum MimeGroup {
+  PDF   @map("pdf")
+  IMAGE @map("image")
+
+  @@map("mime_group")
+}
+
+enum HashAlgorithm {
+  SHA_256 @map("SHA-256")
+
+  @@map("hash_algorithm")
+}
+
 model Tenant {
   id               String       @id @default(uuid())
   name             String
@@ -297,21 +429,27 @@ model Tenant {
   archivedAt       DateTime?    @map("archived_at")
   archivedBy       String?      @map("archived_by")
 
-  profile               TenantProfile?
-  branding              TenantBranding?
-  wordpressMapping      TenantWordPressMapping?
-  roles                 Role[]
-  memberships           UserTenantMembership[]
-  invitations           Invitation[]
-  auditLogs             AuditLog[]
-  settingValues         TenantSettingValue[]
-  persons               Person[]
-  legalEntities         LegalEntity[]
-  propertyUnits         PropertyUnit[]
-  propertyOwnerships    PropertyOwnership[]
-  residencies           Residency[]
-  leases                Lease[]
-  idempotencyOperations IdempotencyOperation[]
+  profile                  TenantProfile?
+  branding                 TenantBranding?
+  wordpressMapping         TenantWordPressMapping?
+  roles                    Role[]
+  memberships              UserTenantMembership[]
+  invitations              Invitation[]
+  auditLogs                AuditLog[]
+  settingValues            TenantSettingValue[]
+  persons                  Person[]
+  legalEntities            LegalEntity[]
+  propertyUnits            PropertyUnit[]
+  propertyOwnerships       PropertyOwnership[]
+  residencies              Residency[]
+  leases                   Lease[]
+  idempotencyOperations    IdempotencyOperation[]
+  secureDocuments          SecureDocument[]
+  secureDocumentVersions   SecureDocumentVersion[]
+  secureDocumentFiles      SecureDocumentFile[]
+  secureDocumentLinks      SecureDocumentLink[]
+  secureDocumentPolicies   SecureDocumentPolicy[]
+  secureDocumentAccessLogs SecureDocumentAccessLog[]
 
   @@index([slug])
   @@index([status])
@@ -390,11 +528,12 @@ model UserProfile {
   disabledBy        String?      @map("disabled_by")
   disabledReason    String?      @map("disabled_reason")
 
-  memberships           UserTenantMembership[]
-  globalRoles           UserGlobalRole[]
-  auditLogs             AuditLog[]
-  persons               Person[]
-  idempotencyOperations IdempotencyOperation[]
+  memberships              UserTenantMembership[]
+  globalRoles              UserGlobalRole[]
+  auditLogs                AuditLog[]
+  persons                  Person[]
+  idempotencyOperations    IdempotencyOperation[]
+  secureDocumentAccessLogs SecureDocumentAccessLog[]
 
   @@index([email])
   @@index([status])
@@ -606,6 +745,178 @@ model IdempotencyOperation {
   @@index([tenantId, status])
   @@index([expiresAt])
   @@map("idempotency_operations")
+}
+
+model SecureDocument {
+  id                  String              @id @default(uuid())
+  tenantId            String              @map("tenant_id")
+  title               String
+  description         String?
+  status              DocumentStatus      @default(DRAFT)
+  visibility          DocumentVisibility  @default(PRIVATE)
+  sensitivity         DocumentSensitivity @default(RESTRICTED)
+  category            DocumentCategory    @default(PAYMENT_RECEIPT)
+  sourceModule        SourceModule        @default(PAYMENTS) @map("source_module")
+  sourceResourceType  String              @default("PAYMENT_RECEIPT") @map("source_resource_type") @db.VarChar(64)
+  sourceResourceId    String              @map("source_resource_id")
+  ownerType           DocumentOwnerType   @default(NONE) @map("owner_type")
+  ownerUserId         String?             @map("owner_user_id")
+  ownerPersonId       String?             @map("owner_person_id")
+  ownerPropertyUnitId String?             @map("owner_property_unit_id")
+  currentVersionId    String?             @map("current_version_id")
+  activeFileId        String?             @map("active_file_id")
+  createdBy           String              @map("created_by")
+  createdAt           DateTime            @default(now()) @map("created_at")
+  updatedAt           DateTime            @updatedAt @map("updated_at")
+  archivedAt          DateTime?           @map("archived_at")
+  archiveReason       String?             @map("archive_reason")
+  metadata            Json?
+
+  tenant     Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  versions   SecureDocumentVersion[]
+  files      SecureDocumentFile[]
+  links      SecureDocumentLink[]
+  policies   SecureDocumentPolicy[]
+  accessLogs SecureDocumentAccessLog[]
+
+  @@unique([id, tenantId])
+  @@index([tenantId, status])
+  @@index([tenantId, sourceModule, sourceResourceType, sourceResourceId])
+  @@index([tenantId, ownerUserId])
+  @@index([tenantId, ownerPersonId])
+  @@index([tenantId, ownerPropertyUnitId])
+  @@map("secure_documents")
+}
+
+model SecureDocumentVersion {
+  id            String                @id @default(uuid())
+  tenantId      String                @map("tenant_id")
+  documentId    String                @map("document_id")
+  versionNumber Int                   @map("version_number")
+  status        DocumentVersionStatus @default(DRAFT)
+  changeReason  String?               @map("change_reason")
+  createdBy     String                @map("created_by")
+  createdAt     DateTime              @default(now()) @map("created_at")
+  archivedAt    DateTime?             @map("archived_at")
+  metadata      Json?
+
+  tenant     Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  document   SecureDocument            @relation(fields: [documentId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  files      SecureDocumentFile[]
+  accessLogs SecureDocumentAccessLog[]
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, documentId, versionNumber])
+  @@index([tenantId, status])
+  @@map("secure_document_versions")
+}
+
+model SecureDocumentFile {
+  id            String             @id @default(uuid())
+  tenantId      String             @map("tenant_id")
+  documentId    String             @map("document_id")
+  versionId     String             @map("version_id")
+  provider      StorageProvider
+  storageKey    String             @map("storage_key")
+  safeFileName  String             @map("safe_file_name") @db.VarChar(255)
+  extension     String             @db.VarChar(8)
+  mimeType      String             @map("mime_type") @db.VarChar(64)
+  mimeGroup     MimeGroup          @map("mime_group")
+  fileSize      Int                @map("file_size")
+  fileHash      String             @map("file_hash") @db.Char(64)
+  hashAlgorithm HashAlgorithm      @default(SHA_256) @map("hash_algorithm")
+  scanStatus    FileScanStatus     @default(NOT_REQUIRED) @map("scan_status")
+  status        DocumentFileStatus @default(PENDING)
+  isPrimary     Boolean            @default(true) @map("is_primary")
+  uploadedBy    String             @map("uploaded_by")
+  uploadedAt    DateTime           @default(now()) @map("uploaded_at")
+  archivedAt    DateTime?          @map("archived_at")
+  metadata      Json?
+
+  tenant     Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  document   SecureDocument            @relation(fields: [documentId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  version    SecureDocumentVersion     @relation(fields: [versionId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  accessLogs SecureDocumentAccessLog[]
+
+  @@unique([id, tenantId])
+  @@unique([provider, storageKey])
+  @@index([tenantId, documentId])
+  @@index([tenantId, versionId])
+  @@index([tenantId, status, scanStatus])
+  @@index([tenantId, fileHash])
+  @@map("secure_document_files")
+}
+
+model SecureDocumentLink {
+  id           String           @id @default(uuid())
+  tenantId     String           @map("tenant_id")
+  documentId   String           @map("document_id")
+  sourceModule SourceModule     @default(PAYMENTS) @map("source_module")
+  resourceType String           @default("PAYMENT_RECEIPT") @map("resource_type") @db.VarChar(64)
+  resourceId   String           @map("resource_id")
+  linkType     DocumentLinkType @default(RECEIPT_OF) @map("link_type")
+  createdBy    String           @map("created_by")
+  createdAt    DateTime         @default(now()) @map("created_at")
+  archivedAt   DateTime?        @map("archived_at")
+
+  tenant   Tenant         @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  document SecureDocument @relation(fields: [documentId, tenantId], references: [id, tenantId], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@index([tenantId, documentId])
+  @@index([tenantId, sourceModule, resourceType, resourceId])
+  @@map("secure_document_links")
+}
+
+model SecureDocumentPolicy {
+  id                    String              @id @default(uuid())
+  tenantId              String              @map("tenant_id")
+  documentId            String              @map("document_id")
+  policyType            DocumentPolicyType  @default(SOURCE_DELEGATED) @map("policy_type")
+  visibility            DocumentVisibility  @default(PRIVATE)
+  sensitivity           DocumentSensitivity @default(RESTRICTED)
+  sourceModuleDelegated Boolean             @default(true) @map("source_module_delegated")
+  allowOwnerRead        Boolean             @default(false) @map("allow_owner_read")
+  allowOwnerDownload    Boolean             @default(false) @map("allow_owner_download")
+  allowAdminDownload    Boolean             @default(false) @map("allow_admin_download")
+  createdBy             String              @map("created_by")
+  createdAt             DateTime            @default(now()) @map("created_at")
+  updatedAt             DateTime            @updatedAt @map("updated_at")
+  archivedAt            DateTime?           @map("archived_at")
+
+  tenant   Tenant         @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  document SecureDocument @relation(fields: [documentId, tenantId], references: [id, tenantId], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@index([tenantId, documentId])
+  @@map("secure_document_policies")
+}
+
+model SecureDocumentAccessLog {
+  id                 String                @id @default(uuid())
+  tenantId           String                @map("tenant_id")
+  documentId         String?               @map("document_id")
+  versionId          String?               @map("version_id")
+  fileId             String?               @map("file_id")
+  actorUserId        String?               @map("actor_user_id")
+  accessType         DocumentAccessType    @map("access_type")
+  outcome            DocumentAccessOutcome
+  sourceModule       SourceModule?         @map("source_module")
+  sourceResourceType String?               @map("source_resource_type") @db.VarChar(64)
+  sourceResourceId   String?               @map("source_resource_id")
+  accessedAt         DateTime              @default(now()) @map("accessed_at")
+  traceId            String?               @map("trace_id") @db.VarChar(128)
+
+  tenant   Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  document SecureDocument?        @relation(fields: [documentId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  version  SecureDocumentVersion? @relation(fields: [versionId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  file     SecureDocumentFile?    @relation(fields: [fileId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  actor    UserProfile?           @relation(fields: [actorUserId], references: [id], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@index([tenantId, documentId])
+  @@index([tenantId, actorUserId, accessedAt])
+  @@map("secure_document_access_logs")
 }
 
 model SettingDefinition {

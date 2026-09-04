@@ -35,6 +35,7 @@
     "test:residents:persistence": "node tools/residents/run-phase-1-gate.mjs",
     "test:residents": "node tools/residents/run-phase-2-gate.mjs functional",
     "test:residents:authorization": "node tools/residents/run-phase-2-gate.mjs authorization",
+    "test:documents": "node tools/documents/run-phase-3-gate.mjs",
     "test:stack:smoke": "node tools/stack/run-phase-9-smoke.mjs",
     "openapi:check": "pnpm --filter @resident/api openapi:check",
     "openapi:generate": "pnpm --filter @resident/api openapi:generate",

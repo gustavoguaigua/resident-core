@@ -11,6 +11,33 @@ import {
 import { KeycloakPlatformIdentityClient } from "../../src/modules/platform-admin-bootstrap/keycloak-platform-identity-client.js";
 
 const enabled = process.env.BOOTSTRAP_PHASE4_TEST === "1";
+
+const countBootstrapGraph = async (prisma: PrismaClient) => {
+  const [
+    auditLogs,
+    permissions,
+    rolePermissions,
+    roles,
+    userGlobalRoles,
+    userProfiles,
+  ] = await Promise.all([
+    prisma.auditLog.count(),
+    prisma.permission.count(),
+    prisma.rolePermission.count(),
+    prisma.role.count(),
+    prisma.userGlobalRole.count(),
+    prisma.userProfile.count(),
+  ]);
+  return {
+    auditLogs,
+    permissions,
+    rolePermissions,
+    roles,
+    userGlobalRoles,
+    userProfiles,
+  };
+};
+
 const requiredEnvironment = (name: string): string => {
   const value = process.env[name];
   if (!value) {
@@ -52,17 +79,19 @@ if (!enabled) {
           scope: "TENANT",
         },
       });
-      await expect(
-        useCase.execute("platform.admin@example.com"),
-      ).rejects.toEqual(
-        expect.objectContaining<Partial<PlatformAdminBootstrapError>>({
-          code: "BOOTSTRAP_ROLE_INVALID",
-        }),
-      );
-      expect(await prisma.userProfile.count()).toBe(0);
-      expect(await prisma.permission.count()).toBe(0);
-      expect(await prisma.auditLog.count()).toBe(0);
-      await prisma.role.delete({ where: { id: malformedRole.id } });
+      const baseline = await countBootstrapGraph(prisma);
+      try {
+        await expect(
+          useCase.execute("platform.admin@example.com"),
+        ).rejects.toEqual(
+          expect.objectContaining<Partial<PlatformAdminBootstrapError>>({
+            code: "BOOTSTRAP_ROLE_INVALID",
+          }),
+        );
+        expect(await countBootstrapGraph(prisma)).toEqual(baseline);
+      } finally {
+        await prisma.role.delete({ where: { id: malformedRole.id } });
+      }
     });
 
     it("rolls back the whole graph when durable audit fails", async () => {
@@ -77,17 +106,18 @@ if (!enabled) {
         identityLookup,
         failingAuditWriter,
       );
+      const baseline = await countBootstrapGraph(prisma);
       await expect(
         failingUseCase.execute("platform.admin@example.com"),
       ).rejects.toThrow("synthetic audit failure");
-      expect(await prisma.permission.count()).toBe(0);
-      expect(await prisma.role.count()).toBe(0);
-      expect(await prisma.userProfile.count()).toBe(0);
-      expect(await prisma.userGlobalRole.count()).toBe(0);
-      expect(await prisma.auditLog.count()).toBe(0);
+      expect(await countBootstrapGraph(prisma)).toEqual(baseline);
     });
 
     it("serializes concurrent attempts and remains idempotent", async () => {
+      const baseline = await countBootstrapGraph(prisma);
+      const existingPlatformPermissions = await prisma.permission.count({
+        where: { code: { in: [...PLATFORM_PERMISSION_CODES] } },
+      });
       const results = await Promise.all([
         useCase.execute("platform.admin@example.com"),
         useCase.execute("platform.admin@example.com"),
@@ -108,7 +138,9 @@ if (!enabled) {
       expect(await prisma.tenant.count()).toBe(0);
       expect(await prisma.userProfile.count()).toBe(1);
       expect(await prisma.permission.count()).toBe(
-        PLATFORM_PERMISSION_CODES.length,
+        baseline.permissions +
+          PLATFORM_PERMISSION_CODES.length -
+          existingPlatformPermissions,
       );
       expect(await prisma.role.count()).toBe(5);
       expect(await prisma.userGlobalRole.count()).toBe(1);

@@ -40,8 +40,8 @@ describe("Audit base contract", () => {
     vi.restoreAllMocks();
   });
 
-  it("contains only the 31 canonical Sprint 2 actions", () => {
-    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(31);
+  it("contains exactly the 63 canonical actions through Sprint 3 Phase 2", () => {
+    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(63);
     expect(AUDIT_CATALOG["authentication.denied"]).toMatchObject({
       category: "SECURITY",
       outcome: "DENIED",
@@ -51,6 +51,16 @@ describe("Audit base contract", () => {
       category: "TENANT",
       outcome: "SUCCESS",
       resourceType: "Tenant",
+    });
+    expect(AUDIT_CATALOG["person.identityLinked"]).toMatchObject({
+      category: "TENANT",
+      outcome: "SUCCESS",
+      resourceType: "Person",
+    });
+    expect(AUDIT_CATALOG["lease.ended"]).toMatchObject({
+      category: "TENANT",
+      outcome: "SUCCESS",
+      resourceType: "Lease",
     });
   });
 

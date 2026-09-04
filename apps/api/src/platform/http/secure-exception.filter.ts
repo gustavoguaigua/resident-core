@@ -35,7 +35,7 @@ export class SecureExceptionFilter implements ExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
     const traceId = getOrCreateTraceId(request);
-    const code = getErrorCode(status);
+    const code = getErrorCode(exception, status);
     const envelope: ErrorEnvelope = {
       error: {
         code,
@@ -64,7 +64,19 @@ export class SecureExceptionFilter implements ExceptionFilter {
   }
 }
 
-function getErrorCode(status: number): string {
+function getErrorCode(exception: unknown, status: number): string {
+  if (exception instanceof HttpException) {
+    const response = exception.getResponse();
+    if (
+      typeof response === "object" &&
+      response !== null &&
+      "code" in response &&
+      typeof response.code === "string" &&
+      /^[A-Z][A-Z0-9_]{2,63}$/u.test(response.code)
+    ) {
+      return response.code;
+    }
+  }
   const enumName = HttpStatus[status];
 
   return typeof enumName === "string" ? enumName : "HTTP_ERROR";

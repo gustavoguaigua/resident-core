@@ -9,8 +9,8 @@
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
 | Estado      | Sprint 2 cerrado; Implementation Readiness de Sprint 3 en `GO`                        |
-| Fecha       | 2026-08-31                                                                             |
-| Fase actual | Sprint 3 — Fase 1 residents-properties-persistence completada                        |
+| Fecha       | 2026-09-03                                                                             |
+| Fase actual | Sprint 3 — Fase 2 residents-properties-api completada                                |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -954,6 +954,7 @@ Evidencia de cierre: docs/changes/SPRINT-2-CLOSURE-2026-08-27.md.
 Readiness inicial de Sprint 3: NO_GO el 2026-08-28, fase 0.
 Reevaluación formal de Sprint 3: GO el 2026-08-31, fase 0.
 Fase 1 de Sprint 3: residents-properties-persistence PASS el 2026-08-31.
+Fase 2 de Sprint 3: residents-properties-api PASS el 2026-09-03.
 Gaps abiertos de Sprint 3: 0 críticos y 0 altos.
 Runbook: docs/implementation/sprint-3-residents-properties-finance-base.md.
 Evidencia: docs/changes/READINESS-SPRINT-3-2026-08-28.md.
@@ -974,8 +975,8 @@ Sprint 2 está formalmente `CLOSED / COMPLETED` con decisión `GO`. No existe un
 
 Sprint 3 es el siguiente incremento. Su reevaluación formal emitió `GO` en fase `0`:
 los 35 documentos de Specs 003, 004, 005, 006 y 016 están `accepted` y no quedan gaps
-abiertos. La Fase 1 de persistencia quedó completada con `PASS`; la Fase 2 es la
-siguiente permitida.
+abiertos. Las Fases 1 y 2 quedaron completadas con `PASS`; la Fase 3 es la siguiente
+permitida.
 ```
 
 Evidencia vigente:

@@ -7,17 +7,17 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-09-02 |
-| Rama evaluada | `codex/gap-s3-010-idempotency-contract` |
-| Baseline integrado | `a6e641b` — PR #31 |
+| Fecha de actualización | 2026-09-03 |
+| Rama evaluada | `codex/sprint-3-phase-2-residents-properties-api` |
+| Baseline integrado | `21a2002` — PR #32 |
 | Decisión | `GO` |
-| Fase actual | `1 — residents-properties-persistence; PASS` |
+| Fase actual | `2 — residents-properties-api; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 1
-Implementation authorized: yes; begin with Phase 2 only after integrating GAP-S3-010
+Current Phase: 2
+Implementation authorized: yes; begin with Phase 3 only
 ```
 
 ## 2. Método
@@ -228,3 +228,18 @@ La evidencia detallada está en
 La implementación de Fase 2 detectó antes de editar que faltaba el contrato persistente
 del ledger. GAP-S3-010 lo cerró sin runtime, mantuvo `currentPhase = 1` y autorizó que
 Fase 2 incorpore el componente transversal en el mismo cambio que sus API y gates.
+
+La Fase 2 incorporó la allowlist tenant-scoped de Spec 003, permisos Core, lecturas
+`.own`, validación `link-user`, Audit sanitizado y el ledger transversal de GAP-S3-010.
+Los gates focalizados y acumulativos aplicaron seis migraciones desde PostgreSQL vacío,
+confirmaron status y drift limpios, y probaron funcionalidad, aislamiento, autorización,
+idempotencia, atomicidad y rollback.
+
+```text
+Current Phase: 2
+Phase 2: PASS
+Next permitted phase: 3 — secure-document-storage
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-2-RESIDENTS-PROPERTIES-API-2026-09-03.md`.

@@ -210,6 +210,66 @@ enum PropertyUnitStatus {
   @@map("property_unit_status")
 }
 
+enum CurrencyCode {
+  USD @map("USD")
+
+  @@map("currency_code")
+}
+
+enum ChargeConceptStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  ARCHIVED @map("archived")
+
+  @@map("charge_concept_status")
+}
+
+enum ChargeConceptCategory {
+  ORDINARY      @map("ordinary")
+  EXTRAORDINARY @map("extraordinary")
+  SERVICE       @map("service")
+  FINE          @map("fine")
+  RESERVATION   @map("reservation")
+  OTHER         @map("other")
+
+  @@map("charge_concept_category")
+}
+
+enum FeeScheduleStatus {
+  ACTIVE   @map("active")
+  INACTIVE @map("inactive")
+  ARCHIVED @map("archived")
+
+  @@map("fee_schedule_status")
+}
+
+enum FeeFrequency {
+  MONTHLY   @map("monthly")
+  QUARTERLY @map("quarterly")
+  ANNUAL    @map("annual")
+  ONE_TIME  @map("oneTime")
+
+  @@map("fee_frequency")
+}
+
+enum UnitFeeAssignmentStatus {
+  ACTIVE   @map("active")
+  ENDED    @map("ended")
+  INACTIVE @map("inactive")
+  ARCHIVED @map("archived")
+
+  @@map("unit_fee_assignment_status")
+}
+
+enum BillingPeriodStatus {
+  OPEN     @map("open")
+  CLOSED   @map("closed")
+  LOCKED   @map("locked")
+  ARCHIVED @map("archived")
+
+  @@map("billing_period_status")
+}
+
 enum PropertyUnitType {
   HOUSE      @map("house")
   APARTMENT  @map("apartment")
@@ -450,6 +510,10 @@ model Tenant {
   secureDocumentLinks      SecureDocumentLink[]
   secureDocumentPolicies   SecureDocumentPolicy[]
   secureDocumentAccessLogs SecureDocumentAccessLog[]
+  chargeConcepts           ChargeConcept[]
+  feeSchedules             FeeSchedule[]
+  unitFeeAssignments       UnitFeeAssignment[]
+  billingPeriods           BillingPeriod[]
 
   @@index([slug])
   @@index([status])
@@ -534,6 +598,9 @@ model UserProfile {
   persons                  Person[]
   idempotencyOperations    IdempotencyOperation[]
   secureDocumentAccessLogs SecureDocumentAccessLog[]
+  endedUnitFeeAssignments  UnitFeeAssignment[]       @relation("UnitFeeEndedBy")
+  closedBillingPeriods     BillingPeriod[]           @relation("BillingPeriodClosedBy")
+  lockedBillingPeriods     BillingPeriod[]           @relation("BillingPeriodLockedBy")
 
   @@index([email])
   @@index([status])
@@ -1054,10 +1121,11 @@ model PropertyUnit {
   updatedAt        DateTime           @updatedAt @map("updated_at")
   archivedAt       DateTime?          @map("archived_at")
 
-  tenant      Tenant              @relation(fields: [tenantId], references: [id], onDelete: Restrict)
-  ownerships  PropertyOwnership[]
-  residencies Residency[]
-  leases      Lease[]
+  tenant             Tenant              @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  ownerships         PropertyOwnership[]
+  residencies        Residency[]
+  leases             Lease[]
+  unitFeeAssignments UnitFeeAssignment[]
 
   @@unique([id, tenantId])
   @@unique([tenantId, code])
@@ -1066,6 +1134,111 @@ model PropertyUnit {
   @@index([type])
   @@index([tenantId, block])
   @@map("property_units")
+}
+
+model ChargeConcept {
+  id            String                @id @default(uuid())
+  tenantId      String                @map("tenant_id")
+  code          String                @db.VarChar(80)
+  name          String                @db.VarChar(160)
+  description   String?
+  category      ChargeConceptCategory @default(ORDINARY)
+  defaultAmount Decimal?              @map("default_amount") @db.Decimal(12, 2)
+  currency      CurrencyCode          @default(USD)
+  status        ChargeConceptStatus   @default(ACTIVE)
+  isSystem      Boolean               @default(false) @map("is_system")
+  createdAt     DateTime              @default(now()) @map("created_at")
+  updatedAt     DateTime              @updatedAt @map("updated_at")
+  archivedAt    DateTime?             @map("archived_at")
+
+  tenant       Tenant        @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  feeSchedules FeeSchedule[]
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, code])
+  @@index([tenantId, status])
+  @@index([tenantId, category])
+  @@map("charge_concepts")
+}
+
+model FeeSchedule {
+  id              String            @id @default(uuid())
+  tenantId        String            @map("tenant_id")
+  chargeConceptId String            @map("charge_concept_id")
+  name            String            @db.VarChar(160)
+  amount          Decimal           @db.Decimal(12, 2)
+  currency        CurrencyCode      @default(USD)
+  frequency       FeeFrequency      @default(MONTHLY)
+  effectiveFrom   DateTime          @map("effective_from") @db.Date
+  effectiveTo     DateTime?         @map("effective_to") @db.Date
+  status          FeeScheduleStatus @default(ACTIVE)
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+  archivedAt      DateTime?         @map("archived_at")
+
+  tenant             Tenant              @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  chargeConcept      ChargeConcept       @relation(fields: [chargeConceptId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  unitFeeAssignments UnitFeeAssignment[]
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, chargeConceptId, name])
+  @@index([tenantId, status])
+  @@index([tenantId, chargeConceptId])
+  @@index([tenantId, effectiveFrom, effectiveTo])
+  @@map("fee_schedules")
+}
+
+model UnitFeeAssignment {
+  id             String                  @id @default(uuid())
+  tenantId       String                  @map("tenant_id")
+  propertyUnitId String                  @map("property_unit_id")
+  feeScheduleId  String                  @map("fee_schedule_id")
+  status         UnitFeeAssignmentStatus @default(ACTIVE)
+  startDate      DateTime                @map("start_date") @db.Date
+  endDate        DateTime?               @map("end_date") @db.Date
+  createdAt      DateTime                @default(now()) @map("created_at")
+  updatedAt      DateTime                @updatedAt @map("updated_at")
+  endedAt        DateTime?               @map("ended_at")
+  endedBy        String?                 @map("ended_by")
+  endReason      String?                 @map("end_reason") @db.VarChar(500)
+
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit PropertyUnit @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  feeSchedule  FeeSchedule  @relation(fields: [feeScheduleId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  endedByUser  UserProfile? @relation("UnitFeeEndedBy", fields: [endedBy], references: [id], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@index([tenantId, status])
+  @@index([tenantId, propertyUnitId])
+  @@index([tenantId, feeScheduleId])
+  @@index([tenantId, startDate, endDate])
+  @@map("unit_fee_assignments")
+}
+
+model BillingPeriod {
+  id         String              @id @default(uuid())
+  tenantId   String              @map("tenant_id")
+  periodCode String              @map("period_code") @db.VarChar(7)
+  startsAt   DateTime            @map("starts_at") @db.Date
+  endsAt     DateTime            @map("ends_at") @db.Date
+  dueDate    DateTime            @map("due_date") @db.Date
+  status     BillingPeriodStatus @default(OPEN)
+  createdAt  DateTime            @default(now()) @map("created_at")
+  updatedAt  DateTime            @updatedAt @map("updated_at")
+  closedAt   DateTime?           @map("closed_at")
+  closedBy   String?             @map("closed_by")
+  lockedAt   DateTime?           @map("locked_at")
+  lockedBy   String?             @map("locked_by")
+
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  closedByUser UserProfile? @relation("BillingPeriodClosedBy", fields: [closedBy], references: [id], onDelete: Restrict)
+  lockedByUser UserProfile? @relation("BillingPeriodLockedBy", fields: [lockedBy], references: [id], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, periodCode])
+  @@index([tenantId, status])
+  @@index([tenantId, startsAt, endsAt])
+  @@map("billing_periods")
 }
 
 model PropertyOwnership {

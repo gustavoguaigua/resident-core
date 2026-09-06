@@ -19,6 +19,7 @@ import { UsersRolesModule } from "./modules/users-roles/users-roles.module.js";
 import { PrismaModule } from "./platform/database/prisma.module.js";
 import { ResidentsPropertiesModule } from "./modules/residents-properties/residents-properties.module.js";
 import { SecureDocumentStorageModule } from "./modules/secure-document-storage/secure-document-storage.module.js";
+import { DuesFeesModule } from "./modules/dues-fees/dues-fees.module.js";
 
 const applicationConfigModule = ConfigModule.forRoot({
   cache: true,
@@ -40,6 +41,7 @@ const applicationConfigModule = ConfigModule.forRoot({
     UsersRolesModule,
     ResidentsPropertiesModule,
     SecureDocumentStorageModule,
+    DuesFeesModule,
     ThrottlerModule.forRootAsync({
       inject: [applicationConfig.KEY],
       imports: [applicationConfigModule],

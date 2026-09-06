@@ -8,10 +8,10 @@
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
 | Fecha de actualización | 2026-09-04 |
-| Rama evaluada | `codex/sprint-3-phase-3-secure-document-storage` |
-| Baseline integrado | `08a614f` — PR #33 |
+| Rama evaluada | `codex/sprint-3-phase-4-dues-fees-foundation` |
+| Baseline integrado | `b5b22bb` — PR #34 |
 | Decisión | `GO` |
-| Fase actual | `3 — secure-document-storage; PASS` |
+| Fase actual | `4 — dues-fees-foundation; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
@@ -258,3 +258,17 @@ Next permitted phase: 4 — dues-fees-foundation
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-3-SECURE-DOCUMENT-STORAGE-2026-09-04.md`.
+
+La Fase 4 incorporó conceptos, calendarios de cuotas, asignaciones por unidad y
+periodos abiertos con moneda derivada de `Tenant.currency`, precisión Decimal,
+permisos Core, idempotencia y Audit transaccional. El gate aplicó ocho migraciones
+desde PostgreSQL vacío y confirmó constraints tenant-scoped, drift cero, operaciones
+permitidas y negativos de seguridad.
+
+```text
+Phase 4: PASS
+Next permitted phase: 5 — charge-lifecycle
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md`.

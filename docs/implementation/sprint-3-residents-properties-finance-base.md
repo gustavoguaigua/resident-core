@@ -4,14 +4,14 @@
 
 - Estado: `authoritative`
 - Readiness vigente: `GO`
-- Fase activa: `3 — secure-document-storage; PASS`
+- Fase activa: `4 — dues-fees-foundation; PASS`
 - Fecha: 2026-09-04
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
-autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 3
+autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 4
 quedaron completadas con `PASS`; la siguiente implementación permitida es
-exclusivamente la Fase 4, elevando el manifest junto con sus artefactos y gate.
+exclusivamente la Fase 5, elevando el manifest junto con sus artefactos y gate.
 
 ## 2. Objetivo
 

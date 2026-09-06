@@ -267,6 +267,21 @@ const phase3Enums = new Set([
   "SourceModule",
   "StorageProvider",
 ]);
+const phase4Models = new Set([
+  "BillingPeriod",
+  "ChargeConcept",
+  "FeeSchedule",
+  "UnitFeeAssignment",
+]);
+const phase4Enums = new Set([
+  "BillingPeriodStatus",
+  "ChargeConceptCategory",
+  "ChargeConceptStatus",
+  "CurrencyCode",
+  "FeeFrequency",
+  "FeeScheduleStatus",
+  "UnitFeeAssignmentStatus",
+]);
 const operationsAtSprint2Closure = new Set([
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -323,7 +338,7 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase <= 3) {
+if (manifest.currentPhase <= 4) {
   const allowedModels = new Set(sprint2Models);
   const allowedEnums = new Set(sprint2Enums);
   if (manifest.currentPhase === 1) {
@@ -340,9 +355,13 @@ if (manifest.currentPhase <= 3) {
     for (const model of phase2Models) allowedModels.add(model);
     for (const enumName of phase2Enums) allowedEnums.add(enumName);
   }
-  if (manifest.currentPhase === 3) {
+  if (manifest.currentPhase >= 3) {
     for (const model of phase3Models) allowedModels.add(model);
     for (const enumName of phase3Enums) allowedEnums.add(enumName);
+  }
+  if (manifest.currentPhase === 4) {
+    for (const model of phase4Models) allowedModels.add(model);
+    for (const enumName of phase4Enums) allowedEnums.add(enumName);
   }
   const prematureModels = declaredModels.filter(
     (model) => !allowedModels.has(model),
@@ -374,7 +393,8 @@ if (manifest.currentPhase <= 3) {
     "apps/api/src/modules/account-statements",
     "apps/api/src/modules/secure-document-storage",
   ];
-  if (manifest.currentPhase === 3) forbiddenModules.pop();
+  if (manifest.currentPhase >= 3) forbiddenModules.pop();
+  if (manifest.currentPhase === 4) forbiddenModules.shift();
   if (manifest.currentPhase < 2) {
     forbiddenModules.unshift("apps/api/src/modules/residents-properties");
   }
@@ -447,6 +467,29 @@ if (manifest.currentPhase <= 3) {
       failures.push(
         "Sprint 3 phase 2 requires the residents-properties runtime module.",
       );
+    }
+  }
+  if (manifest.currentPhase === 4) {
+    const missingModels = [...phase4Models].filter(
+      (model) => !declaredModels.includes(model),
+    );
+    const missingEnums = [...phase4Enums].filter(
+      (enumName) => !declaredEnums.includes(enumName),
+    );
+    if (missingModels.length > 0) {
+      failures.push(
+        `Sprint 3 phase 4 requires dues models: ${missingModels.join(", ")}.`,
+      );
+    }
+    if (missingEnums.length > 0) {
+      failures.push(
+        `Sprint 3 phase 4 requires dues enums: ${missingEnums.join(", ")}.`,
+      );
+    }
+    if (
+      !existsSync(resolve(repositoryRoot, "apps/api/src/modules/dues-fees"))
+    ) {
+      failures.push("Sprint 3 phase 4 requires the dues-fees runtime module.");
     }
   }
 }

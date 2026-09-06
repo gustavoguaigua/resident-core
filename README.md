@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 3 — Fase 3 secure-document-storage completada
+Estado: Sprint 3 — Fase 4 dues-fees-foundation completada
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -619,7 +619,7 @@ Implementation Readiness Sprint 1: GO (2026-08-11)
 Sprint 1: Backend Platform Base implementado y cerrado — PASS (2026-08-11)
 Implementation Readiness Sprint 2: GO (2026-08-14)
 Sprint 2: cerrado formalmente — GO (2026-08-27); fase final 9; siguiente fase: ninguna
-Implementation Readiness Sprint 3: GO (2026-08-31); fase actual 3; 0 gaps abiertos
+Implementation Readiness Sprint 3: GO (2026-08-31); fase actual 4; 0 gaps abiertos
 ```
 
 Evidencia:
@@ -655,6 +655,7 @@ docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md
 docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md
 docs/changes/SPRINT-3-PHASE-2-RESIDENTS-PROPERTIES-API-2026-09-03.md
 docs/changes/SPRINT-3-PHASE-3-SECURE-DOCUMENT-STORAGE-2026-09-04.md
+docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md
 ```
 
 Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025
@@ -663,11 +664,11 @@ están `accepted`, los gaps de Sprint 2 están cerrados y la reevaluación forma
 final `9` y el cierre formal de Sprint 2 emitió `GO` el 2026-08-27. No existe una Fase
 `10` ni otro incremento pendiente dentro de Sprint 2.
 
-Sprint 3 es el siguiente incremento de la hoja de ruta. Su compuerta inicial emitió
+Sprint 3 es el incremento activo de la hoja de ruta. Su compuerta inicial emitió
 `NO_GO` el 2026-08-28, cerró todos sus gaps el 2026-08-30 y la reevaluación formal
-emitió `GO` el 2026-08-31. El manifest está en fase `2`, los 35 documentos
-aplicables están `accepted` y la API tenant-scoped de Residents and Properties quedó
-validada; la Fase 3 es la siguiente permitida.
+emitió `GO` el 2026-08-31. El manifest está en fase `4`, los 35 documentos
+aplicables están `accepted` y la fundación de cuotas quedó validada; la Fase 5 es la
+siguiente permitida.
 
 ---
 

@@ -11,6 +11,13 @@ import {
   UnitFeesController,
 } from "./dues-fees.controller.js";
 import { DuesFeesService } from "./dues-fees.service.js";
+import {
+  BillingPeriodLifecycleController,
+  ChargeBatchesController,
+  ChargesController,
+  OwnChargesController,
+} from "./charge-lifecycle.controller.js";
+import { ChargeLifecycleService } from "./charge-lifecycle.service.js";
 
 @Module({
   controllers: [
@@ -18,8 +25,12 @@ import { DuesFeesService } from "./dues-fees.service.js";
     FeeSchedulesController,
     UnitFeesController,
     BillingPeriodsController,
+    BillingPeriodLifecycleController,
+    ChargeBatchesController,
+    ChargesController,
+    OwnChargesController,
   ],
   imports: [AccessControlModule, AuditModule, IdentityIntegrationModule],
-  providers: [DuesFeesService, IdempotencyService],
+  providers: [DuesFeesService, ChargeLifecycleService, IdempotencyService],
 })
 export class DuesFeesModule {}

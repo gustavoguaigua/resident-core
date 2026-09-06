@@ -494,9 +494,10 @@ docs/changes/SPRINT-3-PHASE-1-RESIDENTS-PROPERTIES-PERSISTENCE-2026-08-31.md
 docs/changes/SPRINT-3-PHASE-2-RESIDENTS-PROPERTIES-API-2026-09-03.md
 docs/changes/SPRINT-3-PHASE-3-SECURE-DOCUMENT-STORAGE-2026-09-04.md
 docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md
+docs/changes/SPRINT-3-PHASE-5-CHARGE-LIFECYCLE-2026-09-06.md
 Decision: GO
-Current Phase: 4
-Next permitted phase: 5 — charge-lifecycle
+Current Phase: 5
+Next permitted phase: 6 — payments-receipts
 ```
 
 ---

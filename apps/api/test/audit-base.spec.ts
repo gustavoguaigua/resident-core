@@ -40,8 +40,8 @@ describe("Audit base contract", () => {
     vi.restoreAllMocks();
   });
 
-  it("contains exactly the 78 canonical actions through Sprint 3 Phase 4", () => {
-    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(78);
+  it("contains exactly the 87 canonical actions through Sprint 3 Phase 5", () => {
+    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(87);
     expect(AUDIT_CATALOG["authentication.denied"]).toMatchObject({
       category: "SECURITY",
       outcome: "DENIED",
@@ -80,6 +80,13 @@ describe("Audit base contract", () => {
       outcome: "SUCCESS",
       resourceType: "BillingPeriod",
     });
+    expect(AUDIT_CATALOG["charge.reversed"]).toMatchObject({
+      actor: "USER",
+      category: "TENANT",
+      metadata: "financial",
+      outcome: "SUCCESS",
+      resourceType: "Charge",
+    });
   });
 
   it("derives classification, target and actor fields from the contract", () => {
@@ -97,6 +104,31 @@ describe("Audit base contract", () => {
       traceId: "trace.phase3",
       correlationId: "correlation.phase3",
     });
+  });
+
+  it("accepts only allowlisted, string-decimal charge metadata", () => {
+    expect(
+      prepareAuditRecord(userContext, {
+        action: "charge.created",
+        metadata: {
+          amount: "25.50",
+          billingPeriodId: RESOURCE_ID,
+          chargeId: RESOURCE_ID,
+          currency: "USD",
+          propertyUnitId: RESOURCE_ID,
+        },
+        occurredAt: new Date(),
+        resourceId: RESOURCE_ID,
+      }).metadata,
+    ).toMatchObject({ amount: "25.50", currency: "USD" });
+    expect(() =>
+      prepareAuditRecord(userContext, {
+        action: "charge.created",
+        metadata: { amount: 25.5, currency: "USD", payload: "forbidden" },
+        occurredAt: new Date(),
+        resourceId: RESOURCE_ID,
+      }),
+    ).toThrow(AuditContractError);
   });
 
   it.each([

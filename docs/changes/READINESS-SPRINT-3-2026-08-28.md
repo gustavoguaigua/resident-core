@@ -7,17 +7,17 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-09-04 |
-| Rama evaluada | `codex/sprint-3-phase-4-dues-fees-foundation` |
-| Baseline integrado | `b5b22bb` — PR #34 |
+| Fecha de actualización | 2026-09-06 |
+| Rama evaluada | `codex/gap-s3-011-charge-generation-atomicity` |
+| Baseline integrado | `ce5fbbc` — PR #35 |
 | Decisión | `GO` |
 | Fase actual | `4 — dues-fees-foundation; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 3
-Implementation authorized: yes; begin with Phase 4 only
+Current Phase: 4
+Implementation authorized: Phase 5 only after GAP-S3-011 is integrated
 ```
 
 ## 2. Método
@@ -140,6 +140,15 @@ Para cada spec se comprobaron `spec.md`, `plan.md`, `tasks.md`, `api-contract.md
 | Estado | `closed` |
 | Evidencia | GAP-S3-003/006 fijaban efectos externos, pero no existían ownership, modelo persistente, seguridad, replay, recuperación ni retención reproducibles |
 | Criterio de cierre | Cumplido en `docs/changes/GAP-S3-010-IDEMPOTENCY-LEDGER-CONTRACT-2026-09-02.md`: owner transversal, modelo, hashing, autorización, lock, atomicidad, replay, rollback, privacidad, retención y pruebas fijados |
+
+### GAP-S3-011 — Atomicidad de generación de cargos e idempotencia
+
+| Campo | Valor |
+| --- | --- |
+| Severidad | Alta |
+| Estado | `closed` |
+| Evidencia | GAP-S3-003 exigía una transacción por unidad mientras GAP-S3-010 exigía que ledger, mutación, efectos derivados y Audit del POST se confirmaran en un único commit |
+| Criterio de cierre | Cumplido en `docs/changes/GAP-S3-011-CHARGE-GENERATION-ATOMICITY-2026-09-06.md`: una transacción exterior `SERIALIZABLE`, savepoint por unidad, clasificación de fallos, conteos, replay, privacidad y pruebas fijados sin commits parciales |
 
 ## 6. Ownership canónico
 
@@ -266,9 +275,15 @@ desde PostgreSQL vacío y confirmó constraints tenant-scoped, drift cero, opera
 permitidas y negativos de seguridad.
 
 ```text
+Current Phase: 4
 Phase 4: PASS
-Next permitted phase: 5 — charge-lifecycle
+Phase 5: blocked until GAP-S3-011 is integrated
+Next permitted phase after integration: 5 — charge-lifecycle
 ```
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md`.
+
+GAP-S3-011 cerró la contradicción entre el procesamiento aislado por unidad y el commit
+único del POST. No implementa runtime ni eleva `currentPhase`; la Fase 5 permanece sin
+iniciar hasta que este contrato sea integrado.

@@ -119,6 +119,13 @@ Cualquier error revierte ledger, dominio, derivados y Audit. Un crash previo al 
 libera el lock transaccional y no deja un `IN_PROGRESS` válido o permanente. Los
 reintentos por serialización son acotados y no cambian estas garantías.
 
+Para `POST /api/v1/tenant/charges/generate-monthly`, GAP-S3-011 especializa el paso 4
+sin debilitar este contrato: cada unidad usa un `SAVEPOINT` estático dentro de la misma
+transacción exterior. Un fallo recuperable revierte sólo ese savepoint y continúa; un
+fallo fatal, incluido cualquier fallo de Audit, revierte la operación completa. Los
+savepoints nunca confirman cambios por separado: batch, cargos, Audit y ledger siguen
+siendo visibles y durables únicamente después del único commit exterior.
+
 ## 8. Replay, conflicto y retención
 
 - Mismo tenant, operación, actor y request hash con registro `COMPLETED` vigente:

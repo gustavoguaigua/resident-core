@@ -139,15 +139,86 @@ SELECT gen_random_uuid(), r."id", p."id", CURRENT_TIMESTAMP FROM "roles" r JOIN 
   ELSE ARRAY[]::text[] END
 ) WHERE r."scope" = 'tenant' ON CONFLICT ("role_id", "permission_id") DO NOTHING;
 
-DO $migration$
-DECLARE current_check text;
-BEGIN
- SELECT pg_get_constraintdef(oid) INTO current_check FROM pg_constraint WHERE conname = 'audit_logs_catalog_check';
- current_check := substring(current_check FROM 8 FOR char_length(current_check) - 8);
- ALTER TABLE "audit_logs" DROP CONSTRAINT "audit_logs_catalog_check";
- EXECUTE format('ALTER TABLE "audit_logs" ADD CONSTRAINT "audit_logs_catalog_check" CHECK ((%s) OR (("action", "category", "outcome", "resource_type") IN (
-  (''chargeConcept.created'',''tenant'',''success'',''ChargeConcept''), (''chargeConcept.updated'',''tenant'',''success'',''ChargeConcept''), (''chargeConcept.archived'',''tenant'',''success'',''ChargeConcept''),
-  (''feeSchedule.created'',''tenant'',''success'',''FeeSchedule''), (''feeSchedule.updated'',''tenant'',''success'',''FeeSchedule''), (''feeSchedule.archived'',''tenant'',''success'',''FeeSchedule''),
-  (''unitFee.assigned'',''tenant'',''success'',''UnitFee''), (''unitFee.ended'',''tenant'',''success'',''UnitFee''), (''billingPeriod.created'',''tenant'',''success'',''BillingPeriod'')
- )))', current_check);
-END $migration$;
+ALTER TABLE "audit_logs" DROP CONSTRAINT "audit_logs_catalog_check";
+ALTER TABLE "audit_logs" ADD CONSTRAINT "audit_logs_catalog_check" CHECK (
+    ("action", "category", "outcome", "resource_type") IN (
+        ('platformAdmin.bootstrap.completed', 'platform', 'success', 'UserProfile'),
+        ('tenant.created', 'tenant', 'success', 'Tenant'),
+        ('tenant.baseRoles.created', 'tenant', 'success', 'Role'),
+        ('tenant.updated', 'tenant', 'success', 'Tenant'),
+        ('tenant.activated', 'tenant', 'success', 'Tenant'),
+        ('tenant.suspended', 'tenant', 'success', 'Tenant'),
+        ('tenant.reactivated', 'tenant', 'success', 'Tenant'),
+        ('tenant.archived', 'tenant', 'success', 'Tenant'),
+        ('tenant.profile.updated', 'tenant', 'success', 'TenantProfile'),
+        ('tenant.branding.updated', 'tenant', 'success', 'TenantBranding'),
+        ('tenant.wordpressMapping.updated', 'tenant', 'success', 'TenantWordPressMapping'),
+        ('tenantSetting.updated', 'tenant', 'success', 'TenantSettingValue'),
+        ('user.created', 'identity', 'success', 'UserProfile'),
+        ('user.updated', 'identity', 'success', 'UserProfile'),
+        ('user.disabled', 'identity', 'success', 'UserProfile'),
+        ('user.enabled', 'identity', 'success', 'UserProfile'),
+        ('user.keycloakLinked', 'identity', 'success', 'UserProfile'),
+        ('globalRole.assigned', 'access', 'success', 'UserGlobalRole'),
+        ('globalRole.removed', 'access', 'success', 'UserGlobalRole'),
+        ('invitation.created', 'access', 'success', 'Invitation'),
+        ('invitation.accepted', 'access', 'success', 'Invitation'),
+        ('invitation.revoked', 'access', 'success', 'Invitation'),
+        ('invitation.expired', 'access', 'success', 'Invitation'),
+        ('membership.created', 'access', 'success', 'UserTenantMembership'),
+        ('membership.suspended', 'access', 'success', 'UserTenantMembership'),
+        ('membership.revoked', 'access', 'success', 'UserTenantMembership'),
+        ('membership.roleAssigned', 'access', 'success', 'MembershipRole'),
+        ('membership.roleRemoved', 'access', 'success', 'MembershipRole'),
+        ('authentication.denied', 'security', 'denied', 'Authentication'),
+        ('authorization.denied', 'access', 'denied', 'Authorization'),
+        ('tenantAccess.denied', 'access', 'denied', 'TenantAccess'),
+        ('propertyUnit.created', 'tenant', 'success', 'PropertyUnit'),
+        ('propertyUnit.updated', 'tenant', 'success', 'PropertyUnit'),
+        ('propertyUnit.statusChanged', 'tenant', 'success', 'PropertyUnit'),
+        ('propertyUnit.archived', 'tenant', 'success', 'PropertyUnit'),
+        ('person.created', 'tenant', 'success', 'Person'),
+        ('person.updated', 'tenant', 'success', 'Person'),
+        ('person.statusChanged', 'tenant', 'success', 'Person'),
+        ('person.archived', 'tenant', 'success', 'Person'),
+        ('person.identityLinked', 'tenant', 'success', 'Person'),
+        ('person.identityUnlinked', 'tenant', 'success', 'Person'),
+        ('legalEntity.created', 'tenant', 'success', 'LegalEntity'),
+        ('legalEntity.updated', 'tenant', 'success', 'LegalEntity'),
+        ('legalEntity.statusChanged', 'tenant', 'success', 'LegalEntity'),
+        ('legalEntity.archived', 'tenant', 'success', 'LegalEntity'),
+        ('propertyOwnership.created', 'tenant', 'success', 'PropertyOwnership'),
+        ('propertyOwnership.updated', 'tenant', 'success', 'PropertyOwnership'),
+        ('propertyOwnership.disputed', 'tenant', 'success', 'PropertyOwnership'),
+        ('propertyOwnership.resolved', 'tenant', 'success', 'PropertyOwnership'),
+        ('propertyOwnership.ended', 'tenant', 'success', 'PropertyOwnership'),
+        ('propertyOwnership.archived', 'tenant', 'success', 'PropertyOwnership'),
+        ('residency.created', 'tenant', 'success', 'Residency'),
+        ('residency.updated', 'tenant', 'success', 'Residency'),
+        ('residency.suspended', 'tenant', 'success', 'Residency'),
+        ('residency.reactivated', 'tenant', 'success', 'Residency'),
+        ('residency.ended', 'tenant', 'success', 'Residency'),
+        ('residency.archived', 'tenant', 'success', 'Residency'),
+        ('lease.created', 'tenant', 'success', 'Lease'),
+        ('lease.updated', 'tenant', 'success', 'Lease'),
+        ('lease.activated', 'tenant', 'success', 'Lease'),
+        ('lease.cancelled', 'tenant', 'success', 'Lease'),
+        ('lease.ended', 'tenant', 'success', 'Lease'),
+        ('lease.archived', 'tenant', 'success', 'Lease'),
+        ('document.uploadFinalized', 'security', 'success', 'SecureDocument'),
+        ('document.compensationFailed', 'security', 'success', 'SecureDocument'),
+        ('document.orphanDetected', 'security', 'success', 'SecureDocument'),
+        ('document.orphanReconciled', 'security', 'success', 'SecureDocument'),
+        ('document.quarantined', 'security', 'success', 'SecureDocument'),
+        ('document.rejected', 'security', 'success', 'SecureDocument'),
+        ('chargeConcept.created', 'tenant', 'success', 'ChargeConcept'),
+        ('chargeConcept.updated', 'tenant', 'success', 'ChargeConcept'),
+        ('chargeConcept.archived', 'tenant', 'success', 'ChargeConcept'),
+        ('feeSchedule.created', 'tenant', 'success', 'FeeSchedule'),
+        ('feeSchedule.updated', 'tenant', 'success', 'FeeSchedule'),
+        ('feeSchedule.archived', 'tenant', 'success', 'FeeSchedule'),
+        ('unitFee.assigned', 'tenant', 'success', 'UnitFee'),
+        ('unitFee.ended', 'tenant', 'success', 'UnitFee'),
+        ('billingPeriod.created', 'tenant', 'success', 'BillingPeriod')
+    )
+);

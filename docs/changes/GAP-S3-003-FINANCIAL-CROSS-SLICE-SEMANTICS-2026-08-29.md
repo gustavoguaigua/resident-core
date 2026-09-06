@@ -121,10 +121,13 @@ La clave natural de generación es:
 ```
 
 Existe como constraint única. Un retry equivalente devuelve el cargo existente; un
-payload financiero distinto para la misma clave produce conflicto. Cada unidad se
-procesa en su propia transacción: un batch puede terminar
-`COMPLETED_WITH_ERRORS`, pero nunca deja un cargo parcial. Reintentar el batch procesa
-sólo elementos ausentes o equivalentes.
+payload financiero distinto para la misma clave produce conflicto recuperable para esa
+unidad. Cada unidad se procesa secuencialmente, en orden determinista y dentro de una
+subtransacción PostgreSQL mediante `SAVEPOINT`, contenida en la única transacción
+`SERIALIZABLE` y el único commit del POST. No existe un commit independiente por
+unidad. Un batch puede terminar `COMPLETED_WITH_ERRORS`, pero nunca deja un cargo
+parcial. Reintentar el batch procesa sólo elementos ausentes o equivalentes. La
+clasificación de fallos, los conteos y la atomicidad completa se rigen por GAP-S3-011.
 
 ## 7. Pagos, allocations y reversos
 

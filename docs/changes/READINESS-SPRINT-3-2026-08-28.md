@@ -150,6 +150,15 @@ Para cada spec se comprobaron `spec.md`, `plan.md`, `tasks.md`, `api-contract.md
 | Evidencia | GAP-S3-003 exigía una transacción por unidad mientras GAP-S3-010 exigía que ledger, mutación, efectos derivados y Audit del POST se confirmaran en un único commit |
 | Criterio de cierre | Cumplido en `docs/changes/GAP-S3-011-CHARGE-GENERATION-ATOMICITY-2026-09-06.md`: una transacción exterior `SERIALIZABLE`, savepoint por unidad, clasificación de fallos, conteos, replay, privacidad y pruebas fijados sin commits parciales |
 
+### GAP-S3-012 — Atomicidad de generación batch de estados de cuenta
+
+| Campo | Valor |
+| --- | --- |
+| Severidad | Alta (`HIGH`) |
+| Estado | `CLOSED` |
+| Evidencia | Spec 006 exige errores parciales y transacción por unidad para `account-statements/generate-batch`, mientras GAP-S3-010 exige un único commit de ledger, dominio, derivados y Audit; GAP-S3-011 sólo especializa generación de cargos |
+| Criterio de cierre | Cumplido en `docs/changes/GAP-S3-012-STATEMENT-BATCH-ATOMICITY-2026-09-07.md`: una transacción exterior `SERIALIZABLE`, savepoint estático por unidad, corte consistente, clasificación de fallos, conteos, replay, privacidad y pruebas fijados sin commits parciales |
+
 ## 6. Ownership canónico
 
 | Capacidad | Owner |
@@ -328,3 +337,14 @@ Next permitted phase: 8 — balances-statements
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md`.
+
+GAP-S3-012 cerró la contradicción entre los errores parciales por unidad de Spec 006 y
+el commit único exigido por GAP-S3-010 para la generación batch de statements. Su
+cierre documental no implementó runtime ni elevó `currentPhase`; después de integrarlo
+queda habilitada la implementación de Fase 8.
+
+```text
+Current Phase: 7
+Phase 8: blocked until GAP-S3-012 is integrated
+Next permitted phase after integration: 8 — balances-statements
+```

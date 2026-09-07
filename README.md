@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 3 — Fase 6 payments-receipts completada
+Estado: Sprint 3 — Fase 7 allocations-reversals completada
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado
@@ -656,6 +656,9 @@ docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md
 docs/changes/SPRINT-3-PHASE-2-RESIDENTS-PROPERTIES-API-2026-09-03.md
 docs/changes/SPRINT-3-PHASE-3-SECURE-DOCUMENT-STORAGE-2026-09-04.md
 docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md
+docs/changes/SPRINT-3-PHASE-5-CHARGE-LIFECYCLE-2026-09-06.md
+docs/changes/SPRINT-3-PHASE-6-PAYMENTS-RECEIPTS-2026-09-06.md
+docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md
 ```
 
 Sprint 1 está cerrado. Los 28 documentos aplicables de las specs 001, 002, 007 y 025
@@ -666,8 +669,8 @@ final `9` y el cierre formal de Sprint 2 emitió `GO` el 2026-08-27. No existe u
 
 Sprint 3 es el incremento activo de la hoja de ruta. Su compuerta inicial emitió
 `NO_GO` el 2026-08-28, cerró todos sus gaps el 2026-08-30 y la reevaluación formal
-emitió `GO` el 2026-08-31. El manifest está en fase `6`, los 35 documentos
-aplicables están `accepted` y los pagos y comprobantes quedaron validados; la Fase 7
+emitió `GO` el 2026-08-31. El manifest está en fase `7`, los 35 documentos
+aplicables están `accepted` y las asignaciones y reversos quedaron validados; la Fase 8
 es la siguiente permitida.
 
 ---

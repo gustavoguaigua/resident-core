@@ -11,12 +11,19 @@ import {
   OwnPaymentsController,
 } from "./payments.controller.js";
 import { PaymentsService } from "./payments.service.js";
+import {
+  PaymentAllocationCommandsController,
+  PaymentAllocationsController,
+} from "./payment-allocations.controller.js";
+import { PaymentAllocationsService } from "./payment-allocations.service.js";
 
 @Module({
   controllers: [
     PaymentsController,
     PaymentReceiptsController,
     OwnPaymentsController,
+    PaymentAllocationCommandsController,
+    PaymentAllocationsController,
   ],
   imports: [
     AccessControlModule,
@@ -24,6 +31,6 @@ import { PaymentsService } from "./payments.service.js";
     IdentityIntegrationModule,
     SecureDocumentStorageModule,
   ],
-  providers: [IdempotencyService, PaymentsService],
+  providers: [IdempotencyService, PaymentAllocationsService, PaymentsService],
 })
 export class PaymentsModule {}

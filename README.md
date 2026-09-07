@@ -33,7 +33,7 @@ RESIDENT Core será la fuente de verdad transaccional del sistema. El portal Wor
 ## 2. Estado actual del proyecto
 
 ```text
-Estado: Sprint 3 — Fase 4 dues-fees-foundation completada
+Estado: Sprint 3 — Fase 5 charge-lifecycle completada
 Fase actual: FASE 2 — RESIDENT Core
 Metodología: Spec Driven Development — SDD
 Arquitectura inicial: Monolito modular contenerizado

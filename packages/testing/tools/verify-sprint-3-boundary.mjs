@@ -282,6 +282,19 @@ const phase4Enums = new Set([
   "FeeScheduleStatus",
   "UnitFeeAssignmentStatus",
 ]);
+const phase5Models = new Set([
+  "Charge",
+  "ChargeAdjustment",
+  "ChargeBatch",
+  "ChargeReversal",
+]);
+const phase5Enums = new Set([
+  "ChargeAdjustmentType",
+  "ChargeBatchStatus",
+  "ChargeBatchType",
+  "ChargeStatus",
+  "ChargeType",
+]);
 const operationsAtSprint2Closure = new Set([
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -338,7 +351,7 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase <= 4) {
+if (manifest.currentPhase <= 5) {
   const allowedModels = new Set(sprint2Models);
   const allowedEnums = new Set(sprint2Enums);
   if (manifest.currentPhase === 1) {
@@ -359,9 +372,13 @@ if (manifest.currentPhase <= 4) {
     for (const model of phase3Models) allowedModels.add(model);
     for (const enumName of phase3Enums) allowedEnums.add(enumName);
   }
-  if (manifest.currentPhase === 4) {
+  if (manifest.currentPhase >= 4) {
     for (const model of phase4Models) allowedModels.add(model);
     for (const enumName of phase4Enums) allowedEnums.add(enumName);
+  }
+  if (manifest.currentPhase === 5) {
+    for (const model of phase5Models) allowedModels.add(model);
+    for (const enumName of phase5Enums) allowedEnums.add(enumName);
   }
   const prematureModels = declaredModels.filter(
     (model) => !allowedModels.has(model),
@@ -394,7 +411,7 @@ if (manifest.currentPhase <= 4) {
     "apps/api/src/modules/secure-document-storage",
   ];
   if (manifest.currentPhase >= 3) forbiddenModules.pop();
-  if (manifest.currentPhase === 4) forbiddenModules.shift();
+  if (manifest.currentPhase >= 4) forbiddenModules.shift();
   if (manifest.currentPhase < 2) {
     forbiddenModules.unshift("apps/api/src/modules/residents-properties");
   }
@@ -490,6 +507,29 @@ if (manifest.currentPhase <= 4) {
       !existsSync(resolve(repositoryRoot, "apps/api/src/modules/dues-fees"))
     ) {
       failures.push("Sprint 3 phase 4 requires the dues-fees runtime module.");
+    }
+  }
+  if (manifest.currentPhase === 5) {
+    const missingModels = [...phase5Models].filter(
+      (model) => !declaredModels.includes(model),
+    );
+    const missingEnums = [...phase5Enums].filter(
+      (enumName) => !declaredEnums.includes(enumName),
+    );
+    if (missingModels.length > 0) {
+      failures.push(
+        `Sprint 3 phase 5 requires charge models: ${missingModels.join(", ")}.`,
+      );
+    }
+    if (missingEnums.length > 0) {
+      failures.push(
+        `Sprint 3 phase 5 requires charge enums: ${missingEnums.join(", ")}.`,
+      );
+    }
+    if (
+      !existsSync(resolve(repositoryRoot, "apps/api/src/modules/dues-fees"))
+    ) {
+      failures.push("Sprint 3 phase 5 requires the dues-fees runtime module.");
     }
   }
 }

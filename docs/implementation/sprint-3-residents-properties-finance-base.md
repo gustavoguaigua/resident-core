@@ -4,15 +4,14 @@
 
 - Estado: `authoritative`
 - Readiness vigente: `GO`
-- Fase activa: `4 — dues-fees-foundation; PASS`
+- Fase activa: `5 — charge-lifecycle; PASS`
 - Fecha: 2026-09-06
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
-autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 4
-quedaron completadas con `PASS`. La Fase 5 permanece sin iniciar hasta integrar el
-contrato de GAP-S3-011; después será la siguiente implementación permitida y elevará el
-manifest únicamente junto con sus artefactos y gate.
+autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 5
+quedaron completadas con `PASS`. GAP-S3-011 gobierna la atomicidad de generación y la
+Fase 6 es la siguiente implementación permitida.
 
 ## 2. Objetivo
 
@@ -227,7 +226,7 @@ Sprint 3. La Fase 3 no expone API documental general y la Fase 9 no añade endpo
 Cada fase se eleva en el mismo cambio que incorpora sus artefactos y gate. Ninguna fase
 puede saltarse, y no existe una fase 10 dentro de este runbook.
 
-La Fase 5 no puede iniciarse hasta integrar GAP-S3-011. La generación mensual usa una
+La Fase 5 integra GAP-S3-011. La generación mensual usa una
 única transacción exterior `SERIALIZABLE`; cada unidad se aísla con un `SAVEPOINT`
 estático y nunca confirma un commit independiente. Batch, cargos, Audit y ledger se
 confirman juntos en el único commit exterior.

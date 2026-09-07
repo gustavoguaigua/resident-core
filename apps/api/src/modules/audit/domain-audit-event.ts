@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 
 const tenantEvent = (
   resourceType: string,
-  metadata: "none" | "changedFields" | "status",
+  metadata: "none" | "changedFields" | "status" | "financial",
 ) =>
   ({
     actor: "USER",
@@ -154,6 +154,15 @@ export const AUDIT_CATALOG = {
   "unitFee.assigned": tenantEvent("UnitFee", "none"),
   "unitFee.ended": tenantEvent("UnitFee", "status"),
   "billingPeriod.created": tenantEvent("BillingPeriod", "none"),
+  "billingPeriod.closed": tenantEvent("BillingPeriod", "status"),
+  "billingPeriod.locked": tenantEvent("BillingPeriod", "status"),
+  "chargeBatch.created": tenantEvent("ChargeBatch", "none"),
+  "chargeBatch.completed": tenantEvent("ChargeBatch", "none"),
+  "chargeBatch.completedWithErrors": tenantEvent("ChargeBatch", "none"),
+  "charge.created": tenantEvent("Charge", "financial"),
+  "charge.cancelled": tenantEvent("Charge", "financial"),
+  "charge.adjusted": tenantEvent("Charge", "financial"),
+  "charge.reversed": tenantEvent("Charge", "financial"),
   "document.uploadFinalized": {
     category: "SECURITY",
     outcome: "SUCCESS",
@@ -529,6 +538,50 @@ const metadataValidators = {
       } else {
         result[key] = requireStableText(value as string, key);
       }
+    }
+    return result;
+  },
+  financial(metadata: DomainAuditEvent["metadata"]): Prisma.InputJsonValue {
+    const allowed = [
+      "propertyUnitId",
+      "billingPeriodId",
+      "chargeId",
+      "amount",
+      "currency",
+      "idempotencyKeyHash",
+      "previousStatus",
+      "newStatus",
+    ];
+    if (metadata === undefined || Object.keys(metadata).length === 0)
+      throw new AuditContractError("Required financial metadata is missing.");
+    if (
+      Object.keys(metadata).some(
+        (key) => !allowed.includes(key) || FORBIDDEN_FIELD.test(key),
+      )
+    )
+      throw new AuditContractError(
+        "Financial metadata contains non-allowlisted keys.",
+      );
+    const result: Record<string, string> = {};
+    for (const [key, value] of Object.entries(metadata)) {
+      if (["propertyUnitId", "billingPeriodId", "chargeId"].includes(key))
+        result[key] = requireUuid(value as string, key);
+      else if (key === "amount") {
+        if (
+          typeof value !== "string" ||
+          !/^(?:0|[1-9]\d{0,9})(?:\.\d{1,2})?$/u.test(value)
+        )
+          throw new AuditContractError("amount must be a decimal string.");
+        result[key] = value;
+      } else if (key === "currency") {
+        if (value !== "USD")
+          throw new AuditContractError("currency is invalid.");
+        result[key] = value;
+      } else if (key === "idempotencyKeyHash") {
+        if (typeof value !== "string" || !/^[0-9a-f]{64}$/u.test(value))
+          throw new AuditContractError("idempotencyKeyHash is invalid.");
+        result[key] = value;
+      } else result[key] = requireStableText(value as string, key);
     }
     return result;
   },

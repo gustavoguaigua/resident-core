@@ -8,16 +8,16 @@
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
 | Fecha de actualización | 2026-09-06 |
-| Rama evaluada | `codex/gap-s3-011-charge-generation-atomicity` |
-| Baseline integrado | `ce5fbbc` — PR #35 |
+| Rama evaluada | `codex/sprint-3-phase-5-charge-lifecycle` |
+| Baseline integrado | `59cc9a4` — PR #36 |
 | Decisión | `GO` |
-| Fase actual | `4 — dues-fees-foundation; PASS` |
+| Fase actual | `5 — charge-lifecycle; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 4
-Implementation authorized: Phase 5 only after GAP-S3-011 is integrated
+Current Phase: 5
+Implementation authorized: Phase 6 only
 ```
 
 ## 2. Método
@@ -285,5 +285,19 @@ La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md`.
 
 GAP-S3-011 cerró la contradicción entre el procesamiento aislado por unidad y el commit
-único del POST. No implementa runtime ni eleva `currentPhase`; la Fase 5 permanece sin
-iniciar hasta que este contrato sea integrado.
+único del POST. Su cierre documental no implementó runtime ni elevó `currentPhase`;
+después de integrarlo quedó habilitada la implementación de Fase 5.
+
+La Fase 5 incorporó el lifecycle de periodos, generación mensual, batches, cargos,
+ajustes y reversos con moneda USD, precisión Decimal y aislamiento tenant. La
+generación confirma ledger, batch, cargos y Audit en una transacción `SERIALIZABLE`,
+con `SAVEPOINT` estático por unidad conforme a GAP-S3-011.
+
+```text
+Current Phase: 5
+Phase 5: PASS
+Next permitted phase: 6 — payments-receipts
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-5-CHARGE-LIFECYCLE-2026-09-06.md`.

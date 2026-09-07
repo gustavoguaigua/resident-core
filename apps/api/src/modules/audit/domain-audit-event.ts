@@ -167,6 +167,9 @@ export const AUDIT_CATALOG = {
   "payment.reported": tenantEvent("Payment", "financial"),
   "payment.confirmed": tenantEvent("Payment", "financial"),
   "payment.rejected": tenantEvent("Payment", "financial"),
+  "payment.reversed": tenantEvent("Payment", "financial"),
+  "paymentAllocation.created": tenantEvent("PaymentAllocation", "financial"),
+  "paymentAllocation.reversed": tenantEvent("PaymentAllocation", "financial"),
   "paymentReceipt.uploaded": tenantEvent("PaymentReceipt", "financial"),
   "paymentReceipt.reuploaded": tenantEvent("PaymentReceipt", "financial"),
   "paymentReceipt.accepted": tenantEvent("PaymentReceipt", "financial"),
@@ -556,6 +559,7 @@ const metadataValidators = {
       "billingPeriodId",
       "chargeId",
       "paymentId",
+      "allocationId",
       "paymentReceiptId",
       "amount",
       "currency",
@@ -582,6 +586,7 @@ const metadataValidators = {
           "billingPeriodId",
           "chargeId",
           "paymentId",
+          "allocationId",
           "paymentReceiptId",
         ].includes(key)
       )

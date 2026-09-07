@@ -7,17 +7,17 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-09-06 |
-| Rama evaluada | `codex/sprint-3-phase-6-payments-receipts` |
+| Fecha de actualización | 2026-09-07 |
+| Rama evaluada | `codex/sprint-3-phase-7-allocations-reversals` |
 | Baseline integrado | `ae84c49` — PR #37 |
 | Decisión | `GO` |
-| Fase actual | `6 — payments-receipts; PASS` |
+| Fase actual | `7 — allocations-reversals; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 6
-Implementation authorized: Phase 7 only
+Current Phase: 7
+Implementation authorized: Phase 8 only
 ```
 
 ## 2. Método
@@ -315,3 +315,16 @@ Next permitted phase: 7 — allocations-reversals
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-6-PAYMENTS-RECEIPTS-2026-09-06.md`.
+
+La Fase 7 incorporó asignaciones manuales y automáticas tenant-scoped, saldos derivados
+de pagos y cargos, reversos append-only y autorización Core exacta. Todas las mutaciones
+reutilizan el ledger PostgreSQL y confirman dominio y Audit en un único commit.
+
+```text
+Current Phase: 7
+Phase 7: PASS
+Next permitted phase: 8 — balances-statements
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md`.

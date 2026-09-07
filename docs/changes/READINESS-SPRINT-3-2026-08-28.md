@@ -8,16 +8,16 @@
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
 | Fecha de actualización | 2026-09-06 |
-| Rama evaluada | `codex/sprint-3-phase-5-charge-lifecycle` |
-| Baseline integrado | `59cc9a4` — PR #36 |
+| Rama evaluada | `codex/sprint-3-phase-6-payments-receipts` |
+| Baseline integrado | `ae84c49` — PR #37 |
 | Decisión | `GO` |
-| Fase actual | `5 — charge-lifecycle; PASS` |
+| Fase actual | `6 — payments-receipts; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 5
-Implementation authorized: Phase 6 only
+Current Phase: 6
+Implementation authorized: Phase 7 only
 ```
 
 ## 2. Método
@@ -301,3 +301,17 @@ Next permitted phase: 6 — payments-receipts
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-5-CHARGE-LIFECYCLE-2026-09-06.md`.
+
+La Fase 6 incorporó pagos tenant-scoped, reporte propio, validación administrativa y
+comprobantes privados versionados mediante el puerto de almacenamiento seguro. Las
+mutaciones reutilizan el ledger PostgreSQL y confirman Payment, PaymentReceipt,
+SecureDocument y Audit de forma atómica.
+
+```text
+Current Phase: 6
+Phase 6: PASS
+Next permitted phase: 7 — allocations-reversals
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-6-PAYMENTS-RECEIPTS-2026-09-06.md`.

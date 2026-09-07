@@ -59,6 +59,15 @@ export interface UploadPaymentReceiptDocument {
   readonly content: Uint8Array;
 }
 
+export interface ReuploadPaymentReceiptDocument extends UploadPaymentReceiptDocument {
+  readonly documentId: string;
+}
+
+export type DocumentFinalizeCallback = (
+  transaction: Prisma.TransactionClient,
+  result: SecureDocumentResult,
+) => Promise<void>;
+
 export interface SecureDocumentResult {
   readonly documentId: string;
   readonly versionId: string;

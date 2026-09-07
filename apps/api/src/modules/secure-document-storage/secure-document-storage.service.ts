@@ -9,7 +9,9 @@ import {
   DOCUMENT_STORAGE_PORT,
   DocumentStorageError,
   type DocumentActor,
+  type DocumentFinalizeCallback,
   type DocumentStoragePort,
+  type ReuploadPaymentReceiptDocument,
   type SecureDocumentResult,
   type SourceResourceAuthorizer,
   type UploadPaymentReceiptDocument,
@@ -42,6 +44,7 @@ export class SecureDocumentStorageService {
   public async uploadPaymentReceipt(
     request: UploadPaymentReceiptDocument,
     authorizer: SourceResourceAuthorizer,
+    finalize?: DocumentFinalizeCallback,
   ): Promise<SecureDocumentResult & { readonly replayed: boolean }> {
     requireUuid(request.sourceResourceId);
     const file = validateFile(
@@ -178,19 +181,21 @@ export class SecureDocumentStorageService {
               },
             ),
           });
+          const responseBody = {
+            documentId,
+            fileId,
+            fileName: file.fileName,
+            fileSize: file.body.byteLength,
+            mimeType: file.mimeType,
+            status: "AVAILABLE" as const,
+            versionId,
+          };
+          await finalize?.(transaction, responseBody);
           return {
             httpStatus: 201,
             resourceId: documentId,
             resourceType: "SecureDocument",
-            responseBody: {
-              documentId,
-              fileId,
-              fileName: file.fileName,
-              fileSize: file.body.byteLength,
-              mimeType: file.mimeType,
-              status: "AVAILABLE",
-              versionId,
-            },
+            responseBody,
           };
         },
       );
@@ -203,6 +208,163 @@ export class SecureDocumentStorageService {
           await this.recordCompensationFailure(
             request.actor.tenantId,
             documentId,
+            fileId,
+          );
+        }
+      }
+      throw error;
+    }
+  }
+
+  public async reuploadPaymentReceipt(
+    request: ReuploadPaymentReceiptDocument,
+    authorizer: SourceResourceAuthorizer,
+    finalize?: DocumentFinalizeCallback,
+  ): Promise<SecureDocumentResult & { readonly replayed: boolean }> {
+    requireUuid(request.documentId);
+    requireUuid(request.sourceResourceId);
+    const file = validateFile(
+      request.fileName,
+      request.declaredMimeType,
+      request.content,
+    );
+    const versionId = randomUUID();
+    const fileId = randomUUID();
+    const uploadId = randomUUID();
+    let promotedKey: string | undefined;
+    try {
+      const result = await this.idempotency.execute<SecureDocumentResult>(
+        {
+          actor: request.actor,
+          body: {
+            contentHash: file.fileHash,
+            declaredMimeType: file.mimeType,
+            documentId: request.documentId,
+            fileName: file.fileName,
+            sourceResourceId: request.sourceResourceId,
+            title: request.title,
+          },
+          key: request.idempotencyKey,
+          method: "POST",
+          operationType: "secureDocument.paymentReceipt.reupload",
+          path: { sourceResourceId: request.sourceResourceId },
+        },
+        (transaction) =>
+          authorizer.authorizeUpload(
+            transaction,
+            request.actor,
+            request.sourceResourceId,
+          ),
+        async (transaction) => {
+          const document = await transaction.secureDocument.findUnique({
+            where: {
+              id_tenantId: {
+                id: request.documentId,
+                tenantId: request.actor.tenantId,
+              },
+            },
+          });
+          if (
+            document === null ||
+            document.sourceResourceId !== request.sourceResourceId ||
+            document.status !== "AVAILABLE"
+          ) {
+            throw new DocumentStorageError("DOCUMENT_NOT_FOUND");
+          }
+          const latest = await transaction.secureDocumentVersion.findFirst({
+            orderBy: { versionNumber: "desc" },
+            select: { versionNumber: true },
+            where: {
+              documentId: request.documentId,
+              tenantId: request.actor.tenantId,
+            },
+          });
+          if (latest === null) {
+            throw new DocumentStorageError("DOCUMENT_NOT_FOUND");
+          }
+          const temporaryKey = await this.storage.writeTemporary(
+            request.actor.tenantId,
+            uploadId,
+            file.body,
+          );
+          promotedKey = await this.storage.promote(
+            temporaryKey,
+            request.actor.tenantId,
+            fileId,
+          );
+          await transaction.secureDocumentVersion.updateMany({
+            data: { status: "SUPERSEDED" },
+            where: {
+              documentId: request.documentId,
+              status: "ACTIVE",
+              tenantId: request.actor.tenantId,
+            },
+          });
+          await transaction.secureDocumentVersion.create({
+            data: {
+              createdBy: request.actor.userProfileId,
+              documentId: request.documentId,
+              id: versionId,
+              status: "ACTIVE",
+              tenantId: request.actor.tenantId,
+              versionNumber: latest.versionNumber + 1,
+            },
+          });
+          await transaction.secureDocumentFile.create({
+            data: {
+              documentId: request.documentId,
+              extension: file.extension,
+              fileHash: file.fileHash,
+              fileSize: file.body.byteLength,
+              id: fileId,
+              mimeGroup: file.mimeGroup,
+              mimeType: file.mimeType,
+              provider: storageProvider(),
+              safeFileName: file.fileName,
+              scanStatus: "NOT_REQUIRED",
+              status: "AVAILABLE",
+              storageKey: promotedKey,
+              tenantId: request.actor.tenantId,
+              uploadedBy: request.actor.userProfileId,
+              versionId,
+            },
+          });
+          await transaction.secureDocument.update({
+            data: { activeFileId: fileId, currentVersionId: versionId },
+            where: {
+              id_tenantId: {
+                id: request.documentId,
+                tenantId: request.actor.tenantId,
+              },
+            },
+          });
+          const responseBody = {
+            documentId: request.documentId,
+            fileId,
+            fileName: file.fileName,
+            fileSize: file.body.byteLength,
+            mimeType: file.mimeType,
+            status: "AVAILABLE" as const,
+            versionId,
+          };
+          await finalize?.(transaction, responseBody);
+          return {
+            httpStatus: 200,
+            resourceId: request.documentId,
+            resourceType: "SecureDocument",
+            responseBody,
+          };
+        },
+      );
+      return { ...result.responseBody, replayed: result.replayed };
+    } catch (error) {
+      if (promotedKey !== undefined) {
+        try {
+          await this.storage.delete(promotedKey);
+        } catch {
+          await this.recordCompensationFailure(
+            request.actor.tenantId,
+            request.documentId,
             fileId,
           );
         }

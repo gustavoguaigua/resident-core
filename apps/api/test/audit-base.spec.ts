@@ -40,8 +40,8 @@ describe("Audit base contract", () => {
     vi.restoreAllMocks();
   });
 
-  it("contains exactly the 87 canonical actions through Sprint 3 Phase 5", () => {
-    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(87);
+  it("contains exactly the 96 canonical actions through Sprint 3 Phase 6", () => {
+    expect(Object.keys(AUDIT_CATALOG)).toHaveLength(96);
     expect(AUDIT_CATALOG["authentication.denied"]).toMatchObject({
       category: "SECURITY",
       outcome: "DENIED",
@@ -86,6 +86,13 @@ describe("Audit base contract", () => {
       metadata: "financial",
       outcome: "SUCCESS",
       resourceType: "Charge",
+    });
+    expect(AUDIT_CATALOG["paymentReceipt.downloaded"]).toMatchObject({
+      actor: "USER",
+      category: "TENANT",
+      metadata: "financial",
+      outcome: "SUCCESS",
+      resourceType: "PaymentReceipt",
     });
   });
 
@@ -132,7 +139,7 @@ describe("Audit base contract", () => {
   });
 
   it.each([
-    ["unknown action", { ...tenantUpdated, action: "payment.created" }],
+    ["unknown action", { ...tenantUpdated, action: "payment.unknown" }],
     ["missing target", { ...tenantUpdated, resourceId: undefined }],
     [
       "non-allowlisted metadata",

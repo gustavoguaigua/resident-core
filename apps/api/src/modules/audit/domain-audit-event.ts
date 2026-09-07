@@ -163,6 +163,15 @@ export const AUDIT_CATALOG = {
   "charge.cancelled": tenantEvent("Charge", "financial"),
   "charge.adjusted": tenantEvent("Charge", "financial"),
   "charge.reversed": tenantEvent("Charge", "financial"),
+  "payment.created": tenantEvent("Payment", "financial"),
+  "payment.reported": tenantEvent("Payment", "financial"),
+  "payment.confirmed": tenantEvent("Payment", "financial"),
+  "payment.rejected": tenantEvent("Payment", "financial"),
+  "paymentReceipt.uploaded": tenantEvent("PaymentReceipt", "financial"),
+  "paymentReceipt.reuploaded": tenantEvent("PaymentReceipt", "financial"),
+  "paymentReceipt.accepted": tenantEvent("PaymentReceipt", "financial"),
+  "paymentReceipt.rejected": tenantEvent("PaymentReceipt", "financial"),
+  "paymentReceipt.downloaded": tenantEvent("PaymentReceipt", "financial"),
   "document.uploadFinalized": {
     category: "SECURITY",
     outcome: "SUCCESS",
@@ -546,8 +555,11 @@ const metadataValidators = {
       "propertyUnitId",
       "billingPeriodId",
       "chargeId",
+      "paymentId",
+      "paymentReceiptId",
       "amount",
       "currency",
+      "paymentMethod",
       "idempotencyKeyHash",
       "previousStatus",
       "newStatus",
@@ -564,7 +576,15 @@ const metadataValidators = {
       );
     const result: Record<string, string> = {};
     for (const [key, value] of Object.entries(metadata)) {
-      if (["propertyUnitId", "billingPeriodId", "chargeId"].includes(key))
+      if (
+        [
+          "propertyUnitId",
+          "billingPeriodId",
+          "chargeId",
+          "paymentId",
+          "paymentReceiptId",
+        ].includes(key)
+      )
         result[key] = requireUuid(value as string, key);
       else if (key === "amount") {
         if (

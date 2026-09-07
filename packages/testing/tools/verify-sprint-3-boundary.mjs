@@ -295,6 +295,12 @@ const phase5Enums = new Set([
   "ChargeStatus",
   "ChargeType",
 ]);
+const phase6Models = new Set(["Payment", "PaymentReceipt"]);
+const phase6Enums = new Set([
+  "PaymentMethodType",
+  "PaymentReceiptStatus",
+  "PaymentStatus",
+]);
 const operationsAtSprint2Closure = new Set([
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -351,7 +357,7 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase <= 5) {
+if (manifest.currentPhase <= 6) {
   const allowedModels = new Set(sprint2Models);
   const allowedEnums = new Set(sprint2Enums);
   if (manifest.currentPhase === 1) {
@@ -376,9 +382,13 @@ if (manifest.currentPhase <= 5) {
     for (const model of phase4Models) allowedModels.add(model);
     for (const enumName of phase4Enums) allowedEnums.add(enumName);
   }
-  if (manifest.currentPhase === 5) {
+  if (manifest.currentPhase >= 5) {
     for (const model of phase5Models) allowedModels.add(model);
     for (const enumName of phase5Enums) allowedEnums.add(enumName);
+  }
+  if (manifest.currentPhase === 6) {
+    for (const model of phase6Models) allowedModels.add(model);
+    for (const enumName of phase6Enums) allowedEnums.add(enumName);
   }
   const prematureModels = declaredModels.filter(
     (model) => !allowedModels.has(model),
@@ -405,13 +415,13 @@ if (manifest.currentPhase <= 5) {
     );
   }
   const forbiddenModules = [
-    "apps/api/src/modules/dues-fees",
-    "apps/api/src/modules/payments",
+    ...(manifest.currentPhase < 3
+      ? ["apps/api/src/modules/secure-document-storage"]
+      : []),
+    ...(manifest.currentPhase < 4 ? ["apps/api/src/modules/dues-fees"] : []),
+    ...(manifest.currentPhase < 6 ? ["apps/api/src/modules/payments"] : []),
     "apps/api/src/modules/account-statements",
-    "apps/api/src/modules/secure-document-storage",
   ];
-  if (manifest.currentPhase >= 3) forbiddenModules.pop();
-  if (manifest.currentPhase >= 4) forbiddenModules.shift();
   if (manifest.currentPhase < 2) {
     forbiddenModules.unshift("apps/api/src/modules/residents-properties");
   }
@@ -530,6 +540,27 @@ if (manifest.currentPhase <= 5) {
       !existsSync(resolve(repositoryRoot, "apps/api/src/modules/dues-fees"))
     ) {
       failures.push("Sprint 3 phase 5 requires the dues-fees runtime module.");
+    }
+  }
+  if (manifest.currentPhase === 6) {
+    const missingModels = [...phase6Models].filter(
+      (model) => !declaredModels.includes(model),
+    );
+    const missingEnums = [...phase6Enums].filter(
+      (enumName) => !declaredEnums.includes(enumName),
+    );
+    if (missingModels.length > 0) {
+      failures.push(
+        `Sprint 3 phase 6 requires payment models: ${missingModels.join(", ")}.`,
+      );
+    }
+    if (missingEnums.length > 0) {
+      failures.push(
+        `Sprint 3 phase 6 requires payment enums: ${missingEnums.join(", ")}.`,
+      );
+    }
+    if (!existsSync(resolve(repositoryRoot, "apps/api/src/modules/payments"))) {
+      failures.push("Sprint 3 phase 6 requires the payments runtime module.");
     }
   }
 }

@@ -297,6 +297,42 @@ enum ChargeStatus {
   @@map("charge_status")
 }
 
+enum PaymentStatus {
+  DRAFT
+  REPORTED
+  PENDING_VALIDATION
+  CONFIRMED
+  PARTIALLY_ALLOCATED
+  ALLOCATED
+  REJECTED
+  CANCELLED
+  REVERSED
+  ARCHIVED
+
+  @@map("payment_status")
+}
+
+enum PaymentMethodType {
+  CASH
+  BANK_TRANSFER
+  DEPOSIT
+  CHECK
+  ONLINE
+  OTHER
+
+  @@map("payment_method_type")
+}
+
+enum PaymentReceiptStatus {
+  PENDING
+  UPLOADED
+  ACCEPTED
+  REJECTED
+  ARCHIVED
+
+  @@map("payment_receipt_status")
+}
+
 enum ChargeType {
   ORDINARY      @map("ordinary")
   EXTRAORDINARY @map("extraordinary")
@@ -563,6 +599,8 @@ model Tenant {
   charges                  Charge[]
   chargeAdjustments        ChargeAdjustment[]
   chargeReversals          ChargeReversal[]
+  payments                 Payment[]
+  paymentReceipts          PaymentReceipt[]
 
   @@index([slug])
   @@index([status])
@@ -654,6 +692,12 @@ model UserProfile {
   cancelledCharges         Charge[]                  @relation("ChargeCancelledBy")
   createdChargeAdjustments ChargeAdjustment[]        @relation("ChargeAdjustmentCreatedBy")
   createdChargeReversals   ChargeReversal[]          @relation("ChargeReversalCreatedBy")
+  reportedPayments         Payment[]                 @relation("PaymentReportedBy")
+  createdPayments          Payment[]                 @relation("PaymentCreatedBy")
+  confirmedPayments        Payment[]                 @relation("PaymentConfirmedBy")
+  rejectedPayments         Payment[]                 @relation("PaymentRejectedBy")
+  uploadedPaymentReceipts  PaymentReceipt[]          @relation("PaymentReceiptUploadedBy")
+  reviewedPaymentReceipts  PaymentReceipt[]          @relation("PaymentReceiptReviewedBy")
 
   @@index([email])
   @@index([status])
@@ -892,12 +936,13 @@ model SecureDocument {
   archiveReason       String?             @map("archive_reason")
   metadata            Json?
 
-  tenant     Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Restrict)
-  versions   SecureDocumentVersion[]
-  files      SecureDocumentFile[]
-  links      SecureDocumentLink[]
-  policies   SecureDocumentPolicy[]
-  accessLogs SecureDocumentAccessLog[]
+  tenant         Tenant                    @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  versions       SecureDocumentVersion[]
+  files          SecureDocumentFile[]
+  links          SecureDocumentLink[]
+  policies       SecureDocumentPolicy[]
+  accessLogs     SecureDocumentAccessLog[]
+  paymentReceipt PaymentReceipt?
 
   @@unique([id, tenantId])
   @@index([tenantId, status])
@@ -1180,6 +1225,7 @@ model PropertyUnit {
   leases             Lease[]
   unitFeeAssignments UnitFeeAssignment[]
   charges            Charge[]
+  payments           Payment[]
 
   @@unique([id, tenantId])
   @@unique([tenantId, code])
@@ -1411,6 +1457,80 @@ model ChargeReversal {
   @@unique([chargeId, tenantId])
   @@index([tenantId, createdAt])
   @@map("charge_reversals")
+}
+
+model Payment {
+  id                   String            @id @default(uuid())
+  tenantId             String            @map("tenant_id")
+  propertyUnitId       String            @map("property_unit_id")
+  reportedBy           String?           @map("reported_by")
+  createdBy            String            @map("created_by")
+  method               PaymentMethodType
+  amount               Decimal           @db.Decimal(12, 2)
+  allocatedAmount      Decimal           @default(0) @map("allocated_amount") @db.Decimal(12, 2)
+  unallocatedAmount    Decimal           @map("unallocated_amount") @db.Decimal(12, 2)
+  currency             CurrencyCode      @default(USD)
+  paidAt               DateTime          @map("paid_at")
+  reportedAt           DateTime?         @map("reported_at")
+  confirmedAt          DateTime?         @map("confirmed_at")
+  confirmedBy          String?           @map("confirmed_by")
+  rejectedAt           DateTime?         @map("rejected_at")
+  rejectedBy           String?           @map("rejected_by")
+  rejectionReason      String?           @map("rejection_reason") @db.VarChar(500)
+  status               PaymentStatus
+  transactionReference String?           @map("transaction_reference") @db.VarChar(160)
+  externalReference    String?           @map("external_reference") @db.VarChar(160)
+  notes                String?           @db.VarChar(500)
+  createdAt            DateTime          @default(now()) @map("created_at")
+  updatedAt            DateTime          @updatedAt @map("updated_at")
+  archivedAt           DateTime?         @map("archived_at")
+
+  tenant          Tenant          @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit    PropertyUnit    @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  reportedByUser  UserProfile?    @relation("PaymentReportedBy", fields: [reportedBy], references: [id], onDelete: Restrict)
+  createdByUser   UserProfile     @relation("PaymentCreatedBy", fields: [createdBy], references: [id], onDelete: Restrict)
+  confirmedByUser UserProfile?    @relation("PaymentConfirmedBy", fields: [confirmedBy], references: [id], onDelete: Restrict)
+  rejectedByUser  UserProfile?    @relation("PaymentRejectedBy", fields: [rejectedBy], references: [id], onDelete: Restrict)
+  receipt         PaymentReceipt?
+
+  @@unique([id, tenantId])
+  @@index([tenantId, propertyUnitId, status])
+  @@index([tenantId, status])
+  @@index([tenantId, method])
+  @@index([tenantId, paidAt])
+  @@map("payments")
+}
+
+model PaymentReceipt {
+  id                   String               @id @default(uuid())
+  tenantId             String               @map("tenant_id")
+  paymentId            String               @map("payment_id")
+  secureDocumentId     String               @unique @map("secure_document_id")
+  receiptNumber        String?              @map("receipt_number") @db.VarChar(160)
+  transactionReference String?              @map("transaction_reference") @db.VarChar(160)
+  status               PaymentReceiptStatus @default(PENDING)
+  uploadedBy           String               @map("uploaded_by")
+  uploadedAt           DateTime?            @map("uploaded_at")
+  reviewedBy           String?              @map("reviewed_by")
+  reviewedAt           DateTime?            @map("reviewed_at")
+  rejectionReason      String?              @map("rejection_reason") @db.VarChar(500)
+  createdAt            DateTime             @default(now()) @map("created_at")
+  updatedAt            DateTime             @updatedAt @map("updated_at")
+  archivedAt           DateTime?            @map("archived_at")
+
+  tenant         Tenant         @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  payment        Payment        @relation(fields: [paymentId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  secureDocument SecureDocument @relation(fields: [secureDocumentId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  uploadedByUser UserProfile    @relation("PaymentReceiptUploadedBy", fields: [uploadedBy], references: [id], onDelete: Restrict)
+  reviewedByUser UserProfile?   @relation("PaymentReceiptReviewedBy", fields: [reviewedBy], references: [id], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, paymentId])
+  @@unique([paymentId, tenantId])
+  @@unique([secureDocumentId, tenantId])
+  @@index([tenantId, status])
+  @@index([tenantId, secureDocumentId])
+  @@map("payment_receipts")
 }
 
 model PropertyOwnership {

@@ -20,6 +20,7 @@ import { PrismaModule } from "./platform/database/prisma.module.js";
 import { ResidentsPropertiesModule } from "./modules/residents-properties/residents-properties.module.js";
 import { SecureDocumentStorageModule } from "./modules/secure-document-storage/secure-document-storage.module.js";
 import { DuesFeesModule } from "./modules/dues-fees/dues-fees.module.js";
+import { PaymentsModule } from "./modules/payments/payments.module.js";
 
 const applicationConfigModule = ConfigModule.forRoot({
   cache: true,
@@ -42,6 +43,7 @@ const applicationConfigModule = ConfigModule.forRoot({
     ResidentsPropertiesModule,
     SecureDocumentStorageModule,
     DuesFeesModule,
+    PaymentsModule,
     ThrottlerModule.forRootAsync({
       inject: [applicationConfig.KEY],
       imports: [applicationConfigModule],

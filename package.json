@@ -38,6 +38,7 @@
     "test:documents": "node tools/documents/run-phase-3-gate.mjs",
     "test:dues": "node tools/dues/run-phase-4-gate.mjs",
     "test:charges": "node tools/charges/run-phase-5-gate.mjs",
+    "test:payments": "node tools/payments/run-phase-6-gate.mjs",
     "test:stack:smoke": "node tools/stack/run-phase-9-smoke.mjs",
     "openapi:check": "pnpm --filter @resident/api openapi:check",
     "openapi:generate": "pnpm --filter @resident/api openapi:generate",

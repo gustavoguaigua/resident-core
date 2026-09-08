@@ -170,6 +170,17 @@ export const AUDIT_CATALOG = {
   "payment.reversed": tenantEvent("Payment", "financial"),
   "paymentAllocation.created": tenantEvent("PaymentAllocation", "financial"),
   "paymentAllocation.reversed": tenantEvent("PaymentAllocation", "financial"),
+  "accountStatement.generated": tenantEvent("AccountStatement", "financial"),
+  "accountStatement.batchGenerated": tenantEvent(
+    "AccountStatement",
+    "financial",
+  ),
+  "accountStatement.published": tenantEvent("AccountStatement", "financial"),
+  "accountStatement.closed": tenantEvent("AccountStatement", "financial"),
+  "accountStatement.locked": tenantEvent("AccountStatement", "financial"),
+  "accountStatement.regenerated": tenantEvent("AccountStatement", "financial"),
+  "accountStatement.superseded": tenantEvent("AccountStatement", "financial"),
+  "balance.recalculated": tenantEvent("UnitBalance", "financial"),
   "paymentReceipt.uploaded": tenantEvent("PaymentReceipt", "financial"),
   "paymentReceipt.reuploaded": tenantEvent("PaymentReceipt", "financial"),
   "paymentReceipt.accepted": tenantEvent("PaymentReceipt", "financial"),
@@ -561,6 +572,7 @@ const metadataValidators = {
       "paymentId",
       "allocationId",
       "paymentReceiptId",
+      "statementId",
       "amount",
       "currency",
       "paymentMethod",
@@ -588,6 +600,7 @@ const metadataValidators = {
           "paymentId",
           "allocationId",
           "paymentReceiptId",
+          "statementId",
         ].includes(key)
       )
         result[key] = requireUuid(value as string, key);

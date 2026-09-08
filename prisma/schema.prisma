@@ -340,6 +340,52 @@ enum PaymentAllocationStatus {
   @@map("payment_allocation_status")
 }
 
+enum AccountStatementStatus {
+  GENERATED  @map("generated")
+  PUBLISHED  @map("published")
+  CLOSED     @map("closed")
+  LOCKED     @map("locked")
+  SUPERSEDED @map("superseded")
+  ARCHIVED   @map("archived")
+
+  @@map("account_statement_status")
+}
+
+enum AccountStatementLineType {
+  OPENING_BALANCE             @map("openingBalance")
+  CHARGE                      @map("charge")
+  CHARGE_ADJUSTMENT           @map("chargeAdjustment")
+  CHARGE_REVERSAL             @map("chargeReversal")
+  PAYMENT_ALLOCATION          @map("paymentAllocation")
+  PAYMENT_ALLOCATION_REVERSAL @map("paymentAllocationReversal")
+  CREDIT_BALANCE              @map("creditBalance")
+  CLOSING_BALANCE             @map("closingBalance")
+
+  @@map("account_statement_line_type")
+}
+
+enum BalanceSnapshotStatus {
+  CURRENT    @map("current")
+  SUPERSEDED @map("superseded")
+  CLOSED     @map("closed")
+  ARCHIVED   @map("archived")
+
+  @@map("balance_snapshot_status")
+}
+
+enum StatementSourceType {
+  CHARGE                      @map("charge")
+  CHARGE_ADJUSTMENT           @map("chargeAdjustment")
+  CHARGE_REVERSAL             @map("chargeReversal")
+  PAYMENT_ALLOCATION          @map("paymentAllocation")
+  PAYMENT_ALLOCATION_REVERSAL @map("paymentAllocationReversal")
+  OPENING_BALANCE             @map("openingBalance")
+  CREDIT_BALANCE              @map("creditBalance")
+  CLOSING_BALANCE             @map("closingBalance")
+
+  @@map("statement_source_type")
+}
+
 enum ChargeType {
   ORDINARY      @map("ordinary")
   EXTRAORDINARY @map("extraordinary")
@@ -611,6 +657,10 @@ model Tenant {
   paymentAllocations         PaymentAllocation[]
   paymentAllocationReversals PaymentAllocationReversal[]
   paymentReversals           PaymentReversal[]
+  accountStatements          AccountStatement[]
+  accountStatementLines      AccountStatementLine[]
+  unitBalances               UnitBalance[]
+  balanceSnapshots           BalanceSnapshot[]
 
   @@index([slug])
   @@index([status])
@@ -711,6 +761,11 @@ model UserProfile {
   createdPaymentAllocations  PaymentAllocation[]         @relation("PaymentAllocationCreatedBy")
   createdAllocationReversals PaymentAllocationReversal[] @relation("PaymentAllocationReversedBy")
   createdPaymentReversals    PaymentReversal[]           @relation("PaymentReversedBy")
+  generatedAccountStatements AccountStatement[]          @relation("AccountStatementGeneratedBy")
+  publishedAccountStatements AccountStatement[]          @relation("AccountStatementPublishedBy")
+  closedAccountStatements    AccountStatement[]          @relation("AccountStatementClosedBy")
+  lockedAccountStatements    AccountStatement[]          @relation("AccountStatementLockedBy")
+  calculatedBalanceSnapshots BalanceSnapshot[]           @relation("BalanceSnapshotCalculatedBy")
 
   @@index([email])
   @@index([status])
@@ -1232,7 +1287,7 @@ model PropertyUnit {
   updatedAt        DateTime           @updatedAt @map("updated_at")
   archivedAt       DateTime?          @map("archived_at")
 
-  tenant             Tenant              @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  tenant             Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Restrict)
   ownerships         PropertyOwnership[]
   residencies        Residency[]
   leases             Lease[]
@@ -1240,6 +1295,10 @@ model PropertyUnit {
   charges            Charge[]
   payments           Payment[]
   paymentAllocations PaymentAllocation[]
+  accountStatements  AccountStatement[]
+  statementLines     AccountStatementLine[]
+  unitBalances       UnitBalance[]
+  balanceSnapshots   BalanceSnapshot[]
 
   @@unique([id, tenantId])
   @@unique([tenantId, code])
@@ -1347,11 +1406,14 @@ model BillingPeriod {
   lockedAt   DateTime?           @map("locked_at")
   lockedBy   String?             @map("locked_by")
 
-  tenant        Tenant        @relation(fields: [tenantId], references: [id], onDelete: Restrict)
-  closedByUser  UserProfile?  @relation("BillingPeriodClosedBy", fields: [closedBy], references: [id], onDelete: Restrict)
-  lockedByUser  UserProfile?  @relation("BillingPeriodLockedBy", fields: [lockedBy], references: [id], onDelete: Restrict)
-  chargeBatches ChargeBatch[]
-  charges       Charge[]
+  tenant            Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  closedByUser      UserProfile?           @relation("BillingPeriodClosedBy", fields: [closedBy], references: [id], onDelete: Restrict)
+  lockedByUser      UserProfile?           @relation("BillingPeriodLockedBy", fields: [lockedBy], references: [id], onDelete: Restrict)
+  chargeBatches     ChargeBatch[]
+  charges           Charge[]
+  accountStatements AccountStatement[]
+  statementLines    AccountStatementLine[]
+  balanceSnapshots  BalanceSnapshot[]
 
   @@unique([id, tenantId])
   @@unique([tenantId, periodCode])
@@ -1620,6 +1682,161 @@ model PaymentReversal {
   @@unique([paymentId, tenantId])
   @@index([tenantId, reversedAt])
   @@map("payment_reversals")
+}
+
+model AccountStatement {
+  id                  String                 @id @default(uuid())
+  tenantId            String                 @map("tenant_id")
+  propertyUnitId      String                 @map("property_unit_id")
+  billingPeriodId     String                 @map("billing_period_id")
+  statementNumber     String                 @map("statement_number") @db.VarChar(120)
+  status              AccountStatementStatus @default(GENERATED)
+  currency            CurrencyCode           @default(USD)
+  asOfDate            DateTime               @map("as_of_date") @db.Date
+  openingBalance      Decimal                @default(0) @map("opening_balance") @db.Decimal(12, 2)
+  chargesTotal        Decimal                @default(0) @map("charges_total") @db.Decimal(12, 2)
+  adjustmentsTotal    Decimal                @default(0) @map("adjustments_total") @db.Decimal(12, 2)
+  paymentsTotal       Decimal                @default(0) @map("payments_total") @db.Decimal(12, 2)
+  reversalsTotal      Decimal                @default(0) @map("reversals_total") @db.Decimal(12, 2)
+  creditBalance       Decimal                @default(0) @map("credit_balance") @db.Decimal(12, 2)
+  closingBalance      Decimal                @default(0) @map("closing_balance") @db.Decimal(12, 2)
+  overdueBalance      Decimal                @default(0) @map("overdue_balance") @db.Decimal(12, 2)
+  notDueBalance       Decimal                @default(0) @map("not_due_balance") @db.Decimal(12, 2)
+  lineCount           Int                    @default(0) @map("line_count")
+  sourceHash          String                 @map("source_hash") @db.Char(64)
+  sourceWatermark     DateTime?              @map("source_watermark")
+  generatedAt         DateTime               @default(now()) @map("generated_at")
+  generatedBy         String                 @map("generated_by")
+  publishedAt         DateTime?              @map("published_at")
+  publishedBy         String?                @map("published_by")
+  closedAt            DateTime?              @map("closed_at")
+  closedBy            String?                @map("closed_by")
+  closeReason         String?                @map("close_reason") @db.VarChar(500)
+  lockedAt            DateTime?              @map("locked_at")
+  lockedBy            String?                @map("locked_by")
+  lockReason          String?                @map("lock_reason") @db.VarChar(500)
+  previousStatementId String?                @map("previous_statement_id")
+  supersededById      String?                @map("superseded_by_id")
+  regenerationReason  String?                @map("regeneration_reason") @db.VarChar(500)
+  createdAt           DateTime               @default(now()) @map("created_at")
+  updatedAt           DateTime               @updatedAt @map("updated_at")
+  archivedAt          DateTime?              @map("archived_at")
+
+  tenant                Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit          PropertyUnit           @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  billingPeriod         BillingPeriod          @relation(fields: [billingPeriodId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  generatedByUser       UserProfile            @relation("AccountStatementGeneratedBy", fields: [generatedBy], references: [id], onDelete: Restrict)
+  publishedByUser       UserProfile?           @relation("AccountStatementPublishedBy", fields: [publishedBy], references: [id], onDelete: Restrict)
+  closedByUser          UserProfile?           @relation("AccountStatementClosedBy", fields: [closedBy], references: [id], onDelete: Restrict)
+  lockedByUser          UserProfile?           @relation("AccountStatementLockedBy", fields: [lockedBy], references: [id], onDelete: Restrict)
+  previousStatement     AccountStatement?      @relation("StatementRegeneration", fields: [previousStatementId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  regeneratedStatements AccountStatement[]     @relation("StatementRegeneration")
+  supersededByStatement AccountStatement?      @relation("StatementSupersession", fields: [supersededById, tenantId], references: [id, tenantId], onDelete: Restrict)
+  supersededStatements  AccountStatement[]     @relation("StatementSupersession")
+  lines                 AccountStatementLine[]
+  balanceSnapshots      BalanceSnapshot[]
+
+  @@unique([id, tenantId])
+  @@unique([id, tenantId, propertyUnitId, billingPeriodId])
+  @@unique([tenantId, statementNumber])
+  @@index([tenantId, propertyUnitId, billingPeriodId, currency, status])
+  @@index([tenantId, status])
+  @@map("account_statements")
+}
+
+model AccountStatementLine {
+  id                  String                   @id @default(uuid())
+  tenantId            String                   @map("tenant_id")
+  accountStatementId  String                   @map("account_statement_id")
+  propertyUnitId      String                   @map("property_unit_id")
+  billingPeriodId     String                   @map("billing_period_id")
+  lineType            AccountStatementLineType @map("line_type")
+  sourceType          StatementSourceType?     @map("source_type")
+  sourceId            String?                  @map("source_id")
+  descriptionCode     String                   @map("description_code") @db.VarChar(80)
+  lineDate            DateTime                 @map("line_date") @db.Date
+  dueDate             DateTime?                @map("due_date") @db.Date
+  debitAmount         Decimal                  @default(0) @map("debit_amount") @db.Decimal(12, 2)
+  creditAmount        Decimal                  @default(0) @map("credit_amount") @db.Decimal(12, 2)
+  balanceAfterLine    Decimal                  @map("balance_after_line") @db.Decimal(12, 2)
+  currency            CurrencyCode             @default(USD)
+  sortOrder           Int                      @map("sort_order")
+  isVisibleToResident Boolean                  @default(true) @map("is_visible_to_resident")
+  createdAt           DateTime                 @default(now()) @map("created_at")
+  archivedAt          DateTime?                @map("archived_at")
+
+  tenant           Tenant           @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  accountStatement AccountStatement @relation(fields: [accountStatementId, tenantId, propertyUnitId, billingPeriodId], references: [id, tenantId, propertyUnitId, billingPeriodId], onDelete: Restrict)
+  propertyUnit     PropertyUnit     @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  billingPeriod    BillingPeriod    @relation(fields: [billingPeriodId, tenantId], references: [id, tenantId], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@unique([accountStatementId, sortOrder])
+  @@unique([accountStatementId, sourceType, sourceId])
+  @@index([tenantId, propertyUnitId, lineDate])
+  @@index([tenantId, billingPeriodId])
+  @@map("account_statement_lines")
+}
+
+model UnitBalance {
+  id                        String       @id @default(uuid())
+  tenantId                  String       @map("tenant_id")
+  propertyUnitId            String       @map("property_unit_id")
+  currency                  CurrencyCode @default(USD)
+  outstandingBalance        Decimal      @default(0) @map("outstanding_balance") @db.Decimal(12, 2)
+  overdueBalance            Decimal      @default(0) @map("overdue_balance") @db.Decimal(12, 2)
+  notDueBalance             Decimal      @default(0) @map("not_due_balance") @db.Decimal(12, 2)
+  creditBalance             Decimal      @default(0) @map("credit_balance") @db.Decimal(12, 2)
+  unallocatedPaymentBalance Decimal      @default(0) @map("unallocated_payment_balance") @db.Decimal(12, 2)
+  calculatedAt              DateTime     @default(now()) @map("calculated_at")
+  sourceWatermark           DateTime?    @map("source_watermark")
+  sourceHash                String       @map("source_hash") @db.Char(64)
+  isStale                   Boolean      @default(false) @map("is_stale")
+  createdAt                 DateTime     @default(now()) @map("created_at")
+  updatedAt                 DateTime     @updatedAt @map("updated_at")
+  archivedAt                DateTime?    @map("archived_at")
+
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit PropertyUnit @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@unique([tenantId, propertyUnitId, currency])
+  @@index([tenantId, isStale])
+  @@map("unit_balances")
+}
+
+model BalanceSnapshot {
+  id                        String                @id @default(uuid())
+  tenantId                  String                @map("tenant_id")
+  propertyUnitId            String                @map("property_unit_id")
+  billingPeriodId           String?               @map("billing_period_id")
+  accountStatementId        String?               @map("account_statement_id")
+  currency                  CurrencyCode          @default(USD)
+  asOfDate                  DateTime              @map("as_of_date") @db.Date
+  outstandingBalance        Decimal               @default(0) @map("outstanding_balance") @db.Decimal(12, 2)
+  overdueBalance            Decimal               @default(0) @map("overdue_balance") @db.Decimal(12, 2)
+  notDueBalance             Decimal               @default(0) @map("not_due_balance") @db.Decimal(12, 2)
+  creditBalance             Decimal               @default(0) @map("credit_balance") @db.Decimal(12, 2)
+  unallocatedPaymentBalance Decimal               @default(0) @map("unallocated_payment_balance") @db.Decimal(12, 2)
+  calculatedAt              DateTime              @default(now()) @map("calculated_at")
+  calculatedBy              String?               @map("calculated_by")
+  status                    BalanceSnapshotStatus @default(CURRENT)
+  sourceHash                String                @map("source_hash") @db.Char(64)
+  sourceWatermark           DateTime?             @map("source_watermark")
+  createdAt                 DateTime              @default(now()) @map("created_at")
+  archivedAt                DateTime?             @map("archived_at")
+
+  tenant           Tenant            @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  propertyUnit     PropertyUnit      @relation(fields: [propertyUnitId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  billingPeriod    BillingPeriod?    @relation(fields: [billingPeriodId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  accountStatement AccountStatement? @relation(fields: [accountStatementId, tenantId, propertyUnitId, billingPeriodId], references: [id, tenantId, propertyUnitId, billingPeriodId], onDelete: Restrict)
+  calculatedByUser UserProfile?      @relation("BalanceSnapshotCalculatedBy", fields: [calculatedBy], references: [id], onDelete: Restrict)
+
+  @@unique([id, tenantId])
+  @@index([tenantId, propertyUnitId, calculatedAt])
+  @@index([tenantId, billingPeriodId])
+  @@index([tenantId, accountStatementId])
+  @@map("balance_snapshots")
 }
 
 model PropertyOwnership {

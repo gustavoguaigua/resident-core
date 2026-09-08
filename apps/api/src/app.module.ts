@@ -21,6 +21,7 @@ import { ResidentsPropertiesModule } from "./modules/residents-properties/reside
 import { SecureDocumentStorageModule } from "./modules/secure-document-storage/secure-document-storage.module.js";
 import { DuesFeesModule } from "./modules/dues-fees/dues-fees.module.js";
 import { PaymentsModule } from "./modules/payments/payments.module.js";
+import { AccountStatementsModule } from "./modules/account-statements/account-statements.module.js";
 
 const applicationConfigModule = ConfigModule.forRoot({
   cache: true,
@@ -44,6 +45,7 @@ const applicationConfigModule = ConfigModule.forRoot({
     SecureDocumentStorageModule,
     DuesFeesModule,
     PaymentsModule,
+    AccountStatementsModule,
     ThrottlerModule.forRootAsync({
       inject: [applicationConfig.KEY],
       imports: [applicationConfigModule],

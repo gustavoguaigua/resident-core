@@ -497,9 +497,10 @@ docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md
 docs/changes/SPRINT-3-PHASE-5-CHARGE-LIFECYCLE-2026-09-06.md
 docs/changes/SPRINT-3-PHASE-6-PAYMENTS-RECEIPTS-2026-09-06.md
 docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md
+docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md
 Decision: GO
-Current Phase: 7
-Next permitted phase: 8 — balances-statements
+Current Phase: 8
+Next permitted phase: 9 — openapi-cross-slice-closure
 ```
 
 ---

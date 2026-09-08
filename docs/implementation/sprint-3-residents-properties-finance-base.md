@@ -4,14 +4,14 @@
 
 - Estado: `authoritative`
 - Readiness vigente: `GO`
-- Fase activa: `7 — allocations-reversals; PASS`
+- Fase activa: `8 — balances-statements; PASS`
 - Fecha: 2026-09-07
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
-autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 7
-quedaron completadas con `PASS`. GAP-S3-011 gobierna la atomicidad de generación y la
-Fase 8 es la siguiente implementación permitida.
+autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 8
+quedaron completadas con `PASS`. GAP-S3-012 gobierna la atomicidad batch de statements
+y la Fase 9 es la siguiente implementación permitida.
 
 ## 2. Objetivo
 

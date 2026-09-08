@@ -8,16 +8,16 @@
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
 | Fecha de actualización | 2026-09-07 |
-| Rama evaluada | `codex/sprint-3-phase-7-allocations-reversals` |
-| Baseline integrado | `ae84c49` — PR #37 |
+| Rama evaluada | `codex/sprint-3-phase-8-balances-statements` |
+| Baseline integrado | `731b28f` — PR #39 |
 | Decisión | `GO` |
-| Fase actual | `7 — allocations-reversals; PASS` |
+| Fase actual | `8 — balances-statements; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 7
-Implementation authorized: Phase 8 only
+Current Phase: 8
+Implementation authorized: Phase 9 only
 ```
 
 ## 2. Método
@@ -348,3 +348,18 @@ Current Phase: 7
 Phase 8: blocked until GAP-S3-012 is integrated
 Next permitted phase after integration: 8 — balances-statements
 ```
+
+GAP-S3-012 quedó integrado y la Fase 8 incorporó la proyección reconstruible de
+movimientos financieros, balances y snapshots tenant-scoped, además del lifecycle de
+statements y generación batch con transacción exterior `SERIALIZABLE` y savepoints
+estáticos. `test:statements` y `test:financial` validan migraciones, cálculos Decimal,
+idempotencia, aislamiento y Audit sin publicar OpenAPI.
+
+```text
+Current Phase: 8
+Phase 8: PASS
+Next permitted phase: 9 — openapi-cross-slice-closure
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md`.

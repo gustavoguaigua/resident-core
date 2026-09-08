@@ -307,6 +307,18 @@ const phase7Models = new Set([
   "PaymentReversal",
 ]);
 const phase7Enums = new Set(["PaymentAllocationStatus"]);
+const phase8Models = new Set([
+  "AccountStatement",
+  "AccountStatementLine",
+  "BalanceSnapshot",
+  "UnitBalance",
+]);
+const phase8Enums = new Set([
+  "AccountStatementLineType",
+  "AccountStatementStatus",
+  "BalanceSnapshotStatus",
+  "StatementSourceType",
+]);
 const operationsAtSprint2Closure = new Set([
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -363,7 +375,7 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase <= 7) {
+if (manifest.currentPhase <= 8) {
   const allowedModels = new Set(sprint2Models);
   const allowedEnums = new Set(sprint2Enums);
   if (manifest.currentPhase === 1) {
@@ -396,9 +408,13 @@ if (manifest.currentPhase <= 7) {
     for (const model of phase6Models) allowedModels.add(model);
     for (const enumName of phase6Enums) allowedEnums.add(enumName);
   }
-  if (manifest.currentPhase === 7) {
+  if (manifest.currentPhase >= 7) {
     for (const model of phase7Models) allowedModels.add(model);
     for (const enumName of phase7Enums) allowedEnums.add(enumName);
+  }
+  if (manifest.currentPhase === 8) {
+    for (const model of phase8Models) allowedModels.add(model);
+    for (const enumName of phase8Enums) allowedEnums.add(enumName);
   }
   const prematureModels = declaredModels.filter(
     (model) => !allowedModels.has(model),
@@ -430,7 +446,9 @@ if (manifest.currentPhase <= 7) {
       : []),
     ...(manifest.currentPhase < 4 ? ["apps/api/src/modules/dues-fees"] : []),
     ...(manifest.currentPhase < 6 ? ["apps/api/src/modules/payments"] : []),
-    "apps/api/src/modules/account-statements",
+    ...(manifest.currentPhase < 8
+      ? ["apps/api/src/modules/account-statements"]
+      : []),
   ];
   if (manifest.currentPhase < 2) {
     forbiddenModules.unshift("apps/api/src/modules/residents-properties");
@@ -592,6 +610,33 @@ if (manifest.currentPhase <= 7) {
     }
     if (!existsSync(resolve(repositoryRoot, "apps/api/src/modules/payments"))) {
       failures.push("Sprint 3 phase 7 requires the payments runtime module.");
+    }
+  }
+  if (manifest.currentPhase === 8) {
+    const missingModels = [...phase8Models].filter(
+      (model) => !declaredModels.includes(model),
+    );
+    const missingEnums = [...phase8Enums].filter(
+      (enumName) => !declaredEnums.includes(enumName),
+    );
+    if (missingModels.length > 0) {
+      failures.push(
+        `Sprint 3 phase 8 requires statement models: ${missingModels.join(", ")}.`,
+      );
+    }
+    if (missingEnums.length > 0) {
+      failures.push(
+        `Sprint 3 phase 8 requires statement enums: ${missingEnums.join(", ")}.`,
+      );
+    }
+    if (
+      !existsSync(
+        resolve(repositoryRoot, "apps/api/src/modules/account-statements"),
+      )
+    ) {
+      failures.push(
+        "Sprint 3 phase 8 requires the account-statements runtime module.",
+      );
     }
   }
 }

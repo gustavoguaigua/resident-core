@@ -231,6 +231,12 @@ La Fase 5 integra GAP-S3-011. La generación mensual usa una
 estático y nunca confirma un commit independiente. Batch, cargos, Audit y ledger se
 confirman juntos en el único commit exterior.
 
+La Fase 8 integra GAP-S3-012. La generación batch de statements usa una única
+transacción exterior `SERIALIZABLE`; cada unidad se aísla con un `SAVEPOINT` estático,
+mantiene un corte consistente de fuentes y nunca confirma independientemente.
+Statements, líneas, snapshots, Audit y ledger se confirman juntos en el commit
+exterior. La Fase 8 no puede iniciarse hasta integrar ese contrato.
+
 ## 9. Gates acumulativos
 
 El contrato ejecutable está en `packages/testing/config/sprint-3-gates.json`.

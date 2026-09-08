@@ -126,6 +126,14 @@ fallo fatal, incluido cualquier fallo de Audit, revierte la operación completa.
 savepoints nunca confirman cambios por separado: batch, cargos, Audit y ledger siguen
 siendo visibles y durables únicamente después del único commit exterior.
 
+Para `POST /api/v1/tenant/account-statements/generate-batch`, GAP-S3-012 especializa el
+mismo paso sin ampliar GAP-S3-011: cada unidad usa un `SAVEPOINT` estático dentro de la
+única transacción exterior `SERIALIZABLE`. Statement, líneas, snapshot y Audit de una
+unidad exitosa permanecen pendientes hasta el commit exterior; un fallo recuperable
+revierte sólo esa unidad y un fallo fatal revierte statements, líneas, snapshots,
+Audit y ledger de todo el POST. El ledger conserva exclusivamente el resultado final
+completo y reproducible.
+
 ## 8. Replay, conflicto y retención
 
 - Mismo tenant, operación, actor y request hash con registro `COMPLETED` vigente:

@@ -201,6 +201,13 @@ equivalentes con retry acotado ante conflicto de serialización.
    fingerprint cambia antes de persistir, aborta y reintenta; no publica un snapshot
    mixto.
 
+La generación batch de statements se especializa por GAP-S3-012: el POST completo usa
+una sola transacción exterior `SERIALIZABLE` y procesa cada unidad secuencialmente con
+un `SAVEPOINT` estático. Los fallos recuperables revierten sólo la subtransacción de la
+unidad; los fallos de seguridad, tenant, moneda, estructura, ledger o Audit revierten
+todo el POST. Ningún statement, línea, snapshot, Audit o resultado del ledger es
+visible o durable antes del commit exterior.
+
 No se requiere outbox ni procesamiento asíncrono en Sprint 3.
 
 ## 9. Saldos y statements reconstruibles
@@ -257,6 +264,8 @@ canónicas con el mismo `asOfDate`; drift produce fallo de gate, no ajuste silen
 - reversar pago revierte todas sus allocations atómicamente sin doble contabilización;
 - pagos no asignados permanecen separados y no reducen cargos;
 - cálculo, regeneración y snapshot reproducen las fuentes con Decimal exacto;
+- generación batch de statements conserva un corte consistente por unidad, conteos
+  exhaustivos y un único commit exterior conforme a GAP-S3-012;
 - statements cerrados/bloqueados no se reescriben;
 - fallo de Audit o constraint revierte toda la mutación;
 - tenant, unidad o moneda incompatibles fallan cerrados.

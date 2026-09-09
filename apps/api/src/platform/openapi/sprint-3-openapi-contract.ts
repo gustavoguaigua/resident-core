@@ -72,6 +72,9 @@ function enrichOperation(path: string, method: string, operation: Operation) {
   const idempotent = MUTATIONS.has(method);
   operation.security = [{ bearerAuth: [] }];
   operation["x-auth-required"] = true;
+  operation["x-platform-only"] = false;
+  operation["x-public"] = false;
+  operation["x-tenant-scope"] = "tenant";
   operation["x-tenant-context-required"] = true;
   operation["x-own-resource"] = own;
   operation["x-idempotency-required"] = idempotent;

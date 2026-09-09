@@ -1666,9 +1666,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/account-statements/{statementId}": {
@@ -1782,9 +1785,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/charges": {
@@ -1889,9 +1895,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/payment-receipts/{receiptId}/download": {
@@ -2005,9 +2014,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.download.own",
         "x-response-envelope": false,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/payments": {
@@ -2112,9 +2124,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "OwnPaymentsController_create",
@@ -2239,9 +2254,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.create.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/payments/{paymentId}": {
@@ -2355,9 +2373,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/payments/{paymentId}/receipts": {
@@ -2493,9 +2514,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.create.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/person": {
@@ -2600,9 +2624,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "persons.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/property-units": {
@@ -2707,9 +2734,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyUnits.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/property-units/{propertyUnitId}/balance": {
@@ -2823,9 +2853,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "balances.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/property-units/{propertyUnitId}/charges": {
@@ -2939,9 +2972,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/property-units/{propertyUnitId}/financial-movements": {
@@ -3055,9 +3091,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "financialMovements.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/me/residencies": {
@@ -3162,9 +3201,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "residencies.read.own",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/platform/setting-definitions": {
@@ -3915,9 +3957,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/account-statements/{statementId}": {
@@ -4031,9 +4076,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/account-statements/{statementId}/close": {
@@ -4169,9 +4217,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.close",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/account-statements/{statementId}/lock": {
@@ -4307,9 +4358,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.lock",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/account-statements/{statementId}/publish": {
@@ -4445,9 +4499,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.publish",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/account-statements/{statementId}/regenerate": {
@@ -4583,9 +4640,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.regenerate",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/account-statements/generate": {
@@ -4712,9 +4772,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.generate",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/account-statements/generate-batch": {
@@ -4841,9 +4904,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "accountStatements.generate",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/balances": {
@@ -4948,9 +5014,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "balances.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/billing-periods": {
@@ -5055,9 +5124,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "billingPeriods.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "BillingPeriodsController_create",
@@ -5182,9 +5254,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "billingPeriods.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/billing-periods/{billingPeriodId}": {
@@ -5298,9 +5373,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "billingPeriods.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/billing-periods/{billingPeriodId}/close": {
@@ -5436,9 +5514,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "billingPeriods.close",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/billing-periods/{billingPeriodId}/lock": {
@@ -5574,9 +5655,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "billingPeriods.lock",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charge-batches": {
@@ -5681,9 +5765,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "fees.readBatches",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charge-batches/{chargeBatchId}": {
@@ -5797,9 +5884,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "fees.readBatches",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charge-concepts": {
@@ -5904,9 +5994,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "chargeConcepts.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "ChargeConceptsController_create",
@@ -6031,9 +6124,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "chargeConcepts.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charge-concepts/{chargeConceptId}": {
@@ -6147,9 +6243,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "chargeConcepts.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "ChargeConceptsController_update",
@@ -6283,9 +6382,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "chargeConcepts.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charge-concepts/{chargeConceptId}/archive": {
@@ -6421,9 +6523,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "chargeConcepts.archive",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charges": {
@@ -6528,9 +6633,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "ChargesController_create",
@@ -6655,9 +6763,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charges/{chargeId}": {
@@ -6771,9 +6882,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charges/{chargeId}/adjustments": {
@@ -6909,9 +7023,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.adjust",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charges/{chargeId}/cancel": {
@@ -7047,9 +7164,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.cancel",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charges/{chargeId}/reverse": {
@@ -7185,9 +7305,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "charges.reverse",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/charges/generate-monthly": {
@@ -7314,9 +7437,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "fees.generate",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/fee-schedules": {
@@ -7421,9 +7547,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "feeSchedules.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "FeeSchedulesController_create",
@@ -7548,9 +7677,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "feeSchedules.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/fee-schedules/{feeScheduleId}": {
@@ -7664,9 +7796,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "feeSchedules.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "FeeSchedulesController_update",
@@ -7800,9 +7935,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "feeSchedules.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/fee-schedules/{feeScheduleId}/archive": {
@@ -7938,9 +8076,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "feeSchedules.archive",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/invitations": {
@@ -8346,9 +8487,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "leases.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "LeasesController_create",
@@ -8473,9 +8617,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "leases.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/leases/{leaseId}": {
@@ -8589,9 +8736,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "leases.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "LeasesController_update",
@@ -8725,9 +8875,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "leases.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/leases/{leaseId}/end": {
@@ -8863,9 +9016,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "leases.end",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/legal-entities": {
@@ -8970,9 +9126,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "legalEntities.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "LegalEntitiesController_create",
@@ -9097,9 +9256,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "legalEntities.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/legal-entities/{legalEntityId}": {
@@ -9213,9 +9375,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "legalEntities.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "LegalEntitiesController_update",
@@ -9349,9 +9514,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "legalEntities.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/legal-entities/{legalEntityId}/archive": {
@@ -9487,9 +9655,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "legalEntities.archive",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/memberships/{membershipId}/revoke": {
@@ -9944,9 +10115,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payment-allocations/{allocationId}/reverse": {
@@ -10082,9 +10256,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.allocations.reverse",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payment-receipts/{receiptId}": {
@@ -10198,9 +10375,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payment-receipts/{receiptId}/accept": {
@@ -10336,9 +10516,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.review",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payment-receipts/{receiptId}/download": {
@@ -10452,9 +10635,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.download",
         "x-response-envelope": false,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payment-receipts/{receiptId}/reject": {
@@ -10590,9 +10776,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.review",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments": {
@@ -10697,9 +10886,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "PaymentsController_create",
@@ -10824,9 +11016,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}": {
@@ -10940,9 +11135,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}/allocate": {
@@ -11078,9 +11276,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.allocate",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}/allocations": {
@@ -11194,9 +11395,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}/auto-allocate": {
@@ -11332,9 +11536,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.allocate",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}/confirm": {
@@ -11470,9 +11677,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.confirm",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}/receipts": {
@@ -11586,9 +11796,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "PaymentsController_upload",
@@ -11722,9 +11935,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "paymentReceipts.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}/reject": {
@@ -11860,9 +12076,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.reject",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/payments/{paymentId}/reverse": {
@@ -11998,9 +12217,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "payments.reverse",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/persons": {
@@ -12105,9 +12327,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "persons.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "PersonsController_create",
@@ -12232,9 +12457,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "persons.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/persons/{personId}": {
@@ -12348,9 +12576,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "persons.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "PersonsController_update",
@@ -12484,9 +12715,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "persons.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/persons/{personId}/archive": {
@@ -12622,9 +12856,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "persons.archive",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/persons/{personId}/link-user": {
@@ -12760,9 +12997,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "persons.linkIdentity",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-ownerships": {
@@ -12867,9 +13107,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyOwnerships.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "OwnershipsController_create",
@@ -12994,9 +13237,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyOwnerships.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-ownerships/{ownershipId}": {
@@ -13110,9 +13356,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyOwnerships.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "OwnershipsController_update",
@@ -13246,9 +13495,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyOwnerships.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-ownerships/{ownershipId}/end": {
@@ -13384,9 +13636,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyOwnerships.end",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-units": {
@@ -13491,9 +13746,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyUnits.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "PropertyUnitsController_create",
@@ -13618,9 +13876,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyUnits.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-units/{propertyUnitId}": {
@@ -13734,9 +13995,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyUnits.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "PropertyUnitsController_update",
@@ -13870,9 +14134,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyUnits.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-units/{propertyUnitId}/archive": {
@@ -14008,9 +14275,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "propertyUnits.archive",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-units/{propertyUnitId}/balance": {
@@ -14124,9 +14394,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "balances.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-units/{propertyUnitId}/balance/recalculate": {
@@ -14262,9 +14535,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "balances.recalculate",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/property-units/{propertyUnitId}/financial-movements": {
@@ -14378,9 +14654,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "financialMovements.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/residencies": {
@@ -14485,9 +14764,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "residencies.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "ResidenciesController_create",
@@ -14612,9 +14894,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "residencies.create",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/residencies/{residencyId}": {
@@ -14728,9 +15013,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "residencies.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "patch": {
         "operationId": "ResidenciesController_update",
@@ -14864,9 +15152,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "residencies.update",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/residencies/{residencyId}/end": {
@@ -15002,9 +15293,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "residencies.end",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/settings": {
@@ -15388,9 +15682,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "unitFees.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       },
       "post": {
         "operationId": "UnitFeesController_create",
@@ -15515,9 +15812,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "unitFees.assign",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/unit-fees/{unitFeeAssignmentId}": {
@@ -15631,9 +15931,12 @@
         "x-auth-required": true,
         "x-idempotency-required": false,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "unitFees.read",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     },
     "/api/v1/tenant/unit-fees/{unitFeeAssignmentId}/end": {
@@ -15769,9 +16072,12 @@
         "x-auth-required": true,
         "x-idempotency-required": true,
         "x-own-resource": false,
+        "x-platform-only": false,
+        "x-public": false,
         "x-required-permission": "unitFees.end",
         "x-response-envelope": true,
-        "x-tenant-context-required": true
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
       }
     }
   },

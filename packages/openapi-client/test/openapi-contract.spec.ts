@@ -37,30 +37,37 @@ const contract = JSON.parse(
   ),
 ) as OpenApiContract;
 
+const sprint3Operations = readSprint3Operations();
+const sprint2Operations = [
+  "GET /api/v1/health",
+  "GET /api/v1/health/details",
+  "GET /api/v1/invitations/{token}",
+  "POST /api/v1/invitations/{token}/accept",
+  "GET /api/v1/platform/setting-definitions",
+  "GET /api/v1/platform/setting-definitions/{definitionId}",
+  "POST /api/v1/platform/tenants",
+  "POST /api/v1/platform/tenants/{tenantId}/activate",
+  "POST /api/v1/platform/tenants/{tenantId}/archive",
+  "POST /api/v1/platform/tenants/{tenantId}/reactivate",
+  "POST /api/v1/platform/tenants/{tenantId}/suspend",
+  "GET /api/v1/tenant/invitations",
+  "POST /api/v1/tenant/invitations",
+  "POST /api/v1/tenant/invitations/{invitationId}/revoke",
+  "POST /api/v1/tenant/memberships/{membershipId}/revoke",
+  "POST /api/v1/tenant/memberships/{membershipId}/roles",
+  "DELETE /api/v1/tenant/memberships/{membershipId}/roles/{roleId}",
+  "GET /api/v1/tenant/settings",
+  "GET /api/v1/tenant/settings/{key}",
+  "PATCH /api/v1/tenant/settings/{key}",
+];
+
 describe("canonical OpenAPI contract", () => {
-  it("defines bearer authentication and only the operations delivered by Sprint 2", () => {
+  it("defines bearer authentication and the exact final Sprint 3 operation inventory", () => {
     expect(contract.openapi).toMatch(/^3\./u);
     expect(contract.components.securitySchemes).toHaveProperty("bearerAuth");
-    expect(Object.keys(contract.paths).sort()).toEqual([
-      "/api/v1/health",
-      "/api/v1/health/details",
-      "/api/v1/invitations/{token}",
-      "/api/v1/invitations/{token}/accept",
-      "/api/v1/platform/setting-definitions",
-      "/api/v1/platform/setting-definitions/{definitionId}",
-      "/api/v1/platform/tenants",
-      "/api/v1/platform/tenants/{tenantId}/activate",
-      "/api/v1/platform/tenants/{tenantId}/archive",
-      "/api/v1/platform/tenants/{tenantId}/reactivate",
-      "/api/v1/platform/tenants/{tenantId}/suspend",
-      "/api/v1/tenant/invitations",
-      "/api/v1/tenant/invitations/{invitationId}/revoke",
-      "/api/v1/tenant/memberships/{membershipId}/revoke",
-      "/api/v1/tenant/memberships/{membershipId}/roles",
-      "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}",
-      "/api/v1/tenant/settings",
-      "/api/v1/tenant/settings/{key}",
-    ]);
+    expect(listOperations(contract)).toEqual(
+      [...sprint2Operations, ...sprint3Operations].sort(),
+    );
   });
 
   it("documents the canonical tenant selector across every tenant-scoped slice", () => {
@@ -71,7 +78,7 @@ describe("canonical OpenAPI contract", () => {
       ),
     );
 
-    expect(tenantOperations).toHaveLength(9);
+    expect(tenantOperations).toHaveLength(111);
     for (const operation of tenantOperations) {
       expect(operation).toMatchObject({
         security: [{ bearerAuth: [] }],
@@ -80,12 +87,14 @@ describe("canonical OpenAPI contract", () => {
         "x-public": false,
         "x-tenant-scope": "tenant",
       });
-      expect(operation.parameters).toContainEqual({
-        in: "header",
-        name: "X-Tenant-Id",
-        required: true,
-        schema: { format: "uuid", type: "string" },
-      });
+      expect(operation.parameters).toContainEqual(
+        expect.objectContaining({
+          in: "header",
+          name: "X-Tenant-Id",
+          required: true,
+          schema: { format: "uuid", type: "string" },
+        }),
+      );
     }
   });
 
@@ -258,3 +267,29 @@ describe("canonical OpenAPI contract", () => {
     expect(JSON.stringify(contract)).not.toContain("storageKey");
   });
 });
+
+function listOperations(openapi: OpenApiContract): string[] {
+  return Object.entries(openapi.paths)
+    .flatMap(([path, item]) =>
+      (["delete", "get", "patch", "post"] as const)
+        .filter((method) => item[method] !== undefined)
+        .map((method) => `${method.toUpperCase()} ${path}`),
+    )
+    .sort();
+}
+
+function readSprint3Operations(): string[] {
+  const boundary = readFileSync(
+    new URL(
+      "../../../docs/changes/GAP-S3-006-API-IDEMPOTENCY-BOUNDARY-2026-08-29.md",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+  const section = boundary.match(
+    /## 4\. Allowlist por fase(?<body>[\s\S]*?)## 5\./u,
+  )?.groups?.body;
+  return [
+    ...(section ?? "").matchAll(/^(GET|POST|PATCH)\s+(\/api\/v1\/\S+)$/gmu),
+  ].map(([, method, path]) => `${method} ${path}`);
+}

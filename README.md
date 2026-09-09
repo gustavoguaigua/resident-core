@@ -669,9 +669,9 @@ final `9` y el cierre formal de Sprint 2 emitió `GO` el 2026-08-27. No existe u
 
 Sprint 3 es el incremento activo de la hoja de ruta. Su compuerta inicial emitió
 `NO_GO` el 2026-08-28, cerró todos sus gaps el 2026-08-30 y la reevaluación formal
-emitió `GO` el 2026-08-31. El manifest está en fase `8`, los 35 documentos
-aplicables están `accepted` y balances, movimientos reconstruibles, snapshots y
-statements quedaron validados; la Fase 9 es la siguiente permitida.
+emitió `GO` el 2026-08-31. Las Fases 0–9 están completas, el manifest está en fase
+final `9`, los 35 documentos aplicables están `accepted` y el contrato OpenAPI
+cross-slice quedó publicado y validado. No existe otra fase dentro de Sprint 3.
 
 ---
 

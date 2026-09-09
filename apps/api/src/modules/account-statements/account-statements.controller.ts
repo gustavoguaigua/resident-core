@@ -16,7 +16,6 @@ import {
   UnprocessableEntityException,
   UseGuards,
 } from "@nestjs/common";
-import { ApiExcludeController } from "@nestjs/swagger";
 import { Prisma } from "@prisma/client";
 
 import { getOrCreateTraceId } from "../../platform/http/trace-context.js";
@@ -46,7 +45,6 @@ import {
   StatementReasonDto,
 } from "./account-statements.dto.js";
 
-@ApiExcludeController()
 @Controller("tenant/account-statements")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class AccountStatementsController {
@@ -143,7 +141,6 @@ export class AccountStatementsController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class BalancesController {
@@ -191,7 +188,6 @@ export class BalancesController {
   }
 }
 
-@ApiExcludeController()
 @Controller("me")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class OwnAccountStatementsController {

@@ -2,6 +2,8 @@ import "reflect-metadata";
 
 import { type INestApplication, type LoggerService } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
 import type { ApplicationEnvironment } from "@resident/config";
@@ -134,6 +136,72 @@ describe("OpenAPI runtime contract", () => {
     });
   });
 
+  it("publishes exactly the 102 approved Sprint 3 operations", async () => {
+    const response = await fetch(`${localBaseUrl}/api/v1/docs-json`);
+    const document = (await response.json()) as {
+      paths: Record<string, Record<string, Record<string, unknown>>>;
+    };
+    const expected = sprint3Operations();
+    const operationIds: string[] = [];
+
+    expect(expected).toHaveLength(102);
+    for (const expectedOperation of expected) {
+      const [method, path] = expectedOperation.split(" ", 2) as [
+        string,
+        string,
+      ];
+      const operation = document.paths[path]?.[method.toLowerCase()];
+      expect(operation, expectedOperation).toBeDefined();
+      expect(operation?.security).toEqual([{ bearerAuth: [] }]);
+      expect(operation?.["x-auth-required"]).toBe(true);
+      expect(operation?.["x-tenant-context-required"]).toBe(true);
+      expect(operation?.["x-required-permission"]).toMatch(
+        /^[a-zA-Z]+\.[a-zA-Z.]+$/u,
+      );
+      expect(operation?.tags).toEqual([expect.any(String)]);
+      expect(operation?.operationId).toEqual(expect.any(String));
+      operationIds.push(operation?.operationId as string);
+
+      const parameters = (operation?.parameters ?? []) as Array<{
+        name: string;
+        required: boolean;
+      }>;
+      expect(parameters).toContainEqual(
+        expect.objectContaining({ name: "X-Tenant-Id", required: true }),
+      );
+      if (method === "GET") {
+        expect(parameters.some(({ name }) => name === "Idempotency-Key")).toBe(
+          false,
+        );
+        expect(operation?.["x-idempotency-required"]).toBe(false);
+      } else {
+        expect(parameters).toContainEqual(
+          expect.objectContaining({ name: "Idempotency-Key", required: true }),
+        );
+        expect(operation?.["x-idempotency-required"]).toBe(true);
+      }
+    }
+    expect(new Set(operationIds).size).toBe(operationIds.length);
+  });
+
+  it("keeps forbidden document and future-domain surfaces out of OpenAPI", async () => {
+    const response = await fetch(`${localBaseUrl}/api/v1/docs-json`);
+    const document = await response.json();
+    const serialized = JSON.stringify(document);
+
+    for (const forbidden of [
+      "/api/v1/tenant/documents",
+      "/api/v1/tenant/vehicles",
+      "/api/v1/tenant/pets",
+      "/api/v1/tenant/emergency-contacts",
+      "storageKey",
+      "bucket",
+      "providerCredential",
+    ]) {
+      expect(serialized).not.toContain(forbidden);
+    }
+  });
+
   it("does not mount OpenAPI routes in production", async () => {
     const [uiResponse, documentResponse] = await Promise.all([
       fetch(`${productionBaseUrl}/api/v1/docs`),
@@ -151,6 +219,22 @@ describe("OpenAPI runtime contract", () => {
     expect(shouldExposeOpenApi({ APP_ENV: "production" })).toBe(false);
   });
 });
+
+function sprint3Operations(): string[] {
+  const boundary = readFileSync(
+    resolve(
+      import.meta.dirname,
+      "../../../docs/changes/GAP-S3-006-API-IDEMPOTENCY-BOUNDARY-2026-08-29.md",
+    ),
+    "utf8",
+  );
+  const section = boundary.match(
+    /## 4\. Allowlist por fase(?<body>[\s\S]*?)## 5\./u,
+  )?.groups?.body;
+  return [
+    ...(section ?? "").matchAll(/^(GET|POST|PATCH)\s+(\/api\/v1\/\S+)$/gmu),
+  ].map(([, method, path]) => `${method} ${path}`);
+}
 
 async function createApplication(): Promise<INestApplication> {
   const module = await Test.createTestingModule({ imports: [AppModule] })

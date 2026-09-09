@@ -7,6 +7,8 @@ import {
 
 import type { ApplicationEnvironment } from "@resident/config";
 
+import { applySprint3OpenApiContract } from "./sprint-3-openapi-contract.js";
+
 export const OPENAPI_DOCUMENT_PATH = "docs";
 export const OPENAPI_JSON_PATH = "docs-json";
 
@@ -37,7 +39,9 @@ export function createOpenApiDocument(
     .addTag("Health", "Operational liveness and readiness endpoints.")
     .build();
 
-  return SwaggerModule.createDocument(application, configuration);
+  const document = SwaggerModule.createDocument(application, configuration);
+  applySprint3OpenApiContract(document);
+  return document;
 }
 
 export function configureOpenApi(

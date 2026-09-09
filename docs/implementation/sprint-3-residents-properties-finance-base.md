@@ -4,14 +4,14 @@
 
 - Estado: `authoritative`
 - Readiness vigente: `GO`
-- Fase activa: `8 — balances-statements; PASS`
-- Fecha: 2026-09-07
+- Fase final: `9 — openapi-cross-slice-closure; PASS`
+- Fecha: 2026-09-08
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
-autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 8
-quedaron completadas con `PASS`. GAP-S3-012 gobierna la atomicidad batch de statements
-y la Fase 9 es la siguiente implementación permitida.
+autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 9
+quedaron completadas con `PASS`. El contrato OpenAPI acumulado y los gates cross-slice
+cierran Sprint 3; no existe una fase posterior dentro de este runbook.
 
 ## 2. Objetivo
 

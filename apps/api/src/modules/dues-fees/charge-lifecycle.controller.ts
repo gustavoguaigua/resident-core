@@ -18,7 +18,6 @@ import {
   UnprocessableEntityException,
   UseGuards,
 } from "@nestjs/common";
-import { ApiExcludeController } from "@nestjs/swagger";
 import { Prisma } from "@prisma/client";
 
 import { getOrCreateTraceId } from "../../platform/http/trace-context.js";
@@ -46,7 +45,6 @@ import {
 } from "./charge-lifecycle.dto.js";
 import { ChargeLifecycleService } from "./charge-lifecycle.service.js";
 
-@ApiExcludeController()
 @Controller("tenant/billing-periods")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class BillingPeriodLifecycleController {
@@ -84,7 +82,6 @@ export class BillingPeriodLifecycleController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/charge-batches")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class ChargeBatchesController {
@@ -109,7 +106,6 @@ export class ChargeBatchesController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/charges")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class ChargesController {
@@ -196,7 +192,6 @@ export class ChargesController {
   }
 }
 
-@ApiExcludeController()
 @Controller("me")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class OwnChargesController {

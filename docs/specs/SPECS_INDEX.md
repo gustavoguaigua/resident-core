@@ -456,8 +456,8 @@ Sprint 1 Backend Platform Base: implementado y cerrado — PASS.
 Implementation Readiness Sprint 2: GO desde 2026-08-14; 0 gaps críticos o altos
 abiertos. Sprint 2 está formalmente cerrado con `GO`; manifest en fase final `9`, Fases
 `0`–`9` completadas y ninguna fase siguiente dentro del sprint.
-Implementation Readiness Sprint 3: GO desde 2026-08-31; manifest en fase `6`, 35/35
-documentos aplicables `accepted` y 0 gaps abiertos; Fases 1 a 6 completadas.
+Implementation Readiness Sprint 3: GO desde 2026-08-31; manifest en fase final `9`,
+35/35 documentos aplicables `accepted`, 0 gaps abiertos y Fases 0 a 9 completadas.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
@@ -496,6 +496,9 @@ docs/changes/SPRINT-3-PHASE-3-SECURE-DOCUMENT-STORAGE-2026-09-04.md
 docs/changes/SPRINT-3-PHASE-4-DUES-FEES-FOUNDATION-2026-09-04.md
 docs/changes/SPRINT-3-PHASE-5-CHARGE-LIFECYCLE-2026-09-06.md
 docs/changes/SPRINT-3-PHASE-6-PAYMENTS-RECEIPTS-2026-09-06.md
+docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md
+docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md
+docs/changes/SPRINT-3-PHASE-9-OPENAPI-CROSS-SLICE-CLOSURE-2026-09-08.md
 docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md
 docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md
 Decision: GO

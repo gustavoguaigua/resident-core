@@ -33,16 +33,16 @@ afterEach(() => {
 });
 
 describe("Sprint 3 boundary verifier", () => {
-  it("accepts the current GO phase 8 boundary", () => {
+  it("accepts the final GO phase 9 boundary", () => {
     const result = runVerifier();
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain(
-      "Sprint 3 boundary is valid at phase 8 (GO); applicable documents: 35, needs-review: 0.",
+      "Sprint 3 boundary is valid at phase 9 (GO); applicable documents: 35, needs-review: 0.",
     );
   });
 
-  it("rejects a future Sprint 3 Prisma model during phase 8", () => {
+  it("rejects a future Sprint 3 Prisma model during phase 9", () => {
     const directory = createTemporaryDirectory();
     const schemaPath = resolve(directory, "schema.prisma");
     writeFileSync(
@@ -55,11 +55,11 @@ describe("Sprint 3 boundary verifier", () => {
 
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain(
-      "Sprint 3 phase 8 forbids domain models: AccountStatementExport.",
+      "Sprint 3 phase 9 forbids domain models: AccountStatementExport.",
     );
   });
 
-  it("rejects a Sprint 3 OpenAPI path during phase 8", () => {
+  it("rejects an OpenAPI path outside the final allowlist", () => {
     const directory = createTemporaryDirectory();
     const openApiPath = resolve(directory, "openapi.json");
     const openApi = JSON.parse(
@@ -71,14 +71,37 @@ describe("Sprint 3 boundary verifier", () => {
         "utf8",
       ),
     ) as { paths: Record<string, unknown> };
-    openApi.paths["/api/v1/tenant/persons"] = { get: {} };
+    openApi.paths["/api/v1/tenant/unapproved"] = { get: {} };
     writeFileSync(openApiPath, JSON.stringify(openApi), "utf8");
 
     const result = runVerifier({ SPRINT3_OPENAPI_PATH: openApiPath });
 
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain(
-      "Sprint 3 phase 8 forbids functional API operations: GET /api/v1/tenant/persons.",
+      "Sprint 3 phase 9 forbids API operations outside the cumulative allowlist: GET /api/v1/tenant/unapproved.",
+    );
+  });
+
+  it("rejects a missing required Sprint 3 OpenAPI operation", () => {
+    const directory = createTemporaryDirectory();
+    const openApiPath = resolve(directory, "openapi.json");
+    const openApi = JSON.parse(
+      readFileSync(
+        resolve(
+          repositoryRoot,
+          "packages/openapi-client/openapi/resident-core.v1.json",
+        ),
+        "utf8",
+      ),
+    ) as { paths: Record<string, unknown> };
+    delete openApi.paths["/api/v1/tenant/persons"];
+    writeFileSync(openApiPath, JSON.stringify(openApi), "utf8");
+
+    const result = runVerifier({ SPRINT3_OPENAPI_PATH: openApiPath });
+
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain(
+      "Sprint 3 phase 9 requires API operations: GET /api/v1/tenant/persons",
     );
   });
 

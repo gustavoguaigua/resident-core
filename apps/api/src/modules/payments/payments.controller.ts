@@ -22,7 +22,6 @@ import {
   UseInterceptors,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { ApiExcludeController } from "@nestjs/swagger";
 import { Prisma } from "@prisma/client";
 
 import { getOrCreateTraceId } from "../../platform/http/trace-context.js";
@@ -54,7 +53,6 @@ interface UploadedReceipt {
   readonly originalname: string;
 }
 
-@ApiExcludeController()
 @Controller("tenant/payments")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class PaymentsController {
@@ -161,7 +159,6 @@ export class PaymentsController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/payment-receipts")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class PaymentReceiptsController {
@@ -224,7 +221,6 @@ export class PaymentReceiptsController {
   }
 }
 
-@ApiExcludeController()
 @Controller("me")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class OwnPaymentsController {

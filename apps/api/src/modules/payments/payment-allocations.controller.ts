@@ -17,7 +17,6 @@ import {
   UnprocessableEntityException,
   UseGuards,
 } from "@nestjs/common";
-import { ApiExcludeController } from "@nestjs/swagger";
 import { Prisma } from "@prisma/client";
 
 import { getOrCreateTraceId } from "../../platform/http/trace-context.js";
@@ -40,7 +39,6 @@ import { AllocatePaymentDto } from "./payment-allocations.dto.js";
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { PaymentReasonDto } from "./payments.dto.js";
 
-@ApiExcludeController()
 @Controller("tenant/payments")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class PaymentAllocationCommandsController {
@@ -118,7 +116,6 @@ export class PaymentAllocationCommandsController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/payment-allocations")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class PaymentAllocationsController {

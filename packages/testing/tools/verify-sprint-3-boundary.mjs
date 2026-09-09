@@ -26,6 +26,9 @@ const openApi = JSON.parse(
   ),
 );
 const readiness = readUtf8("docs/changes/READINESS-SPRINT-3-2026-08-28.md");
+const apiBoundary = readUtf8(
+  "docs/changes/GAP-S3-006-API-IDEMPOTENCY-BOUNDARY-2026-08-29.md",
+);
 
 const failures = [];
 const expectedPhases = [
@@ -364,6 +367,38 @@ const operationsAtSprint2Closure = new Set([
   "GET /api/v1/tenant/users",
   "PATCH /api/v1/tenant/wordpress-mapping",
 ]);
+const publishedOperationsAtSprint2Closure = new Set([
+  "GET /api/v1/health",
+  "GET /api/v1/health/details",
+  "GET /api/v1/invitations/{token}",
+  "POST /api/v1/invitations/{token}/accept",
+  "GET /api/v1/platform/setting-definitions",
+  "GET /api/v1/platform/setting-definitions/{definitionId}",
+  "POST /api/v1/platform/tenants",
+  "POST /api/v1/platform/tenants/{tenantId}/activate",
+  "POST /api/v1/platform/tenants/{tenantId}/archive",
+  "POST /api/v1/platform/tenants/{tenantId}/reactivate",
+  "POST /api/v1/platform/tenants/{tenantId}/suspend",
+  "GET /api/v1/tenant/invitations",
+  "POST /api/v1/tenant/invitations",
+  "POST /api/v1/tenant/invitations/{invitationId}/revoke",
+  "POST /api/v1/tenant/memberships/{membershipId}/revoke",
+  "POST /api/v1/tenant/memberships/{membershipId}/roles",
+  "DELETE /api/v1/tenant/memberships/{membershipId}/roles/{roleId}",
+  "GET /api/v1/tenant/settings",
+  "GET /api/v1/tenant/settings/{key}",
+  "PATCH /api/v1/tenant/settings/{key}",
+]);
+const sprint3Section = apiBoundary.match(
+  /## 4\. Allowlist por fase(?<body>[\s\S]*?)## 5\./u,
+)?.groups?.body;
+const sprint3Operations = new Set(
+  [
+    ...(sprint3Section ?? "").matchAll(
+      /^(GET|POST|PATCH)\s+(\/api\/v1\/\S+)$/gmu,
+    ),
+  ].map(([, method, path]) => `${method} ${path}`),
+);
 const httpMethods = new Set(["delete", "get", "patch", "post", "put"]);
 const actualOperations = [];
 
@@ -375,7 +410,7 @@ for (const [path, pathItem] of Object.entries(openApi.paths ?? {})) {
   }
 }
 
-if (manifest.currentPhase <= 8) {
+if (manifest.currentPhase <= 9) {
   const allowedModels = new Set(sprint2Models);
   const allowedEnums = new Set(sprint2Enums);
   if (manifest.currentPhase === 1) {
@@ -412,7 +447,7 @@ if (manifest.currentPhase <= 8) {
     for (const model of phase7Models) allowedModels.add(model);
     for (const enumName of phase7Enums) allowedEnums.add(enumName);
   }
-  if (manifest.currentPhase === 8) {
+  if (manifest.currentPhase >= 8) {
     for (const model of phase8Models) allowedModels.add(model);
     for (const enumName of phase8Enums) allowedEnums.add(enumName);
   }
@@ -422,9 +457,12 @@ if (manifest.currentPhase <= 8) {
   const prematureEnums = declaredEnums.filter(
     (enumName) => !allowedEnums.has(enumName),
   );
-  const prematureOperations = actualOperations.filter(
-    (operation) => !operationsAtSprint2Closure.has(operation),
-  );
+  const prematureOperations =
+    manifest.currentPhase <= 8
+      ? actualOperations.filter(
+          (operation) => !operationsAtSprint2Closure.has(operation),
+        )
+      : [];
   if (prematureModels.length > 0) {
     failures.push(
       `Sprint 3 phase ${manifest.currentPhase} forbids domain models: ${prematureModels.join(", ")}.`,
@@ -439,6 +477,33 @@ if (manifest.currentPhase <= 8) {
     failures.push(
       `Sprint 3 phase ${manifest.currentPhase} forbids functional API operations: ${prematureOperations.join(", ")}.`,
     );
+  }
+  if (manifest.currentPhase === 9) {
+    const expectedOperations = new Set([
+      ...publishedOperationsAtSprint2Closure,
+      ...sprint3Operations,
+    ]);
+    const missingOperations = [...expectedOperations].filter(
+      (operation) => !actualOperations.includes(operation),
+    );
+    const unexpectedOperations = actualOperations.filter(
+      (operation) => !expectedOperations.has(operation),
+    );
+    if (sprint3Operations.size !== 102) {
+      failures.push(
+        `Sprint 3 canonical API allowlist must contain 102 operations; found ${sprint3Operations.size}.`,
+      );
+    }
+    if (missingOperations.length > 0) {
+      failures.push(
+        `Sprint 3 phase 9 requires API operations: ${missingOperations.join(", ")}.`,
+      );
+    }
+    if (unexpectedOperations.length > 0) {
+      failures.push(
+        `Sprint 3 phase 9 forbids API operations outside the cumulative allowlist: ${unexpectedOperations.join(", ")}.`,
+      );
+    }
   }
   const forbiddenModules = [
     ...(manifest.currentPhase < 3
@@ -612,7 +677,7 @@ if (manifest.currentPhase <= 8) {
       failures.push("Sprint 3 phase 7 requires the payments runtime module.");
     }
   }
-  if (manifest.currentPhase === 8) {
+  if (manifest.currentPhase >= 8) {
     const missingModels = [...phase8Models].filter(
       (model) => !declaredModels.includes(model),
     );

@@ -8,9 +8,9 @@
 | Documento   | Project Blueprint                                                                      |
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
-| Estado      | Sprint 2 cerrado; Implementation Readiness de Sprint 3 en `GO`                        |
+| Estado      | Sprints 2 y 3 cerrados con `GO`                                                     |
 | Fecha       | 2026-09-03                                                                             |
-| Fase actual | Sprint 3 — Fase 8 balances-statements completada                                  |
+| Fase actual | Sprint 3 — Fase final 9 completada                                                  |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -961,6 +961,7 @@ Fase 5 de Sprint 3: charge-lifecycle PASS el 2026-09-06.
 Fase 6 de Sprint 3: payments-receipts PASS el 2026-09-06.
 Fase 7 de Sprint 3: allocations-reversals PASS el 2026-09-07.
 Fase 8 de Sprint 3: balances-statements PASS el 2026-09-07.
+Fase 9 de Sprint 3: openapi-cross-slice-closure PASS el 2026-09-08.
 Gaps abiertos de Sprint 3: 0 críticos y 0 altos.
 Runbook: docs/implementation/sprint-3-residents-properties-finance-base.md.
 Evidencia: docs/changes/READINESS-SPRINT-3-2026-08-28.md.
@@ -981,8 +982,8 @@ Sprint 2 está formalmente `CLOSED / COMPLETED` con decisión `GO`. No existe un
 
 Sprint 3 es el siguiente incremento. Su reevaluación formal emitió `GO` en fase `0`:
 los 35 documentos de Specs 003, 004, 005, 006 y 016 están `accepted` y no quedan gaps
-abiertos. Las Fases 1 a 8 quedaron completadas con `PASS`; la Fase 9 es la siguiente
-permitida.
+abiertos. Las Fases 0 a 9 quedaron completadas con `PASS`, el contrato OpenAPI
+acumulado fue validado y no existe otra fase dentro de Sprint 3.
 ```
 
 Evidencia vigente:

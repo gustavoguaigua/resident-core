@@ -7,17 +7,18 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-09-07 |
-| Rama evaluada | `codex/sprint-3-phase-8-balances-statements` |
-| Baseline integrado | `731b28f` — PR #39 |
+| Fecha de actualización | 2026-09-08 |
+| Rama evaluada | `codex/sprint-3-phase-9-api-contract-finalization` |
+| Baseline integrado | `5aacda8` — PR #41 |
 | Decisión | `GO` |
-| Fase actual | `8 — balances-statements; PASS` |
+| Fase final | `9 — openapi-cross-slice-closure; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
 
 ```text
 Decision: GO
-Current Phase: 8
-Implementation authorized: Phase 9 only
+Current/Final Phase: 9
+Sprint 3: CLOSED / COMPLETED
+Next phase within Sprint 3: none
 ```
 
 ## 2. Método
@@ -360,6 +361,20 @@ Current Phase: 8
 Phase 8: PASS
 Next permitted phase: 9 — openapi-cross-slice-closure
 ```
+
+La Fase 9 publicó y validó el contrato OpenAPI acumulado de las Fases 1–8 sin añadir
+operaciones runtime. Los gates API, integración, stack y OpenAPI completaron el cierre
+cross-slice, y el boundary exige exactamente la allowlist canónica de GAP-S3-006.
+
+```text
+Current/Final Phase: 9
+Phase 9: PASS
+Sprint 3: CLOSED / COMPLETED
+Next phase within Sprint 3: none
+```
+
+La evidencia detallada está en
+`docs/changes/SPRINT-3-PHASE-9-OPENAPI-CROSS-SLICE-CLOSURE-2026-09-08.md`.
 
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md`.

@@ -19,7 +19,6 @@ import {
   UnprocessableEntityException,
   UseGuards,
 } from "@nestjs/common";
-import { ApiExcludeController } from "@nestjs/swagger";
 import { Prisma } from "@prisma/client";
 
 import { getOrCreateTraceId } from "../../platform/http/trace-context.js";
@@ -60,7 +59,6 @@ import {
 } from "./residents-properties.dto.js";
 import { ResidentsPropertiesService } from "./residents-properties.service.js";
 
-@ApiExcludeController()
 @Controller("tenant/property-units")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class PropertyUnitsController {
@@ -146,7 +144,6 @@ export class PropertyUnitsController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/persons")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class PersonsController {
@@ -223,7 +220,6 @@ export class PersonsController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/legal-entities")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class LegalEntitiesController {
@@ -300,7 +296,6 @@ export class LegalEntitiesController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/property-ownerships")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class OwnershipsController {
@@ -371,7 +366,6 @@ export class OwnershipsController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/residencies")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class ResidenciesController {
@@ -440,7 +434,6 @@ export class ResidenciesController {
   }
 }
 
-@ApiExcludeController()
 @Controller("tenant/leases")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class LeasesController {
@@ -503,7 +496,6 @@ export class LeasesController {
   }
 }
 
-@ApiExcludeController()
 @Controller("me")
 @UseGuards(AuthGuard, TenantGuard, PermissionGuard)
 export class OwnResidentsController {

@@ -17,6 +17,17 @@
 
 ---
 
+## Normalización de readiness de Sprint 4
+
+El plan ejecutable se limita a las fases y allowlist del runbook de Sprint 4. Antes de
+pruebas UI deben pasar los gates de GAP-S4-001 y GAP-S4-002. No se prueban como alcance
+Sprint 4 dashboard, Users/Roles, data import ni documentos generales; sí auth PKCE,
+tenant/cache isolation, permisos Core, residents/properties, finanzas allowlisted y
+receipts/comprobantes. Los casos preliminares posteriores fuera de esa frontera son
+post-MVP. Este artefacto permanece `needs-review`.
+
+---
+
 ## 2. Propósito
 
 Definir las pruebas necesarias para validar que `029-admin-web-app-basic` funcione como una consola administrativa privada, segura, tenant-aware, permission-aware y desacoplada del portal WordPress.
@@ -356,7 +367,7 @@ reports.read
 [ ] OpenAPI no expone tenantId editable en DTOs externos.
 [ ] OpenAPI incluye x-auth-required en endpoints administrativos.
 [ ] OpenAPI incluye x-tenant-scope en endpoints tenant.
-[ ] OpenAPI incluye x-public-exposure=false donde aplique.
+[ ] OpenAPI incluye x-public=false donde aplique.
 ```
 
 ---
@@ -466,7 +477,7 @@ reports.read
 
 ---
 
-### 12.3. Data import flow
+### 12.3. Data import flow — fuera de Sprint 4
 
 ```text id="awa-e2e-import-flow"
 [ ] Usuario autorizado abre /app/imports.
@@ -492,7 +503,7 @@ reports.read
 ### 12.4. Payments flow
 
 ```text id="awa-e2e-payments"
-[ ] FinancialManager abre /app/payments.
+[ ] Treasurer abre /app/payments.
 [ ] Lista pagos.
 [ ] Abre detalle.
 [ ] Visualiza comprobante mediante SecureDocumentLink.

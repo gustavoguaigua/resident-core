@@ -19,6 +19,19 @@
 
 ---
 
+## Normalización de readiness de Sprint 4
+
+El frontend sólo podrá consumir la allowlist del runbook de Sprint 4. Los endpoints
+preliminares de discovery (`/api/v1/me`, tenants y permisos efectivos) no existen y
+quedan bloqueados por GAP-S4-001; los endpoints dashboard no se implementan en este
+Sprint. GAP-S4-002 debe completar success schemas y el cliente TypeScript antes del
+consumo funcional. La metadata vigente es `x-auth-required`, `x-public`,
+`x-platform-only`, `x-tenant-scope: tenant`, `x-tenant-context-required`,
+`x-own-resource`, `x-required-permission` y `x-idempotency-required`. Este documento
+permanece `needs-review` y ningún ejemplo posterior crea una API.
+
+---
+
 ## 2. Propósito
 
 Definir el contrato de consumo API de `029-admin-web-app-basic`.
@@ -242,7 +255,10 @@ Prohibido:
 
 ---
 
-## 8. Endpoints de contexto inicial
+## 8. Endpoints de contexto inicial — bloqueados por GAP-S4-001
+
+Los contratos de esta sección son propuestas no implementadas. No pueden consumirse
+ni considerarse parte del OpenAPI hasta que GAP-S4-001 cierre su allowlist y DTOs.
 
 ### 8.1. Obtener perfil administrativo actual
 
@@ -361,7 +377,10 @@ Reglas:
 
 ## 9. Mapeo de rutas UI hacia APIs Core
 
-### 9.1. Dashboard
+### 9.1. Dashboard — fuera de Sprint 4
+
+Esta sección se conserva como referencia post-MVP para Spec 027/Sprint 7. Ninguna de
+las rutas o APIs siguientes existe ni queda autorizada por Sprint 4.
 
 Ruta UI:
 
@@ -431,7 +450,7 @@ Reglas:
 
 ---
 
-### 9.3. Users, Roles and Permissions
+### 9.3. Users, Roles and Permissions — fuera de Sprint 4
 
 Ruta UI:
 
@@ -554,7 +573,7 @@ Reglas:
 
 ---
 
-### 9.7. Secure Documents
+### 9.7. Secure Documents — fuera de Sprint 4 salvo receipts
 
 Ruta UI:
 
@@ -865,8 +884,8 @@ Extensiones esperadas en APIs administrativas:
 
 ```yaml id="awa-api-openapi-extensions"
 x-auth-required: true
-x-tenant-scope: true
-x-public-exposure: false
+x-tenant-scope: tenant
+x-public: false
 x-wordpress-access: false
 x-storage-key-exposed: false
 x-raw-sql-allowed: false

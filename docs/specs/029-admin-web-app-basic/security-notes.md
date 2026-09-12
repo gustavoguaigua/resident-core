@@ -17,6 +17,18 @@
 
 ---
 
+## Normalización de readiness de Sprint 4
+
+El contrato autorizado usa el cliente público Keycloak `resident-admin-web`,
+Authorization Code Flow con PKCE S256, tokens en memoria y Core como autoridad final.
+Claims Keycloak no conceden permisos; el selector sólo aporta `X-Tenant-Id`, que Core
+revalida junto con identidad, membership y permiso exacto. No hay BFF, sesión
+WordPress, dashboard, Users/Roles, importación ni documentos generales. Sólo se
+permite acceso seguro a receipts/comprobantes. Este documento permanece
+`needs-review` hasta cerrar GAP-S4-001 y GAP-S4-002.
+
+---
+
 ## 2. Propósito
 
 Definir los controles de seguridad para la aplicación web administrativa básica de RESIDENT.
@@ -681,8 +693,8 @@ Extensiones esperadas en APIs administrativas consumidas:
 
 ```yaml id="awa-sec-openapi-extensions"
 x-auth-required: true
-x-tenant-scope: true
-x-public-exposure: false
+x-tenant-scope: tenant
+x-public: false
 x-wordpress-access: false
 x-storage-key-exposed: false
 x-raw-sql-allowed: false

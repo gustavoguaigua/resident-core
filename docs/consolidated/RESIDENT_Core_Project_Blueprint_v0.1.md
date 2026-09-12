@@ -851,6 +851,10 @@ Tenant selector
 Property/unit selector
 ```
 
+La readiness de Sprint 4 recorta Wave 3 al Admin Web MVP y queda en `NO_GO`,
+`currentPhase = 0`, hasta cerrar discovery autenticado y cliente OpenAPI tipado. El
+dashboard permanece en Wave 5; no forma parte de Sprint 4.
+
 ### Wave 4 — Operación comunitaria
 
 ```text id="blueprint-wave4"

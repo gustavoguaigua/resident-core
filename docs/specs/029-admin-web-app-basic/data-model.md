@@ -17,6 +17,18 @@
 
 ---
 
+## Normalización de readiness de Sprint 4
+
+Sprint 4 no crea persistencia frontend ni modelos de dominio paralelos. El estado de
+sesión, tenant, permisos, cache y formularios se deriva del cliente generado después
+de cerrar GAP-S4-001 y GAP-S4-002. Tokens permanecen en memoria; cache y query keys se
+particionan por tenant y se invalidan al cambiarlo. View models de dashboard,
+Users/Roles, importación o documentos generales descritos más adelante quedan fuera
+del Sprint; receipts/comprobantes usan únicamente proyecciones de Payments. El estado
+permanece `needs-review`.
+
+---
+
 ## 2. Propósito
 
 Definir el modelo de datos usado por la aplicación administrativa básica de RESIDENT.
@@ -531,7 +543,7 @@ Reglas:
 
 ---
 
-## 22. `DashboardViewModel`
+## 22. `DashboardViewModel` — post-MVP, fuera de Sprint 4
 
 ```typescript id="awa-dm-dashboard-view-model"
 type DashboardViewModel = {

@@ -305,13 +305,22 @@ Compose deben coincidir exactamente con esta lista.
 | `keycloak` | `quay.io/keycloak/keycloak:26.7.0` |
 | `keycloak-postgres` | `postgres:17.10-bookworm` |
 | `mailhog` | `mailhog/mailhog:v1.0.1` |
-| `minio` | `minio/minio:RELEASE.2025-09-07T16-13-09Z` |
+| `minio` | `quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z` |
 
 Estos valores fueron verificados el 2026-08-10 contra las publicaciones oficiales de
 Node, PostgreSQL, Redis, Keycloak, MailHog y MinIO. En artefactos ejecutables quedan
 prohibidos `latest`, aliases LTS, majors o minors flotantes y tags de ambiente como
-fuente única de una imagen externa. Una actualización debe modificar ADR-009, el
-runbook, Compose y las validaciones de readiness en un mismo cambio.
+fuente única de una imagen externa. Una actualización activa debe modificar ADR-009,
+Compose y los gates consumidores en un mismo cambio, y registrar la transición en
+`docs/changes/`. Los runbooks, specs y readiness ya cerrados conservan su referencia
+histórica salvo que sigan gobernando una referencia ejecutable vigente.
+
+El 2026-09-11 la referencia ejecutable de MinIO se trasladó al registry oficial Quay
+sin cambiar release ni contenido. El manifest multi-arquitectura de
+`quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z` conserva el digest
+`sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e`.
+La transición y la preservación deliberada de documentos históricos se registran en
+`docs/changes/INFRA-MINIO-REGISTRY-2026-09-11.md`.
 
 `mailhog` y `minio` son herramientas exclusivamente locales y solo pueden contener
 datos sintéticos. Sus distribuciones comunitarias fijadas no autorizan su uso en

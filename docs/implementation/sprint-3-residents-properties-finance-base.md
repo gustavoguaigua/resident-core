@@ -5,13 +5,15 @@
 - Estado: `authoritative`
 - Readiness vigente: `GO`
 - Fase final: `9 — openapi-cross-slice-closure; PASS`
-- Fecha: 2026-09-08
+- Fecha: 2026-09-09
 
 Este documento es el runbook canónico de Sprint 3. Define la única frontera funcional,
 el ownership entre módulos, la secuencia incremental y los gates necesarios para
 autorizar implementación. La compuerta emitió `GO` en fase 0 y las Fases 1 a 9
 quedaron completadas con `PASS`. El contrato OpenAPI acumulado y los gates cross-slice
-cierran Sprint 3; no existe una fase posterior dentro de este runbook.
+cierran Sprint 3; la reevaluación formal está registrada en
+`docs/changes/SPRINT-3-CLOSURE-2026-09-09.md` y no existe una fase posterior dentro de
+este runbook.
 
 ## 2. Objetivo
 

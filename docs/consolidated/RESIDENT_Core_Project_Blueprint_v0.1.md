@@ -9,7 +9,7 @@
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
 | Estado      | Sprints 2 y 3 cerrados con `GO`                                                     |
-| Fecha       | 2026-09-03                                                                             |
+| Fecha       | 2026-09-09                                                                             |
 | Fase actual | Sprint 3 — Fase final 9 completada                                                  |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
@@ -962,7 +962,9 @@ Fase 6 de Sprint 3: payments-receipts PASS el 2026-09-06.
 Fase 7 de Sprint 3: allocations-reversals PASS el 2026-09-07.
 Fase 8 de Sprint 3: balances-statements PASS el 2026-09-07.
 Fase 9 de Sprint 3: openapi-cross-slice-closure PASS el 2026-09-08.
-Gaps abiertos de Sprint 3: 0 críticos y 0 altos.
+Cierre formal de Sprint 3: GO el 2026-09-09, fase final 9.
+Evidencia de cierre: docs/changes/SPRINT-3-CLOSURE-2026-09-09.md.
+Gaps abiertos de Sprint 3: 0 críticos, 0 altos y 0 medios.
 Runbook: docs/implementation/sprint-3-residents-properties-finance-base.md.
 Evidencia: docs/changes/READINESS-SPRINT-3-2026-08-28.md.
 ```
@@ -980,10 +982,11 @@ Las Fases `0` a `9` están completadas con `PASS`; el manifest queda en fase fin
 Sprint 2 está formalmente `CLOSED / COMPLETED` con decisión `GO`. No existe una Fase
 `10` ni otra fase pendiente dentro del sprint.
 
-Sprint 3 es el siguiente incremento. Su reevaluación formal emitió `GO` en fase `0`:
+Sprint 3 completó el siguiente incremento. Su reevaluación inicial emitió `GO` en fase `0`:
 los 35 documentos de Specs 003, 004, 005, 006 y 016 están `accepted` y no quedan gaps
 abiertos. Las Fases 0 a 9 quedaron completadas con `PASS`, el contrato OpenAPI
-acumulado fue validado y no existe otra fase dentro de Sprint 3.
+acumulado fue validado y el cierre formal emitió `GO` en fase final `9`. No existe otra
+fase dentro de Sprint 3.
 ```
 
 Evidencia vigente:
@@ -1003,6 +1006,7 @@ docs/changes/SPRINT-2-PHASE-3-AUDIT-BASE-2026-08-16.md
 docs/changes/SPRINT-2-CLOSURE-2026-08-27.md
 docs/changes/READINESS-SPRINT-3-2026-08-28.md
 docs/implementation/sprint-3-residents-properties-finance-base.md
+docs/changes/SPRINT-3-CLOSURE-2026-09-09.md
 docs/changes/GAP-S3-007-PERMISSIONS-AUDIT-CATALOG-2026-08-30.md
 docs/changes/GAP-S3-008-FILE-SECURITY-OPERATING-POLICY-2026-08-30.md
 docs/changes/GAP-S3-001-DOCUMENT-APPROVAL-2026-08-30.md

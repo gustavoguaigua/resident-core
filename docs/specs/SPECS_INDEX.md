@@ -8,8 +8,8 @@
 | Documento  | Specs Index                            |
 | Ruta       | `docs/specs/SPECS_INDEX.md`            |
 | Versión    | 0.1                                    |
-| Estado     | Vigente hasta readiness inicial de Sprint 3 |
-| Fecha      | 2026-08-28                             |
+| Estado     | Vigente al cierre formal de Sprint 3    |
+| Fecha      | 2026-09-09                             |
 | Fase       | FASE 2 — RESIDENT Core                 |
 | Naturaleza | Índice maestro de especificaciones SDD |
 
@@ -458,6 +458,7 @@ abiertos. Sprint 2 está formalmente cerrado con `GO`; manifest en fase final `9
 `0`–`9` completadas y ninguna fase siguiente dentro del sprint.
 Implementation Readiness Sprint 3: GO desde 2026-08-31; manifest en fase final `9`,
 35/35 documentos aplicables `accepted`, 0 gaps abiertos y Fases 0 a 9 completadas.
+Sprint 3 está formalmente cerrado con `GO`; no existe otra fase dentro del sprint.
 La lógica de negocio requiere además la spec y el sprint funcional correspondientes.
 ```
 
@@ -499,11 +500,11 @@ docs/changes/SPRINT-3-PHASE-6-PAYMENTS-RECEIPTS-2026-09-06.md
 docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md
 docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md
 docs/changes/SPRINT-3-PHASE-9-OPENAPI-CROSS-SLICE-CLOSURE-2026-09-08.md
-docs/changes/SPRINT-3-PHASE-7-ALLOCATIONS-REVERSALS-2026-09-07.md
-docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md
+docs/changes/SPRINT-3-CLOSURE-2026-09-09.md
 Decision: GO
-Current Phase: 8
-Next permitted phase: 9 — openapi-cross-slice-closure
+Current/Final Phase: 9
+Sprint 3: CLOSED / COMPLETED
+Next phase within Sprint 3: none
 ```
 
 ---

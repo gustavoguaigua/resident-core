@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "readinessDecision": "NO_GO",
+  "currentPhase": 0,
+  "phases": [
+    {
+      "id": 0,
+      "name": "readiness",
+      "commands": []
+    },
+    {
+      "id": 1,
+      "name": "authenticated-discovery-contract",
+      "commands": ["test:admin-discovery"]
+    },
+    {
+      "id": 2,
+      "name": "typed-openapi-client-contract",
+      "commands": ["test:openapi-client"]
+    },
+    {
+      "id": 3,
+      "name": "admin-web-foundation",
+      "commands": ["test:admin-web:foundation"]
+    },
+    {
+      "id": 4,
+      "name": "auth-tenant-permissions",
+      "commands": ["test:admin-web:auth"]
+    },
+    {
+      "id": 5,
+      "name": "api-client-layout",
+      "commands": ["test:admin-web:shell"]
+    },
+    {
+      "id": 6,
+      "name": "residents-properties-ui",
+      "commands": ["test:admin-web:residents"]
+    },
+    {
+      "id": 7,
+      "name": "finance-ui",
+      "commands": ["test:admin-web:finance"]
+    },
+    {
+      "id": 8,
+      "name": "hardening-closure",
+      "commands": [
+        "test:admin-web",
+        "test:admin-web:e2e",
+        "test:admin-web:a11y"
+      ]
+    }
+  ]
+}

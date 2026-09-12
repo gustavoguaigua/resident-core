@@ -17,6 +17,17 @@
 
 ---
 
+## Normalización de readiness de Sprint 4
+
+Sólo se ejecuta el backlog definido por el runbook de Sprint 4. GAP-S4-001 y
+GAP-S4-002 bloquean cualquier tarea frontend funcional; por ello este documento sigue
+`needs-review`. Las tareas de dashboard, Users/Roles, data import y documentos
+generales se consideran fuera de Sprint 4, aunque permanezcan abajo como backlog
+post-MVP. Receipts/comprobantes de Payments son el único acceso documental autorizado.
+No se implementan endpoints preliminares como si existieran.
+
+---
+
 ## 2. Propósito
 
 Definir el backlog técnico para implementar la aplicación web administrativa básica de RESIDENT.
@@ -174,14 +185,14 @@ Acceptance:
 
 ```text id="awa-epic-04"
 [ ] Crear hook/useCurrentUser.
-[ ] Consumir GET /api/v1/me.
+[!] Consumir GET /api/v1/me — bloqueado por GAP-S4-001.
 [ ] Crear hook/useMyTenants.
-[ ] Consumir GET /api/v1/me/tenants.
+[!] Consumir GET /api/v1/me/tenants — bloqueado por GAP-S4-001.
 [ ] Crear TenantProvider.
 [ ] Crear TenantSwitcher.
 [ ] Crear ActiveTenantContext.
 [ ] Crear PermissionProvider.
-[ ] Consumir endpoint de permisos efectivos.
+[!] Consumir endpoint de permisos efectivos — bloqueado por GAP-S4-001.
 [ ] Crear permissionHash.
 [ ] Crear hasPermission.
 [ ] Crear hasAnyPermission.
@@ -354,7 +365,7 @@ Acceptance:
 
 ---
 
-# 14. EPIC-029-10 — Dashboard UI
+# 14. EPIC-029-10 — Dashboard UI — post-MVP, fuera de Sprint 4
 
 ```text id="awa-epic-10"
 [ ] Crear /app/dashboard.
@@ -405,7 +416,7 @@ Acceptance:
 
 ---
 
-# 16. EPIC-029-12 — Users, roles and permissions UI
+# 16. EPIC-029-12 — Users, roles and permissions UI — fuera de Sprint 4
 
 ```text id="awa-epic-12"
 [ ] Crear /app/users.
@@ -458,7 +469,7 @@ Prohibido:
 
 ---
 
-# 18. EPIC-029-14 — Data import UI
+# 18. EPIC-029-14 — Data import UI — fuera de Sprint 4
 
 ```text id="awa-epic-14"
 [ ] Crear /app/imports.
@@ -490,7 +501,7 @@ Acceptance:
 
 ---
 
-# 19. EPIC-029-15 — Secure documents UI
+# 19. EPIC-029-15 — Secure documents UI — fuera de Sprint 4 salvo receipts
 
 ```text id="awa-epic-15"
 [ ] Crear /app/documents.

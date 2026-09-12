@@ -383,6 +383,10 @@ Sprint 7 — Gobernanza, reportes, dashboard e importación
 Post-MVP — Finanzas avanzadas, open banking, contabilidad, automatizaciones avanzadas
 ```
 
+Readiness de Sprint 4: `NO_GO`, `currentPhase = 0`. Antes de iniciar Admin Web deben
+cerrarse GAP-S4-001 (discovery autenticado) y GAP-S4-002 (OpenAPI tipado y cliente
+TypeScript); ver `docs/implementation/sprint-4-admin-web-app-mvp.md`.
+
 ---
 
 ## 11. Reglas críticas del proyecto

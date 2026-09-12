@@ -19,6 +19,20 @@
 
 ---
 
+## Normalización de readiness de Sprint 4
+
+Para Sprint 4, este documento se interpreta exclusivamente mediante
+`docs/implementation/sprint-4-admin-web-app-mvp.md` y
+`docs/changes/READINESS-SPRINT-4-2026-09-12.md`. El alcance autorizado se limita a
+foundation, auth/tenant/permisos, residents/properties y finanzas básicas allowlisted.
+Dashboard/KPIs, Users/Roles, importación, auditoría/reportes generales y documentos
+generales quedan fuera; sólo se incluyen receipts/comprobantes de Payments. Las
+capacidades más amplias descritas abajo son visión post-MVP y no autorizan Sprint 4.
+El rol canónico financiero es `Treasurer`, no `FinancialManager`. Este artefacto
+permanece `needs-review` mientras GAP-S4-001 y GAP-S4-002 estén abiertos.
+
+---
+
 ## 2. Propósito
 
 El módulo `029-admin-web-app-basic` define la aplicación web administrativa básica de RESIDENT Core.
@@ -216,7 +230,7 @@ Puede:
 
 ---
 
-### 8.4. FinancialManager
+### 8.4. Treasurer
 
 Puede:
 
@@ -314,7 +328,7 @@ Resident no usa Admin Web App Basic. Su experiencia se definirá en 030-resident
 
 ---
 
-### 9.3. Dashboard
+### 9.3. Dashboard — visión post-MVP, fuera de Sprint 4
 
 ```text id="awa-ui-dashboard"
 - dashboard ejecutivo;
@@ -341,7 +355,7 @@ Resident no usa Admin Web App Basic. Su experiencia se definirá en 030-resident
 
 ---
 
-### 9.5. Users, Roles and Permissions
+### 9.5. Users, Roles and Permissions — fuera de Sprint 4
 
 ```text id="awa-ui-users-roles"
 - listar usuarios del tenant;
@@ -432,7 +446,7 @@ Resident no usa Admin Web App Basic. Su experiencia se definirá en 030-resident
 
 ---
 
-### 9.12. Secure Documents
+### 9.12. Secure Documents — fuera de Sprint 4 salvo receipts
 
 ```text id="awa-ui-documents"
 - listar documentos permitidos;

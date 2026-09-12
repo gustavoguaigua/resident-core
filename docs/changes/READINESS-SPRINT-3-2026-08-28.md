@@ -7,9 +7,9 @@
 | Proyecto | RESIDENT Core |
 | Sprint | 3 — Residentes, propiedades y finanzas base |
 | Fecha de evaluación | 2026-08-28 |
-| Fecha de actualización | 2026-09-08 |
-| Rama evaluada | `codex/sprint-3-phase-9-api-contract-finalization` |
-| Baseline integrado | `5aacda8` — PR #41 |
+| Fecha de actualización | 2026-09-09 |
+| Rama evaluada | `codex/sprint-3-closure` |
+| Baseline integrado | `94a9296` — PR #42 |
 | Decisión | `GO` |
 | Fase final | `9 — openapi-cross-slice-closure; PASS` |
 | Gaps abiertos | 0 críticos, 0 altos, 0 medios |
@@ -183,7 +183,8 @@ paralelas ni cambios al baseline de Sprint 2.
 La frontera canónica está en
 `docs/implementation/sprint-3-residents-properties-finance-base.md`. El manifest
 `packages/testing/config/sprint-3-gates.json` define exactamente fases 0–9,
-`readinessDecision = GO` y `currentPhase = 0`. No existe fase 10.
+`readinessDecision = GO` y `currentPhase = 9`. No existe fase 10. La sección 9 conserva
+separadamente el snapshot histórico de fase 0 que autorizó la implementación.
 
 El verificador rechaza en fase 0 modelos Prisma, rutas OpenAPI y módulos runtime de
 Sprint 3, inventaría los 35 documentos y exige correspondencia entre readiness y
@@ -376,5 +377,12 @@ Next phase within Sprint 3: none
 La evidencia detallada está en
 `docs/changes/SPRINT-3-PHASE-9-OPENAPI-CROSS-SLICE-CLOSURE-2026-09-08.md`.
 
-La evidencia detallada está en
-`docs/changes/SPRINT-3-PHASE-8-BALANCES-STATEMENTS-2026-09-07.md`.
+## 11. Cierre formal
+
+La reevaluación posterior a la integración del PR `#42` confirmó las Fases 0–9,
+GAP-S3-001 a GAP-S3-012 cerrados, el contrato OpenAPI vigente y los gates requeridos de
+CI en `PASS`. Sprint 3 queda formalmente `CLOSED / COMPLETED` con decisión `GO`, fase
+final `9` y ninguna fase siguiente dentro del sprint.
+
+La evidencia de cierre está en
+`docs/changes/SPRINT-3-CLOSURE-2026-09-09.md`.

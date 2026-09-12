@@ -99,7 +99,7 @@ try {
     `MINIO_ROOT_USER=${accessKey}`,
     "--env",
     `MINIO_ROOT_PASSWORD=${secretKey}`,
-    "minio/minio:RELEASE.2025-09-07T16-13-09Z",
+    "quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z",
     "server",
     "/data",
   ]);

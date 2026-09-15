@@ -42,6 +42,27 @@ describe("Sprint 3 boundary verifier", () => {
     );
   });
 
+  it("permits only the approved post-Sprint-3 discovery operations", () => {
+    const openApi = JSON.parse(
+      readFileSync(
+        resolve(
+          repositoryRoot,
+          "packages/openapi-client/openapi/resident-core.v1.json",
+        ),
+        "utf8",
+      ),
+    ) as { paths: Record<string, unknown> };
+
+    expect(Object.keys(openApi.paths)).toEqual(
+      expect.arrayContaining([
+        "/api/v1/me",
+        "/api/v1/me/permissions",
+        "/api/v1/me/tenants",
+      ]),
+    );
+    expect(runVerifier().status).toBe(0);
+  });
+
   it("rejects a future Sprint 3 Prisma model during phase 9", () => {
     const directory = createTemporaryDirectory();
     const schemaPath = resolve(directory, "schema.prisma");

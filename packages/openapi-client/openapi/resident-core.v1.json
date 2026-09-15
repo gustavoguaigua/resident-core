@@ -106,6 +106,193 @@
         ],
         "type": "object"
       },
+      "AccountStatement": {
+        "additionalProperties": false,
+        "properties": {
+          "adjustmentsTotal": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "asOfDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "billingPeriodId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "chargesTotal": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "closingBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "creditBalance": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "generatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "lineCount": {
+            "type": "integer"
+          },
+          "lines": {
+            "items": {
+              "$ref": "#/components/schemas/AccountStatementLine"
+            },
+            "type": "array"
+          },
+          "notDueBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "openingBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "overdueBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "paymentsTotal": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "previousStatementId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "reversalsTotal": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "statementNumber": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "supersededById": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "propertyUnitId",
+          "billingPeriodId",
+          "statementNumber",
+          "status",
+          "currency",
+          "asOfDate",
+          "openingBalance",
+          "chargesTotal",
+          "adjustmentsTotal",
+          "paymentsTotal",
+          "reversalsTotal",
+          "creditBalance",
+          "closingBalance",
+          "overdueBalance",
+          "notDueBalance",
+          "lineCount",
+          "generatedAt",
+          "previousStatementId",
+          "supersededById"
+        ],
+        "type": "object"
+      },
+      "AccountStatementLine": {
+        "additionalProperties": false,
+        "properties": {
+          "balance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "credit": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "date": {
+            "format": "date",
+            "type": "string"
+          },
+          "debit": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "descriptionCode": {
+            "type": "string"
+          },
+          "dueDate": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "sourceType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "descriptionCode",
+          "date",
+          "dueDate",
+          "debit",
+          "credit",
+          "balance",
+          "sourceType"
+        ],
+        "type": "object"
+      },
+      "AdjustChargeDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "AllocatePaymentDto": {
+        "properties": {},
+        "type": "object"
+      },
       "ApiErrorDto": {
         "properties": {
           "code": {
@@ -159,6 +346,22 @@
         ],
         "type": "object"
       },
+      "ArchiveDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "ArchiveRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "type": "object"
+      },
       "AssignMembershipRoleDto": {
         "properties": {
           "roleId": {
@@ -169,6 +372,464 @@
         "required": [
           "roleId"
         ],
+        "type": "object"
+      },
+      "BillingPeriod": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "dueDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "endsAt": {
+            "format": "date",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "periodCode": {
+            "type": "string"
+          },
+          "startsAt": {
+            "format": "date",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "periodCode",
+          "startsAt",
+          "endsAt",
+          "dueDate",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "BillingPeriodCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "dueDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "endsAt": {
+            "format": "date",
+            "type": "string"
+          },
+          "periodCode": {
+            "type": "string"
+          },
+          "startsAt": {
+            "format": "date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "periodCode",
+          "startsAt",
+          "endsAt",
+          "dueDate"
+        ],
+        "type": "object"
+      },
+      "Charge": {
+        "additionalProperties": false,
+        "properties": {
+          "billingPeriodId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "chargeBatchId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "chargeConceptId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dueDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "effectiveAmount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "feeScheduleId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "issuedDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "originalAmount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "billingPeriodId",
+          "propertyUnitId",
+          "chargeConceptId",
+          "feeScheduleId",
+          "chargeBatchId",
+          "type",
+          "description",
+          "originalAmount",
+          "effectiveAmount",
+          "currency",
+          "issuedDate",
+          "dueDate",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "ChargeBatch": {
+        "additionalProperties": false,
+        "properties": {
+          "billingPeriodId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "completedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "errorSummary": {
+            "additionalProperties": false,
+            "nullable": true,
+            "properties": {
+              "codes": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "count"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "codes"
+            ],
+            "type": "object"
+          },
+          "failedItems": {
+            "type": "integer"
+          },
+          "feeScheduleId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "skippedItems": {
+            "type": "integer"
+          },
+          "startedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "successItems": {
+            "type": "integer"
+          },
+          "totalItems": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "billingPeriodId",
+          "feeScheduleId",
+          "type",
+          "status",
+          "totalItems",
+          "successItems",
+          "skippedItems",
+          "failedItems",
+          "errorSummary",
+          "currency",
+          "startedAt",
+          "completedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "ChargeConcept": {
+        "additionalProperties": false,
+        "properties": {
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "defaultAmount": {
+            "example": "125.50",
+            "nullable": true,
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "isSystem": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "name",
+          "description",
+          "category",
+          "defaultAmount",
+          "currency",
+          "status",
+          "isSystem",
+          "createdAt",
+          "updatedAt",
+          "archivedAt"
+        ],
+        "type": "object"
+      },
+      "ChargeConceptCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "defaultAmount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object"
+      },
+      "ChargeConceptUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "defaultAmount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "ChargeCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "billingPeriodId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "chargeConceptId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dueDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "feeScheduleId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "issuedDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "billingPeriodId",
+          "propertyUnitId",
+          "chargeConceptId",
+          "type",
+          "amount",
+          "issuedDate",
+          "dueDate"
+        ],
+        "type": "object"
+      },
+      "ChargeReasonDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreateBillingPeriodDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreateChargeConceptDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreateChargeDto": {
+        "properties": {},
         "type": "object"
       },
       "CreatedInvitationDataDto": {
@@ -322,6 +983,10 @@
         ],
         "type": "object"
       },
+      "CreateFeeScheduleDto": {
+        "properties": {},
+        "type": "object"
+      },
       "CreateInvitationDto": {
         "properties": {
           "email": {
@@ -347,6 +1012,34 @@
           "email",
           "roleId"
         ],
+        "type": "object"
+      },
+      "CreateLeaseDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreateLegalEntityDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreateOwnershipDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreatePaymentDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreatePersonDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreatePropertyUnitDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "CreateResidencyDto": {
+        "properties": {},
         "type": "object"
       },
       "CreateTenantDto": {
@@ -406,6 +1099,10 @@
           "data",
           "meta"
         ],
+        "type": "object"
+      },
+      "CreateUnitFeeDto": {
+        "properties": {},
         "type": "object"
       },
       "CurrentUserDataDto": {
@@ -593,6 +1290,241 @@
           "data",
           "meta"
         ],
+        "type": "object"
+      },
+      "EmptyMutationDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "EmptyRequest": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "EndRelationshipDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "EndRelationshipRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "endDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "endDate",
+          "reason"
+        ],
+        "type": "object"
+      },
+      "EndUnitFeeDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "FeeSchedule": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "chargeConceptId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "effectiveFrom": {
+            "format": "date",
+            "type": "string"
+          },
+          "effectiveTo": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "frequency": {
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "chargeConceptId",
+          "name",
+          "amount",
+          "currency",
+          "frequency",
+          "effectiveFrom",
+          "effectiveTo",
+          "status",
+          "createdAt",
+          "updatedAt",
+          "archivedAt"
+        ],
+        "type": "object"
+      },
+      "FeeScheduleCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "chargeConceptId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "effectiveFrom": {
+            "format": "date",
+            "type": "string"
+          },
+          "effectiveTo": {
+            "format": "date",
+            "type": "string"
+          },
+          "frequency": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "chargeConceptId",
+          "name",
+          "amount",
+          "effectiveFrom"
+        ],
+        "type": "object"
+      },
+      "FeeScheduleUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "effectiveFrom": {
+            "format": "date",
+            "type": "string"
+          },
+          "effectiveTo": {
+            "format": "date",
+            "type": "string"
+          },
+          "frequency": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "FinancialMovement": {
+        "additionalProperties": false,
+        "properties": {
+          "balance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "credit": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "date": {
+            "format": "date",
+            "type": "string"
+          },
+          "debit": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "descriptionCode": {
+            "type": "string"
+          },
+          "dueDate": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "sourceId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "sourceType": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sourceId",
+          "sourceType",
+          "type",
+          "descriptionCode",
+          "date",
+          "dueDate",
+          "debit",
+          "credit",
+          "balance"
+        ],
+        "type": "object"
+      },
+      "GenerateMonthlyChargesDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "GenerateStatementBatchDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "GenerateStatementDto": {
+        "properties": {},
         "type": "object"
       },
       "HealthLivenessResponseDto": {
@@ -837,6 +1769,268 @@
         ],
         "type": "object"
       },
+      "Lease": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "endDate": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "ownerLegalEntityId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "ownerPersonId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "residencyId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "tenantPersonId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tenantId",
+          "propertyUnitId",
+          "ownerPersonId",
+          "ownerLegalEntityId",
+          "tenantPersonId",
+          "residencyId",
+          "startDate",
+          "endDate",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "LeaseCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "endDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "ownerLegalEntityId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "ownerPersonId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "tenantPersonId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "propertyUnitId",
+          "tenantPersonId",
+          "startDate"
+        ],
+        "type": "object"
+      },
+      "LeaseUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "endDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "LegalEntity": {
+        "additionalProperties": false,
+        "properties": {
+          "address": {
+            "nullable": true,
+            "type": "string"
+          },
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "taxIdentificationNumber": {
+            "nullable": true,
+            "type": "string"
+          },
+          "taxIdentificationType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tenantId",
+          "name",
+          "taxIdentificationType",
+          "taxIdentificationNumber",
+          "email",
+          "phone",
+          "address",
+          "status",
+          "archivedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "LegalEntityCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "taxIdentificationNumber": {
+            "type": "string"
+          },
+          "taxIdentificationType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "LegalEntityUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "taxIdentificationNumber": {
+            "type": "string"
+          },
+          "taxIdentificationType": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "LinkUserDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "LinkUserRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "userProfileId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "userProfileId"
+        ],
+        "type": "object"
+      },
       "MembershipDataDto": {
         "properties": {
           "id": {
@@ -917,6 +2111,64 @@
         ],
         "type": "object"
       },
+      "OwnershipCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "legalEntityId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "ownershipPercentage": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "ownershipType": {
+            "type": "string"
+          },
+          "personId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "propertyUnitId",
+          "startDate"
+        ],
+        "type": "object"
+      },
+      "OwnershipUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "ownershipPercentage": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "ownershipType": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
       "PageMetaDto": {
         "properties": {
           "page": {
@@ -943,6 +2195,378 @@
         ],
         "type": "object"
       },
+      "Payment": {
+        "additionalProperties": false,
+        "properties": {
+          "allocatedAmount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "amount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "externalReference": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "paidAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "transactionReference": {
+            "nullable": true,
+            "type": "string"
+          },
+          "unallocatedAmount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "propertyUnitId",
+          "method",
+          "amount",
+          "allocatedAmount",
+          "unallocatedAmount",
+          "currency",
+          "paidAt",
+          "status",
+          "transactionReference",
+          "externalReference",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "PaymentAllocation": {
+        "additionalProperties": false,
+        "properties": {
+          "allocatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "amount": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "chargeId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "paymentId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "paymentId",
+          "chargeId",
+          "propertyUnitId",
+          "amount",
+          "currency",
+          "status",
+          "allocatedAt"
+        ],
+        "type": "object"
+      },
+      "PaymentReasonDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "PaymentReceipt": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "paymentId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "receiptNumber": {
+            "nullable": true,
+            "type": "string"
+          },
+          "reviewedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "transactionReference": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "uploadedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "paymentId",
+          "receiptNumber",
+          "transactionReference",
+          "status",
+          "uploadedAt",
+          "reviewedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "PaymentReviewRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "type": "object"
+      },
+      "Person": {
+        "additionalProperties": false,
+        "properties": {
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "nullable": true,
+            "type": "string"
+          },
+          "firstName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "identificationNumber": {
+            "nullable": true,
+            "type": "string"
+          },
+          "identificationType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "lastName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phone": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "userProfileId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "whatsapp": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tenantId",
+          "displayName",
+          "firstName",
+          "lastName",
+          "identificationType",
+          "identificationNumber",
+          "email",
+          "phone",
+          "whatsapp",
+          "userProfileId",
+          "status",
+          "archivedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "PersonCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "identificationNumber": {
+            "type": "string"
+          },
+          "identificationType": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "whatsapp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "displayName"
+        ],
+        "type": "object"
+      },
+      "PersonIdentityLinkAcknowledgement": {
+        "additionalProperties": false,
+        "properties": {
+          "linkedAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "personId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "userProfileId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "linkedAt",
+          "personId",
+          "userProfileId"
+        ],
+        "type": "object"
+      },
+      "PersonUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "identificationNumber": {
+            "type": "string"
+          },
+          "identificationType": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "whatsapp": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
       "PostgresHealthCheckResponseDto": {
         "properties": {
           "status": {
@@ -956,6 +2580,219 @@
         "required": [
           "status"
         ],
+        "type": "object"
+      },
+      "PropertyOwnership": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "endDate": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "legalEntityId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "ownershipPercentage": {
+            "example": "125.50",
+            "nullable": true,
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "ownershipType": {
+            "type": "string"
+          },
+          "personId": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tenantId",
+          "propertyUnitId",
+          "personId",
+          "legalEntityId",
+          "ownershipType",
+          "ownershipPercentage",
+          "isPrimary",
+          "startDate",
+          "endDate",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "PropertyUnit": {
+        "additionalProperties": false,
+        "properties": {
+          "addressReference": {
+            "nullable": true,
+            "type": "string"
+          },
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "areaM2": {
+            "example": "125.50",
+            "nullable": true,
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "block": {
+            "nullable": true,
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "floor": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tenantId",
+          "code",
+          "name",
+          "type",
+          "block",
+          "floor",
+          "addressReference",
+          "areaM2",
+          "status",
+          "archivedAt",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "PropertyUnitCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "addressReference": {
+            "type": "string"
+          },
+          "areaM2": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "block": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "type": "object"
+      },
+      "PropertyUnitUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "addressReference": {
+            "type": "string"
+          },
+          "areaM2": {
+            "example": "125.50",
+            "pattern": "^(?:0|[1-9]\\d{0,9})(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "block": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "floor": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [],
         "type": "object"
       },
       "PublicInvitationDataDto": {
@@ -1032,6 +2869,124 @@
           "slug",
           "displayName"
         ],
+        "type": "object"
+      },
+      "RecalculateBalanceDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "ReceiptUploadDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "Residency": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "endDate": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "isPrimaryResident": {
+            "type": "boolean"
+          },
+          "personId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "residencyType": {
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tenantId",
+          "propertyUnitId",
+          "personId",
+          "residencyType",
+          "isPrimaryResident",
+          "startDate",
+          "endDate",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object"
+      },
+      "ResidencyCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "isPrimaryResident": {
+            "type": "boolean"
+          },
+          "personId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "residencyType": {
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "propertyUnitId",
+          "personId",
+          "startDate"
+        ],
+        "type": "object"
+      },
+      "ResidencyUpdateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "isPrimaryResident": {
+            "type": "boolean"
+          },
+          "residencyType": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "ReverseChargeDto": {
+        "properties": {},
         "type": "object"
       },
       "RevokeMembershipDto": {
@@ -1212,6 +3167,10 @@
         ],
         "type": "object"
       },
+      "StatementReasonDto": {
+        "properties": {},
+        "type": "object"
+      },
       "TenantBrandingInputDto": {
         "properties": {
           "accentColor": {
@@ -1390,6 +3349,289 @@
         "required": [
           "traceId"
         ],
+        "type": "object"
+      },
+      "TypedRequestMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "requestId"
+        ],
+        "type": "object"
+      },
+      "TypedRequestPageMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "page": {
+            "type": "integer"
+          },
+          "pageSize": {
+            "type": "integer"
+          },
+          "requestId": {
+            "type": "string"
+          },
+          "total": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "page",
+          "pageSize",
+          "total",
+          "requestId"
+        ],
+        "type": "object"
+      },
+      "TypedResidentPageMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "page": {
+            "type": "integer"
+          },
+          "pageSize": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "totalPages": {
+            "type": "integer"
+          },
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page",
+          "pageSize",
+          "total",
+          "totalPages",
+          "traceId"
+        ],
+        "type": "object"
+      },
+      "TypedTraceMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "traceId"
+        ],
+        "type": "object"
+      },
+      "TypedTracePageMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "page": {
+            "type": "integer"
+          },
+          "pageSize": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "traceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "page",
+          "pageSize",
+          "total",
+          "traceId"
+        ],
+        "type": "object"
+      },
+      "UnitBalance": {
+        "additionalProperties": false,
+        "properties": {
+          "calculatedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "creditBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "currency": {
+            "enum": [
+              "USD"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "nullable": true,
+            "type": "string"
+          },
+          "isStale": {
+            "type": "boolean"
+          },
+          "notDueBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "outstandingBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "overdueBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "unallocatedPaymentBalance": {
+            "example": "125.50",
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d{1,2})?$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "propertyUnitId",
+          "currency",
+          "outstandingBalance",
+          "overdueBalance",
+          "notDueBalance",
+          "creditBalance",
+          "unallocatedPaymentBalance",
+          "calculatedAt",
+          "isStale"
+        ],
+        "type": "object"
+      },
+      "UnitFeeAssignment": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "endDate": {
+            "format": "date",
+            "nullable": true,
+            "type": "string"
+          },
+          "endedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "endReason": {
+            "nullable": true,
+            "type": "string"
+          },
+          "feeScheduleId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "propertyUnitId",
+          "feeScheduleId",
+          "status",
+          "startDate",
+          "endDate",
+          "createdAt",
+          "updatedAt",
+          "endedAt",
+          "endReason"
+        ],
+        "type": "object"
+      },
+      "UnitFeeCreateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "endDate": {
+            "format": "date",
+            "type": "string"
+          },
+          "feeScheduleId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "propertyUnitId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "startDate": {
+            "format": "date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "propertyUnitId",
+          "feeScheduleId",
+          "startDate"
+        ],
+        "type": "object"
+      },
+      "UpdateChargeConceptDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "UpdateFeeScheduleDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "UpdateLeaseDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "UpdateLegalEntityDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "UpdateOwnershipDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "UpdatePersonDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "UpdatePropertyUnitDto": {
+        "properties": {},
+        "type": "object"
+      },
+      "UpdateResidencyDto": {
+        "properties": {},
         "type": "object"
       },
       "UpdateTenantSettingDto": {
@@ -1866,7 +4108,6 @@
             "name": "statementId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -2095,7 +4336,6 @@
             "name": "receiptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -2343,8 +4583,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/CreatePaymentDto"
               }
             }
           },
@@ -2454,7 +4693,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -2573,7 +4811,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -2603,8 +4840,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ReceiptUploadDto"
               }
             }
           },
@@ -2807,7 +5043,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Person"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -2917,7 +5173,30 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PropertyUnit"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -3019,7 +5298,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -3138,7 +5416,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -3257,7 +5534,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -3384,7 +5660,30 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Residency"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -4190,11 +6489,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/AccountStatement"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -4296,7 +6637,6 @@
             "name": "statementId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -4313,7 +6653,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AccountStatement"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -4415,7 +6775,6 @@
             "name": "statementId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -4445,8 +6804,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/StatementReasonDto"
               }
             }
           },
@@ -4556,7 +6914,6 @@
             "name": "statementId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -4586,8 +6943,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/StatementReasonDto"
               }
             }
           },
@@ -4697,7 +7053,6 @@
             "name": "statementId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -4838,7 +7193,6 @@
             "name": "statementId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -4868,8 +7222,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/StatementReasonDto"
               }
             }
           },
@@ -5000,8 +7353,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/GenerateStatementDto"
               }
             }
           },
@@ -5132,8 +7484,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/GenerateStatementBatchDto"
               }
             }
           },
@@ -5247,11 +7598,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/UnitBalance"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -5357,11 +7750,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/BillingPeriod"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTracePageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -5482,8 +7917,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/BillingPeriodCreateRequest"
               }
             }
           },
@@ -5491,7 +7925,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/BillingPeriod"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -5593,7 +8047,6 @@
             "name": "billingPeriodId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -5610,7 +8063,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/BillingPeriod"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -5712,7 +8185,6 @@
             "name": "billingPeriodId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -5742,8 +8214,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ChargeReasonDto"
               }
             }
           },
@@ -5853,7 +8324,6 @@
             "name": "billingPeriodId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -5883,8 +8353,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ChargeReasonDto"
               }
             }
           },
@@ -5998,11 +8467,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/ChargeBatch"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTracePageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6104,7 +8615,6 @@
             "name": "chargeBatchId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -6121,7 +8631,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ChargeBatch"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6227,11 +8757,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/ChargeConcept"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTracePageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6352,8 +8924,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ChargeConceptCreateRequest"
               }
             }
           },
@@ -6361,7 +8932,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ChargeConcept"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6463,7 +9054,6 @@
             "name": "chargeConceptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -6480,7 +9070,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ChargeConcept"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6580,7 +9190,6 @@
             "name": "chargeConceptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -6610,8 +9219,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ChargeConceptUpdateRequest"
               }
             }
           },
@@ -6619,7 +9227,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ChargeConcept"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6721,7 +9349,6 @@
             "name": "chargeConceptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -6751,8 +9378,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/EmptyRequest"
               }
             }
           },
@@ -6760,7 +9386,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ChargeConcept"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6866,11 +9512,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Charge"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTracePageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -6991,8 +9679,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ChargeCreateRequest"
               }
             }
           },
@@ -7000,7 +9687,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Charge"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -7102,7 +9809,6 @@
             "name": "chargeId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -7119,7 +9825,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Charge"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -7221,7 +9947,6 @@
             "name": "chargeId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -7251,8 +9976,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/AdjustChargeDto"
               }
             }
           },
@@ -7362,7 +10086,6 @@
             "name": "chargeId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -7392,8 +10115,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PaymentReviewRequest"
               }
             }
           },
@@ -7401,7 +10123,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Charge"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -7503,7 +10245,6 @@
             "name": "chargeId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -7533,8 +10274,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ReverseChargeDto"
               }
             }
           },
@@ -7665,8 +10405,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/GenerateMonthlyChargesDto"
               }
             }
           },
@@ -7780,11 +10519,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/FeeSchedule"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTracePageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -7905,8 +10686,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/FeeScheduleCreateRequest"
               }
             }
           },
@@ -7914,7 +10694,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/FeeSchedule"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -8016,7 +10816,6 @@
             "name": "feeScheduleId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -8033,7 +10832,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/FeeSchedule"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -8133,7 +10952,6 @@
             "name": "feeScheduleId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -8163,8 +10981,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/FeeScheduleUpdateRequest"
               }
             }
           },
@@ -8172,7 +10989,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/FeeSchedule"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -8274,7 +11111,6 @@
             "name": "feeScheduleId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -8304,8 +11140,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/EmptyRequest"
               }
             }
           },
@@ -8313,7 +11148,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/FeeSchedule"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -8410,6 +11265,50 @@
       "get": {
         "operationId": "listTenantInvitations",
         "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pending",
+                "accepted",
+                "expired",
+                "revoked",
+                "cancelled"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "number"
+            }
+          },
           {
             "in": "header",
             "name": "X-Tenant-Id",
@@ -8608,8 +11507,8 @@
         "operationId": "revokeTenantInvitation",
         "parameters": [
           {
-            "in": "header",
-            "name": "X-Tenant-Id",
+            "in": "path",
+            "name": "invitationId",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -8617,8 +11516,8 @@
             }
           },
           {
-            "in": "path",
-            "name": "invitationId",
+            "in": "header",
+            "name": "X-Tenant-Id",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -8720,11 +11619,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Lease"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedResidentPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -8845,8 +11786,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/LeaseCreateRequest"
               }
             }
           },
@@ -8854,7 +11794,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Lease"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -8956,7 +11916,6 @@
             "name": "leaseId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -8973,7 +11932,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Lease"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9073,7 +12052,6 @@
             "name": "leaseId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -9103,8 +12081,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/LeaseUpdateRequest"
               }
             }
           },
@@ -9112,7 +12089,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Lease"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9214,7 +12211,6 @@
             "name": "leaseId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -9244,8 +12240,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/EndRelationshipRequest"
               }
             }
           },
@@ -9253,7 +12248,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Lease"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9359,11 +12374,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/LegalEntity"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedResidentPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9484,8 +12541,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/LegalEntityCreateRequest"
               }
             }
           },
@@ -9493,7 +12549,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LegalEntity"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9595,7 +12671,6 @@
             "name": "legalEntityId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -9612,7 +12687,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LegalEntity"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9712,7 +12807,6 @@
             "name": "legalEntityId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -9742,8 +12836,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/LegalEntityUpdateRequest"
               }
             }
           },
@@ -9751,7 +12844,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LegalEntity"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9853,7 +12966,6 @@
             "name": "legalEntityId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -9883,8 +12995,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ArchiveRequest"
               }
             }
           },
@@ -9892,7 +13003,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LegalEntity"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -9990,8 +13121,8 @@
         "operationId": "revokeTenantMembership",
         "parameters": [
           {
-            "in": "header",
-            "name": "X-Tenant-Id",
+            "in": "path",
+            "name": "membershipId",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -9999,8 +13130,8 @@
             }
           },
           {
-            "in": "path",
-            "name": "membershipId",
+            "in": "header",
+            "name": "X-Tenant-Id",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -10104,8 +13235,8 @@
         "operationId": "assignTenantMembershipRole",
         "parameters": [
           {
-            "in": "header",
-            "name": "X-Tenant-Id",
+            "in": "path",
+            "name": "membershipId",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -10113,8 +13244,8 @@
             }
           },
           {
-            "in": "path",
-            "name": "membershipId",
+            "in": "header",
+            "name": "X-Tenant-Id",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -10218,8 +13349,8 @@
         "operationId": "removeTenantMembershipRole",
         "parameters": [
           {
-            "in": "header",
-            "name": "X-Tenant-Id",
+            "in": "path",
+            "name": "membershipId",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -10236,8 +13367,8 @@
             }
           },
           {
-            "in": "path",
-            "name": "membershipId",
+            "in": "header",
+            "name": "X-Tenant-Id",
             "required": true,
             "schema": {
               "format": "uuid",
@@ -10335,7 +13466,6 @@
             "name": "allocationId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -10352,7 +13482,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PaymentAllocation"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -10454,7 +13604,6 @@
             "name": "allocationId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -10484,8 +13633,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PaymentReasonDto"
               }
             }
           },
@@ -10595,7 +13743,6 @@
             "name": "receiptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -10612,7 +13759,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PaymentReceipt"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -10714,7 +13881,6 @@
             "name": "receiptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -10740,20 +13906,29 @@
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PaymentReceipt"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -10855,7 +14030,6 @@
             "name": "receiptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -10872,7 +14046,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              },
+              "image/jpeg": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Receipt document."
           },
           "400": {
             "content": {
@@ -10974,7 +14168,6 @@
             "name": "receiptId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -11004,8 +14197,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PaymentReviewRequest"
               }
             }
           },
@@ -11013,7 +14205,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PaymentReceipt"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -11119,11 +14331,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Payment"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -11244,8 +14498,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/CreatePaymentDto"
               }
             }
           },
@@ -11355,7 +14608,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -11372,7 +14624,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Payment"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -11474,7 +14746,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -11504,8 +14775,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/AllocatePaymentDto"
               }
             }
           },
@@ -11615,7 +14885,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -11632,7 +14901,30 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PaymentAllocation"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -11734,7 +15026,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -11875,7 +15166,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -11901,20 +15191,29 @@
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "additionalProperties": false,
-                "type": "object"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Payment"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -12016,7 +15315,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -12033,7 +15331,30 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PaymentReceipt"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -12133,7 +15454,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -12163,8 +15483,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ReceiptUploadDto"
               }
             }
           },
@@ -12274,7 +15593,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -12304,8 +15622,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PaymentReviewRequest"
               }
             }
           },
@@ -12313,7 +15630,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Payment"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -12415,7 +15752,6 @@
             "name": "paymentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -12445,8 +15781,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PaymentReasonDto"
               }
             }
           },
@@ -12560,11 +15895,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Person"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedResidentPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -12685,8 +16062,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PersonCreateRequest"
               }
             }
           },
@@ -12694,7 +16070,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Person"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -12796,7 +16192,6 @@
             "name": "personId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -12813,7 +16208,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Person"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -12913,7 +16328,6 @@
             "name": "personId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -12943,8 +16357,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PersonUpdateRequest"
               }
             }
           },
@@ -12952,7 +16365,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Person"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13054,7 +16487,6 @@
             "name": "personId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -13084,8 +16516,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ArchiveRequest"
               }
             }
           },
@@ -13093,7 +16524,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Person"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13195,7 +16646,6 @@
             "name": "personId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -13225,8 +16675,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/LinkUserRequest"
               }
             }
           },
@@ -13234,7 +16683,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PersonIdentityLinkAcknowledgement"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13340,11 +16809,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PropertyOwnership"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedResidentPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13465,8 +16976,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/OwnershipCreateRequest"
               }
             }
           },
@@ -13474,7 +16984,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyOwnership"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13576,7 +17106,6 @@
             "name": "ownershipId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -13593,7 +17122,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyOwnership"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13693,7 +17242,6 @@
             "name": "ownershipId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -13723,8 +17271,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/OwnershipUpdateRequest"
               }
             }
           },
@@ -13732,7 +17279,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyOwnership"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13834,7 +17401,6 @@
             "name": "ownershipId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -13864,8 +17430,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/EndRelationshipRequest"
               }
             }
           },
@@ -13873,7 +17438,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyOwnership"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -13979,11 +17564,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/PropertyUnit"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedResidentPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -14104,8 +17731,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PropertyUnitCreateRequest"
               }
             }
           },
@@ -14113,7 +17739,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyUnit"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -14215,7 +17861,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -14232,7 +17877,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyUnit"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -14332,7 +17997,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -14362,8 +18026,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/PropertyUnitUpdateRequest"
               }
             }
           },
@@ -14371,7 +18034,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyUnit"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -14473,7 +18156,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -14503,8 +18185,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ArchiveRequest"
               }
             }
           },
@@ -14512,7 +18193,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PropertyUnit"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -14614,7 +18315,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -14631,7 +18331,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/UnitBalance"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -14733,7 +18453,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -14763,8 +18482,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/RecalculateBalanceDto"
               }
             }
           },
@@ -14874,7 +18592,6 @@
             "name": "propertyUnitId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -14891,7 +18608,30 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/FinancialMovement"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedRequestMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -14997,11 +18737,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Residency"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedResidentPageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -15122,8 +18904,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ResidencyCreateRequest"
               }
             }
           },
@@ -15131,7 +18912,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Residency"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -15233,7 +19034,6 @@
             "name": "residencyId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -15250,7 +19050,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Residency"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -15350,7 +19170,6 @@
             "name": "residencyId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -15380,8 +19199,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/ResidencyUpdateRequest"
               }
             }
           },
@@ -15389,7 +19207,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Residency"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -15491,7 +19329,6 @@
             "name": "residencyId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -15521,8 +19358,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/EndRelationshipRequest"
               }
             }
           },
@@ -15530,7 +19366,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Residency"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -15712,20 +19568,20 @@
         "operationId": "getEffectiveTenantSetting",
         "parameters": [
           {
-            "in": "header",
-            "name": "X-Tenant-Id",
-            "required": true,
-            "schema": {
-              "format": "uuid",
-              "type": "string"
-            }
-          },
-          {
             "in": "path",
             "name": "key",
             "required": true,
             "schema": {
               "example": "general.locale",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
               "type": "string"
             }
           }
@@ -15803,20 +19659,20 @@
         "operationId": "updateTenantSetting",
         "parameters": [
           {
-            "in": "header",
-            "name": "X-Tenant-Id",
-            "required": true,
-            "schema": {
-              "format": "uuid",
-              "type": "string"
-            }
-          },
-          {
             "in": "path",
             "name": "key",
             "required": true,
             "schema": {
               "example": "general.locale",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
               "type": "string"
             }
           }
@@ -15915,11 +19771,53 @@
               "format": "uuid",
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/UnitFeeAssignment"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTracePageMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -16040,8 +19938,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/UnitFeeCreateRequest"
               }
             }
           },
@@ -16049,7 +19946,27 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/UnitFeeAssignment"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -16151,7 +20068,6 @@
             "name": "unitFeeAssignmentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -16168,7 +20084,27 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/UnitFeeAssignment"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {
@@ -16270,7 +20206,6 @@
             "name": "unitFeeAssignmentId",
             "required": true,
             "schema": {
-              "format": "uuid",
               "type": "string"
             }
           },
@@ -16300,8 +20235,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "additionalProperties": false,
-                "type": "object"
+                "$ref": "#/components/schemas/EndRelationshipRequest"
               }
             }
           },
@@ -16309,7 +20243,27 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/UnitFeeAssignment"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/TypedTraceMeta"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response."
           },
           "400": {
             "content": {

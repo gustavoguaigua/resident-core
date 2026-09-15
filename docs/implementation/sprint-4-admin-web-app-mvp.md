@@ -6,14 +6,14 @@
 | --------------------- | --------------------------------------------- |
 | Sprint                | 4 — Admin Web App MVP                         |
 | Baseline              | `952474c` — Sprint 3 cerrado                  |
-| Decisión de readiness | `NO_GO`                                       |
-| `currentPhase`        | `1`                                           |
+| Decisión de readiness | `GO`                                          |
+| `currentPhase`        | `2`                                           |
 | Spec principal        | `docs/specs/029-admin-web-app-basic/`         |
 | Manifest              | `packages/testing/config/sprint-4-gates.json` |
 
 Este runbook recorta la visión amplia de Spec 029 al incremento autorizado por el
-roadmap. GAP-S4-001 está cerrado. Mientras GAP-S4-002 permanezca abierto no puede
-iniciarse el frontend y los siete documentos permanecen `needs-review`.
+roadmap. GAP-S4-001 y GAP-S4-002 están cerrados; los siete documentos están
+`accepted` bajo esta normalización. La Fase 3 todavía no ha iniciado.
 
 ## 2. Objetivo
 
@@ -69,12 +69,9 @@ Satisfechas:
 - acceso seguro a receipts disponible;
 - scaffold Next.js/React/TypeScript strict existente.
 
-Pendiente y bloqueante:
-
-- GAP-S4-002: success schemas completos y cliente TypeScript determinista.
-
 Satisfecho en Fase 1: GAP-S4-001 con perfil aplicativo mínimo, tenants activos y
-permisos Core efectivos.
+permisos Core efectivos. Satisfecho en Fase 2: GAP-S4-002 con success schemas,
+cliente TypeScript determinista y gate de drift/reproducibilidad.
 
 ## 6. Auth, tenant y permisos
 
@@ -168,9 +165,9 @@ ejecutables:
 - `pnpm test:admin-discovery`;
 - Prettier focalizado y `git diff --check`.
 
-Los comandos de Fases 2–8 son contratos de entrega futuros. El boundary impide
-avanzar más allá de `currentPhase = 1`, aceptar Spec 029 o declarar `GO` mientras
-GAP-S4-002 permanezca abierto.
+El comando de Fase 2 `pnpm test:openapi-client` es ejecutable. Los comandos de Fases
+3–8 son contratos de entrega futuros. El boundary impide avanzar más allá de
+`currentPhase = 2` hasta incorporar los artefactos de la fase siguiente.
 
 ## 11. Criterios GO, cierre y parada
 

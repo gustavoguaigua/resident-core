@@ -10,7 +10,7 @@
 | Documento  | API Contract                                                             |
 | Ruta       | `docs/specs/029-admin-web-app-basic/api-contract.md`                     |
 | Versión    | 0.1                                                                      |
-| Estado     | needs-review                                                             |
+| Estado     | accepted                                                                 |
 | Fecha      | 2026-08-03                                                               |
 | Tipo       | Frontend API Consumption Contract                                        |
 | Base API   | `/api/v1`                                                                |
@@ -23,12 +23,12 @@
 
 El frontend sólo podrá consumir la allowlist del runbook de Sprint 4. El discovery
 autenticado (`/api/v1/me`, tenants y permisos efectivos) está integrado por
-GAP-S4-001; los endpoints dashboard no se implementan en este Sprint. GAP-S4-002 debe
-completar los demás success schemas y el cliente TypeScript antes del
+GAP-S4-001; los endpoints dashboard no se implementan en este Sprint. GAP-S4-002
+completa los demás success schemas y el cliente TypeScript antes del
 consumo funcional. La metadata vigente es `x-auth-required`, `x-public`,
 `x-platform-only`, `x-tenant-scope: tenant`, `x-tenant-context-required`,
 `x-own-resource`, `x-required-permission` y `x-idempotency-required`. Este documento
-permanece `needs-review` y ningún ejemplo posterior crea una API.
+queda `accepted` bajo esta normalización y ningún ejemplo posterior crea una API.
 
 ---
 
@@ -348,10 +348,7 @@ Response:
 {
   "data": {
     "tenantId": "uuid",
-    "permissions": [
-      "charges.read",
-      "payments.read"
-    ]
+    "permissions": ["charges.read", "payments.read"]
   },
   "meta": {
     "traceId": "trace-id"
@@ -819,7 +816,15 @@ Reglas:
 Patrón de query key:
 
 ```typescript id="awa-api-query-key"
-["tenant", activeTenant.slug, "module", moduleKey, "resource", resourceKey, filtersHash]
+[
+  "tenant",
+  activeTenant.slug,
+  "module",
+  moduleKey,
+  "resource",
+  resourceKey,
+  filtersHash,
+];
 ```
 
 Reglas:

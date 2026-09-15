@@ -8,9 +8,9 @@
 | Documento   | Project Blueprint                                                                      |
 | Ruta        | `docs/consolidated/RESIDENT_Core_Project_Blueprint_v0.1.md`                            |
 | Versión     | 0.1                                                                                    |
-| Estado      | Sprints 2 y 3 cerrados con `GO`                                                     |
+| Estado      | Sprints 2 y 3 cerrados con `GO`                                                        |
 | Fecha       | 2026-09-09                                                                             |
-| Fase actual | Sprint 3 — Fase final 9 completada                                                  |
+| Fase actual | Sprint 3 — Fase final 9 completada                                                     |
 | Alcance     | Resumen estructural, arquitectónico, documental y operativo del proyecto RESIDENT Core |
 
 ---
@@ -517,38 +517,38 @@ Reglas clave:
 Inventario documental presente; el estado refleja revisión formal, no calendario de implementación:
 
 | Spec ID | Paquete                        | Estado documental |
-| ------: | ------------------------------ | ------------------ |
-|     001 | `tenants`                      | accepted |
-|     002 | `users-roles`                  | accepted |
-|     003 | `residents-properties`         | accepted |
-|     004 | `dues-fees`                    | accepted |
-|     005 | `payments`                     | accepted |
-|     006 | `account-statements`           | accepted |
-|     007 | `audit`                        | accepted |
-|     008 | `basic-reports`                | needs-review |
-|     009 | `wordpress-integration-basic`  | needs-review |
-|     010 | `reservations-common-areas`    | needs-review |
-|     011 | `fines-sanctions`              | needs-review |
-|     012 | `communications-notifications` | needs-review |
-|     013 | `meetings-attendance`          | needs-review |
-|     014 | `voting-basic`                 | needs-review |
-|     015 | `certified-minutes`            | needs-review |
-|     016 | `secure-document-storage`      | accepted |
-|     017 | `bank-reconciliation`          | needs-review |
-|     018 | `payment-provider-integration` | needs-review |
-|     019 | `open-banking-integration`     | needs-review |
-|     020 | `accounting-ledger`            | needs-review |
-|     021 | `supplier-payments`            | needs-review |
-|     022 | `maintenance-work-orders`      | needs-review |
-|     023 | `inventory-basic`              | needs-review |
-|     024 | `access-control-visitors`      | needs-review |
-|     025 | `tenant-settings-policies`     | accepted |
-|     026 | `automation-workflows-basic`   | needs-review |
-|     027 | `dashboard-kpis`               | needs-review |
-|     028 | `data-import-migration`        | needs-review |
-|     029 | `admin-web-app-basic`          | needs-review |
-|     030 | `resident-self-service-basic`  | needs-review |
-|     031 | `implementation-readiness`     | complete |
+| ------: | ------------------------------ | ----------------- |
+|     001 | `tenants`                      | accepted          |
+|     002 | `users-roles`                  | accepted          |
+|     003 | `residents-properties`         | accepted          |
+|     004 | `dues-fees`                    | accepted          |
+|     005 | `payments`                     | accepted          |
+|     006 | `account-statements`           | accepted          |
+|     007 | `audit`                        | accepted          |
+|     008 | `basic-reports`                | needs-review      |
+|     009 | `wordpress-integration-basic`  | needs-review      |
+|     010 | `reservations-common-areas`    | needs-review      |
+|     011 | `fines-sanctions`              | needs-review      |
+|     012 | `communications-notifications` | needs-review      |
+|     013 | `meetings-attendance`          | needs-review      |
+|     014 | `voting-basic`                 | needs-review      |
+|     015 | `certified-minutes`            | needs-review      |
+|     016 | `secure-document-storage`      | accepted          |
+|     017 | `bank-reconciliation`          | needs-review      |
+|     018 | `payment-provider-integration` | needs-review      |
+|     019 | `open-banking-integration`     | needs-review      |
+|     020 | `accounting-ledger`            | needs-review      |
+|     021 | `supplier-payments`            | needs-review      |
+|     022 | `maintenance-work-orders`      | needs-review      |
+|     023 | `inventory-basic`              | needs-review      |
+|     024 | `access-control-visitors`      | needs-review      |
+|     025 | `tenant-settings-policies`     | accepted          |
+|     026 | `automation-workflows-basic`   | needs-review      |
+|     027 | `dashboard-kpis`               | needs-review      |
+|     028 | `data-import-migration`        | needs-review      |
+|     029 | `admin-web-app-basic`          | accepted          |
+|     030 | `resident-self-service-basic`  | needs-review      |
+|     031 | `implementation-readiness`     | complete          |
 
 ---
 
@@ -851,9 +851,9 @@ Tenant selector
 Property/unit selector
 ```
 
-La readiness de Sprint 4 recorta Wave 3 al Admin Web MVP y queda en `NO_GO`,
-`currentPhase = 1`: discovery autenticado está cerrado y el cliente OpenAPI tipado
-sigue pendiente. El dashboard permanece en Wave 5; no forma parte de Sprint 4.
+La readiness de Sprint 4 recorta Wave 3 al Admin Web MVP y queda en `GO`,
+`currentPhase = 2`: discovery autenticado y cliente OpenAPI tipado están cerrados.
+El dashboard permanece en Wave 5; no forma parte de Sprint 4.
 
 ### Wave 4 — Operación comunitaria
 

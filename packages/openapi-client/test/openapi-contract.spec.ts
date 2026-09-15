@@ -275,6 +275,44 @@ describe("canonical OpenAPI contract", () => {
   it("does not expose internal storage identifiers", () => {
     expect(JSON.stringify(contract)).not.toContain("storageKey");
   });
+
+  it.each([
+    ["get", "/api/v1/me"],
+    ["get", "/api/v1/tenant/persons"],
+    ["post", "/api/v1/tenant/property-units"],
+    ["get", "/api/v1/tenant/charges/{chargeId}"],
+    ["get", "/api/v1/tenant/payments"],
+    ["get", "/api/v1/tenant/payments/{paymentId}/receipts"],
+    ["get", "/api/v1/tenant/property-units/{propertyUnitId}/balance"],
+    [
+      "get",
+      "/api/v1/tenant/property-units/{propertyUnitId}/financial-movements",
+    ],
+    ["get", "/api/v1/tenant/account-statements/{statementId}"],
+  ] as const)(
+    "types the Sprint 4 MVP success response for %s %s",
+    (method, path) => {
+      const operation = contract.paths[path]?.[method];
+      const success = Object.entries(operation?.responses ?? {}).find(
+        ([status]) => /^2\d\d$/u.test(status),
+      );
+      expect(success?.[1]).toMatchObject({
+        content: { "application/json": { schema: expect.any(Object) } },
+      });
+    },
+  );
+
+  it("keeps monetary fields as canonical decimal strings", () => {
+    const schemas = (
+      contract.components as unknown as { schemas: Record<string, unknown> }
+    ).schemas;
+    expect(schemas.Charge).toMatchObject({
+      properties: {
+        effectiveAmount: { type: "string" },
+        originalAmount: { type: "string" },
+      },
+    });
+  });
 });
 
 function listOperations(openapi: OpenApiContract): string[] {

@@ -10,7 +10,7 @@
 | Documento      | Implementation Plan                                                                                       |
 | Ruta           | `docs/specs/029-admin-web-app-basic/plan.md`                                                              |
 | Versión        | 0.1                                                                                                       |
-| Estado         | needs-review                                                                                              |
+| Estado         | accepted                                                                                                  |
 | Fecha          | 2026-08-03                                                                                                |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC |
 | Naturaleza     | Tenant-scoped / Role-aware / API-first / Non-public / Admin-facing                                        |
@@ -21,11 +21,11 @@
 
 La secuencia ejecutable de Sprint 4 es la definida por
 `docs/implementation/sprint-4-admin-web-app-mvp.md`. GAP-S4-001 (discovery
-autenticado) está cerrado; debe cerrarse GAP-S4-002 (OpenAPI tipado/cliente generado).
+autenticado) y GAP-S4-002 (OpenAPI tipado/cliente generado) están cerrados.
 Después siguen foundation, auth/tenant/permisos, shell, residents/properties, finanzas
 allowlisted y hardening. Dashboard, Users/Roles, importación y documentos generales
 no forman parte del Sprint. Las fases y PRs preliminares posteriores de este documento
-son referencia post-MVP. Estado: `needs-review` hasta cerrar GAP-S4-002.
+son referencia post-MVP. Estado: `accepted` bajo esta normalización.
 
 ---
 
@@ -440,7 +440,7 @@ Reglas:
 Ejemplo conceptual:
 
 ```typescript id="awa-plan-query-key-example"
-["tenant", currentTenantKey, "payments", filters]
+["tenant", currentTenantKey, "payments", filters];
 ```
 
 ---

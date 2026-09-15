@@ -10,7 +10,7 @@
 | Documento      | Test Plan                                                                                                 |
 | Ruta           | `docs/specs/029-admin-web-app-basic/test-plan.md`                                                         |
 | Versión        | 0.1                                                                                                       |
-| Estado         | needs-review                                                                                              |
+| Estado         | accepted                                                                                                  |
 | Fecha          | 2026-08-03                                                                                                |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC |
 | Naturaleza     | Tenant-scoped / Permission-aware / API-first / Non-public / Admin-facing                                  |
@@ -20,11 +20,11 @@
 ## Normalización de readiness de Sprint 4
 
 El plan ejecutable se limita a las fases y allowlist del runbook de Sprint 4. El gate
-de GAP-S4-001 pasó; antes de pruebas UI debe pasar GAP-S4-002. No se prueban como alcance
+de GAP-S4-001 y el de GAP-S4-002 pasaron. No se prueban como alcance
 Sprint 4 dashboard, Users/Roles, data import ni documentos generales; sí auth PKCE,
 tenant/cache isolation, permisos Core, residents/properties, finanzas allowlisted y
 receipts/comprobantes. Los casos preliminares posteriores fuera de esa frontera son
-post-MVP. Este artefacto permanece `needs-review`.
+post-MVP. Este artefacto queda `accepted` bajo esta normalización.
 
 ---
 

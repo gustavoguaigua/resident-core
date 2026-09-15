@@ -10,7 +10,7 @@
 | Documento             | Functional Specification                                                                                  |
 | Ruta                  | `docs/specs/029-admin-web-app-basic/spec.md`                                                              |
 | Versión               | 0.1                                                                                                       |
-| Estado                | needs-review                                                                                              |
+| Estado                | accepted                                                                                                  |
 | Fecha                 | 2026-08-03                                                                                                |
 | Fase                  | FASE 2 — RESIDENT Core                                                                                    |
 | Arquitectura objetivo | Frontend administrativo desacoplado del Core API                                                          |
@@ -29,7 +29,7 @@ Dashboard/KPIs, Users/Roles, importación, auditoría/reportes generales y docum
 generales quedan fuera; sólo se incluyen receipts/comprobantes de Payments. Las
 capacidades más amplias descritas abajo son visión post-MVP y no autorizan Sprint 4.
 El rol canónico financiero es `Treasurer`, no `FinancialManager`. Este artefacto
-permanece `needs-review`: GAP-S4-001 está cerrado y GAP-S4-002 sigue abierto.
+queda `accepted`: GAP-S4-001 y GAP-S4-002 están cerrados, sin ampliar esta frontera.
 
 ---
 

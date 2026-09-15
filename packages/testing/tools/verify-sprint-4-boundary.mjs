@@ -25,6 +25,10 @@ const paths = {
   client:
     process.env.SPRINT4_CLIENT_STATUS_PATH ??
     resolve(repositoryRoot, "packages/openapi-client/src/index.ts"),
+  generatedClient: resolve(
+    repositoryRoot,
+    "packages/openapi-client/src/generated/resident-core.ts",
+  ),
 };
 
 const specDocuments = [
@@ -64,13 +68,13 @@ if (failures.length === 0) {
 
   if (manifest.schemaVersion !== 1)
     failures.push("Sprint 4 manifest schemaVersion must be 1.");
-  if (manifest.readinessDecision !== "NO_GO")
+  if (manifest.readinessDecision !== "GO")
     failures.push(
-      "Sprint 4 readiness must remain NO_GO while blocking gaps are open.",
+      "Sprint 4 readiness must be GO after both blocking gaps close.",
     );
-  if (![0, 1].includes(manifest.currentPhase))
+  if (manifest.currentPhase !== 2)
     failures.push(
-      "Sprint 4 NO_GO with GAP-S4-002 OPEN cannot advance beyond phase 1.",
+      "Sprint 4 must remain at phase 2 until frontend foundation begins.",
     );
   if (manifest.phases?.length !== expectedPhases.length) {
     failures.push("Sprint 4 must define exactly phases 0 through 8.");
@@ -89,8 +93,8 @@ if (failures.length === 0) {
     }
   }
 
-  if (!/\| Decision\s+\| `NO_GO`\s+\|/u.test(readiness))
-    failures.push("Readiness must record Decision: `NO_GO`.");
+  if (!/\| Decision\s+\| `GO`\s+\|/u.test(readiness))
+    failures.push("Readiness must record Decision: `GO`.");
   if (!/GAP-S4-001/u.test(readiness) || !/GAP-S4-002/u.test(readiness))
     failures.push("Readiness must identify both blocking Sprint 4 gaps.");
   for (const phrase of [
@@ -126,8 +130,7 @@ if (failures.length === 0) {
     ? read(gapPaths.discovery)
     : "";
   const clientGap = existsSync(gapPaths.client) ? read(gapPaths.client) : "";
-  const expectedDiscoveryStatus =
-    manifest.currentPhase === 0 ? "OPEN" : "CLOSED";
+  const expectedDiscoveryStatus = "CLOSED";
   if (
     !new RegExp(
       "\\| Estado\\s+\\| `" + expectedDiscoveryStatus + "`\\s+\\|",
@@ -139,12 +142,12 @@ if (failures.length === 0) {
       `${gapPaths.discovery} must be ${expectedDiscoveryStatus} with Alta severity.`,
     );
   if (
-    !/\| Estado\s+\| `OPEN`\s+\|/u.test(clientGap) ||
+    !/\| Estado\s+\| `CLOSED`\s+\|/u.test(clientGap) ||
     !/\| Severidad\s+\| Alta\s+\|/u.test(clientGap)
   )
-    failures.push(`${gapPaths.client} must remain OPEN with Alta severity.`);
+    failures.push(`${gapPaths.client} must be CLOSED with Alta severity.`);
 
-  let needsReviewCount = 0;
+  let acceptedCount = 0;
   for (const document of specDocuments) {
     const path = resolve(
       repositoryRoot,
@@ -156,13 +159,13 @@ if (failures.length === 0) {
       continue;
     }
     const contents = read(path);
-    if (/\| Estado\s+\| needs-review/u.test(contents)) needsReviewCount += 1;
+    if (/\| Estado\s+\| accepted/u.test(contents)) acceptedCount += 1;
     if (!contents.includes("Normalización de readiness de Sprint 4"))
       failures.push(`${document} lacks the Sprint 4 readiness normalization.`);
   }
-  if (needsReviewCount !== 7)
+  if (acceptedCount !== 7)
     failures.push(
-      `All seven Spec 029 documents must remain needs-review; found ${needsReviewCount}.`,
+      `All seven Spec 029 documents must be accepted; found ${acceptedCount}.`,
     );
 
   const discoveryPaths = [
@@ -173,21 +176,30 @@ if (failures.length === 0) {
   const presentDiscoveryPaths = discoveryPaths.filter((path) =>
     Object.hasOwn(openapi.paths ?? {}, path),
   );
-  if (manifest.currentPhase === 0 && presentDiscoveryPaths.length > 0)
-    failures.push(
-      "GAP-S4-001 cannot remain OPEN after discovery paths appear.",
-    );
-  if (
-    manifest.currentPhase === 1 &&
-    presentDiscoveryPaths.length !== discoveryPaths.length
-  )
+  if (presentDiscoveryPaths.length !== discoveryPaths.length)
     failures.push(
       "GAP-S4-001 CLOSED requires all authenticated discovery paths.",
     );
-  if (!client.includes('OPENAPI_CLIENT_STATUS = "contract-only"'))
-    failures.push(
-      "GAP-S4-002 assumes the client remains contract-only at readiness.",
-    );
+  if (!client.includes('OPENAPI_CLIENT_STATUS = "generated"'))
+    failures.push("GAP-S4-002 CLOSED requires the generated client status.");
+
+  for (const [path, method] of [
+    ["/api/v1/me", "get"],
+    ["/api/v1/tenant/persons", "get"],
+    ["/api/v1/tenant/charges/{chargeId}", "get"],
+    ["/api/v1/tenant/payments", "get"],
+    ["/api/v1/tenant/property-units/{propertyUnitId}/balance", "get"],
+    ["/api/v1/tenant/account-statements/{statementId}", "get"],
+  ]) {
+    const operation = openapi.paths?.[path]?.[method];
+    const success = Object.entries(operation?.responses ?? {}).find(
+      ([status]) => /^2\d\d$/u.test(status),
+    )?.[1];
+    if (!success?.content?.["application/json"]?.schema)
+      failures.push(
+        `Sprint 4 MVP operation ${method.toUpperCase()} ${path} lacks a success schema.`,
+      );
+  }
 }
 
 if (failures.length > 0) {
@@ -195,6 +207,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Sprint 4 boundary is valid at phase 1 (NO_GO); Spec 029 needs-review: 7; blocking gaps: 1.\n",
+    "Sprint 4 boundary is valid at phase 2 (GO); Spec 029 accepted: 7; blocking gaps: 0.\n",
   );
 }

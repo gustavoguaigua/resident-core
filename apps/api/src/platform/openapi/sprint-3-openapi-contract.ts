@@ -58,6 +58,12 @@ export function applySprint3OpenApiContract(document: OpenAPIObject): void {
 }
 
 function isSprint3Path(path: string): boolean {
+  if (
+    path === "/api/v1/me" ||
+    path === "/api/v1/me/tenants" ||
+    path === "/api/v1/me/permissions"
+  )
+    return false;
   if (path.startsWith("/api/v1/me/")) return true;
   if (!path.startsWith("/api/v1/tenant/")) return false;
   return ![

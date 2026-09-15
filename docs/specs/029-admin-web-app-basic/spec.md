@@ -29,7 +29,7 @@ Dashboard/KPIs, Users/Roles, importación, auditoría/reportes generales y docum
 generales quedan fuera; sólo se incluyen receipts/comprobantes de Payments. Las
 capacidades más amplias descritas abajo son visión post-MVP y no autorizan Sprint 4.
 El rol canónico financiero es `Treasurer`, no `FinancialManager`. Este artefacto
-permanece `needs-review` mientras GAP-S4-001 y GAP-S4-002 estén abiertos.
+permanece `needs-review`: GAP-S4-001 está cerrado y GAP-S4-002 sigue abierto.
 
 ---
 

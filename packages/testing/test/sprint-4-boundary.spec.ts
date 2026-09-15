@@ -25,12 +25,12 @@ afterEach(() => {
 });
 
 describe("Sprint 4 readiness boundary", () => {
-  it("accepts phase 0 NO_GO with two blocking gaps", () => {
+  it("accepts phase 1 NO_GO with only the typed-client gap open", () => {
     const result = runVerifier();
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain(
-      "Sprint 4 boundary is valid at phase 0 (NO_GO); Spec 029 needs-review: 7; blocking gaps: 2.",
+      "Sprint 4 boundary is valid at phase 1 (NO_GO); Spec 029 needs-review: 7; blocking gaps: 1.",
     );
   });
 
@@ -46,14 +46,14 @@ describe("Sprint 4 readiness boundary", () => {
         "utf8",
       ),
     ) as { currentPhase: number };
-    manifest.currentPhase = 1;
+    manifest.currentPhase = 2;
     writeFileSync(manifestPath, JSON.stringify(manifest), "utf8");
 
     const result = runVerifier({ SPRINT4_MANIFEST_PATH: manifestPath });
 
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain(
-      "Sprint 4 NO_GO requires currentPhase = 0.",
+      "Sprint 4 NO_GO with GAP-S4-002 OPEN cannot advance beyond phase 1.",
     );
   });
 });

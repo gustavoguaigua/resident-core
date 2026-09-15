@@ -306,10 +306,10 @@ estados de cuenta UI
 receipts/comprobantes UI
 ```
 
-Normalización de readiness: Sprint 4 está `NO_GO`, `currentPhase = 0`. “documentos UI”
+Normalización de readiness: Sprint 4 está `NO_GO`, `currentPhase = 1`. “documentos UI”
 se limita a receipts/comprobantes de Payments; dashboard, Users/Roles e importación
-quedan fuera. Los siete documentos de Spec 029 permanecen `needs-review` hasta cerrar
-GAP-S4-001 y GAP-S4-002.
+quedan fuera. Los siete documentos de Spec 029 permanecen `needs-review`: GAP-S4-001
+está cerrado y GAP-S4-002 sigue abierto.
 
 ---
 

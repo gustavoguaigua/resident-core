@@ -7,13 +7,13 @@
 | Sprint                | 4 — Admin Web App MVP                         |
 | Baseline              | `952474c` — Sprint 3 cerrado                  |
 | Decisión de readiness | `NO_GO`                                       |
-| `currentPhase`        | `0`                                           |
+| `currentPhase`        | `1`                                           |
 | Spec principal        | `docs/specs/029-admin-web-app-basic/`         |
 | Manifest              | `packages/testing/config/sprint-4-gates.json` |
 
 Este runbook recorta la visión amplia de Spec 029 al incremento autorizado por el
-roadmap. Mientras GAP-S4-001 y GAP-S4-002 estén abiertos, ninguna fase posterior a
-readiness puede iniciarse y los siete documentos permanecen `needs-review`.
+roadmap. GAP-S4-001 está cerrado. Mientras GAP-S4-002 permanezca abierto no puede
+iniciarse el frontend y los siete documentos permanecen `needs-review`.
 
 ## 2. Objetivo
 
@@ -26,8 +26,8 @@ no sustituye la autorización del backend.
 
 - foundation de `apps/admin-web` sobre el scaffold existente;
 - login/logout/callback con el cliente público `resident-admin-web` y PKCE S256;
-- perfil administrativo, tenant selector y permisos efectivos después de cerrar
-  GAP-S4-001;
+- perfil administrativo, tenants accesibles y permisos efectivos mediante el
+  discovery autenticado cerrado por GAP-S4-001;
 - shell, navegación, loading/error/empty/forbidden y cache aislada por tenant;
 - residents/properties: personas, entidades legales, unidades, ownerships,
   residencias y leases;
@@ -69,11 +69,12 @@ Satisfechas:
 - acceso seguro a receipts disponible;
 - scaffold Next.js/React/TypeScript strict existente.
 
-Pendientes y bloqueantes:
+Pendiente y bloqueante:
 
-- GAP-S4-001: perfil administrativo, memberships/tenants accesibles y permisos Core
-  efectivos;
 - GAP-S4-002: success schemas completos y cliente TypeScript determinista.
+
+Satisfecho en Fase 1: GAP-S4-001 con perfil aplicativo mínimo, tenants activos y
+permisos Core efectivos.
 
 ## 6. Auth, tenant y permisos
 
@@ -158,17 +159,18 @@ Spec 029; no existe aceptación condicionada.
 
 ## 10. Gates y boundary
 
-El manifest contiene los nombres de gates requeridos por fase. Durante readiness sólo
-son ejecutables:
+El manifest contiene los nombres de gates requeridos por fase. Hasta Fase 1 son
+ejecutables:
 
 - `node packages/testing/tools/verify-sprint-4-boundary.mjs`;
 - `pnpm --filter @resident/testing exec vitest run test/sprint-4-boundary.spec.ts`;
 - `pnpm sprint3:boundary`;
+- `pnpm test:admin-discovery`;
 - Prettier focalizado y `git diff --check`.
 
-Los comandos de Fases 1–8 son contratos de entrega futuros y no se incorporan a
-`package.json` en readiness. El boundary impide avanzar `currentPhase`, aceptar Spec
-029 o declarar `GO` mientras los dos GAPs permanezcan abiertos.
+Los comandos de Fases 2–8 son contratos de entrega futuros. El boundary impide
+avanzar más allá de `currentPhase = 1`, aceptar Spec 029 o declarar `GO` mientras
+GAP-S4-002 permanezca abierto.
 
 ## 11. Criterios GO, cierre y parada
 

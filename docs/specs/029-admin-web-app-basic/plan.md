@@ -20,12 +20,12 @@
 ## Normalización de readiness de Sprint 4
 
 La secuencia ejecutable de Sprint 4 es la definida por
-`docs/implementation/sprint-4-admin-web-app-mvp.md`. Primero deben cerrarse
-GAP-S4-001 (discovery autenticado) y GAP-S4-002 (OpenAPI tipado/cliente generado);
-después siguen foundation, auth/tenant/permisos, shell, residents/properties, finanzas
+`docs/implementation/sprint-4-admin-web-app-mvp.md`. GAP-S4-001 (discovery
+autenticado) está cerrado; debe cerrarse GAP-S4-002 (OpenAPI tipado/cliente generado).
+Después siguen foundation, auth/tenant/permisos, shell, residents/properties, finanzas
 allowlisted y hardening. Dashboard, Users/Roles, importación y documentos generales
 no forman parte del Sprint. Las fases y PRs preliminares posteriores de este documento
-son referencia post-MVP. Estado: `needs-review` hasta cerrar ambos gaps.
+son referencia post-MVP. Estado: `needs-review` hasta cerrar GAP-S4-002.
 
 ---
 

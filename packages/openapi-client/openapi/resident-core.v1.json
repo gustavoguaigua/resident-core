@@ -61,6 +61,51 @@
         ],
         "type": "object"
       },
+      "AccessibleTenantDataDto": {
+        "properties": {
+          "membershipStatus": {
+            "enum": [
+              "active"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenantId",
+          "slug",
+          "name",
+          "membershipStatus"
+        ],
+        "type": "object"
+      },
+      "AccessibleTenantsResponseDto": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/AccessibleTenantDataDto"
+            },
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/DiscoveryMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
       "ApiErrorDto": {
         "properties": {
           "code": {
@@ -363,6 +408,56 @@
         ],
         "type": "object"
       },
+      "CurrentUserDataDto": {
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "active"
+            ],
+            "type": "string"
+          },
+          "userProfileId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "userProfileId",
+          "displayName",
+          "status"
+        ],
+        "type": "object"
+      },
+      "CurrentUserResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CurrentUserDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/DiscoveryMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "DiscoveryMetaDto": {
+        "properties": {
+          "traceId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "traceId"
+        ],
+        "type": "object"
+      },
       "EffectiveSettingDataDto": {
         "properties": {
           "category": {
@@ -458,6 +553,40 @@
           },
           "meta": {
             "$ref": "#/components/schemas/TraceMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "type": "object"
+      },
+      "EffectiveTenantPermissionsDataDto": {
+        "properties": {
+          "permissions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tenantId": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenantId",
+          "permissions"
+        ],
+        "type": "object"
+      },
+      "EffectiveTenantPermissionsResponseDto": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EffectiveTenantPermissionsDataDto"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/DiscoveryMetaDto"
           }
         },
         "required": [
@@ -1564,6 +1693,60 @@
         "x-tenant-context-required": false
       }
     },
+    "/api/v1/me": {
+      "get": {
+        "operationId": "getCurrentUserProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the authenticated Core user profile",
+        "tags": [
+          "Authenticated discovery"
+        ],
+        "x-auth-required": true,
+        "x-idempotency-required": false,
+        "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
+      }
+    },
     "/api/v1/me/account-statements": {
       "get": {
         "operationId": "OwnAccountStatementsController_list",
@@ -2522,6 +2705,91 @@
         "x-tenant-scope": "tenant"
       }
     },
+    "/api/v1/me/permissions": {
+      "get": {
+        "operationId": "getCurrentUserEffectivePermissions",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Tenant-Id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EffectiveTenantPermissionsResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get effective Core permissions for the active tenant",
+        "tags": [
+          "Authenticated discovery"
+        ],
+        "x-auth-required": true,
+        "x-idempotency-required": false,
+        "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-response-envelope": true,
+        "x-tenant-context-required": true,
+        "x-tenant-scope": "tenant"
+      }
+    },
     "/api/v1/me/person": {
       "get": {
         "operationId": "OwnResidentsController_person",
@@ -3207,6 +3475,60 @@
         "x-response-envelope": true,
         "x-tenant-context-required": true,
         "x-tenant-scope": "tenant"
+      }
+    },
+    "/api/v1/me/tenants": {
+      "get": {
+        "operationId": "listCurrentUserTenants",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessibleTenantsResponseDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorEnvelopeDto"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List active tenants accessible to the authenticated user",
+        "tags": [
+          "Authenticated discovery"
+        ],
+        "x-auth-required": true,
+        "x-idempotency-required": false,
+        "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-response-envelope": true,
+        "x-tenant-context-required": false
       }
     },
     "/api/v1/platform/setting-definitions": {

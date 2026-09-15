@@ -38,6 +38,11 @@ const contract = JSON.parse(
 ) as OpenApiContract;
 
 const sprint3Operations = readSprint3Operations();
+const sprint4DiscoveryOperations = [
+  "GET /api/v1/me",
+  "GET /api/v1/me/permissions",
+  "GET /api/v1/me/tenants",
+];
 const sprint2Operations = [
   "GET /api/v1/health",
   "GET /api/v1/health/details",
@@ -66,7 +71,11 @@ describe("canonical OpenAPI contract", () => {
     expect(contract.openapi).toMatch(/^3\./u);
     expect(contract.components.securitySchemes).toHaveProperty("bearerAuth");
     expect(listOperations(contract)).toEqual(
-      [...sprint2Operations, ...sprint3Operations].sort(),
+      [
+        ...sprint2Operations,
+        ...sprint3Operations,
+        ...sprint4DiscoveryOperations,
+      ].sort(),
     );
   });
 
@@ -78,7 +87,7 @@ describe("canonical OpenAPI contract", () => {
       ),
     );
 
-    expect(tenantOperations).toHaveLength(111);
+    expect(tenantOperations).toHaveLength(112);
     for (const operation of tenantOperations) {
       expect(operation).toMatchObject({
         security: [{ bearerAuth: [] }],

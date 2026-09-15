@@ -13,7 +13,7 @@
 | Decision                  | `NO_GO`                                              |
 | Plan propuesto            | `docs/implementation/sprint-4-admin-web-app-mvp.md`  |
 | Manifest                  | `packages/testing/config/sprint-4-gates.json`        |
-| `currentPhase`            | `0`                                                  |
+| `currentPhase`            | `1`                                                  |
 
 ## 2. Resultado
 
@@ -22,9 +22,8 @@ iniciar implementación frontend segura. Faltan el descubrimiento autenticado qu
 conecta la sesión con tenants/memberships/permisos Core y un contrato OpenAPI con
 schemas de éxito capaz de producir un cliente TypeScript determinista.
 
-La decisión es `NO_GO`, no un rechazo del Sprint: fija dos brechas `HIGH`, su orden de
-cierre y una frontera verificable. Los siete artefactos de Spec 029 permanecen
-`needs-review` y `currentPhase = 0`.
+La decisión permanece `NO_GO`: GAP-S4-001 está cerrado y GAP-S4-002 sigue `HIGH/OPEN`.
+Los siete artefactos de Spec 029 permanecen `needs-review` y `currentPhase = 1`.
 
 ## 3. Evidencia
 
@@ -34,7 +33,7 @@ cierre y una frontera verificable. Los siete artefactos de Spec 029 permanecen
 | Admin Web      | Scaffold de Sprint 0; sin auth, tenant selector, cliente ni módulos funcionales   |
 | Keycloak       | Cliente público `resident-admin-web`, Authorization Code + PKCE S256              |
 | Tenant/authz   | Core valida bearer, identidad, tenant, membership y permiso exacto                |
-| Descubrimiento | No existen `/api/v1/me`, tenants accesibles ni permisos efectivos administrativos |
+| Descubrimiento | `/api/v1/me`, `/api/v1/me/tenants` y `/api/v1/me/permissions` integrados y probados |
 | OpenAPI        | Superficie runtime integrada; success responses insuficientemente tipadas         |
 | Cliente        | `packages/openapi-client` permanece `contract-only`                               |
 | Documentos     | No hay API SDS general; receipts seguros sí están disponibles                     |
@@ -76,11 +75,11 @@ mutaciones financieras que Core expone. La allowlist detallada está en el runbo
 | Campo     | Valor                             |
 | --------- | --------------------------------- |
 | Severidad | Alta                              |
-| Estado    | `OPEN`                            |
-| Bloquea   | Fase 1 y toda sesión tenant-aware |
+| Estado    | `CLOSED`                          |
+| Bloquea   | Nada; Fase 1 completada           |
 
-Debe definir e implementar perfil administrativo, tenants/memberships accesibles y
-permisos Core efectivos con aislamiento tenant y DTOs OpenAPI.
+Implementa perfil aplicativo mínimo, tenants/memberships activos y permisos Core
+efectivos con aislamiento tenant, DTOs OpenAPI y gate reproducible.
 
 ### GAP-S4-002 — OpenAPI tipado y cliente TypeScript
 
@@ -93,15 +92,15 @@ permisos Core efectivos con aislamiento tenant y DTOs OpenAPI.
 Debe completar success schemas, generación determinista, drift gate y cliente
 type-safe. Se cierra después de GAP-S4-001 para incluir su superficie definitiva.
 
-No se detectaron gaps críticos ni medios. Existen dos gaps altos abiertos, por lo que
-la readiness no puede declarar `GO`.
+No se detectaron gaps críticos ni medios. Existe un gap alto abierto, por lo que la
+readiness no puede declarar `GO`.
 
 ## 7. Normalización de Spec 029
 
 Los siete documentos reciben una sección normativa de readiness. Su visión amplia se
 conserva como referencia post-MVP, pero no autoriza endpoints, pantallas, roles,
 permisos o extensiones fuera del runbook. Todos permanecen `needs-review` hasta cerrar
-ambos GAPs; no se permite aceptación condicionada.
+GAP-S4-002; no se permite aceptación condicionada.
 
 ## 8. Secuencia y frontera
 
@@ -109,10 +108,9 @@ Las Fases 0–8 son: readiness; discovery contract; typed client contract; front
 foundation; auth/tenant/permissions; API client/layout; residents/properties UI;
 finance UI; hardening/closure.
 
-El manifest inicia en `readinessDecision = NO_GO` y `currentPhase = 0`. Los nombres de
-gates futuros quedan declarados sin crear scripts ni funcionalidad. El verificador
-comprueba manifest, gaps, estado de Spec 029, ausencia de discovery actual y estado
-`contract-only` del cliente.
+El manifest permanece en `readinessDecision = NO_GO` y avanza a `currentPhase = 1`.
+El verificador comprueba manifest, gaps, estado de Spec 029, presencia exacta del
+discovery autenticado y estado `contract-only` del cliente.
 
 ## 9. Criterios para reevaluar
 

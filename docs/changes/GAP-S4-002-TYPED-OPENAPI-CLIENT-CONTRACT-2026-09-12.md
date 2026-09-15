@@ -68,5 +68,5 @@ El GAP puede pasar a `CLOSED` sólo cuando el mismo incremento incluya:
 ## 6. Frontera
 
 Este documento no modifica el OpenAPI, generador, cliente, dependencias ni Admin Web.
-Sprint 4 permanece `NO_GO` y `currentPhase = 0`; el trabajo de esta brecha debe ocurrir
+Sprint 4 permanece `NO_GO` y `currentPhase = 1`; el trabajo de esta brecha debe ocurrir
 después de cerrar GAP-S4-001 y antes de la foundation frontend.

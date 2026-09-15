@@ -6,32 +6,29 @@
 | --------- | ------------------------------------------------- |
 | Gap       | `GAP-S4-001`                                      |
 | Severidad | Alta                                              |
-| Estado    | `OPEN`                                            |
+| Estado    | `CLOSED`                                          |
 | Fecha     | 2026-09-12                                        |
 | Sprint    | 4 — Admin Web App MVP                             |
 | Bloquea   | Fase 1 y toda implementación frontend autenticada |
 
-## 2. Problema verificable
+## 2. Problema resuelto
 
-Admin Web necesita resolver, a partir de una identidad autenticada, el perfil
-administrativo actual, las memberships/tenants accesibles y los permisos Core
-efectivos del tenant seleccionado. El OpenAPI integrado no expone actualmente las
-superficies previstas por Spec 029:
+Admin Web necesitaba resolver, desde la identidad autenticada, el perfil aplicativo,
+los tenants accesibles y los permisos Core efectivos del tenant seleccionado. El
+incremento incorpora exactamente:
 
 - `GET /api/v1/me`;
 - `GET /api/v1/me/tenants`;
-- `GET /api/v1/me/permissions` o una proyección equivalente inequívoca;
-- permisos efectivos para una membership/tenant seleccionable.
+- `GET /api/v1/me/permissions`.
 
 `GET /api/v1/me/person` es una proyección tenant-scoped de persona y no sustituye el
 perfil administrativo ni el descubrimiento de memberships. Los claims de Keycloak no
 pueden suplir estas respuestas porque Core es la autoridad de identidad activa,
 membership y permisos.
 
-## 3. Contrato que debe cerrarse
+## 3. Contrato cerrado
 
-El cierre debe fijar una allowlist mínima, versionada y documentada en OpenAPI que
-permita:
+La allowlist mínima, versionada y documentada en OpenAPI permite:
 
 1. resolver el `subject` autenticado a un `UserProfile` activo sin exponer datos
    innecesarios;
@@ -59,19 +56,26 @@ Keycloak, tenantId editable en formularios ni autorización definitiva en fronte
 - Las respuestas deben minimizar PII y no exponer secretos, tokens ni detalles de
   autorización interna.
 
-## 5. Criterios de cierre
+## 5. Evidencia de cierre
 
-El GAP puede pasar a `CLOSED` sólo cuando el mismo incremento incluya:
-
-- decisión contractual inequívoca y allowlist exacta;
-- implementación runtime tenant-safe;
-- DTOs de éxito y errores en OpenAPI;
-- autorización Core y casos negativos de identidad, tenant y membership;
-- pruebas de aislamiento cross-tenant, claims maliciosos y PlatformAdmin;
-- gate reproducible desde estado limpio;
-- actualización del manifest de Sprint 4 a Fase 1 únicamente si todo pasa.
+- `/api/v1/me` devuelve sólo `userProfileId`, `displayName` y estado activo; no exige
+  `X-Tenant-Id` y el header no altera la respuesta.
+- `/api/v1/me/tenants` devuelve exclusivamente memberships y tenants activos,
+  ordenados de forma determinista; no exige `X-Tenant-Id`.
+- `/api/v1/me/permissions` exige `X-Tenant-Id` validado y devuelve permisos Core
+  efectivos, deduplicados y ordenados, sin derivarlos de claims Keycloak.
+- Los tres endpoints son GET autenticados, no usan ledger de idempotencia y no
+  generan Audit de éxito.
+- Respuestas y errores canónicos están publicados en OpenAPI; no exponen subject,
+  email, roles, tokens ni detalles internos.
+- El gate `test:admin-discovery` cubre migraciones desde cero, casos válidos,
+  identidad/membership/tenant inactivos, aislamiento cross-tenant, claims maliciosos,
+  PlatformAdmin sin acceso implícito y ausencia de Audit en lecturas exitosas.
+- `currentPhase` avanza únicamente a `1`; la readiness permanece `NO_GO` por
+  GAP-S4-002.
 
 ## 6. Frontera
 
-Este documento no implementa endpoints, Prisma, migraciones, Keycloak, OpenAPI ni
-frontend. Sprint 4 permanece `NO_GO` y `currentPhase = 0` hasta integrar el cierre.
+El cierre no modifica Prisma, migraciones, Keycloak ni frontend. La selección futura
+se cacheará por tenant en el cliente, pero el servidor no persiste un tenant activo.
+Sprint 4 permanece `NO_GO` y `currentPhase = 1` hasta cerrar GAP-S4-002.

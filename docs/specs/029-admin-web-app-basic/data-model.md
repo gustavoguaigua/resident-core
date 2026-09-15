@@ -20,8 +20,8 @@
 ## Normalización de readiness de Sprint 4
 
 Sprint 4 no crea persistencia frontend ni modelos de dominio paralelos. El estado de
-sesión, tenant, permisos, cache y formularios se deriva del cliente generado después
-de cerrar GAP-S4-001 y GAP-S4-002. Tokens permanecen en memoria; cache y query keys se
+sesión, tenant, permisos, cache y formularios se deriva del discovery ya cerrado y del
+cliente generado después de cerrar GAP-S4-002. Tokens permanecen en memoria; cache y query keys se
 particionan por tenant y se invalidan al cambiarlo. View models de dashboard,
 Users/Roles, importación o documentos generales descritos más adelante quedan fuera
 del Sprint; receipts/comprobantes usan únicamente proyecciones de Payments. El estado

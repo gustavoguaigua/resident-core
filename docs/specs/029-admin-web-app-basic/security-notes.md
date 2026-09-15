@@ -25,7 +25,7 @@ Claims Keycloak no conceden permisos; el selector sólo aporta `X-Tenant-Id`, qu
 revalida junto con identidad, membership y permiso exacto. No hay BFF, sesión
 WordPress, dashboard, Users/Roles, importación ni documentos generales. Sólo se
 permite acceso seguro a receipts/comprobantes. Este documento permanece
-`needs-review` hasta cerrar GAP-S4-001 y GAP-S4-002.
+`needs-review`: GAP-S4-001 está cerrado y GAP-S4-002 sigue abierto.
 
 ---
 

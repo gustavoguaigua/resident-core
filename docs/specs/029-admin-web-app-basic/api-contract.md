@@ -21,10 +21,10 @@
 
 ## Normalización de readiness de Sprint 4
 
-El frontend sólo podrá consumir la allowlist del runbook de Sprint 4. Los endpoints
-preliminares de discovery (`/api/v1/me`, tenants y permisos efectivos) no existen y
-quedan bloqueados por GAP-S4-001; los endpoints dashboard no se implementan en este
-Sprint. GAP-S4-002 debe completar success schemas y el cliente TypeScript antes del
+El frontend sólo podrá consumir la allowlist del runbook de Sprint 4. El discovery
+autenticado (`/api/v1/me`, tenants y permisos efectivos) está integrado por
+GAP-S4-001; los endpoints dashboard no se implementan en este Sprint. GAP-S4-002 debe
+completar los demás success schemas y el cliente TypeScript antes del
 consumo funcional. La metadata vigente es `x-auth-required`, `x-public`,
 `x-platform-only`, `x-tenant-scope: tenant`, `x-tenant-context-required`,
 `x-own-resource`, `x-required-permission` y `x-idempotency-required`. Este documento
@@ -255,14 +255,14 @@ Prohibido:
 
 ---
 
-## 8. Endpoints de contexto inicial — bloqueados por GAP-S4-001
+## 8. Endpoints de contexto inicial — contrato cerrado por GAP-S4-001
 
-Los contratos de esta sección son propuestas no implementadas. No pueden consumirse
-ni considerarse parte del OpenAPI hasta que GAP-S4-001 cierre su allowlist y DTOs.
+Los contratos de esta sección forman parte del OpenAPI runtime. Permanecen pendientes
+de consumo frontend hasta cerrar GAP-S4-002.
 
 ### 8.1. Obtener perfil administrativo actual
 
-Endpoint esperado del Core:
+Endpoint Core:
 
 ```http id="awa-api-me"
 GET /api/v1/me
@@ -280,8 +280,6 @@ Response:
 {
   "data": {
     "userProfileId": "uuid",
-    "keycloakSubjectId": "keycloak-sub",
-    "email": "admin@example.com",
     "displayName": "Administrador",
     "status": "active"
   },
@@ -302,7 +300,7 @@ Reglas:
 
 ### 8.2. Obtener tenants disponibles del usuario
 
-Endpoint esperado:
+Endpoint Core:
 
 ```http id="awa-api-my-tenants"
 GET /api/v1/me/tenants
@@ -317,9 +315,7 @@ Response:
       "tenantId": "uuid",
       "slug": "san-jose-la-salle-2",
       "name": "San José La Salle 2",
-      "membershipStatus": "active",
-      "roles": ["tenantAdmin"],
-      "permissions": ["tenantDashboards.read", "tenantImports.read"]
+      "membershipStatus": "active"
     }
   ],
   "meta": {
@@ -340,10 +336,10 @@ Reglas:
 
 ### 8.3. Obtener permisos efectivos del tenant activo
 
-Endpoint esperado:
+Endpoint Core tenant-scoped; exige `X-Tenant-Id` validado:
 
 ```http id="awa-api-effective-permissions"
-GET /api/v1/me/tenants/{tenantSlug}/permissions
+GET /api/v1/me/permissions
 ```
 
 Response:
@@ -351,13 +347,11 @@ Response:
 ```json id="awa-api-effective-permissions-response"
 {
   "data": {
-    "tenantSlug": "san-jose-la-salle-2",
+    "tenantId": "uuid",
     "permissions": [
-      "tenantDashboards.read",
-      "tenantImports.read",
-      "tenantImports.create"
-    ],
-    "permissionHash": "hash"
+      "charges.read",
+      "payments.read"
+    ]
   },
   "meta": {
     "traceId": "trace-id"
@@ -370,7 +364,7 @@ Reglas:
 ```text id="awa-api-effective-permissions-rules"
 - La UI usa permisos para navegación y acciones visibles.
 - El backend sigue validando cada endpoint.
-- permissionHash puede usarse para cache keys.
+- La cache futura se particiona por `tenantId` y se invalida al cambiar de tenant.
 ```
 
 ---

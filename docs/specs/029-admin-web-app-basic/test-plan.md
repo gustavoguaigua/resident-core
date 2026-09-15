@@ -19,8 +19,8 @@
 
 ## Normalización de readiness de Sprint 4
 
-El plan ejecutable se limita a las fases y allowlist del runbook de Sprint 4. Antes de
-pruebas UI deben pasar los gates de GAP-S4-001 y GAP-S4-002. No se prueban como alcance
+El plan ejecutable se limita a las fases y allowlist del runbook de Sprint 4. El gate
+de GAP-S4-001 pasó; antes de pruebas UI debe pasar GAP-S4-002. No se prueban como alcance
 Sprint 4 dashboard, Users/Roles, data import ni documentos generales; sí auth PKCE,
 tenant/cache isolation, permisos Core, residents/properties, finanzas allowlisted y
 receipts/comprobantes. Los casos preliminares posteriores fuera de esa frontera son

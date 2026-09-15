@@ -389,6 +389,11 @@ const publishedOperationsAtSprint2Closure = new Set([
   "GET /api/v1/tenant/settings/{key}",
   "PATCH /api/v1/tenant/settings/{key}",
 ]);
+const approvedPostSprint3Operations = new Set([
+  "GET /api/v1/me",
+  "GET /api/v1/me/permissions",
+  "GET /api/v1/me/tenants",
+]);
 const sprint3Section = apiBoundary.match(
   /## 4\. Allowlist por fase(?<body>[\s\S]*?)## 5\./u,
 )?.groups?.body;
@@ -487,7 +492,9 @@ if (manifest.currentPhase <= 9) {
       (operation) => !actualOperations.includes(operation),
     );
     const unexpectedOperations = actualOperations.filter(
-      (operation) => !expectedOperations.has(operation),
+      (operation) =>
+        !expectedOperations.has(operation) &&
+        !approvedPostSprint3Operations.has(operation),
     );
     if (sprint3Operations.size !== 102) {
       failures.push(

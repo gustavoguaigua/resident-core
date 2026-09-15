@@ -68,8 +68,10 @@ if (failures.length === 0) {
     failures.push(
       "Sprint 4 readiness must remain NO_GO while blocking gaps are open.",
     );
-  if (manifest.currentPhase !== 0)
-    failures.push("Sprint 4 NO_GO requires currentPhase = 0.");
+  if (![0, 1].includes(manifest.currentPhase))
+    failures.push(
+      "Sprint 4 NO_GO with GAP-S4-002 OPEN cannot advance beyond phase 1.",
+    );
   if (manifest.phases?.length !== expectedPhases.length) {
     failures.push("Sprint 4 must define exactly phases 0 through 8.");
   } else {
@@ -105,28 +107,42 @@ if (failures.length === 0) {
       );
   }
 
-  const gapPaths = [
-    resolve(
+  const gapPaths = {
+    discovery: resolve(
       repositoryRoot,
       "docs/changes/GAP-S4-001-AUTHENTICATED-DISCOVERY-CONTRACT-2026-09-12.md",
     ),
-    resolve(
+    client: resolve(
       repositoryRoot,
       "docs/changes/GAP-S4-002-TYPED-OPENAPI-CLIENT-CONTRACT-2026-09-12.md",
     ),
-  ];
-  for (const gapPath of gapPaths) {
+  };
+  for (const gapPath of Object.values(gapPaths)) {
     if (!existsSync(gapPath)) {
       failures.push(`Missing blocking gap: ${gapPath}.`);
-      continue;
     }
-    const gap = read(gapPath);
-    if (
-      !/\| Estado\s+\| `OPEN`\s+\|/u.test(gap) ||
-      !/\| Severidad\s+\| Alta\s+\|/u.test(gap)
-    )
-      failures.push(`${gapPath} must remain OPEN with Alta severity.`);
   }
+  const discoveryGap = existsSync(gapPaths.discovery)
+    ? read(gapPaths.discovery)
+    : "";
+  const clientGap = existsSync(gapPaths.client) ? read(gapPaths.client) : "";
+  const expectedDiscoveryStatus =
+    manifest.currentPhase === 0 ? "OPEN" : "CLOSED";
+  if (
+    !new RegExp(
+      "\\| Estado\\s+\\| `" + expectedDiscoveryStatus + "`\\s+\\|",
+      "u",
+    ).test(discoveryGap) ||
+    !/\| Severidad\s+\| Alta\s+\|/u.test(discoveryGap)
+  )
+    failures.push(
+      `${gapPaths.discovery} must be ${expectedDiscoveryStatus} with Alta severity.`,
+    );
+  if (
+    !/\| Estado\s+\| `OPEN`\s+\|/u.test(clientGap) ||
+    !/\| Severidad\s+\| Alta\s+\|/u.test(clientGap)
+  )
+    failures.push(`${gapPaths.client} must remain OPEN with Alta severity.`);
 
   let needsReviewCount = 0;
   for (const document of specDocuments) {
@@ -149,15 +165,24 @@ if (failures.length === 0) {
       `All seven Spec 029 documents must remain needs-review; found ${needsReviewCount}.`,
     );
 
-  const missingDiscoveryPaths = [
+  const discoveryPaths = [
     "/api/v1/me",
     "/api/v1/me/tenants",
     "/api/v1/me/permissions",
-    "/api/v1/me/tenants/{tenantSlug}/permissions",
-  ].filter((path) => Object.hasOwn(openapi.paths ?? {}, path));
-  if (missingDiscoveryPaths.length > 0)
+  ];
+  const presentDiscoveryPaths = discoveryPaths.filter((path) =>
+    Object.hasOwn(openapi.paths ?? {}, path),
+  );
+  if (manifest.currentPhase === 0 && presentDiscoveryPaths.length > 0)
     failures.push(
-      `GAP-S4-001 cannot remain OPEN after discovery paths appear: ${missingDiscoveryPaths.join(", ")}.`,
+      "GAP-S4-001 cannot remain OPEN after discovery paths appear.",
+    );
+  if (
+    manifest.currentPhase === 1 &&
+    presentDiscoveryPaths.length !== discoveryPaths.length
+  )
+    failures.push(
+      "GAP-S4-001 CLOSED requires all authenticated discovery paths.",
     );
   if (!client.includes('OPENAPI_CLIENT_STATUS = "contract-only"'))
     failures.push(
@@ -170,6 +195,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   process.stdout.write(
-    "Sprint 4 boundary is valid at phase 0 (NO_GO); Spec 029 needs-review: 7; blocking gaps: 2.\n",
+    "Sprint 4 boundary is valid at phase 1 (NO_GO); Spec 029 needs-review: 7; blocking gaps: 1.\n",
   );
 }

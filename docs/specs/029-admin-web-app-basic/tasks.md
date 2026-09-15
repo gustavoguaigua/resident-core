@@ -19,8 +19,8 @@
 
 ## Normalización de readiness de Sprint 4
 
-Sólo se ejecuta el backlog definido por el runbook de Sprint 4. GAP-S4-001 y
-GAP-S4-002 bloquean cualquier tarea frontend funcional; por ello este documento sigue
+Sólo se ejecuta el backlog definido por el runbook de Sprint 4. GAP-S4-001 está
+cerrado y GAP-S4-002 bloquea cualquier tarea frontend funcional; por ello este documento sigue
 `needs-review`. Las tareas de dashboard, Users/Roles, data import y documentos
 generales se consideran fuera de Sprint 4, aunque permanezcan abajo como backlog
 post-MVP. Receipts/comprobantes de Payments son el único acceso documental autorizado.
@@ -62,9 +62,9 @@ Ninguna tarea se considera completa si permite sesión WordPress, rutas pública
 [ ] test-plan.md aprobado.
 [ ] OpenAPI de RESIDENT Core disponible.
 [ ] Keycloak disponible o mockeable.
-[ ] Endpoint /api/v1/me disponible o gap registrado.
-[ ] Endpoint /api/v1/me/tenants disponible o gap registrado.
-[ ] Endpoint de permisos efectivos disponible o gap registrado.
+[x] Endpoint /api/v1/me disponible.
+[x] Endpoint /api/v1/me/tenants disponible.
+[x] Endpoint /api/v1/me/permissions disponible.
 [ ] APIs MVP de módulos Core disponibles o mockeables.
 [ ] Node LTS disponible.
 [ ] Pipeline CI disponible.
@@ -185,14 +185,14 @@ Acceptance:
 
 ```text id="awa-epic-04"
 [ ] Crear hook/useCurrentUser.
-[!] Consumir GET /api/v1/me — bloqueado por GAP-S4-001.
+[ ] Consumir GET /api/v1/me después de cerrar GAP-S4-002.
 [ ] Crear hook/useMyTenants.
-[!] Consumir GET /api/v1/me/tenants — bloqueado por GAP-S4-001.
+[ ] Consumir GET /api/v1/me/tenants después de cerrar GAP-S4-002.
 [ ] Crear TenantProvider.
 [ ] Crear TenantSwitcher.
 [ ] Crear ActiveTenantContext.
 [ ] Crear PermissionProvider.
-[!] Consumir endpoint de permisos efectivos — bloqueado por GAP-S4-001.
+[ ] Consumir GET /api/v1/me/permissions después de cerrar GAP-S4-002.
 [ ] Crear permissionHash.
 [ ] Crear hasPermission.
 [ ] Crear hasAnyPermission.

@@ -184,6 +184,52 @@ describe("OpenAPI runtime contract", () => {
     expect(new Set(operationIds).size).toBe(operationIds.length);
   });
 
+  it("publishes the authenticated discovery contract with explicit success schemas", async () => {
+    const response = await fetch(`${localBaseUrl}/api/v1/docs-json`);
+    const document = (await response.json()) as {
+      paths: Record<string, { get: Record<string, unknown> }>;
+    };
+    const profile = document.paths["/api/v1/me"]?.get;
+    const tenants = document.paths["/api/v1/me/tenants"]?.get;
+    const permissions = document.paths["/api/v1/me/permissions"]?.get;
+
+    for (const operation of [profile, tenants]) {
+      expect(operation).toMatchObject({
+        security: [{ bearerAuth: [] }],
+        "x-auth-required": true,
+        "x-idempotency-required": false,
+        "x-own-resource": true,
+        "x-platform-only": false,
+        "x-public": false,
+        "x-response-envelope": true,
+        "x-tenant-context-required": false,
+      });
+      expect(operation).not.toHaveProperty("x-required-permission");
+      expect(operation).not.toHaveProperty("x-tenant-scope");
+      expect(operation?.responses).toHaveProperty(
+        "200.content.application/json.schema.$ref",
+      );
+    }
+    expect(permissions).toMatchObject({
+      security: [{ bearerAuth: [] }],
+      "x-auth-required": true,
+      "x-idempotency-required": false,
+      "x-own-resource": true,
+      "x-platform-only": false,
+      "x-public": false,
+      "x-response-envelope": true,
+      "x-tenant-context-required": true,
+      "x-tenant-scope": "tenant",
+    });
+    expect(permissions).not.toHaveProperty("x-required-permission");
+    expect(permissions?.parameters).toContainEqual(
+      expect.objectContaining({ name: "X-Tenant-Id", required: true }),
+    );
+    expect(permissions?.responses).toHaveProperty(
+      "200.content.application/json.schema.$ref",
+    );
+  });
+
   it("keeps forbidden document and future-domain surfaces out of OpenAPI", async () => {
     const response = await fetch(`${localBaseUrl}/api/v1/docs-json`);
     const document = await response.json();

@@ -10,7 +10,7 @@
 | Documento      | Data Model                                                                       |
 | Ruta           | `docs/specs/029-admin-web-app-basic/data-model.md`                               |
 | Versión        | 0.1                                                                              |
-| Estado         | needs-review                                                                     |
+| Estado         | accepted                                                                         |
 | Fecha          | 2026-08-03                                                                       |
 | Naturaleza     | Frontend data model / Client state / API DTO mapping / Non-persistent by default |
 | Stack sugerido | Next.js / React / TypeScript / TanStack Query / OpenAPI Client / Keycloak OIDC   |
@@ -21,11 +21,11 @@
 
 Sprint 4 no crea persistencia frontend ni modelos de dominio paralelos. El estado de
 sesión, tenant, permisos, cache y formularios se deriva del discovery ya cerrado y del
-cliente generado después de cerrar GAP-S4-002. Tokens permanecen en memoria; cache y query keys se
+cliente generado al cerrar GAP-S4-002. Tokens permanecen en memoria; cache y query keys se
 particionan por tenant y se invalidan al cambiarlo. View models de dashboard,
 Users/Roles, importación o documentos generales descritos más adelante quedan fuera
 del Sprint; receipts/comprobantes usan únicamente proyecciones de Payments. El estado
-permanece `needs-review`.
+queda `accepted` bajo esta normalización.
 
 ---
 
@@ -528,7 +528,12 @@ type SecureDocumentReference = {
   fileName?: string;
   mimeType?: string;
   sizeBytes?: number;
-  classification?: "publicSummary" | "internal" | "restricted" | "financialSensitive" | "personalDataSensitive";
+  classification?:
+    | "publicSummary"
+    | "internal"
+    | "restricted"
+    | "financialSensitive"
+    | "personalDataSensitive";
 };
 ```
 
@@ -558,7 +563,14 @@ type DashboardViewModel = {
 type DashboardWidgetViewModel = {
   widgetKey: string;
   title: string;
-  type: "kpiCard" | "numberCard" | "currencyCard" | "percentageCard" | "trendCard" | "tableSummary" | "alertList";
+  type:
+    | "kpiCard"
+    | "numberCard"
+    | "currencyCard"
+    | "percentageCard"
+    | "trendCard"
+    | "tableSummary"
+    | "alertList";
   value?: string | number;
   status: "available" | "partial" | "unavailable";
   requiredPermissions: string[];
@@ -685,15 +697,23 @@ localStorage o cookie solo para preferencias no sensibles.
 Patrón obligatorio:
 
 ```typescript id="awa-dm-query-key-pattern"
-["tenant", activeTenant.slug, "module", moduleKey, "resource", resourceKey, filtersHash]
+[
+  "tenant",
+  activeTenant.slug,
+  "module",
+  moduleKey,
+  "resource",
+  resourceKey,
+  filtersHash,
+];
 ```
 
 Ejemplos:
 
 ```typescript id="awa-dm-query-key-examples"
-["tenant", "san-jose-la-salle-2", "dashboard", "executive", filtersHash]
-["tenant", "san-jose-la-salle-2", "payments", "list", filtersHash]
-["tenant", "san-jose-la-salle-2", "imports", "batches", filtersHash]
+["tenant", "san-jose-la-salle-2", "dashboard", "executive", filtersHash][
+  ("tenant", "san-jose-la-salle-2", "payments", "list", filtersHash)
+][("tenant", "san-jose-la-salle-2", "imports", "batches", filtersHash)];
 ```
 
 Reglas:
@@ -818,7 +838,11 @@ type ScreenState<T> =
   | { type: "forbidden"; traceId?: string }
   | { type: "notFound"; traceId?: string }
   | { type: "conflict"; message: string; traceId?: string }
-  | { type: "validationError"; fieldErrors: Record<string, string[]>; traceId?: string }
+  | {
+      type: "validationError";
+      fieldErrors: Record<string, string[]>;
+      traceId?: string;
+    }
   | { type: "error"; message: string; traceId?: string };
 ```
 

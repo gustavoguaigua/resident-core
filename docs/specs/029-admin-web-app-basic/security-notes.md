@@ -10,7 +10,7 @@
 | Documento      | Security Notes                                                                                            |
 | Ruta           | `docs/specs/029-admin-web-app-basic/security-notes.md`                                                    |
 | Versión        | 0.1                                                                                                       |
-| Estado         | needs-review                                                                                              |
+| Estado         | accepted                                                                                                  |
 | Fecha          | 2026-08-03                                                                                                |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC |
 | Naturaleza     | Tenant-scoped / Permission-aware / API-first / Non-public / Admin-facing                                  |
@@ -24,8 +24,8 @@ Authorization Code Flow con PKCE S256, tokens en memoria y Core como autoridad f
 Claims Keycloak no conceden permisos; el selector sólo aporta `X-Tenant-Id`, que Core
 revalida junto con identidad, membership y permiso exacto. No hay BFF, sesión
 WordPress, dashboard, Users/Roles, importación ni documentos generales. Sólo se
-permite acceso seguro a receipts/comprobantes. Este documento permanece
-`needs-review`: GAP-S4-001 está cerrado y GAP-S4-002 sigue abierto.
+permite acceso seguro a receipts/comprobantes. Este documento queda `accepted`:
+GAP-S4-001 y GAP-S4-002 están cerrados, sin cambiar estos controles.
 
 ---
 
@@ -240,7 +240,15 @@ Controles:
 Patrón de query key:
 
 ```typescript id="awa-sec-query-key"
-["tenant", activeTenant.slug, "module", moduleKey, "resource", resourceKey, filtersHash]
+[
+  "tenant",
+  activeTenant.slug,
+  "module",
+  moduleKey,
+  "resource",
+  resourceKey,
+  filtersHash,
+];
 ```
 
 ---

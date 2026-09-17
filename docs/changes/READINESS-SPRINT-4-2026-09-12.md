@@ -10,36 +10,36 @@
 | Alcance                   | Preparación formal para Sprint 4 — Admin Web App MVP |
 | Commit base inspeccionado | `952474c`                                            |
 | Rama de evaluación        | `codex/sprint-4-readiness`                           |
-| Decision                  | `NO_GO`                                              |
+| Decision                  | `GO`                                                 |
 | Plan propuesto            | `docs/implementation/sprint-4-admin-web-app-mvp.md`  |
 | Manifest                  | `packages/testing/config/sprint-4-gates.json`        |
-| `currentPhase`            | `1`                                                  |
+| `currentPhase`            | `2`                                                  |
 
 ## 2. Resultado
 
-Sprint 3 está cerrado y ofrece una base funcional suficiente, pero Sprint 4 no puede
-iniciar implementación frontend segura. Faltan el descubrimiento autenticado que
-conecta la sesión con tenants/memberships/permisos Core y un contrato OpenAPI con
-schemas de éxito capaz de producir un cliente TypeScript determinista.
+Sprint 3 está cerrado y ofrece una base funcional suficiente. El discovery
+autenticado y el contrato OpenAPI tipado quedaron integrados mediante GAP-S4-001 y
+GAP-S4-002. El cliente TypeScript se genera de forma determinista desde el artefacto
+runtime versionado y su gate evita drift.
 
-La decisión permanece `NO_GO`: GAP-S4-001 está cerrado y GAP-S4-002 sigue `HIGH/OPEN`.
-Los siete artefactos de Spec 029 permanecen `needs-review` y `currentPhase = 1`.
+La decisión es `GO`: ambos gaps altos están `CLOSED`, los siete artefactos de Spec 029
+están `accepted` bajo la normalización de este documento y `currentPhase = 2`.
 
 ## 3. Evidencia
 
-| Evidencia      | Resultado                                                                         |
-| -------------- | --------------------------------------------------------------------------------- |
-| Sprint 3       | `CLOSED / COMPLETED`; Fases 1–9 integradas                                        |
-| Admin Web      | Scaffold de Sprint 0; sin auth, tenant selector, cliente ni módulos funcionales   |
-| Keycloak       | Cliente público `resident-admin-web`, Authorization Code + PKCE S256              |
-| Tenant/authz   | Core valida bearer, identidad, tenant, membership y permiso exacto                |
+| Evidencia      | Resultado                                                                           |
+| -------------- | ----------------------------------------------------------------------------------- |
+| Sprint 3       | `CLOSED / COMPLETED`; Fases 1–9 integradas                                          |
+| Admin Web      | Scaffold de Sprint 0; sin auth, tenant selector, cliente ni módulos funcionales     |
+| Keycloak       | Cliente público `resident-admin-web`, Authorization Code + PKCE S256                |
+| Tenant/authz   | Core valida bearer, identidad, tenant, membership y permiso exacto                  |
 | Descubrimiento | `/api/v1/me`, `/api/v1/me/tenants` y `/api/v1/me/permissions` integrados y probados |
-| OpenAPI        | Superficie runtime integrada; success responses insuficientemente tipadas         |
-| Cliente        | `packages/openapi-client` permanece `contract-only`                               |
-| Documentos     | No hay API SDS general; receipts seguros sí están disponibles                     |
-| Dashboard      | No hay API KPI; Spec 027 está asignada a Sprint 7                                 |
-| Users/Roles    | No hay lectura administrativa completa y el roadmap no la exige en Sprint 4       |
-| Spec 029       | Siete documentos `needs-review`; alcance preliminar excede el roadmap             |
+| OpenAPI        | Allowlist MVP con request/success schemas y metadata runtime canónica               |
+| Cliente        | TypeScript generado, versionado, reproducible y sin auth/session propia             |
+| Documentos     | No hay API SDS general; receipts seguros sí están disponibles                       |
+| Dashboard      | No hay API KPI; Spec 027 está asignada a Sprint 7                                   |
+| Users/Roles    | No hay lectura administrativa completa y el roadmap no la exige en Sprint 4         |
+| Spec 029       | Siete documentos `accepted` bajo la normalización restrictiva del runbook           |
 
 ## 4. Alcance final
 
@@ -72,35 +72,34 @@ mutaciones financieras que Core expone. La allowlist detallada está en el runbo
 
 ### GAP-S4-001 — Descubrimiento autenticado
 
-| Campo     | Valor                             |
-| --------- | --------------------------------- |
-| Severidad | Alta                              |
-| Estado    | `CLOSED`                          |
-| Bloquea   | Nada; Fase 1 completada           |
+| Campo     | Valor                   |
+| --------- | ----------------------- |
+| Severidad | Alta                    |
+| Estado    | `CLOSED`                |
+| Bloquea   | Nada; Fase 1 completada |
 
 Implementa perfil aplicativo mínimo, tenants/memberships activos y permisos Core
 efectivos con aislamiento tenant, DTOs OpenAPI y gate reproducible.
 
 ### GAP-S4-002 — OpenAPI tipado y cliente TypeScript
 
-| Campo     | Valor                              |
-| --------- | ---------------------------------- |
-| Severidad | Alta                               |
-| Estado    | `OPEN`                             |
-| Bloquea   | Fase 2 y consumo funcional de Core |
+| Campo     | Valor                   |
+| --------- | ----------------------- |
+| Severidad | Alta                    |
+| Estado    | `CLOSED`                |
+| Bloquea   | Nada; Fase 2 completada |
 
-Debe completar success schemas, generación determinista, drift gate y cliente
-type-safe. Se cierra después de GAP-S4-001 para incluir su superficie definitiva.
+Completó success schemas, generación determinista, drift gate y cliente type-safe
+después de GAP-S4-001 para incluir su superficie definitiva.
 
-No se detectaron gaps críticos ni medios. Existe un gap alto abierto, por lo que la
-readiness no puede declarar `GO`.
+No existen gaps críticos, altos o medios abiertos. La readiness declara `GO`.
 
 ## 7. Normalización de Spec 029
 
 Los siete documentos reciben una sección normativa de readiness. Su visión amplia se
 conserva como referencia post-MVP, pero no autoriza endpoints, pantallas, roles,
-permisos o extensiones fuera del runbook. Todos permanecen `needs-review` hasta cerrar
-GAP-S4-002; no se permite aceptación condicionada.
+permisos o extensiones fuera del runbook. Los siete quedan `accepted` al cerrarse
+GAP-S4-002; la aceptación no amplía la allowlist.
 
 ## 8. Secuencia y frontera
 
@@ -108,21 +107,22 @@ Las Fases 0–8 son: readiness; discovery contract; typed client contract; front
 foundation; auth/tenant/permissions; API client/layout; residents/properties UI;
 finance UI; hardening/closure.
 
-El manifest permanece en `readinessDecision = NO_GO` y avanza a `currentPhase = 1`.
-El verificador comprueba manifest, gaps, estado de Spec 029, presencia exacta del
-discovery autenticado y estado `contract-only` del cliente.
+El manifest registra `readinessDecision = GO` y `currentPhase = 2`. El verificador
+comprueba manifest, gaps, estado de Spec 029, discovery autenticado, schemas MVP y
+estado generado del cliente.
 
-## 9. Criterios para reevaluar
+## 9. Evidencia de reevaluación
 
-La readiness puede cambiar a `GO` sólo después de integrar, en orden:
+La readiness cambió a `GO` después de integrar, en orden:
 
 1. GAP-S4-001 con runtime, OpenAPI, seguridad y gate reproducible;
 2. GAP-S4-002 con schemas, generación, cliente y gate reproducible;
 3. normalización final y aceptación de los siete documentos de Spec 029;
 4. manifest/boundary actualizado en el mismo incremento, sin adelantar frontend.
 
-## 10. Frontera de esta evaluación
+## 10. Frontera de esta reevaluación
 
-Esta evaluación no modifica Admin Web, API, Prisma, migraciones, OpenAPI, cliente,
-Keycloak, Docker, dependencias, package manifests, lockfile ni CI. No inicia Sprint 4
-funcional y no altera el cierre de Sprint 3.
+Este incremento modifica exclusivamente schemas OpenAPI, generador, cliente tipado,
+dependencias mínimas del generador/transport, gate y trazabilidad. No modifica Admin
+Web, Prisma, migraciones, Keycloak, Docker ni lógica funcional de Core; tampoco inicia
+la Fase 3 ni altera el cierre de Sprint 3.

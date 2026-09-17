@@ -10,7 +10,7 @@
 | Documento      | Tasks                                                                                                     |
 | Ruta           | `docs/specs/029-admin-web-app-basic/tasks.md`                                                             |
 | Versión        | 0.1                                                                                                       |
-| Estado         | needs-review                                                                                              |
+| Estado         | accepted                                                                                                  |
 | Fecha          | 2026-08-03                                                                                                |
 | Stack sugerido | Next.js / React / TypeScript / Tailwind CSS / shadcn/ui / TanStack Query / OpenAPI Client / Keycloak OIDC |
 | Naturaleza     | Tenant-scoped / Permission-aware / API-first / Non-public / Admin-facing                                  |
@@ -19,9 +19,9 @@
 
 ## Normalización de readiness de Sprint 4
 
-Sólo se ejecuta el backlog definido por el runbook de Sprint 4. GAP-S4-001 está
-cerrado y GAP-S4-002 bloquea cualquier tarea frontend funcional; por ello este documento sigue
-`needs-review`. Las tareas de dashboard, Users/Roles, data import y documentos
+Sólo se ejecuta el backlog definido por el runbook de Sprint 4. GAP-S4-001 y
+GAP-S4-002 están cerrados; este documento queda `accepted` bajo esa frontera. Las
+tareas de dashboard, Users/Roles, data import y documentos
 generales se consideran fuera de Sprint 4, aunque permanezcan abajo como backlog
 post-MVP. Receipts/comprobantes de Payments son el único acceso documental autorizado.
 No se implementan endpoints preliminares como si existieran.

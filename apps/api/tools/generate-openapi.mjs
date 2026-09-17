@@ -6,14 +6,14 @@ const artifactPath = resolve(
   "../../../packages/openapi-client/openapi/resident-core.v1.json",
 );
 
-async function main(): Promise<void> {
+async function main() {
   process.env.NODE_ENV ??= "test";
   process.env.APP_ENV ??= "local";
   process.env.DATABASE_URL ??=
     "postgresql://resident@127.0.0.1:5432/resident_core";
 
   const { generateOpenApiArtifact } =
-    await import("../src/platform/openapi/openapi-artifact.js");
+    await import("../dist/platform/openapi/openapi-artifact.js");
   const generatedArtifact = await generateOpenApiArtifact();
 
   if (process.argv.includes("--check")) {
@@ -26,10 +26,8 @@ async function main(): Promise<void> {
   process.stdout.write(`Generated ${artifactPath}\n`);
 }
 
-async function assertArtifactIsCurrent(
-  generatedArtifact: string,
-): Promise<void> {
-  let committedArtifact: string;
+async function assertArtifactIsCurrent(generatedArtifact) {
+  let committedArtifact;
 
   try {
     committedArtifact = await readFile(artifactPath, "utf8");

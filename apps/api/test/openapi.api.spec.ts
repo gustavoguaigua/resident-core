@@ -230,6 +230,113 @@ describe("OpenAPI runtime contract", () => {
     );
   });
 
+  it("keeps the 76 Sprint 4 client operations aligned with runtime DTOs and envelopes", async () => {
+    const response = await fetch(`${localBaseUrl}/api/v1/docs-json`);
+    const document = (await response.json()) as {
+      components: { schemas: Record<string, Record<string, unknown>> };
+      paths: Record<string, Record<string, Record<string, unknown>>>;
+    };
+    const jsonReads = sprint4JsonReadParity();
+    const mutations = sprint4MutationParity();
+
+    for (const [path, resource, meta] of jsonReads) {
+      expectJsonEnvelope(document.paths[path]?.get, "200", resource, meta);
+    }
+
+    for (const [method, path, status, resource, request] of mutations) {
+      const operation = document.paths[path]?.[method];
+      expectJsonEnvelope(operation, status, resource, metaForRuntime(path));
+      expect(operation?.responses).not.toHaveProperty("204");
+      if (request === null) {
+        expect(operation).not.toHaveProperty("requestBody");
+      } else {
+        expect(operation).toHaveProperty(
+          "requestBody.content.application/json.schema.$ref",
+          `#/components/schemas/${request}`,
+        );
+      }
+    }
+
+    const receiptDownload =
+      document.paths["/api/v1/tenant/payment-receipts/{receiptId}/download"]
+        ?.get;
+    expect(receiptDownload?.responses).toHaveProperty("200.content", {
+      "application/pdf": {
+        schema: { format: "binary", type: "string" },
+      },
+      "image/jpeg": { schema: { format: "binary", type: "string" } },
+      "image/png": { schema: { format: "binary", type: "string" } },
+    });
+
+    expect(document.components.schemas.ChargeBatch).toMatchObject({
+      properties: {
+        errorSummary: {
+          properties: {
+            codes: {
+              items: {
+                properties: {
+                  code: { type: "string" },
+                  count: { minimum: 1, type: "integer" },
+                },
+                required: ["code", "count"],
+              },
+              type: "array",
+            },
+          },
+          required: ["codes"],
+          type: "object",
+        },
+      },
+    });
+    for (const [schema, required] of [
+      ["TypedTraceMeta", ["traceId"]],
+      ["TypedRequestMeta", ["requestId"]],
+      [
+        "TypedResidentPageMeta",
+        ["page", "pageSize", "total", "totalPages", "traceId"],
+      ],
+      ["TypedTracePageMeta", ["page", "pageSize", "total", "traceId"]],
+      ["TypedRequestPageMeta", ["page", "pageSize", "total", "requestId"]],
+    ] as const) {
+      expect(document.components.schemas[schema]?.required).toEqual(required);
+    }
+
+    for (const [schema, required] of Object.entries(
+      sprint4RequestRequiredFields(),
+    )) {
+      expect(document.components.schemas[schema]).toMatchObject({
+        additionalProperties: false,
+        required,
+        type: "object",
+      });
+    }
+
+    for (const [schema, fields] of Object.entries({
+      Charge: ["originalAmount", "effectiveAmount"],
+      ChargeConcept: ["defaultAmount"],
+      FeeSchedule: ["amount"],
+      FinancialMovement: ["debit", "credit", "balance"],
+      Payment: ["amount", "allocatedAmount", "unallocatedAmount"],
+      PaymentAllocation: ["amount"],
+      UnitBalance: [
+        "outstandingBalance",
+        "overdueBalance",
+        "notDueBalance",
+        "creditBalance",
+        "unallocatedPaymentBalance",
+      ],
+    })) {
+      for (const field of fields) {
+        expect(document.components.schemas[schema]).toHaveProperty(
+          `properties.${field}.type`,
+          "string",
+        );
+      }
+    }
+
+    expect(jsonReads.length + mutations.length + 3 + 1).toBe(76);
+  });
+
   it("keeps forbidden document and future-domain surfaces out of OpenAPI", async () => {
     const response = await fetch(`${localBaseUrl}/api/v1/docs-json`);
     const document = await response.json();
@@ -280,6 +387,393 @@ function sprint3Operations(): string[] {
   return [
     ...(section ?? "").matchAll(/^(GET|POST|PATCH)\s+(\/api\/v1\/\S+)$/gmu),
   ].map(([, method, path]) => `${method} ${path}`);
+}
+
+type JsonOperation = Record<string, unknown> | undefined;
+type JsonReadParity = readonly [path: string, resource: string, meta: string];
+type MutationParity = readonly [
+  method: "patch" | "post",
+  path: string,
+  status: "200" | "201",
+  resource: string,
+  request: string | null,
+];
+
+function expectJsonEnvelope(
+  operation: JsonOperation,
+  status: string,
+  resource: string,
+  meta: string,
+) {
+  if (resource.endsWith("[]")) {
+    expect(operation).toHaveProperty(
+      `responses.${status}.content.application/json.schema.properties.data.items.$ref`,
+      `#/components/schemas/${resource.slice(0, -2)}`,
+    );
+  } else {
+    expect(operation).toHaveProperty(
+      `responses.${status}.content.application/json.schema.properties.data.$ref`,
+      `#/components/schemas/${resource}`,
+    );
+  }
+  expect(operation).toHaveProperty(
+    `responses.${status}.content.application/json.schema.properties.meta.$ref`,
+    `#/components/schemas/${meta}`,
+  );
+}
+
+function sprint4JsonReadParity(): JsonReadParity[] {
+  const residents = [
+    ["property-units", "propertyUnitId", "PropertyUnit"],
+    ["persons", "personId", "Person"],
+    ["legal-entities", "legalEntityId", "LegalEntity"],
+    ["property-ownerships", "ownershipId", "PropertyOwnership"],
+    ["residencies", "residencyId", "Residency"],
+    ["leases", "leaseId", "Lease"],
+  ] as const;
+  const dues = [
+    ["charge-concepts", "chargeConceptId", "ChargeConcept"],
+    ["fee-schedules", "feeScheduleId", "FeeSchedule"],
+    ["unit-fees", "unitFeeAssignmentId", "UnitFeeAssignment"],
+    ["billing-periods", "billingPeriodId", "BillingPeriod"],
+    ["charge-batches", "chargeBatchId", "ChargeBatch"],
+    ["charges", "chargeId", "Charge"],
+  ] as const;
+  return [
+    ...residents.flatMap(
+      ([path, id, resource]) =>
+        [
+          [`/api/v1/tenant/${path}`, `${resource}[]`, "TypedResidentPageMeta"],
+          [`/api/v1/tenant/${path}/{${id}}`, resource, "TypedTraceMeta"],
+        ] as JsonReadParity[],
+    ),
+    ["/api/v1/me/person", "Person", "TypedTraceMeta"],
+    ["/api/v1/me/property-units", "PropertyUnit[]", "TypedTraceMeta"],
+    ["/api/v1/me/residencies", "Residency[]", "TypedTraceMeta"],
+    ...dues.flatMap(
+      ([path, id, resource]) =>
+        [
+          [`/api/v1/tenant/${path}`, `${resource}[]`, "TypedTracePageMeta"],
+          [`/api/v1/tenant/${path}/{${id}}`, resource, "TypedTraceMeta"],
+        ] as JsonReadParity[],
+    ),
+    ["/api/v1/tenant/payments", "Payment[]", "TypedRequestPageMeta"],
+    ["/api/v1/tenant/payments/{paymentId}", "Payment", "TypedRequestMeta"],
+    [
+      "/api/v1/tenant/payments/{paymentId}/receipts",
+      "PaymentReceipt[]",
+      "TypedRequestMeta",
+    ],
+    [
+      "/api/v1/tenant/payment-receipts/{receiptId}",
+      "PaymentReceipt",
+      "TypedRequestMeta",
+    ],
+    [
+      "/api/v1/tenant/payments/{paymentId}/allocations",
+      "PaymentAllocation[]",
+      "TypedRequestMeta",
+    ],
+    [
+      "/api/v1/tenant/payment-allocations/{allocationId}",
+      "PaymentAllocation",
+      "TypedRequestMeta",
+    ],
+    ["/api/v1/tenant/balances", "UnitBalance[]", "TypedRequestPageMeta"],
+    [
+      "/api/v1/tenant/property-units/{propertyUnitId}/balance",
+      "UnitBalance",
+      "TypedRequestMeta",
+    ],
+    [
+      "/api/v1/tenant/property-units/{propertyUnitId}/financial-movements",
+      "FinancialMovement[]",
+      "TypedRequestMeta",
+    ],
+    [
+      "/api/v1/tenant/account-statements",
+      "AccountStatement[]",
+      "TypedRequestPageMeta",
+    ],
+    [
+      "/api/v1/tenant/account-statements/{statementId}",
+      "AccountStatement",
+      "TypedRequestMeta",
+    ],
+  ];
+}
+
+function sprint4MutationParity(): MutationParity[] {
+  return [
+    [
+      "post",
+      "/api/v1/tenant/property-units",
+      "201",
+      "PropertyUnit",
+      "PropertyUnitCreateRequest",
+    ],
+    [
+      "patch",
+      "/api/v1/tenant/property-units/{propertyUnitId}",
+      "200",
+      "PropertyUnit",
+      "PropertyUnitUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/property-units/{propertyUnitId}/archive",
+      "200",
+      "PropertyUnit",
+      "ArchiveRequest",
+    ],
+    ["post", "/api/v1/tenant/persons", "201", "Person", "PersonCreateRequest"],
+    [
+      "patch",
+      "/api/v1/tenant/persons/{personId}",
+      "200",
+      "Person",
+      "PersonUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/persons/{personId}/archive",
+      "200",
+      "Person",
+      "ArchiveRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/persons/{personId}/link-user",
+      "200",
+      "PersonIdentityLinkAcknowledgement",
+      "LinkUserRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/legal-entities",
+      "201",
+      "LegalEntity",
+      "LegalEntityCreateRequest",
+    ],
+    [
+      "patch",
+      "/api/v1/tenant/legal-entities/{legalEntityId}",
+      "200",
+      "LegalEntity",
+      "LegalEntityUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/legal-entities/{legalEntityId}/archive",
+      "200",
+      "LegalEntity",
+      "ArchiveRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/property-ownerships",
+      "201",
+      "PropertyOwnership",
+      "OwnershipCreateRequest",
+    ],
+    [
+      "patch",
+      "/api/v1/tenant/property-ownerships/{ownershipId}",
+      "200",
+      "PropertyOwnership",
+      "OwnershipUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/property-ownerships/{ownershipId}/end",
+      "200",
+      "PropertyOwnership",
+      "EndRelationshipRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/residencies",
+      "201",
+      "Residency",
+      "ResidencyCreateRequest",
+    ],
+    [
+      "patch",
+      "/api/v1/tenant/residencies/{residencyId}",
+      "200",
+      "Residency",
+      "ResidencyUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/residencies/{residencyId}/end",
+      "200",
+      "Residency",
+      "EndRelationshipRequest",
+    ],
+    ["post", "/api/v1/tenant/leases", "201", "Lease", "LeaseCreateRequest"],
+    [
+      "patch",
+      "/api/v1/tenant/leases/{leaseId}",
+      "200",
+      "Lease",
+      "LeaseUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/leases/{leaseId}/end",
+      "200",
+      "Lease",
+      "EndRelationshipRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/charge-concepts",
+      "201",
+      "ChargeConcept",
+      "ChargeConceptCreateRequest",
+    ],
+    [
+      "patch",
+      "/api/v1/tenant/charge-concepts/{chargeConceptId}",
+      "200",
+      "ChargeConcept",
+      "ChargeConceptUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/charge-concepts/{chargeConceptId}/archive",
+      "200",
+      "ChargeConcept",
+      "EmptyRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/fee-schedules",
+      "201",
+      "FeeSchedule",
+      "FeeScheduleCreateRequest",
+    ],
+    [
+      "patch",
+      "/api/v1/tenant/fee-schedules/{feeScheduleId}",
+      "200",
+      "FeeSchedule",
+      "FeeScheduleUpdateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/fee-schedules/{feeScheduleId}/archive",
+      "200",
+      "FeeSchedule",
+      "EmptyRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/unit-fees",
+      "201",
+      "UnitFeeAssignment",
+      "UnitFeeCreateRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/unit-fees/{unitFeeAssignmentId}/end",
+      "200",
+      "UnitFeeAssignment",
+      "EndRelationshipRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/billing-periods",
+      "201",
+      "BillingPeriod",
+      "BillingPeriodCreateRequest",
+    ],
+    ["post", "/api/v1/tenant/charges", "201", "Charge", "ChargeCreateRequest"],
+    [
+      "post",
+      "/api/v1/tenant/charges/{chargeId}/cancel",
+      "200",
+      "Charge",
+      "PaymentReviewRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/payments/{paymentId}/confirm",
+      "200",
+      "Payment",
+      null,
+    ],
+    [
+      "post",
+      "/api/v1/tenant/payments/{paymentId}/reject",
+      "200",
+      "Payment",
+      "PaymentReviewRequest",
+    ],
+    [
+      "post",
+      "/api/v1/tenant/payment-receipts/{receiptId}/accept",
+      "200",
+      "PaymentReceipt",
+      null,
+    ],
+    [
+      "post",
+      "/api/v1/tenant/payment-receipts/{receiptId}/reject",
+      "200",
+      "PaymentReceipt",
+      "PaymentReviewRequest",
+    ],
+  ];
+}
+
+function metaForRuntime(path: string) {
+  return path.includes("/payments/") || path.includes("/payment-receipts/")
+    ? "TypedRequestMeta"
+    : "TypedTraceMeta";
+}
+
+function sprint4RequestRequiredFields(): Record<string, readonly string[]> {
+  return {
+    ArchiveRequest: ["reason"],
+    EndRelationshipRequest: ["endDate", "reason"],
+    LinkUserRequest: ["userProfileId"],
+    PropertyUnitCreateRequest: ["code"],
+    PropertyUnitUpdateRequest: [],
+    PersonCreateRequest: ["displayName"],
+    PersonUpdateRequest: [],
+    LegalEntityCreateRequest: ["name"],
+    LegalEntityUpdateRequest: [],
+    OwnershipCreateRequest: ["propertyUnitId", "startDate"],
+    OwnershipUpdateRequest: [],
+    ResidencyCreateRequest: ["propertyUnitId", "personId", "startDate"],
+    ResidencyUpdateRequest: [],
+    LeaseCreateRequest: ["propertyUnitId", "tenantPersonId", "startDate"],
+    LeaseUpdateRequest: [],
+    ChargeConceptCreateRequest: ["code", "name"],
+    ChargeConceptUpdateRequest: [],
+    FeeScheduleCreateRequest: [
+      "chargeConceptId",
+      "name",
+      "amount",
+      "effectiveFrom",
+    ],
+    FeeScheduleUpdateRequest: [],
+    UnitFeeCreateRequest: ["propertyUnitId", "feeScheduleId", "startDate"],
+    BillingPeriodCreateRequest: ["periodCode", "startsAt", "endsAt", "dueDate"],
+    ChargeCreateRequest: [
+      "billingPeriodId",
+      "propertyUnitId",
+      "chargeConceptId",
+      "type",
+      "amount",
+      "issuedDate",
+      "dueDate",
+    ],
+    PaymentReviewRequest: ["reason"],
+    EmptyRequest: [],
+  };
 }
 
 async function createApplication(): Promise<INestApplication> {

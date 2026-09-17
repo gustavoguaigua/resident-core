@@ -2,14 +2,14 @@
 
 ## 1. Estado
 
-| Campo     | Valor                                              |
-| --------- | -------------------------------------------------- |
-| Gap       | `GAP-S4-002`                                       |
-| Severidad | Alta                                               |
-| Estado    | `OPEN`                                             |
-| Fecha     | 2026-09-12                                         |
-| Sprint    | 4 — Admin Web App MVP                              |
-| Bloquea   | Fase 2 y consumo funcional de Core desde Admin Web |
+| Campo     | Valor                   |
+| --------- | ----------------------- |
+| Gap       | `GAP-S4-002`            |
+| Severidad | Alta                    |
+| Estado    | `CLOSED`                |
+| Fecha     | 2026-09-12              |
+| Sprint    | 4 — Admin Web App MVP   |
+| Bloquea   | Nada; Fase 2 completada |
 
 ## 2. Problema verificable
 
@@ -65,8 +65,19 @@ El GAP puede pasar a `CLOSED` sólo cuando el mismo incremento incluya:
 - gate reproducible y actualización de `currentPhase` a 2 únicamente después de que
   las Fases 1 y 2 pasen.
 
-## 6. Frontera
+## 6. Resolución
 
-Este documento no modifica el OpenAPI, generador, cliente, dependencias ni Admin Web.
-Sprint 4 permanece `NO_GO` y `currentPhase = 1`; el trabajo de esta brecha debe ocurrir
-después de cerrar GAP-S4-001 y antes de la foundation frontend.
+El OpenAPI incorpora schemas explícitos de request y response para la allowlist MVP.
+`packages/openapi-client` genera y versiona tipos TypeScript con `openapi-typescript` y
+expone un transporte tipado mediante `openapi-fetch`, sin autenticación, sesión ni
+persistencia tenant. El gate `test:openapi-client` valida el contrato, compilación,
+pruebas, drift y reproducibilidad desde cero.
+
+La generación conserva `operationId`, dinero como string decimal y la metadata de
+seguridad runtime. El output se regenera con
+`pnpm --filter @resident/openapi-client generate`; cambios manuales, output ausente o
+OpenAPI sin regenerar hacen fallar `check:generated`.
+
+GAP-S4-001 y GAP-S4-002 están cerrados. Los siete documentos de Spec 029 se aceptan
+bajo la normalización restrictiva del runbook; Sprint 4 pasa a `GO` y
+`currentPhase = 2`. No se inicia la foundation frontend.

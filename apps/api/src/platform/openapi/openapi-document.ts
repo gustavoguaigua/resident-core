@@ -8,6 +8,7 @@ import {
 import type { ApplicationEnvironment } from "@resident/config";
 
 import { applySprint3OpenApiContract } from "./sprint-3-openapi-contract.js";
+import { applySprint4OpenApiClientContract } from "./sprint-4-openapi-client-contract.js";
 
 export const OPENAPI_DOCUMENT_PATH = "docs";
 export const OPENAPI_JSON_PATH = "docs-json";
@@ -41,6 +42,7 @@ export function createOpenApiDocument(
 
   const document = SwaggerModule.createDocument(application, configuration);
   applySprint3OpenApiContract(document);
+  applySprint4OpenApiClientContract(document);
   return document;
 }
 

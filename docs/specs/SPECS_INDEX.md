@@ -8,7 +8,7 @@
 | Documento  | Specs Index                            |
 | Ruta       | `docs/specs/SPECS_INDEX.md`            |
 | Versión    | 0.1                                    |
-| Estado     | Vigente al cierre formal de Sprint 3    |
+| Estado     | Vigente al cierre formal de Sprint 3   |
 | Fecha      | 2026-09-09                             |
 | Fase       | FASE 2 — RESIDENT Core                 |
 | Naturaleza | Índice maestro de especificaciones SDD |
@@ -74,38 +74,38 @@ pendiente de revisión.
 ## 4. Índice maestro de specs
 
 | Spec | Módulo                         | Dominio                      | Prioridad  | Estado documental | Implementación sugerida |
-| ---: | ------------------------------ | ---------------------------- | ---------- | ------------------ | ----------------------- |
-|  001 | `tenants`                      | Platform / Tenant Management | Crítica    | accepted           | Sprint 2                |
-|  002 | `users-roles`                  | Identity and Access          | Crítica    | accepted           | Sprint 2                |
-|  003 | `residents-properties`         | Residents and Properties     | Crítica    | accepted           | Sprint 3                |
-|  004 | `dues-fees`                    | Financial Management         | Crítica    | accepted           | Sprint 3                |
-|  005 | `payments`                     | Payments                     | Crítica    | accepted           | Sprint 3                |
-|  006 | `account-statements`           | Financial Statements         | Crítica    | accepted           | Sprint 3                |
-|  007 | `audit`                        | Audit and Compliance         | Crítica    | accepted           | Sprint 2-3              |
-|  008 | `basic-reports`                | Reporting                    | Media      | needs-review       | Sprint 7                |
-|  009 | `wordpress-integration-basic`  | External Integration         | Media      | needs-review       | Sprint 7                |
-|  010 | `reservations-common-areas`    | Reservations                 | Alta       | needs-review       | Sprint 6                |
-|  011 | `fines-sanctions`              | Fines and Sanctions          | Alta       | needs-review       | Sprint 6                |
-|  012 | `communications-notifications` | Communications               | Alta       | needs-review       | Sprint 6                |
-|  013 | `meetings-attendance`          | Meetings                     | Media-Alta | needs-review       | Sprint 7                |
-|  014 | `voting-basic`                 | Voting                       | Media-Alta | needs-review       | Sprint 7                |
-|  015 | `certified-minutes`            | Governance / Minutes         | Media-Alta | needs-review       | Sprint 7                |
-|  016 | `secure-document-storage`      | Document Storage             | Crítica    | accepted           | Sprint 3                |
-|  017 | `bank-reconciliation`          | Reconciliation               | Avanzada   | needs-review       | Post-MVP                |
-|  018 | `payment-provider-integration` | Payment Providers            | Avanzada   | needs-review       | Post-MVP                |
-|  019 | `open-banking-integration`     | Open Banking                 | Avanzada   | needs-review       | Post-MVP                |
-|  020 | `accounting-ledger`            | Accounting                   | Avanzada   | needs-review       | Post-MVP                |
-|  021 | `supplier-payments`            | Supplier Payments            | Avanzada   | needs-review       | Post-MVP                |
-|  022 | `maintenance-work-orders`      | Maintenance                  | Alta       | needs-review       | Sprint 6                |
-|  023 | `inventory-basic`              | Inventory                    | Media      | needs-review       | Sprint 7 / Post-MVP     |
-|  024 | `access-control-visitors`      | Access / Visitors            | Alta       | needs-review       | Sprint 6                |
-|  025 | `tenant-settings-policies`     | Tenant Configuration         | Crítica    | accepted           | Sprint 2-3              |
-|  026 | `automation-workflows-basic`   | Automation                   | Media      | needs-review       | Post-MVP                |
-|  027 | `dashboard-kpis`               | Dashboards / KPIs            | Media-Alta | needs-review       | Sprint 7                |
-|  028 | `data-import-migration`        | Data Import / Migration      | Media-Alta | needs-review       | Sprint 7                |
-|  029 | `admin-web-app-basic`          | Admin Frontend               | Crítica    | needs-review       | Sprint 4                |
-|  030 | `resident-self-service-basic`  | Resident Frontend            | Crítica    | needs-review       | Sprint 5                |
-|  031 | `implementation-readiness`     | Delivery Governance          | Crítica    | complete           | Sprint 0                |
+| ---: | ------------------------------ | ---------------------------- | ---------- | ----------------- | ----------------------- |
+|  001 | `tenants`                      | Platform / Tenant Management | Crítica    | accepted          | Sprint 2                |
+|  002 | `users-roles`                  | Identity and Access          | Crítica    | accepted          | Sprint 2                |
+|  003 | `residents-properties`         | Residents and Properties     | Crítica    | accepted          | Sprint 3                |
+|  004 | `dues-fees`                    | Financial Management         | Crítica    | accepted          | Sprint 3                |
+|  005 | `payments`                     | Payments                     | Crítica    | accepted          | Sprint 3                |
+|  006 | `account-statements`           | Financial Statements         | Crítica    | accepted          | Sprint 3                |
+|  007 | `audit`                        | Audit and Compliance         | Crítica    | accepted          | Sprint 2-3              |
+|  008 | `basic-reports`                | Reporting                    | Media      | needs-review      | Sprint 7                |
+|  009 | `wordpress-integration-basic`  | External Integration         | Media      | needs-review      | Sprint 7                |
+|  010 | `reservations-common-areas`    | Reservations                 | Alta       | needs-review      | Sprint 6                |
+|  011 | `fines-sanctions`              | Fines and Sanctions          | Alta       | needs-review      | Sprint 6                |
+|  012 | `communications-notifications` | Communications               | Alta       | needs-review      | Sprint 6                |
+|  013 | `meetings-attendance`          | Meetings                     | Media-Alta | needs-review      | Sprint 7                |
+|  014 | `voting-basic`                 | Voting                       | Media-Alta | needs-review      | Sprint 7                |
+|  015 | `certified-minutes`            | Governance / Minutes         | Media-Alta | needs-review      | Sprint 7                |
+|  016 | `secure-document-storage`      | Document Storage             | Crítica    | accepted          | Sprint 3                |
+|  017 | `bank-reconciliation`          | Reconciliation               | Avanzada   | needs-review      | Post-MVP                |
+|  018 | `payment-provider-integration` | Payment Providers            | Avanzada   | needs-review      | Post-MVP                |
+|  019 | `open-banking-integration`     | Open Banking                 | Avanzada   | needs-review      | Post-MVP                |
+|  020 | `accounting-ledger`            | Accounting                   | Avanzada   | needs-review      | Post-MVP                |
+|  021 | `supplier-payments`            | Supplier Payments            | Avanzada   | needs-review      | Post-MVP                |
+|  022 | `maintenance-work-orders`      | Maintenance                  | Alta       | needs-review      | Sprint 6                |
+|  023 | `inventory-basic`              | Inventory                    | Media      | needs-review      | Sprint 7 / Post-MVP     |
+|  024 | `access-control-visitors`      | Access / Visitors            | Alta       | needs-review      | Sprint 6                |
+|  025 | `tenant-settings-policies`     | Tenant Configuration         | Crítica    | accepted          | Sprint 2-3              |
+|  026 | `automation-workflows-basic`   | Automation                   | Media      | needs-review      | Post-MVP                |
+|  027 | `dashboard-kpis`               | Dashboards / KPIs            | Media-Alta | needs-review      | Sprint 7                |
+|  028 | `data-import-migration`        | Data Import / Migration      | Media-Alta | needs-review      | Sprint 7                |
+|  029 | `admin-web-app-basic`          | Admin Frontend               | Crítica    | accepted          | Sprint 4                |
+|  030 | `resident-self-service-basic`  | Resident Frontend            | Crítica    | needs-review      | Sprint 5                |
+|  031 | `implementation-readiness`     | Delivery Governance          | Crítica    | complete          | Sprint 0                |
 
 ---
 
@@ -306,10 +306,10 @@ estados de cuenta UI
 receipts/comprobantes UI
 ```
 
-Normalización de readiness: Sprint 4 está `NO_GO`, `currentPhase = 1`. “documentos UI”
+Normalización de readiness: Sprint 4 está `GO`, `currentPhase = 2`. “documentos UI”
 se limita a receipts/comprobantes de Payments; dashboard, Users/Roles e importación
-quedan fuera. Los siete documentos de Spec 029 permanecen `needs-review`: GAP-S4-001
-está cerrado y GAP-S4-002 sigue abierto.
+quedan fuera. Los siete documentos de Spec 029 están `accepted`: GAP-S4-001 y
+GAP-S4-002 están cerrados.
 
 ---
 
@@ -421,7 +421,8 @@ No inventes endpoints, tablas, permisos ni reglas fuera de las specs.
 docs/sdd/                         completo
 docs/decisions/                   completo
 docs/specs/{001-tenants,002-users-roles,003-residents-properties,004-dues-fees,005-payments,006-account-statements,007-audit,016-secure-document-storage,025-tenant-settings-policies}/ accepted
-docs/specs/008-015,017-024,026-030/ needs-review
+docs/specs/008-015,017-024,026-028,030/ needs-review
+docs/specs/029-admin-web-app-basic/ accepted
 docs/specs/031-implementation-readiness/ complete
 docs/changes/                     contiene cambios, readiness y cierres formales
 docs/implementation/              contiene los runbooks cerrados de Sprint 0 y Sprint 1

@@ -16,16 +16,22 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "check:generated": "node tools/check-generated.mjs",
+    "generate": "node tools/generate-client.mjs",
     "lint": "eslint src test",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "validate": "redocly lint --config redocly.yaml openapi/resident-core.v1.json"
   },
   "devDependencies": {
-    "@redocly/cli": "2.46.0"
+    "@redocly/cli": "2.46.0",
+    "openapi-typescript": "7.13.0"
   },
   "engines": {
     "node": "24.18.0",
     "pnpm": "11.21.0"
+  },
+  "dependencies": {
+    "openapi-fetch": "0.17.0"
   }
 }

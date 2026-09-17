@@ -383,9 +383,9 @@ Sprint 7 — Gobernanza, reportes, dashboard e importación
 Post-MVP — Finanzas avanzadas, open banking, contabilidad, automatizaciones avanzadas
 ```
 
-Readiness de Sprint 4: `NO_GO`, `currentPhase = 1`. GAP-S4-001 (discovery autenticado)
-está cerrado; antes de iniciar Admin Web debe cerrarse GAP-S4-002 (OpenAPI tipado y
-cliente TypeScript); ver `docs/implementation/sprint-4-admin-web-app-mvp.md`.
+Readiness de Sprint 4: `GO`, `currentPhase = 2`. GAP-S4-001 y GAP-S4-002 están
+cerrados; discovery y cliente OpenAPI tipado están listos, sin iniciar todavía la
+foundation Admin Web; ver `docs/implementation/sprint-4-admin-web-app-mvp.md`.
 
 ---
 
@@ -610,7 +610,8 @@ baseline.
 Implementation Readiness Sprint 0: GO (2026-08-10)
 Specs 001, 002, 007 y 025: accepted
 Specs 003-006 y 016: accepted
-Specs 008-015, 017-024 y 026-030: needs-review
+Specs 008-015, 017-024, 026-028 y 030: needs-review
+Spec 029: accepted
 Spec 031: complete
 Blueprint: creado
 Specs Index: creado

@@ -43,6 +43,7 @@
     "test:statements": "node tools/statements/run-phase-8-gate.mjs",
     "test:financial": "node tools/financial/run-phase-8-gate.mjs",
     "test:admin-discovery": "node tools/discovery/run-gap-s4-001-gate.mjs",
+    "test:openapi-client": "node tools/openapi/run-gap-s4-002-gate.mjs",
     "test:stack:smoke": "node tools/stack/run-phase-9-smoke.mjs",
     "openapi:check": "pnpm --filter @resident/api openapi:check",
     "openapi:generate": "pnpm --filter @resident/api openapi:generate",

@@ -4,13566 +4,13566 @@
  */
 
 export interface paths {
-    "/api/v1/health": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Report API process liveness */
-        get: operations["healthLiveness"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/health/details": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * Report platform dependency readiness
-         * @description Local environments allow direct access. Other environments fail closed until the platform authorization adapter is introduced.
-         */
-        get: operations["healthReadiness"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/invitations/{token}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Resolve an invitation token */
-        get: operations["getInvitationByToken"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/invitations/{token}/accept": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Accept an invitation */
-        post: operations["acceptInvitation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get the authenticated Core user profile */
-        get: operations["getCurrentUserProfile"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/account-statements": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list account-statements */
-        get: operations["OwnAccountStatementsController_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/account-statements/{statementId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcestatementIdresource */
-        get: operations["OwnAccountStatementsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/charges": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list charges */
-        get: operations["OwnChargesController_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/payment-receipts/{receiptId}/download": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** download download */
-        get: operations["OwnPaymentsController_download"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/payments": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list payments */
-        get: operations["OwnPaymentsController_list"];
-        put?: never;
-        /** create payments */
-        post: operations["OwnPaymentsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/payments/{paymentId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcepaymentIdresource */
-        get: operations["OwnPaymentsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/payments/{paymentId}/receipts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** upload receipts */
-        post: operations["OwnPaymentsController_upload"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/permissions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get effective Core permissions for the active tenant */
-        get: operations["getCurrentUserEffectivePermissions"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/person": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** person person */
-        get: operations["OwnResidentsController_person"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/property-units": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** units property-units */
-        get: operations["OwnResidentsController_units"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/property-units/{propertyUnitId}/balance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** balance balance */
-        get: operations["OwnAccountStatementsController_balance"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/property-units/{propertyUnitId}/charges": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list Unit charges */
-        get: operations["OwnChargesController_listUnit"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/property-units/{propertyUnitId}/financial-movements": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** movements financial-movements */
-        get: operations["OwnAccountStatementsController_movements"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/residencies": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** residencies residencies */
-        get: operations["OwnResidentsController_residencies"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/me/tenants": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List active tenants accessible to the authenticated user */
-        get: operations["listCurrentUserTenants"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/platform/setting-definitions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List active setting definitions */
-        get: operations["listSettingDefinitions"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/platform/setting-definitions/{definitionId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get an active setting definition */
-        get: operations["getSettingDefinition"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/platform/tenants": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Onboard a tenant */
-        post: operations["createTenant"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/platform/tenants/{tenantId}/activate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Activate a tenant */
-        post: operations["activateTenant"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/platform/tenants/{tenantId}/archive": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Archive a tenant */
-        post: operations["archiveTenant"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/platform/tenants/{tenantId}/reactivate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Reactivate a tenant */
-        post: operations["reactivateTenant"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/platform/tenants/{tenantId}/suspend": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Suspend a tenant */
-        post: operations["suspendTenant"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list account-statements */
-        get: operations["AccountStatementsController_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements/{statementId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcestatementIdresource */
-        get: operations["AccountStatementsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements/{statementId}/close": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** close close */
-        post: operations["AccountStatementsController_close"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements/{statementId}/lock": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** lock lock */
-        post: operations["AccountStatementsController_lock"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements/{statementId}/publish": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** publish publish */
-        post: operations["AccountStatementsController_publish"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements/{statementId}/regenerate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** regenerate regenerate */
-        post: operations["AccountStatementsController_regenerate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements/generate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** generate generate */
-        post: operations["AccountStatementsController_generate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/account-statements/generate-batch": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** batch generate-batch */
-        post: operations["AccountStatementsController_batch"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/balances": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list balances */
-        get: operations["BalancesController_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/billing-periods": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list billing-periods */
-        get: operations["BillingPeriodsController_list"];
-        put?: never;
-        /** create billing-periods */
-        post: operations["BillingPeriodsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/billing-periods/{billingPeriodId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcebillingPeriodIdresource */
-        get: operations["BillingPeriodsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/billing-periods/{billingPeriodId}/close": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** close close */
-        post: operations["BillingPeriodLifecycleController_close"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/billing-periods/{billingPeriodId}/lock": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** lock lock */
-        post: operations["BillingPeriodLifecycleController_lock"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charge-batches": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list charge-batches */
-        get: operations["ChargeBatchesController_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charge-batches/{chargeBatchId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcechargeBatchIdresource */
-        get: operations["ChargeBatchesController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charge-concepts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list charge-concepts */
-        get: operations["ChargeConceptsController_list"];
-        put?: never;
-        /** create charge-concepts */
-        post: operations["ChargeConceptsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charge-concepts/{chargeConceptId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcechargeConceptIdresource */
-        get: operations["ChargeConceptsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourcechargeConceptIdresource */
-        patch: operations["ChargeConceptsController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/charge-concepts/{chargeConceptId}/archive": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** archive archive */
-        post: operations["ChargeConceptsController_archive"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charges": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list charges */
-        get: operations["ChargesController_list"];
-        put?: never;
-        /** create charges */
-        post: operations["ChargesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charges/{chargeId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcechargeIdresource */
-        get: operations["ChargesController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charges/{chargeId}/adjustments": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** adjust adjustments */
-        post: operations["ChargesController_adjust"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charges/{chargeId}/cancel": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** cancel cancel */
-        post: operations["ChargesController_cancel"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charges/{chargeId}/reverse": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** reverse reverse */
-        post: operations["ChargesController_reverse"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/charges/generate-monthly": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** generate generate-monthly */
-        post: operations["ChargesController_generate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/fee-schedules": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list fee-schedules */
-        get: operations["FeeSchedulesController_list"];
-        put?: never;
-        /** create fee-schedules */
-        post: operations["FeeSchedulesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/fee-schedules/{feeScheduleId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcefeeScheduleIdresource */
-        get: operations["FeeSchedulesController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourcefeeScheduleIdresource */
-        patch: operations["FeeSchedulesController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/fee-schedules/{feeScheduleId}/archive": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** archive archive */
-        post: operations["FeeSchedulesController_archive"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/invitations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List tenant invitations */
-        get: operations["listTenantInvitations"];
-        put?: never;
-        /** Create a tenant invitation */
-        post: operations["createTenantInvitation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/invitations/{invitationId}/revoke": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Revoke a tenant invitation */
-        post: operations["revokeTenantInvitation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/leases": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list leases */
-        get: operations["LeasesController_list"];
-        put?: never;
-        /** create leases */
-        post: operations["LeasesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/leases/{leaseId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourceleaseIdresource */
-        get: operations["LeasesController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourceleaseIdresource */
-        patch: operations["LeasesController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/leases/{leaseId}/end": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** end end */
-        post: operations["LeasesController_end"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/legal-entities": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list legal-entities */
-        get: operations["LegalEntitiesController_list"];
-        put?: never;
-        /** create legal-entities */
-        post: operations["LegalEntitiesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/legal-entities/{legalEntityId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcelegalEntityIdresource */
-        get: operations["LegalEntitiesController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourcelegalEntityIdresource */
-        patch: operations["LegalEntitiesController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/legal-entities/{legalEntityId}/archive": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** archive archive */
-        post: operations["LegalEntitiesController_archive"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/memberships/{membershipId}/revoke": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Revoke a tenant membership */
-        post: operations["revokeTenantMembership"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/memberships/{membershipId}/roles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Assign a tenant role */
-        post: operations["assignTenantMembershipRole"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** Remove a tenant role */
-        delete: operations["removeTenantMembershipRole"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payment-allocations/{allocationId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourceallocationIdresource */
-        get: operations["PaymentAllocationsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payment-allocations/{allocationId}/reverse": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** reverse reverse */
-        post: operations["PaymentAllocationsController_reverse"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payment-receipts/{receiptId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcereceiptIdresource */
-        get: operations["PaymentReceiptsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payment-receipts/{receiptId}/accept": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** accept accept */
-        post: operations["PaymentReceiptsController_accept"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payment-receipts/{receiptId}/download": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** download download */
-        get: operations["PaymentReceiptsController_download"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payment-receipts/{receiptId}/reject": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** reject reject */
-        post: operations["PaymentReceiptsController_reject"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list payments */
-        get: operations["PaymentsController_list"];
-        put?: never;
-        /** create payments */
-        post: operations["PaymentsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcepaymentIdresource */
-        get: operations["PaymentsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}/allocate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** allocate allocate */
-        post: operations["PaymentAllocationCommandsController_allocate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}/allocations": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list allocations */
-        get: operations["PaymentAllocationCommandsController_list"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}/auto-allocate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** auto Allocate auto-allocate */
-        post: operations["PaymentAllocationCommandsController_autoAllocate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}/confirm": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** confirm confirm */
-        post: operations["PaymentsController_confirm"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}/receipts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** receipts receipts */
-        get: operations["PaymentsController_receipts"];
-        put?: never;
-        /** upload receipts */
-        post: operations["PaymentsController_upload"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}/reject": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** reject reject */
-        post: operations["PaymentsController_reject"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/payments/{paymentId}/reverse": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** reverse reverse */
-        post: operations["PaymentAllocationCommandsController_reverse"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/persons": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list persons */
-        get: operations["PersonsController_list"];
-        put?: never;
-        /** create persons */
-        post: operations["PersonsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/persons/{personId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcepersonIdresource */
-        get: operations["PersonsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourcepersonIdresource */
-        patch: operations["PersonsController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/persons/{personId}/archive": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** archive archive */
-        post: operations["PersonsController_archive"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/persons/{personId}/link-user": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** link User link-user */
-        post: operations["PersonsController_linkUser"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/property-ownerships": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list property-ownerships */
-        get: operations["OwnershipsController_list"];
-        put?: never;
-        /** create property-ownerships */
-        post: operations["OwnershipsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/property-ownerships/{ownershipId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourceownershipIdresource */
-        get: operations["OwnershipsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourceownershipIdresource */
-        patch: operations["OwnershipsController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/property-ownerships/{ownershipId}/end": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** end end */
-        post: operations["OwnershipsController_end"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/property-units": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list property-units */
-        get: operations["PropertyUnitsController_list"];
-        put?: never;
-        /** create property-units */
-        post: operations["PropertyUnitsController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/property-units/{propertyUnitId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourcepropertyUnitIdresource */
-        get: operations["PropertyUnitsController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourcepropertyUnitIdresource */
-        patch: operations["PropertyUnitsController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/property-units/{propertyUnitId}/archive": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** archive archive */
-        post: operations["PropertyUnitsController_archive"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/property-units/{propertyUnitId}/balance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** balance balance */
-        get: operations["BalancesController_balance"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/property-units/{propertyUnitId}/balance/recalculate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** recalculate recalculate */
-        post: operations["BalancesController_recalculate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/property-units/{propertyUnitId}/financial-movements": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** movements financial-movements */
-        get: operations["BalancesController_movements"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/residencies": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list residencies */
-        get: operations["ResidenciesController_list"];
-        put?: never;
-        /** create residencies */
-        post: operations["ResidenciesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/residencies/{residencyId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourceresidencyIdresource */
-        get: operations["ResidenciesController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** update resourceresidencyIdresource */
-        patch: operations["ResidenciesController_update"];
-        trace?: never;
-    };
-    "/api/v1/tenant/residencies/{residencyId}/end": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** end end */
-        post: operations["ResidenciesController_end"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/settings": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** List effective settings for the active tenant */
-        get: operations["listEffectiveTenantSettings"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/settings/{key}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get an effective setting for the active tenant */
-        get: operations["getEffectiveTenantSetting"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Set the active tenant override */
-        patch: operations["updateTenantSetting"];
-        trace?: never;
-    };
-    "/api/v1/tenant/unit-fees": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** list unit-fees */
-        get: operations["UnitFeesController_list"];
-        put?: never;
-        /** create unit-fees */
-        post: operations["UnitFeesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/unit-fees/{unitFeeAssignmentId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** get resourceunitFeeAssignmentIdresource */
-        get: operations["UnitFeesController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/tenant/unit-fees/{unitFeeAssignmentId}/end": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** end end */
-        post: operations["UnitFeesController_end"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
+  "/api/v1/health": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Report API process liveness */
+    get: operations["healthLiveness"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/health/details": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Report platform dependency readiness
+     * @description Local environments allow direct access. Other environments fail closed until the platform authorization adapter is introduced.
+     */
+    get: operations["healthReadiness"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/invitations/{token}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Resolve an invitation token */
+    get: operations["getInvitationByToken"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/invitations/{token}/accept": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Accept an invitation */
+    post: operations["acceptInvitation"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Get the authenticated Core user profile */
+    get: operations["getCurrentUserProfile"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/account-statements": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list account-statements */
+    get: operations["OwnAccountStatementsController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/account-statements/{statementId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcestatementIdresource */
+    get: operations["OwnAccountStatementsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/charges": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list charges */
+    get: operations["OwnChargesController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/payment-receipts/{receiptId}/download": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** download download */
+    get: operations["OwnPaymentsController_download"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/payments": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list payments */
+    get: operations["OwnPaymentsController_list"];
+    put?: never;
+    /** create payments */
+    post: operations["OwnPaymentsController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/payments/{paymentId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcepaymentIdresource */
+    get: operations["OwnPaymentsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/payments/{paymentId}/receipts": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** upload receipts */
+    post: operations["OwnPaymentsController_upload"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/permissions": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Get effective Core permissions for the active tenant */
+    get: operations["getCurrentUserEffectivePermissions"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/person": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** person person */
+    get: operations["OwnResidentsController_person"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/property-units": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** units property-units */
+    get: operations["OwnResidentsController_units"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/property-units/{propertyUnitId}/balance": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** balance balance */
+    get: operations["OwnAccountStatementsController_balance"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/property-units/{propertyUnitId}/charges": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list Unit charges */
+    get: operations["OwnChargesController_listUnit"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/property-units/{propertyUnitId}/financial-movements": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** movements financial-movements */
+    get: operations["OwnAccountStatementsController_movements"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/residencies": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** residencies residencies */
+    get: operations["OwnResidentsController_residencies"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/me/tenants": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List active tenants accessible to the authenticated user */
+    get: operations["listCurrentUserTenants"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/platform/setting-definitions": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List active setting definitions */
+    get: operations["listSettingDefinitions"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/platform/setting-definitions/{definitionId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Get an active setting definition */
+    get: operations["getSettingDefinition"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/platform/tenants": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Onboard a tenant */
+    post: operations["createTenant"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/platform/tenants/{tenantId}/activate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Activate a tenant */
+    post: operations["activateTenant"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/platform/tenants/{tenantId}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Archive a tenant */
+    post: operations["archiveTenant"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/platform/tenants/{tenantId}/reactivate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Reactivate a tenant */
+    post: operations["reactivateTenant"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/platform/tenants/{tenantId}/suspend": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Suspend a tenant */
+    post: operations["suspendTenant"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list account-statements */
+    get: operations["AccountStatementsController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements/{statementId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcestatementIdresource */
+    get: operations["AccountStatementsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements/{statementId}/close": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** close close */
+    post: operations["AccountStatementsController_close"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements/{statementId}/lock": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** lock lock */
+    post: operations["AccountStatementsController_lock"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements/{statementId}/publish": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** publish publish */
+    post: operations["AccountStatementsController_publish"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements/{statementId}/regenerate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** regenerate regenerate */
+    post: operations["AccountStatementsController_regenerate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements/generate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** generate generate */
+    post: operations["AccountStatementsController_generate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/account-statements/generate-batch": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** batch generate-batch */
+    post: operations["AccountStatementsController_batch"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/balances": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list balances */
+    get: operations["BalancesController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/billing-periods": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list billing-periods */
+    get: operations["BillingPeriodsController_list"];
+    put?: never;
+    /** create billing-periods */
+    post: operations["BillingPeriodsController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/billing-periods/{billingPeriodId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcebillingPeriodIdresource */
+    get: operations["BillingPeriodsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/billing-periods/{billingPeriodId}/close": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** close close */
+    post: operations["BillingPeriodLifecycleController_close"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/billing-periods/{billingPeriodId}/lock": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** lock lock */
+    post: operations["BillingPeriodLifecycleController_lock"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charge-batches": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list charge-batches */
+    get: operations["ChargeBatchesController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charge-batches/{chargeBatchId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcechargeBatchIdresource */
+    get: operations["ChargeBatchesController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charge-concepts": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list charge-concepts */
+    get: operations["ChargeConceptsController_list"];
+    put?: never;
+    /** create charge-concepts */
+    post: operations["ChargeConceptsController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charge-concepts/{chargeConceptId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcechargeConceptIdresource */
+    get: operations["ChargeConceptsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourcechargeConceptIdresource */
+    patch: operations["ChargeConceptsController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/charge-concepts/{chargeConceptId}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** archive archive */
+    post: operations["ChargeConceptsController_archive"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charges": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list charges */
+    get: operations["ChargesController_list"];
+    put?: never;
+    /** create charges */
+    post: operations["ChargesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charges/{chargeId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcechargeIdresource */
+    get: operations["ChargesController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charges/{chargeId}/adjustments": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** adjust adjustments */
+    post: operations["ChargesController_adjust"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charges/{chargeId}/cancel": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** cancel cancel */
+    post: operations["ChargesController_cancel"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charges/{chargeId}/reverse": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** reverse reverse */
+    post: operations["ChargesController_reverse"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/charges/generate-monthly": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** generate generate-monthly */
+    post: operations["ChargesController_generate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/fee-schedules": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list fee-schedules */
+    get: operations["FeeSchedulesController_list"];
+    put?: never;
+    /** create fee-schedules */
+    post: operations["FeeSchedulesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/fee-schedules/{feeScheduleId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcefeeScheduleIdresource */
+    get: operations["FeeSchedulesController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourcefeeScheduleIdresource */
+    patch: operations["FeeSchedulesController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/fee-schedules/{feeScheduleId}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** archive archive */
+    post: operations["FeeSchedulesController_archive"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/invitations": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List tenant invitations */
+    get: operations["listTenantInvitations"];
+    put?: never;
+    /** Create a tenant invitation */
+    post: operations["createTenantInvitation"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/invitations/{invitationId}/revoke": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Revoke a tenant invitation */
+    post: operations["revokeTenantInvitation"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/leases": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list leases */
+    get: operations["LeasesController_list"];
+    put?: never;
+    /** create leases */
+    post: operations["LeasesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/leases/{leaseId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourceleaseIdresource */
+    get: operations["LeasesController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourceleaseIdresource */
+    patch: operations["LeasesController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/leases/{leaseId}/end": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** end end */
+    post: operations["LeasesController_end"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/legal-entities": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list legal-entities */
+    get: operations["LegalEntitiesController_list"];
+    put?: never;
+    /** create legal-entities */
+    post: operations["LegalEntitiesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/legal-entities/{legalEntityId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcelegalEntityIdresource */
+    get: operations["LegalEntitiesController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourcelegalEntityIdresource */
+    patch: operations["LegalEntitiesController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/legal-entities/{legalEntityId}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** archive archive */
+    post: operations["LegalEntitiesController_archive"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/memberships/{membershipId}/revoke": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Revoke a tenant membership */
+    post: operations["revokeTenantMembership"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/memberships/{membershipId}/roles": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Assign a tenant role */
+    post: operations["assignTenantMembershipRole"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/memberships/{membershipId}/roles/{roleId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    /** Remove a tenant role */
+    delete: operations["removeTenantMembershipRole"];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payment-allocations/{allocationId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourceallocationIdresource */
+    get: operations["PaymentAllocationsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payment-allocations/{allocationId}/reverse": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** reverse reverse */
+    post: operations["PaymentAllocationsController_reverse"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payment-receipts/{receiptId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcereceiptIdresource */
+    get: operations["PaymentReceiptsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payment-receipts/{receiptId}/accept": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** accept accept */
+    post: operations["PaymentReceiptsController_accept"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payment-receipts/{receiptId}/download": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** download download */
+    get: operations["PaymentReceiptsController_download"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payment-receipts/{receiptId}/reject": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** reject reject */
+    post: operations["PaymentReceiptsController_reject"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list payments */
+    get: operations["PaymentsController_list"];
+    put?: never;
+    /** create payments */
+    post: operations["PaymentsController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcepaymentIdresource */
+    get: operations["PaymentsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}/allocate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** allocate allocate */
+    post: operations["PaymentAllocationCommandsController_allocate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}/allocations": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list allocations */
+    get: operations["PaymentAllocationCommandsController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}/auto-allocate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** auto Allocate auto-allocate */
+    post: operations["PaymentAllocationCommandsController_autoAllocate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}/confirm": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** confirm confirm */
+    post: operations["PaymentsController_confirm"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}/receipts": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** receipts receipts */
+    get: operations["PaymentsController_receipts"];
+    put?: never;
+    /** upload receipts */
+    post: operations["PaymentsController_upload"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}/reject": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** reject reject */
+    post: operations["PaymentsController_reject"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/payments/{paymentId}/reverse": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** reverse reverse */
+    post: operations["PaymentAllocationCommandsController_reverse"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/persons": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list persons */
+    get: operations["PersonsController_list"];
+    put?: never;
+    /** create persons */
+    post: operations["PersonsController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/persons/{personId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcepersonIdresource */
+    get: operations["PersonsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourcepersonIdresource */
+    patch: operations["PersonsController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/persons/{personId}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** archive archive */
+    post: operations["PersonsController_archive"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/persons/{personId}/link-user": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** link User link-user */
+    post: operations["PersonsController_linkUser"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/property-ownerships": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list property-ownerships */
+    get: operations["OwnershipsController_list"];
+    put?: never;
+    /** create property-ownerships */
+    post: operations["OwnershipsController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/property-ownerships/{ownershipId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourceownershipIdresource */
+    get: operations["OwnershipsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourceownershipIdresource */
+    patch: operations["OwnershipsController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/property-ownerships/{ownershipId}/end": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** end end */
+    post: operations["OwnershipsController_end"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/property-units": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list property-units */
+    get: operations["PropertyUnitsController_list"];
+    put?: never;
+    /** create property-units */
+    post: operations["PropertyUnitsController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/property-units/{propertyUnitId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourcepropertyUnitIdresource */
+    get: operations["PropertyUnitsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourcepropertyUnitIdresource */
+    patch: operations["PropertyUnitsController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/property-units/{propertyUnitId}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** archive archive */
+    post: operations["PropertyUnitsController_archive"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/property-units/{propertyUnitId}/balance": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** balance balance */
+    get: operations["BalancesController_balance"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/property-units/{propertyUnitId}/balance/recalculate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** recalculate recalculate */
+    post: operations["BalancesController_recalculate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/property-units/{propertyUnitId}/financial-movements": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** movements financial-movements */
+    get: operations["BalancesController_movements"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/residencies": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list residencies */
+    get: operations["ResidenciesController_list"];
+    put?: never;
+    /** create residencies */
+    post: operations["ResidenciesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/residencies/{residencyId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourceresidencyIdresource */
+    get: operations["ResidenciesController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** update resourceresidencyIdresource */
+    patch: operations["ResidenciesController_update"];
+    trace?: never;
+  };
+  "/api/v1/tenant/residencies/{residencyId}/end": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** end end */
+    post: operations["ResidenciesController_end"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/settings": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** List effective settings for the active tenant */
+    get: operations["listEffectiveTenantSettings"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/settings/{key}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Get an effective setting for the active tenant */
+    get: operations["getEffectiveTenantSetting"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** Set the active tenant override */
+    patch: operations["updateTenantSetting"];
+    trace?: never;
+  };
+  "/api/v1/tenant/unit-fees": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** list unit-fees */
+    get: operations["UnitFeesController_list"];
+    put?: never;
+    /** create unit-fees */
+    post: operations["UnitFeesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/unit-fees/{unitFeeAssignmentId}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** get resourceunitFeeAssignmentIdresource */
+    get: operations["UnitFeesController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/v1/tenant/unit-fees/{unitFeeAssignmentId}/end": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** end end */
+    post: operations["UnitFeesController_end"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        AcceptedInvitationDataDto: {
-            /** Format: date-time */
-            acceptedAt: string;
-            /** Format: uuid */
-            membershipId: string;
-            /** @enum {string} */
-            membershipStatus: "active";
-            roles: components["schemas"]["PublicRoleSummaryDto"][];
-            /** Format: uuid */
-            tenantId: string;
-            tenantSlug: string;
-            /** Format: uuid */
-            userId: string;
-        };
-        AcceptedInvitationResponseDto: {
-            data: components["schemas"]["AcceptedInvitationDataDto"];
-            meta: components["schemas"]["ApiMetaDto"];
-        };
-        AccessibleTenantDataDto: {
-            /** @enum {string} */
-            membershipStatus: "active";
-            name: string;
-            slug: string;
-            /** Format: uuid */
-            tenantId: string;
-        };
-        AccessibleTenantsResponseDto: {
-            data: components["schemas"]["AccessibleTenantDataDto"][];
-            meta: components["schemas"]["DiscoveryMetaDto"];
-        };
-        AccountStatement: {
-            /** @example 125.50 */
-            adjustmentsTotal: string;
-            /** Format: date */
-            asOfDate: string;
-            /** Format: uuid */
-            billingPeriodId: string;
-            /** @example 125.50 */
-            chargesTotal: string;
-            /** @example 125.50 */
-            closingBalance: string;
-            /** @example 125.50 */
-            creditBalance: string;
-            /** @enum {string} */
-            currency: "USD";
-            /** Format: date-time */
-            generatedAt: string;
-            /** Format: uuid */
-            id: string;
-            lineCount: number;
-            lines?: components["schemas"]["AccountStatementLine"][];
-            /** @example 125.50 */
-            notDueBalance: string;
-            /** @example 125.50 */
-            openingBalance: string;
-            /** @example 125.50 */
-            overdueBalance: string;
-            /** @example 125.50 */
-            paymentsTotal: string;
-            /** Format: uuid */
-            previousStatementId: string | null;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** @example 125.50 */
-            reversalsTotal: string;
-            statementNumber: string;
-            status: string;
-            /** Format: uuid */
-            supersededById: string | null;
-        };
-        AccountStatementLine: {
-            /** @example 125.50 */
-            balance: string;
-            /** @example 125.50 */
-            credit: string;
-            /** Format: date */
-            date: string;
-            /** @example 125.50 */
-            debit: string;
-            descriptionCode: string;
-            /** Format: date */
-            dueDate: string | null;
-            /** Format: uuid */
-            id: string;
-            sourceType: string | null;
-            type: string;
-        };
-        AdjustChargeDto: Record<string, never>;
-        AllocatePaymentDto: Record<string, never>;
-        ApiErrorDto: {
-            /** @example FORBIDDEN */
-            code: string;
-            /** @example null */
-            details: string[] | null;
-            /** @example Access denied. */
-            message: string;
-            /** @example 550e8400-e29b-41d4-a716-446655440000 */
-            traceId: string;
-        };
-        ApiErrorEnvelopeDto: {
-            error: components["schemas"]["ApiErrorDto"];
-        };
-        ApiMetaDto: {
-            traceId: string;
-        };
-        ArchiveDto: Record<string, never>;
-        ArchiveRequest: {
-            reason: string;
-        };
-        AssignMembershipRoleDto: {
-            /** Format: uuid */
-            roleId: string;
-        };
-        BillingPeriod: {
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: date */
-            dueDate: string;
-            /** Format: date */
-            endsAt: string;
-            /** Format: uuid */
-            id: string;
-            periodCode: string;
-            /** Format: date */
-            startsAt: string;
-            status: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        BillingPeriodCreateRequest: {
-            /** Format: date */
-            dueDate: string;
-            /** Format: date */
-            endsAt: string;
-            periodCode: string;
-            /** Format: date */
-            startsAt: string;
-        };
-        Charge: {
-            /** Format: uuid */
-            billingPeriodId: string;
-            /** Format: uuid */
-            chargeBatchId: string | null;
-            /** Format: uuid */
-            chargeConceptId: string;
-            /** Format: date-time */
-            createdAt: string;
-            /** @enum {string} */
-            currency: "USD";
-            description: string | null;
-            /** Format: date */
-            dueDate: string;
-            /** @example 125.50 */
-            effectiveAmount: string;
-            /** Format: uuid */
-            feeScheduleId: string | null;
-            /** Format: uuid */
-            id: string;
-            /** Format: date */
-            issuedDate: string;
-            /** @example 125.50 */
-            originalAmount: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            status: string;
-            type: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        ChargeBatch: {
-            /** Format: uuid */
-            billingPeriodId: string;
-            /** Format: date-time */
-            completedAt: string | null;
-            /** Format: date-time */
-            createdAt: string;
-            /** @enum {string} */
-            currency: "USD";
-            errorSummary: {
-                codes: {
-                    code: string;
-                    count: number;
-                }[];
-            } | null;
-            failedItems: number;
-            /** Format: uuid */
-            feeScheduleId: string | null;
-            /** Format: uuid */
-            id: string;
-            skippedItems: number;
-            /** Format: date-time */
-            startedAt: string | null;
-            status: string;
-            successItems: number;
-            totalItems: number;
-            type: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        ChargeConcept: {
-            /** Format: date-time */
-            archivedAt: string | null;
-            category: string;
-            code: string;
-            /** Format: date-time */
-            createdAt: string;
-            /** @enum {string} */
-            currency: "USD";
-            /** @example 125.50 */
-            defaultAmount: string | null;
-            description: string | null;
-            /** Format: uuid */
-            id: string;
-            isSystem: boolean;
-            name: string;
-            status: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        ChargeConceptCreateRequest: {
-            category?: string;
-            code: string;
-            /** @example 125.50 */
-            defaultAmount?: string;
-            description?: string;
-            name: string;
-        };
-        ChargeConceptUpdateRequest: {
-            category?: string;
-            /** @example 125.50 */
-            defaultAmount?: string;
-            description?: string;
-            name?: string;
-            status?: string;
-        };
-        ChargeCreateRequest: {
-            /** @example 125.50 */
-            amount: string;
-            /** Format: uuid */
-            billingPeriodId: string;
-            /** Format: uuid */
-            chargeConceptId: string;
-            description?: string;
-            /** Format: date */
-            dueDate: string;
-            /** Format: uuid */
-            feeScheduleId?: string;
-            /** Format: date */
-            issuedDate: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            type: string;
-        };
-        ChargeReasonDto: Record<string, never>;
-        CreateBillingPeriodDto: Record<string, never>;
-        CreateChargeConceptDto: Record<string, never>;
-        CreateChargeDto: Record<string, never>;
-        CreatedInvitationDataDto: {
-            /** Format: date-time */
-            createdAt: string;
-            email: string;
-            /** Format: date-time */
-            expiresAt: string;
-            /** Format: uuid */
-            id: string;
-            invitationUrl: string;
-            /** Format: date-time */
-            revokedAt?: string | null;
-            role: components["schemas"]["RoleSummaryDto"];
-            /** @enum {string} */
-            status: "pending" | "accepted" | "expired" | "revoked" | "cancelled";
-        };
-        CreatedInvitationResponseDto: {
-            data: components["schemas"]["CreatedInvitationDataDto"];
-            meta: components["schemas"]["ApiMetaDto"];
-        };
-        CreatedTenantDataDto: {
-            /** Format: date-time */
-            archivedAt?: string | null;
-            branding?: Record<string, never> | null;
-            /** Format: date-time */
-            createdAt: string;
-            /** @enum {string} */
-            currency: "USD";
-            /** Format: uuid */
-            id: string;
-            initialAdmin: components["schemas"]["InitialAdminResponseDto"];
-            legalName?: string | null;
-            name: string;
-            profile: Record<string, never>;
-            slug: string;
-            /** @enum {string} */
-            status: "pendingSetup" | "active" | "suspended" | "inactive" | "archived";
-            /** Format: date-time */
-            suspendedAt?: string | null;
-            suspensionReason?: string | null;
-            timezone: string;
-            /** Format: date-time */
-            updatedAt: string;
-            wordpressMapping?: Record<string, never> | null;
-        };
-        CreateFeeScheduleDto: Record<string, never>;
-        CreateInvitationDto: {
-            /** @example resident.user@example.com */
-            email: string;
-            /** @default 72 */
-            expiresInHours: number;
-            message?: string;
-            /** Format: uuid */
-            roleId: string;
-        };
-        CreateLeaseDto: Record<string, never>;
-        CreateLegalEntityDto: Record<string, never>;
-        CreateOwnershipDto: Record<string, never>;
-        CreatePaymentDto: Record<string, never>;
-        CreatePersonDto: Record<string, never>;
-        CreatePropertyUnitDto: Record<string, never>;
-        CreateResidencyDto: Record<string, never>;
-        CreateTenantDto: {
-            branding?: components["schemas"]["TenantBrandingInputDto"];
-            /**
-             * @default USD
-             * @enum {string}
-             */
-            currency: "USD";
-            initialAdmin: components["schemas"]["InitialAdminDto"];
-            /** @example Villa Club */
-            legalName?: string;
-            /** @example Villa Club */
-            name: string;
-            profile?: components["schemas"]["TenantProfileInputDto"];
-            /** @example villa-club */
-            slug?: string;
-            /** @default America/Guayaquil */
-            timezone: string;
-            wordpressMapping?: components["schemas"]["TenantWordPressMappingInputDto"];
-        };
-        CreateTenantResponseDto: {
-            data: components["schemas"]["CreatedTenantDataDto"];
-            meta: components["schemas"]["TenantResponseMetaDto"];
-        };
-        CreateUnitFeeDto: Record<string, never>;
-        CurrentUserDataDto: {
-            displayName: string;
-            /** @enum {string} */
-            status: "active";
-            /** Format: uuid */
-            userProfileId: string;
-        };
-        CurrentUserResponseDto: {
-            data: components["schemas"]["CurrentUserDataDto"];
-            meta: components["schemas"]["DiscoveryMetaDto"];
-        };
-        DiscoveryMetaDto: {
-            /** Format: uuid */
-            traceId: string;
-        };
-        EffectiveSettingDataDto: {
-            /** @example general */
-            category: string;
-            /** Format: date-time */
-            effectiveFrom: string | null;
-            /** Format: date-time */
-            effectiveUntil: string | null;
-            isTenantOverridable: boolean;
-            /** @example general.locale */
-            key: string;
-            residentVisible: boolean;
-            /** @example internal */
-            sensitivity: string;
-            /** Format: uuid */
-            settingDefinitionId: string;
-            /** Format: uuid */
-            settingValueId: string | null;
-            /** @enum {string} */
-            source: "platformDefault" | "tenantOverride";
-            value: Record<string, never>;
-            /** @example string */
-            valueType: string;
-        };
-        EffectiveSettingListResponseDto: {
-            data: components["schemas"]["EffectiveSettingDataDto"][];
-            meta: components["schemas"]["PageMetaDto"];
-        };
-        EffectiveSettingResponseDto: {
-            data: components["schemas"]["EffectiveSettingDataDto"];
-            meta: components["schemas"]["TraceMetaDto"];
-        };
-        EffectiveTenantPermissionsDataDto: {
-            permissions: string[];
-            /** Format: uuid */
-            tenantId: string;
-        };
-        EffectiveTenantPermissionsResponseDto: {
-            data: components["schemas"]["EffectiveTenantPermissionsDataDto"];
-            meta: components["schemas"]["DiscoveryMetaDto"];
-        };
-        EmptyMutationDto: Record<string, never>;
-        EmptyRequest: Record<string, never>;
-        EndRelationshipDto: Record<string, never>;
-        EndRelationshipRequest: {
-            /** Format: date */
-            endDate: string;
-            reason: string;
-        };
-        EndUnitFeeDto: Record<string, never>;
-        FeeSchedule: {
-            /** @example 125.50 */
-            amount: string;
-            /** Format: date-time */
-            archivedAt: string | null;
-            /** Format: uuid */
-            chargeConceptId: string;
-            /** Format: date-time */
-            createdAt: string;
-            /** @enum {string} */
-            currency: "USD";
-            /** Format: date */
-            effectiveFrom: string;
-            /** Format: date */
-            effectiveTo: string | null;
-            frequency: string;
-            /** Format: uuid */
-            id: string;
-            name: string;
-            status: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        FeeScheduleCreateRequest: {
-            /** @example 125.50 */
-            amount: string;
-            /** Format: uuid */
-            chargeConceptId: string;
-            /** Format: date */
-            effectiveFrom: string;
-            /** Format: date */
-            effectiveTo?: string;
-            frequency?: string;
-            name: string;
-        };
-        FeeScheduleUpdateRequest: {
-            /** @example 125.50 */
-            amount?: string;
-            /** Format: date */
-            effectiveFrom?: string;
-            /** Format: date */
-            effectiveTo?: string;
-            frequency?: string;
-            name?: string;
-            status?: string;
-        };
-        FinancialMovement: {
-            /** @example 125.50 */
-            balance: string;
-            /** @example 125.50 */
-            credit: string;
-            /** Format: date */
-            date: string;
-            /** @example 125.50 */
-            debit: string;
-            descriptionCode: string;
-            /** Format: date */
-            dueDate: string | null;
-            /** Format: uuid */
-            sourceId: string;
-            sourceType: string;
-            type: string;
-        };
-        GenerateMonthlyChargesDto: Record<string, never>;
-        GenerateStatementBatchDto: Record<string, never>;
-        GenerateStatementDto: Record<string, never>;
-        HealthLivenessResponseDto: {
-            /** @enum {string} */
-            service: "resident-api";
-            /** @enum {string} */
-            status: "ok";
-            /** Format: date-time */
-            timestamp: string;
-        };
-        HealthReadinessChecksDto: {
-            keycloak: components["schemas"]["InactiveHealthCheckResponseDto"];
-            postgres: components["schemas"]["PostgresHealthCheckResponseDto"];
-            redis: components["schemas"]["InactiveHealthCheckResponseDto"];
-            storage: components["schemas"]["InactiveHealthCheckResponseDto"];
-        };
-        HealthReadinessResponseDto: {
-            checks: components["schemas"]["HealthReadinessChecksDto"];
-            /** @enum {string} */
-            service: "resident-api";
-            /** @enum {string} */
-            status: "ok" | "degraded";
-            /** Format: date-time */
-            timestamp: string;
-        };
-        InactiveHealthCheckResponseDto: {
-            /** @enum {string} */
-            status: "notConfigured";
-        };
-        InitialAdminDto: {
-            /** @example tenant.admin@example.com */
-            email: string;
-        };
-        InitialAdminResponseDto: {
-            email: string;
-            /** @enum {string} */
-            membershipStatus: "active";
-            /** @enum {string} */
-            role: "TenantAdmin";
-            /** Format: uuid */
-            userProfileId: string;
-        };
-        InvitationDataDto: {
-            /** Format: date-time */
-            createdAt: string;
-            email: string;
-            /** Format: date-time */
-            expiresAt: string;
-            /** Format: uuid */
-            id: string;
-            /** Format: date-time */
-            revokedAt?: string | null;
-            role: components["schemas"]["RoleSummaryDto"];
-            /** @enum {string} */
-            status: "pending" | "accepted" | "expired" | "revoked" | "cancelled";
-        };
-        InvitationListMetaDto: {
-            page: number;
-            pageSize: number;
-            total: number;
-            totalPages: number;
-            traceId: string;
-        };
-        InvitationListResponseDto: {
-            data: components["schemas"]["InvitationDataDto"][];
-            meta: components["schemas"]["InvitationListMetaDto"];
-        };
-        InvitationResponseDto: {
-            data: components["schemas"]["InvitationDataDto"];
-            meta: components["schemas"]["ApiMetaDto"];
-        };
-        Lease: {
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: date */
-            endDate: string | null;
-            /** Format: uuid */
-            id: string;
-            /** Format: uuid */
-            ownerLegalEntityId: string | null;
-            /** Format: uuid */
-            ownerPersonId: string | null;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** Format: uuid */
-            residencyId: string | null;
-            /** Format: date */
-            startDate: string;
-            status: string;
-            /** Format: uuid */
-            tenantId: string;
-            /** Format: uuid */
-            tenantPersonId: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        LeaseCreateRequest: {
-            /** Format: date */
-            endDate?: string;
-            /** Format: uuid */
-            ownerLegalEntityId?: string;
-            /** Format: uuid */
-            ownerPersonId?: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** Format: date */
-            startDate: string;
-            /** Format: uuid */
-            tenantPersonId: string;
-        };
-        LeaseUpdateRequest: {
-            /** Format: date */
-            endDate?: string;
-            status?: string;
-        };
-        LegalEntity: {
-            address: string | null;
-            /** Format: date-time */
-            archivedAt: string | null;
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: email */
-            email: string | null;
-            /** Format: uuid */
-            id: string;
-            name: string;
-            phone: string | null;
-            status: string;
-            taxIdentificationNumber: string | null;
-            taxIdentificationType: string | null;
-            /** Format: uuid */
-            tenantId: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        LegalEntityCreateRequest: {
-            address?: string;
-            /** Format: email */
-            email?: string;
-            name: string;
-            phone?: string;
-            taxIdentificationNumber?: string;
-            taxIdentificationType?: string;
-        };
-        LegalEntityUpdateRequest: {
-            address?: string;
-            /** Format: email */
-            email?: string;
-            name?: string;
-            phone?: string;
-            status?: string;
-            taxIdentificationNumber?: string;
-            taxIdentificationType?: string;
-        };
-        LinkUserDto: Record<string, never>;
-        LinkUserRequest: {
-            /** Format: uuid */
-            userProfileId: string;
-        };
-        MembershipDataDto: {
-            /** Format: uuid */
-            id: string;
-            /** Format: date-time */
-            revokedAt?: string | null;
-            /** @enum {string} */
-            status: "active" | "revoked";
-        };
-        MembershipResponseDto: {
-            data: components["schemas"]["MembershipDataDto"];
-            meta: components["schemas"]["ApiMetaDto"];
-        };
-        MembershipRoleDataDto: {
-            /** Format: date-time */
-            assignedAt?: string;
-            /** Format: uuid */
-            id: string;
-            /** Format: date-time */
-            removedAt?: string;
-            /** Format: uuid */
-            roleId: string;
-        };
-        MembershipRoleResponseDto: {
-            data: components["schemas"]["MembershipRoleDataDto"];
-            meta: components["schemas"]["ApiMetaDto"];
-        };
-        OwnershipCreateRequest: {
-            isPrimary?: boolean;
-            /** Format: uuid */
-            legalEntityId?: string;
-            /** @example 125.50 */
-            ownershipPercentage?: string;
-            ownershipType?: string;
-            /** Format: uuid */
-            personId?: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** Format: date */
-            startDate: string;
-        };
-        OwnershipUpdateRequest: {
-            isPrimary?: boolean;
-            /** @example 125.50 */
-            ownershipPercentage?: string;
-            ownershipType?: string;
-            status?: string;
-        };
-        PageMetaDto: {
-            /** @example 1 */
-            page: number;
-            /** @example 25 */
-            pageSize: number;
-            /** @example 1 */
-            total: number;
-            traceId: string;
-        };
-        Payment: {
-            /** @example 125.50 */
-            allocatedAmount: string;
-            /** @example 125.50 */
-            amount: string;
-            /** Format: date-time */
-            createdAt: string;
-            /** @enum {string} */
-            currency: "USD";
-            externalReference: string | null;
-            /** Format: uuid */
-            id: string;
-            method: string;
-            /** Format: date-time */
-            paidAt: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            status: string;
-            transactionReference: string | null;
-            /** @example 125.50 */
-            unallocatedAmount: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        PaymentAllocation: {
-            /** Format: date-time */
-            allocatedAt: string;
-            /** @example 125.50 */
-            amount: string;
-            /** Format: uuid */
-            chargeId: string;
-            /** @enum {string} */
-            currency: "USD";
-            /** Format: uuid */
-            id: string;
-            /** Format: uuid */
-            paymentId: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            status: string;
-        };
-        PaymentReasonDto: Record<string, never>;
-        PaymentReceipt: {
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: uuid */
-            id: string;
-            /** Format: uuid */
-            paymentId: string;
-            receiptNumber: string | null;
-            /** Format: date-time */
-            reviewedAt: string | null;
-            status: string;
-            transactionReference: string | null;
-            /** Format: date-time */
-            updatedAt: string;
-            /** Format: date-time */
-            uploadedAt: string | null;
-        };
-        PaymentReviewRequest: {
-            reason: string;
-        };
-        Person: {
-            /** Format: date-time */
-            archivedAt: string | null;
-            /** Format: date-time */
-            createdAt: string;
-            displayName: string;
-            /** Format: email */
-            email: string | null;
-            firstName: string | null;
-            /** Format: uuid */
-            id: string;
-            identificationNumber: string | null;
-            identificationType: string | null;
-            lastName: string | null;
-            phone: string | null;
-            status: string;
-            /** Format: uuid */
-            tenantId: string;
-            /** Format: date-time */
-            updatedAt: string;
-            /** Format: uuid */
-            userProfileId: string | null;
-            whatsapp: string | null;
-        };
-        PersonCreateRequest: {
-            displayName: string;
-            /** Format: email */
-            email?: string;
-            firstName?: string;
-            identificationNumber?: string;
-            identificationType?: string;
-            lastName?: string;
-            phone?: string;
-            whatsapp?: string;
-        };
-        PersonIdentityLinkAcknowledgement: {
-            /** Format: date-time */
-            linkedAt: string;
-            /** Format: uuid */
-            personId: string;
-            /** Format: uuid */
-            userProfileId: string;
-        };
-        PersonUpdateRequest: {
-            displayName?: string;
-            /** Format: email */
-            email?: string;
-            firstName?: string;
-            identificationNumber?: string;
-            identificationType?: string;
-            lastName?: string;
-            phone?: string;
-            status?: string;
-            whatsapp?: string;
-        };
-        PostgresHealthCheckResponseDto: {
-            /** @enum {string} */
-            status: "ok" | "unavailable";
-        };
-        PropertyOwnership: {
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: date */
-            endDate: string | null;
-            /** Format: uuid */
-            id: string;
-            isPrimary: boolean;
-            /** Format: uuid */
-            legalEntityId: string | null;
-            /** @example 125.50 */
-            ownershipPercentage: string | null;
-            ownershipType: string;
-            /** Format: uuid */
-            personId: string | null;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** Format: date */
-            startDate: string;
-            status: string;
-            /** Format: uuid */
-            tenantId: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        PropertyUnit: {
-            addressReference: string | null;
-            /** Format: date-time */
-            archivedAt: string | null;
-            /** @example 125.50 */
-            areaM2: string | null;
-            block: string | null;
-            code: string;
-            /** Format: date-time */
-            createdAt: string;
-            floor: string | null;
-            /** Format: uuid */
-            id: string;
-            name: string | null;
-            status: string;
-            /** Format: uuid */
-            tenantId: string;
-            type: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        PropertyUnitCreateRequest: {
-            addressReference?: string;
-            /** @example 125.50 */
-            areaM2?: string;
-            block?: string;
-            code: string;
-            floor?: string;
-            name?: string;
-            type?: string;
-        };
-        PropertyUnitUpdateRequest: {
-            addressReference?: string;
-            /** @example 125.50 */
-            areaM2?: string;
-            block?: string;
-            code?: string;
-            floor?: string;
-            name?: string;
-            status?: string;
-            type?: string;
-        };
-        PublicInvitationDataDto: {
-            email: string;
-            /** Format: date-time */
-            expiresAt: string;
-            role: components["schemas"]["PublicRoleSummaryDto"];
-            /** @enum {string} */
-            status: "pending";
-            tenant: components["schemas"]["PublicTenantSummaryDto"];
-        };
-        PublicInvitationResponseDto: {
-            data: components["schemas"]["PublicInvitationDataDto"];
-            meta: components["schemas"]["ApiMetaDto"];
-        };
-        PublicRoleSummaryDto: {
-            code: string;
-            name: string;
-        };
-        PublicTenantSummaryDto: {
-            displayName: string;
-            slug: string;
-        };
-        RecalculateBalanceDto: Record<string, never>;
-        ReceiptUploadDto: Record<string, never>;
-        Residency: {
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: date */
-            endDate: string | null;
-            /** Format: uuid */
-            id: string;
-            isPrimaryResident: boolean;
-            /** Format: uuid */
-            personId: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            residencyType: string;
-            /** Format: date */
-            startDate: string;
-            status: string;
-            /** Format: uuid */
-            tenantId: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        ResidencyCreateRequest: {
-            isPrimaryResident?: boolean;
-            /** Format: uuid */
-            personId: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            residencyType?: string;
-            /** Format: date */
-            startDate: string;
-        };
-        ResidencyUpdateRequest: {
-            isPrimaryResident?: boolean;
-            residencyType?: string;
-            status?: string;
-        };
-        ReverseChargeDto: Record<string, never>;
-        RevokeMembershipDto: {
-            reason?: string;
-        };
-        RoleSummaryDto: {
-            code: string;
-            /** Format: uuid */
-            id: string;
-            name: string;
-        };
-        SecureErrorEnvelope: {
-            error: {
-                code: string;
-                details: Record<string, never> | null;
-                message: string;
-                traceId: string;
-            };
-        };
-        SettingDefinitionDataDto: {
-            allowedValues: Record<string, never> | null;
-            /** @example general */
-            category: string;
-            /** Format: date-time */
-            createdAt: string;
-            defaultValue: Record<string, never>;
-            description: string | null;
-            /** Format: uuid */
-            id: string;
-            isRuntimeCritical: boolean;
-            isTenantOverridable: boolean;
-            /** @example general.locale */
-            key: string;
-            requiresRestart: boolean;
-            residentVisible: boolean;
-            schema: Record<string, never> | null;
-            /** @example internal */
-            sensitivity: string;
-            /** @example active */
-            status: string;
-            /** Format: date-time */
-            updatedAt: string;
-            /** @example string */
-            valueType: string;
-        };
-        SettingDefinitionListResponseDto: {
-            data: components["schemas"]["SettingDefinitionDataDto"][];
-            meta: components["schemas"]["PageMetaDto"];
-        };
-        SettingDefinitionResponseDto: {
-            data: components["schemas"]["SettingDefinitionDataDto"];
-            meta: components["schemas"]["TraceMetaDto"];
-        };
-        StatementReasonDto: Record<string, never>;
-        TenantBrandingInputDto: {
-            /** @example #FFC107 */
-            accentColor?: string;
-            /** Format: uri */
-            bannerUrl?: string;
-            /** Format: uri */
-            logoUrl?: string;
-            /** @example #1E88E5 */
-            primaryColor?: string;
-            /** @example #90CAF9 */
-            secondaryColor?: string;
-        };
-        TenantLifecycleDataDto: {
-            /** Format: date-time */
-            archivedAt?: string | null;
-            /** Format: uuid */
-            id: string;
-            slug: string;
-            /** @enum {string} */
-            status: "pendingSetup" | "active" | "suspended" | "inactive" | "archived";
-            /** Format: date-time */
-            suspendedAt?: string | null;
-            suspensionReason?: string | null;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        TenantLifecycleResponseDto: {
-            data: components["schemas"]["TenantLifecycleDataDto"];
-            meta: components["schemas"]["TenantResponseMetaDto"];
-        };
-        TenantProfileInputDto: {
-            address?: string;
-            city?: string;
-            contactEmail?: string;
-            contactPhone?: string;
-            /** @default Ecuador */
-            country: string;
-            description?: string;
-            /** @example Villa Club */
-            displayName?: string;
-            province?: string;
-            slogan?: string;
-            whatsapp?: string;
-        };
-        TenantResponseMetaDto: {
-            traceId: string;
-        };
-        TenantTransitionReasonDto: {
-            reason: string;
-        };
-        TenantWordPressMappingInputDto: {
-            /** Format: uri */
-            accessUrl?: string;
-            /** @default false */
-            isActive: boolean;
-            wordpressConjuntoId?: string;
-            wordpressConjuntoSlug?: string;
-            /** Format: uri */
-            wordpressSiteUrl?: string;
-        };
-        TraceMetaDto: {
-            traceId: string;
-        };
-        TypedRequestMeta: {
-            requestId: string;
-        };
-        TypedRequestPageMeta: {
-            page: number;
-            pageSize: number;
-            requestId: string;
-            total: number;
-        };
-        TypedResidentPageMeta: {
-            page: number;
-            pageSize: number;
-            total: number;
-            totalPages: number;
-            traceId: string;
-        };
-        TypedTraceMeta: {
-            traceId: string;
-        };
-        TypedTracePageMeta: {
-            page: number;
-            pageSize: number;
-            total: number;
-            traceId: string;
-        };
-        UnitBalance: {
-            /** Format: date-time */
-            calculatedAt: string | null;
-            /** @example 125.50 */
-            creditBalance: string;
-            /** @enum {string} */
-            currency: "USD";
-            /** Format: uuid */
-            id?: string | null;
-            isStale: boolean;
-            /** @example 125.50 */
-            notDueBalance: string;
-            /** @example 125.50 */
-            outstandingBalance: string;
-            /** @example 125.50 */
-            overdueBalance: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** @example 125.50 */
-            unallocatedPaymentBalance: string;
-        };
-        UnitFeeAssignment: {
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: date */
-            endDate: string | null;
-            /** Format: date-time */
-            endedAt: string | null;
-            endReason: string | null;
-            /** Format: uuid */
-            feeScheduleId: string;
-            /** Format: uuid */
-            id: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** Format: date */
-            startDate: string;
-            status: string;
-            /** Format: date-time */
-            updatedAt: string;
-        };
-        UnitFeeCreateRequest: {
-            /** Format: date */
-            endDate?: string;
-            /** Format: uuid */
-            feeScheduleId: string;
-            /** Format: uuid */
-            propertyUnitId: string;
-            /** Format: date */
-            startDate: string;
-        };
-        UpdateChargeConceptDto: Record<string, never>;
-        UpdateFeeScheduleDto: Record<string, never>;
-        UpdateLeaseDto: Record<string, never>;
-        UpdateLegalEntityDto: Record<string, never>;
-        UpdateOwnershipDto: Record<string, never>;
-        UpdatePersonDto: Record<string, never>;
-        UpdatePropertyUnitDto: Record<string, never>;
-        UpdateResidencyDto: Record<string, never>;
-        UpdateTenantSettingDto: {
-            /** @description Typed JSON value governed by the setting definition */
-            value: string | number | boolean | unknown[] | Record<string, never>;
-        };
+  schemas: {
+    AcceptedInvitationDataDto: {
+      /** Format: date-time */
+      acceptedAt: string;
+      /** Format: uuid */
+      membershipId: string;
+      /** @enum {string} */
+      membershipStatus: "active";
+      roles: components["schemas"]["PublicRoleSummaryDto"][];
+      /** Format: uuid */
+      tenantId: string;
+      tenantSlug: string;
+      /** Format: uuid */
+      userId: string;
     };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+    AcceptedInvitationResponseDto: {
+      data: components["schemas"]["AcceptedInvitationDataDto"];
+      meta: components["schemas"]["ApiMetaDto"];
+    };
+    AccessibleTenantDataDto: {
+      /** @enum {string} */
+      membershipStatus: "active";
+      name: string;
+      slug: string;
+      /** Format: uuid */
+      tenantId: string;
+    };
+    AccessibleTenantsResponseDto: {
+      data: components["schemas"]["AccessibleTenantDataDto"][];
+      meta: components["schemas"]["DiscoveryMetaDto"];
+    };
+    AccountStatement: {
+      /** @example 125.50 */
+      adjustmentsTotal: string;
+      /** Format: date */
+      asOfDate: string;
+      /** Format: uuid */
+      billingPeriodId: string;
+      /** @example 125.50 */
+      chargesTotal: string;
+      /** @example 125.50 */
+      closingBalance: string;
+      /** @example 125.50 */
+      creditBalance: string;
+      /** @enum {string} */
+      currency: "USD";
+      /** Format: date-time */
+      generatedAt: string;
+      /** Format: uuid */
+      id: string;
+      lineCount: number;
+      lines?: components["schemas"]["AccountStatementLine"][];
+      /** @example 125.50 */
+      notDueBalance: string;
+      /** @example 125.50 */
+      openingBalance: string;
+      /** @example 125.50 */
+      overdueBalance: string;
+      /** @example 125.50 */
+      paymentsTotal: string;
+      /** Format: uuid */
+      previousStatementId: string | null;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** @example 125.50 */
+      reversalsTotal: string;
+      statementNumber: string;
+      status: string;
+      /** Format: uuid */
+      supersededById: string | null;
+    };
+    AccountStatementLine: {
+      /** @example 125.50 */
+      balance: string;
+      /** @example 125.50 */
+      credit: string;
+      /** Format: date */
+      date: string;
+      /** @example 125.50 */
+      debit: string;
+      descriptionCode: string;
+      /** Format: date */
+      dueDate: string | null;
+      /** Format: uuid */
+      id: string;
+      sourceType: string | null;
+      type: string;
+    };
+    AdjustChargeDto: Record<string, never>;
+    AllocatePaymentDto: Record<string, never>;
+    ApiErrorDto: {
+      /** @example FORBIDDEN */
+      code: string;
+      /** @example null */
+      details: string[] | null;
+      /** @example Access denied. */
+      message: string;
+      /** @example 550e8400-e29b-41d4-a716-446655440000 */
+      traceId: string;
+    };
+    ApiErrorEnvelopeDto: {
+      error: components["schemas"]["ApiErrorDto"];
+    };
+    ApiMetaDto: {
+      traceId: string;
+    };
+    ArchiveDto: Record<string, never>;
+    ArchiveRequest: {
+      reason: string;
+    };
+    AssignMembershipRoleDto: {
+      /** Format: uuid */
+      roleId: string;
+    };
+    BillingPeriod: {
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date */
+      dueDate: string;
+      /** Format: date */
+      endsAt: string;
+      /** Format: uuid */
+      id: string;
+      periodCode: string;
+      /** Format: date */
+      startsAt: string;
+      status: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    BillingPeriodCreateRequest: {
+      /** Format: date */
+      dueDate: string;
+      /** Format: date */
+      endsAt: string;
+      periodCode: string;
+      /** Format: date */
+      startsAt: string;
+    };
+    Charge: {
+      /** Format: uuid */
+      billingPeriodId: string;
+      /** Format: uuid */
+      chargeBatchId: string | null;
+      /** Format: uuid */
+      chargeConceptId: string;
+      /** Format: date-time */
+      createdAt: string;
+      /** @enum {string} */
+      currency: "USD";
+      description: string | null;
+      /** Format: date */
+      dueDate: string;
+      /** @example 125.50 */
+      effectiveAmount: string;
+      /** Format: uuid */
+      feeScheduleId: string | null;
+      /** Format: uuid */
+      id: string;
+      /** Format: date */
+      issuedDate: string;
+      /** @example 125.50 */
+      originalAmount: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      status: string;
+      type: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    ChargeBatch: {
+      /** Format: uuid */
+      billingPeriodId: string;
+      /** Format: date-time */
+      completedAt: string | null;
+      /** Format: date-time */
+      createdAt: string;
+      /** @enum {string} */
+      currency: "USD";
+      errorSummary: {
+        codes: {
+          code: string;
+          count: number;
+        }[];
+      } | null;
+      failedItems: number;
+      /** Format: uuid */
+      feeScheduleId: string | null;
+      /** Format: uuid */
+      id: string;
+      skippedItems: number;
+      /** Format: date-time */
+      startedAt: string | null;
+      status: string;
+      successItems: number;
+      totalItems: number;
+      type: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    ChargeConcept: {
+      /** Format: date-time */
+      archivedAt: string | null;
+      category: string;
+      code: string;
+      /** Format: date-time */
+      createdAt: string;
+      /** @enum {string} */
+      currency: "USD";
+      /** @example 125.50 */
+      defaultAmount: string | null;
+      description: string | null;
+      /** Format: uuid */
+      id: string;
+      isSystem: boolean;
+      name: string;
+      status: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    ChargeConceptCreateRequest: {
+      category?: string;
+      code: string;
+      /** @example 125.50 */
+      defaultAmount?: string;
+      description?: string;
+      name: string;
+    };
+    ChargeConceptUpdateRequest: {
+      category?: string;
+      /** @example 125.50 */
+      defaultAmount?: string;
+      description?: string;
+      name?: string;
+      status?: string;
+    };
+    ChargeCreateRequest: {
+      /** @example 125.50 */
+      amount: string;
+      /** Format: uuid */
+      billingPeriodId: string;
+      /** Format: uuid */
+      chargeConceptId: string;
+      description?: string;
+      /** Format: date */
+      dueDate: string;
+      /** Format: uuid */
+      feeScheduleId?: string;
+      /** Format: date */
+      issuedDate: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      type: string;
+    };
+    ChargeReasonDto: Record<string, never>;
+    CreateBillingPeriodDto: Record<string, never>;
+    CreateChargeConceptDto: Record<string, never>;
+    CreateChargeDto: Record<string, never>;
+    CreatedInvitationDataDto: {
+      /** Format: date-time */
+      createdAt: string;
+      email: string;
+      /** Format: date-time */
+      expiresAt: string;
+      /** Format: uuid */
+      id: string;
+      invitationUrl: string;
+      /** Format: date-time */
+      revokedAt?: string | null;
+      role: components["schemas"]["RoleSummaryDto"];
+      /** @enum {string} */
+      status: "pending" | "accepted" | "expired" | "revoked" | "cancelled";
+    };
+    CreatedInvitationResponseDto: {
+      data: components["schemas"]["CreatedInvitationDataDto"];
+      meta: components["schemas"]["ApiMetaDto"];
+    };
+    CreatedTenantDataDto: {
+      /** Format: date-time */
+      archivedAt?: string | null;
+      branding?: Record<string, never> | null;
+      /** Format: date-time */
+      createdAt: string;
+      /** @enum {string} */
+      currency: "USD";
+      /** Format: uuid */
+      id: string;
+      initialAdmin: components["schemas"]["InitialAdminResponseDto"];
+      legalName?: string | null;
+      name: string;
+      profile: Record<string, never>;
+      slug: string;
+      /** @enum {string} */
+      status: "pendingSetup" | "active" | "suspended" | "inactive" | "archived";
+      /** Format: date-time */
+      suspendedAt?: string | null;
+      suspensionReason?: string | null;
+      timezone: string;
+      /** Format: date-time */
+      updatedAt: string;
+      wordpressMapping?: Record<string, never> | null;
+    };
+    CreateFeeScheduleDto: Record<string, never>;
+    CreateInvitationDto: {
+      /** @example resident.user@example.com */
+      email: string;
+      /** @default 72 */
+      expiresInHours: number;
+      message?: string;
+      /** Format: uuid */
+      roleId: string;
+    };
+    CreateLeaseDto: Record<string, never>;
+    CreateLegalEntityDto: Record<string, never>;
+    CreateOwnershipDto: Record<string, never>;
+    CreatePaymentDto: Record<string, never>;
+    CreatePersonDto: Record<string, never>;
+    CreatePropertyUnitDto: Record<string, never>;
+    CreateResidencyDto: Record<string, never>;
+    CreateTenantDto: {
+      branding?: components["schemas"]["TenantBrandingInputDto"];
+      /**
+       * @default USD
+       * @enum {string}
+       */
+      currency: "USD";
+      initialAdmin: components["schemas"]["InitialAdminDto"];
+      /** @example Villa Club */
+      legalName?: string;
+      /** @example Villa Club */
+      name: string;
+      profile?: components["schemas"]["TenantProfileInputDto"];
+      /** @example villa-club */
+      slug?: string;
+      /** @default America/Guayaquil */
+      timezone: string;
+      wordpressMapping?: components["schemas"]["TenantWordPressMappingInputDto"];
+    };
+    CreateTenantResponseDto: {
+      data: components["schemas"]["CreatedTenantDataDto"];
+      meta: components["schemas"]["TenantResponseMetaDto"];
+    };
+    CreateUnitFeeDto: Record<string, never>;
+    CurrentUserDataDto: {
+      displayName: string;
+      /** @enum {string} */
+      status: "active";
+      /** Format: uuid */
+      userProfileId: string;
+    };
+    CurrentUserResponseDto: {
+      data: components["schemas"]["CurrentUserDataDto"];
+      meta: components["schemas"]["DiscoveryMetaDto"];
+    };
+    DiscoveryMetaDto: {
+      /** Format: uuid */
+      traceId: string;
+    };
+    EffectiveSettingDataDto: {
+      /** @example general */
+      category: string;
+      /** Format: date-time */
+      effectiveFrom: string | null;
+      /** Format: date-time */
+      effectiveUntil: string | null;
+      isTenantOverridable: boolean;
+      /** @example general.locale */
+      key: string;
+      residentVisible: boolean;
+      /** @example internal */
+      sensitivity: string;
+      /** Format: uuid */
+      settingDefinitionId: string;
+      /** Format: uuid */
+      settingValueId: string | null;
+      /** @enum {string} */
+      source: "platformDefault" | "tenantOverride";
+      value: Record<string, never>;
+      /** @example string */
+      valueType: string;
+    };
+    EffectiveSettingListResponseDto: {
+      data: components["schemas"]["EffectiveSettingDataDto"][];
+      meta: components["schemas"]["PageMetaDto"];
+    };
+    EffectiveSettingResponseDto: {
+      data: components["schemas"]["EffectiveSettingDataDto"];
+      meta: components["schemas"]["TraceMetaDto"];
+    };
+    EffectiveTenantPermissionsDataDto: {
+      permissions: string[];
+      /** Format: uuid */
+      tenantId: string;
+    };
+    EffectiveTenantPermissionsResponseDto: {
+      data: components["schemas"]["EffectiveTenantPermissionsDataDto"];
+      meta: components["schemas"]["DiscoveryMetaDto"];
+    };
+    EmptyMutationDto: Record<string, never>;
+    EmptyRequest: Record<string, never>;
+    EndRelationshipDto: Record<string, never>;
+    EndRelationshipRequest: {
+      /** Format: date */
+      endDate: string;
+      reason: string;
+    };
+    EndUnitFeeDto: Record<string, never>;
+    FeeSchedule: {
+      /** @example 125.50 */
+      amount: string;
+      /** Format: date-time */
+      archivedAt: string | null;
+      /** Format: uuid */
+      chargeConceptId: string;
+      /** Format: date-time */
+      createdAt: string;
+      /** @enum {string} */
+      currency: "USD";
+      /** Format: date */
+      effectiveFrom: string;
+      /** Format: date */
+      effectiveTo: string | null;
+      frequency: string;
+      /** Format: uuid */
+      id: string;
+      name: string;
+      status: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    FeeScheduleCreateRequest: {
+      /** @example 125.50 */
+      amount: string;
+      /** Format: uuid */
+      chargeConceptId: string;
+      /** Format: date */
+      effectiveFrom: string;
+      /** Format: date */
+      effectiveTo?: string;
+      frequency?: string;
+      name: string;
+    };
+    FeeScheduleUpdateRequest: {
+      /** @example 125.50 */
+      amount?: string;
+      /** Format: date */
+      effectiveFrom?: string;
+      /** Format: date */
+      effectiveTo?: string;
+      frequency?: string;
+      name?: string;
+      status?: string;
+    };
+    FinancialMovement: {
+      /** @example 125.50 */
+      balance: string;
+      /** @example 125.50 */
+      credit: string;
+      /** Format: date */
+      date: string;
+      /** @example 125.50 */
+      debit: string;
+      descriptionCode: string;
+      /** Format: date */
+      dueDate: string | null;
+      /** Format: uuid */
+      sourceId: string;
+      sourceType: string;
+      type: string;
+    };
+    GenerateMonthlyChargesDto: Record<string, never>;
+    GenerateStatementBatchDto: Record<string, never>;
+    GenerateStatementDto: Record<string, never>;
+    HealthLivenessResponseDto: {
+      /** @enum {string} */
+      service: "resident-api";
+      /** @enum {string} */
+      status: "ok";
+      /** Format: date-time */
+      timestamp: string;
+    };
+    HealthReadinessChecksDto: {
+      keycloak: components["schemas"]["InactiveHealthCheckResponseDto"];
+      postgres: components["schemas"]["PostgresHealthCheckResponseDto"];
+      redis: components["schemas"]["InactiveHealthCheckResponseDto"];
+      storage: components["schemas"]["InactiveHealthCheckResponseDto"];
+    };
+    HealthReadinessResponseDto: {
+      checks: components["schemas"]["HealthReadinessChecksDto"];
+      /** @enum {string} */
+      service: "resident-api";
+      /** @enum {string} */
+      status: "ok" | "degraded";
+      /** Format: date-time */
+      timestamp: string;
+    };
+    InactiveHealthCheckResponseDto: {
+      /** @enum {string} */
+      status: "notConfigured";
+    };
+    InitialAdminDto: {
+      /** @example tenant.admin@example.com */
+      email: string;
+    };
+    InitialAdminResponseDto: {
+      email: string;
+      /** @enum {string} */
+      membershipStatus: "active";
+      /** @enum {string} */
+      role: "TenantAdmin";
+      /** Format: uuid */
+      userProfileId: string;
+    };
+    InvitationDataDto: {
+      /** Format: date-time */
+      createdAt: string;
+      email: string;
+      /** Format: date-time */
+      expiresAt: string;
+      /** Format: uuid */
+      id: string;
+      /** Format: date-time */
+      revokedAt?: string | null;
+      role: components["schemas"]["RoleSummaryDto"];
+      /** @enum {string} */
+      status: "pending" | "accepted" | "expired" | "revoked" | "cancelled";
+    };
+    InvitationListMetaDto: {
+      page: number;
+      pageSize: number;
+      total: number;
+      totalPages: number;
+      traceId: string;
+    };
+    InvitationListResponseDto: {
+      data: components["schemas"]["InvitationDataDto"][];
+      meta: components["schemas"]["InvitationListMetaDto"];
+    };
+    InvitationResponseDto: {
+      data: components["schemas"]["InvitationDataDto"];
+      meta: components["schemas"]["ApiMetaDto"];
+    };
+    Lease: {
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date */
+      endDate: string | null;
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      ownerLegalEntityId: string | null;
+      /** Format: uuid */
+      ownerPersonId: string | null;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** Format: uuid */
+      residencyId: string | null;
+      /** Format: date */
+      startDate: string;
+      status: string;
+      /** Format: uuid */
+      tenantId: string;
+      /** Format: uuid */
+      tenantPersonId: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    LeaseCreateRequest: {
+      /** Format: date */
+      endDate?: string;
+      /** Format: uuid */
+      ownerLegalEntityId?: string;
+      /** Format: uuid */
+      ownerPersonId?: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** Format: date */
+      startDate: string;
+      /** Format: uuid */
+      tenantPersonId: string;
+    };
+    LeaseUpdateRequest: {
+      /** Format: date */
+      endDate?: string;
+      status?: string;
+    };
+    LegalEntity: {
+      address: string | null;
+      /** Format: date-time */
+      archivedAt: string | null;
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: email */
+      email: string | null;
+      /** Format: uuid */
+      id: string;
+      name: string;
+      phone: string | null;
+      status: string;
+      taxIdentificationNumber: string | null;
+      taxIdentificationType: string | null;
+      /** Format: uuid */
+      tenantId: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    LegalEntityCreateRequest: {
+      address?: string;
+      /** Format: email */
+      email?: string;
+      name: string;
+      phone?: string;
+      taxIdentificationNumber?: string;
+      taxIdentificationType?: string;
+    };
+    LegalEntityUpdateRequest: {
+      address?: string;
+      /** Format: email */
+      email?: string;
+      name?: string;
+      phone?: string;
+      status?: string;
+      taxIdentificationNumber?: string;
+      taxIdentificationType?: string;
+    };
+    LinkUserDto: Record<string, never>;
+    LinkUserRequest: {
+      /** Format: uuid */
+      userProfileId: string;
+    };
+    MembershipDataDto: {
+      /** Format: uuid */
+      id: string;
+      /** Format: date-time */
+      revokedAt?: string | null;
+      /** @enum {string} */
+      status: "active" | "revoked";
+    };
+    MembershipResponseDto: {
+      data: components["schemas"]["MembershipDataDto"];
+      meta: components["schemas"]["ApiMetaDto"];
+    };
+    MembershipRoleDataDto: {
+      /** Format: date-time */
+      assignedAt?: string;
+      /** Format: uuid */
+      id: string;
+      /** Format: date-time */
+      removedAt?: string;
+      /** Format: uuid */
+      roleId: string;
+    };
+    MembershipRoleResponseDto: {
+      data: components["schemas"]["MembershipRoleDataDto"];
+      meta: components["schemas"]["ApiMetaDto"];
+    };
+    OwnershipCreateRequest: {
+      isPrimary?: boolean;
+      /** Format: uuid */
+      legalEntityId?: string;
+      /** @example 125.50 */
+      ownershipPercentage?: string;
+      ownershipType?: string;
+      /** Format: uuid */
+      personId?: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** Format: date */
+      startDate: string;
+    };
+    OwnershipUpdateRequest: {
+      isPrimary?: boolean;
+      /** @example 125.50 */
+      ownershipPercentage?: string;
+      ownershipType?: string;
+      status?: string;
+    };
+    PageMetaDto: {
+      /** @example 1 */
+      page: number;
+      /** @example 25 */
+      pageSize: number;
+      /** @example 1 */
+      total: number;
+      traceId: string;
+    };
+    Payment: {
+      /** @example 125.50 */
+      allocatedAmount: string;
+      /** @example 125.50 */
+      amount: string;
+      /** Format: date-time */
+      createdAt: string;
+      /** @enum {string} */
+      currency: "USD";
+      externalReference: string | null;
+      /** Format: uuid */
+      id: string;
+      method: string;
+      /** Format: date-time */
+      paidAt: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      status: string;
+      transactionReference: string | null;
+      /** @example 125.50 */
+      unallocatedAmount: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    PaymentAllocation: {
+      /** Format: date-time */
+      allocatedAt: string;
+      /** @example 125.50 */
+      amount: string;
+      /** Format: uuid */
+      chargeId: string;
+      /** @enum {string} */
+      currency: "USD";
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      paymentId: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      status: string;
+    };
+    PaymentReasonDto: Record<string, never>;
+    PaymentReceipt: {
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      paymentId: string;
+      receiptNumber: string | null;
+      /** Format: date-time */
+      reviewedAt: string | null;
+      status: string;
+      transactionReference: string | null;
+      /** Format: date-time */
+      updatedAt: string;
+      /** Format: date-time */
+      uploadedAt: string | null;
+    };
+    PaymentReviewRequest: {
+      reason: string;
+    };
+    Person: {
+      /** Format: date-time */
+      archivedAt: string | null;
+      /** Format: date-time */
+      createdAt: string;
+      displayName: string;
+      /** Format: email */
+      email: string | null;
+      firstName: string | null;
+      /** Format: uuid */
+      id: string;
+      identificationNumber: string | null;
+      identificationType: string | null;
+      lastName: string | null;
+      phone: string | null;
+      status: string;
+      /** Format: uuid */
+      tenantId: string;
+      /** Format: date-time */
+      updatedAt: string;
+      /** Format: uuid */
+      userProfileId: string | null;
+      whatsapp: string | null;
+    };
+    PersonCreateRequest: {
+      displayName: string;
+      /** Format: email */
+      email?: string;
+      firstName?: string;
+      identificationNumber?: string;
+      identificationType?: string;
+      lastName?: string;
+      phone?: string;
+      whatsapp?: string;
+    };
+    PersonIdentityLinkAcknowledgement: {
+      /** Format: date-time */
+      linkedAt: string;
+      /** Format: uuid */
+      personId: string;
+      /** Format: uuid */
+      userProfileId: string;
+    };
+    PersonUpdateRequest: {
+      displayName?: string;
+      /** Format: email */
+      email?: string;
+      firstName?: string;
+      identificationNumber?: string;
+      identificationType?: string;
+      lastName?: string;
+      phone?: string;
+      status?: string;
+      whatsapp?: string;
+    };
+    PostgresHealthCheckResponseDto: {
+      /** @enum {string} */
+      status: "ok" | "unavailable";
+    };
+    PropertyOwnership: {
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date */
+      endDate: string | null;
+      /** Format: uuid */
+      id: string;
+      isPrimary: boolean;
+      /** Format: uuid */
+      legalEntityId: string | null;
+      /** @example 125.50 */
+      ownershipPercentage: string | null;
+      ownershipType: string;
+      /** Format: uuid */
+      personId: string | null;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** Format: date */
+      startDate: string;
+      status: string;
+      /** Format: uuid */
+      tenantId: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    PropertyUnit: {
+      addressReference: string | null;
+      /** Format: date-time */
+      archivedAt: string | null;
+      /** @example 125.50 */
+      areaM2: string | null;
+      block: string | null;
+      code: string;
+      /** Format: date-time */
+      createdAt: string;
+      floor: string | null;
+      /** Format: uuid */
+      id: string;
+      name: string | null;
+      status: string;
+      /** Format: uuid */
+      tenantId: string;
+      type: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    PropertyUnitCreateRequest: {
+      addressReference?: string;
+      /** @example 125.50 */
+      areaM2?: string;
+      block?: string;
+      code: string;
+      floor?: string;
+      name?: string;
+      type?: string;
+    };
+    PropertyUnitUpdateRequest: {
+      addressReference?: string;
+      /** @example 125.50 */
+      areaM2?: string;
+      block?: string;
+      code?: string;
+      floor?: string;
+      name?: string;
+      status?: string;
+      type?: string;
+    };
+    PublicInvitationDataDto: {
+      email: string;
+      /** Format: date-time */
+      expiresAt: string;
+      role: components["schemas"]["PublicRoleSummaryDto"];
+      /** @enum {string} */
+      status: "pending";
+      tenant: components["schemas"]["PublicTenantSummaryDto"];
+    };
+    PublicInvitationResponseDto: {
+      data: components["schemas"]["PublicInvitationDataDto"];
+      meta: components["schemas"]["ApiMetaDto"];
+    };
+    PublicRoleSummaryDto: {
+      code: string;
+      name: string;
+    };
+    PublicTenantSummaryDto: {
+      displayName: string;
+      slug: string;
+    };
+    RecalculateBalanceDto: Record<string, never>;
+    ReceiptUploadDto: Record<string, never>;
+    Residency: {
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date */
+      endDate: string | null;
+      /** Format: uuid */
+      id: string;
+      isPrimaryResident: boolean;
+      /** Format: uuid */
+      personId: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      residencyType: string;
+      /** Format: date */
+      startDate: string;
+      status: string;
+      /** Format: uuid */
+      tenantId: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    ResidencyCreateRequest: {
+      isPrimaryResident?: boolean;
+      /** Format: uuid */
+      personId: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      residencyType?: string;
+      /** Format: date */
+      startDate: string;
+    };
+    ResidencyUpdateRequest: {
+      isPrimaryResident?: boolean;
+      residencyType?: string;
+      status?: string;
+    };
+    ReverseChargeDto: Record<string, never>;
+    RevokeMembershipDto: {
+      reason?: string;
+    };
+    RoleSummaryDto: {
+      code: string;
+      /** Format: uuid */
+      id: string;
+      name: string;
+    };
+    SecureErrorEnvelope: {
+      error: {
+        code: string;
+        details: Record<string, never> | null;
+        message: string;
+        traceId: string;
+      };
+    };
+    SettingDefinitionDataDto: {
+      allowedValues: Record<string, never> | null;
+      /** @example general */
+      category: string;
+      /** Format: date-time */
+      createdAt: string;
+      defaultValue: Record<string, never>;
+      description: string | null;
+      /** Format: uuid */
+      id: string;
+      isRuntimeCritical: boolean;
+      isTenantOverridable: boolean;
+      /** @example general.locale */
+      key: string;
+      requiresRestart: boolean;
+      residentVisible: boolean;
+      schema: Record<string, never> | null;
+      /** @example internal */
+      sensitivity: string;
+      /** @example active */
+      status: string;
+      /** Format: date-time */
+      updatedAt: string;
+      /** @example string */
+      valueType: string;
+    };
+    SettingDefinitionListResponseDto: {
+      data: components["schemas"]["SettingDefinitionDataDto"][];
+      meta: components["schemas"]["PageMetaDto"];
+    };
+    SettingDefinitionResponseDto: {
+      data: components["schemas"]["SettingDefinitionDataDto"];
+      meta: components["schemas"]["TraceMetaDto"];
+    };
+    StatementReasonDto: Record<string, never>;
+    TenantBrandingInputDto: {
+      /** @example #FFC107 */
+      accentColor?: string;
+      /** Format: uri */
+      bannerUrl?: string;
+      /** Format: uri */
+      logoUrl?: string;
+      /** @example #1E88E5 */
+      primaryColor?: string;
+      /** @example #90CAF9 */
+      secondaryColor?: string;
+    };
+    TenantLifecycleDataDto: {
+      /** Format: date-time */
+      archivedAt?: string | null;
+      /** Format: uuid */
+      id: string;
+      slug: string;
+      /** @enum {string} */
+      status: "pendingSetup" | "active" | "suspended" | "inactive" | "archived";
+      /** Format: date-time */
+      suspendedAt?: string | null;
+      suspensionReason?: string | null;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    TenantLifecycleResponseDto: {
+      data: components["schemas"]["TenantLifecycleDataDto"];
+      meta: components["schemas"]["TenantResponseMetaDto"];
+    };
+    TenantProfileInputDto: {
+      address?: string;
+      city?: string;
+      contactEmail?: string;
+      contactPhone?: string;
+      /** @default Ecuador */
+      country: string;
+      description?: string;
+      /** @example Villa Club */
+      displayName?: string;
+      province?: string;
+      slogan?: string;
+      whatsapp?: string;
+    };
+    TenantResponseMetaDto: {
+      traceId: string;
+    };
+    TenantTransitionReasonDto: {
+      reason: string;
+    };
+    TenantWordPressMappingInputDto: {
+      /** Format: uri */
+      accessUrl?: string;
+      /** @default false */
+      isActive: boolean;
+      wordpressConjuntoId?: string;
+      wordpressConjuntoSlug?: string;
+      /** Format: uri */
+      wordpressSiteUrl?: string;
+    };
+    TraceMetaDto: {
+      traceId: string;
+    };
+    TypedRequestMeta: {
+      requestId: string;
+    };
+    TypedRequestPageMeta: {
+      page: number;
+      pageSize: number;
+      requestId: string;
+      total: number;
+    };
+    TypedResidentPageMeta: {
+      page: number;
+      pageSize: number;
+      total: number;
+      totalPages: number;
+      traceId: string;
+    };
+    TypedTraceMeta: {
+      traceId: string;
+    };
+    TypedTracePageMeta: {
+      page: number;
+      pageSize: number;
+      total: number;
+      traceId: string;
+    };
+    UnitBalance: {
+      /** Format: date-time */
+      calculatedAt: string | null;
+      /** @example 125.50 */
+      creditBalance: string;
+      /** @enum {string} */
+      currency: "USD";
+      /** Format: uuid */
+      id?: string | null;
+      isStale: boolean;
+      /** @example 125.50 */
+      notDueBalance: string;
+      /** @example 125.50 */
+      outstandingBalance: string;
+      /** @example 125.50 */
+      overdueBalance: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** @example 125.50 */
+      unallocatedPaymentBalance: string;
+    };
+    UnitFeeAssignment: {
+      /** Format: date-time */
+      createdAt: string;
+      /** Format: date */
+      endDate: string | null;
+      /** Format: date-time */
+      endedAt: string | null;
+      endReason: string | null;
+      /** Format: uuid */
+      feeScheduleId: string;
+      /** Format: uuid */
+      id: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** Format: date */
+      startDate: string;
+      status: string;
+      /** Format: date-time */
+      updatedAt: string;
+    };
+    UnitFeeCreateRequest: {
+      /** Format: date */
+      endDate?: string;
+      /** Format: uuid */
+      feeScheduleId: string;
+      /** Format: uuid */
+      propertyUnitId: string;
+      /** Format: date */
+      startDate: string;
+    };
+    UpdateChargeConceptDto: Record<string, never>;
+    UpdateFeeScheduleDto: Record<string, never>;
+    UpdateLeaseDto: Record<string, never>;
+    UpdateLegalEntityDto: Record<string, never>;
+    UpdateOwnershipDto: Record<string, never>;
+    UpdatePersonDto: Record<string, never>;
+    UpdatePropertyUnitDto: Record<string, never>;
+    UpdateResidencyDto: Record<string, never>;
+    UpdateTenantSettingDto: {
+      /** @description Typed JSON value governed by the setting definition */
+      value: string | number | boolean | unknown[] | Record<string, never>;
+    };
+  };
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    healthLiveness: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description The API process is alive. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HealthLivenessResponseDto"];
-                };
-            };
-            /** @description An uncontrolled platform failure occurred. */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    healthReadiness: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description All configured platform dependencies are ready. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HealthReadinessResponseDto"];
-                };
-            };
-            /** @description The caller is not authorized to inspect platform readiness. */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            /** @description An uncontrolled platform failure occurred. */
-            500: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            /** @description At least one configured platform dependency is unavailable. */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HealthReadinessResponseDto"];
-                };
-            };
-        };
-    };
-    getInvitationByToken: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                token: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PublicInvitationResponseDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    acceptInvitation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                token: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AcceptedInvitationResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    getCurrentUserProfile: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CurrentUserResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    OwnAccountStatementsController_list: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnAccountStatementsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                statementId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnChargesController_list: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnPaymentsController_download: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                receiptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnPaymentsController_list: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnPaymentsController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreatePaymentDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnPaymentsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnPaymentsController_upload: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ReceiptUploadDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    getCurrentUserEffectivePermissions: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["EffectiveTenantPermissionsResponseDto"];
-                };
-            };
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    OwnResidentsController_person: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Person"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnResidentsController_units: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyUnit"][];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnAccountStatementsController_balance: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnChargesController_listUnit: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnAccountStatementsController_movements: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnResidentsController_residencies: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Residency"][];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    listCurrentUserTenants: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AccessibleTenantsResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    listSettingDefinitions: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SettingDefinitionListResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    getSettingDefinition: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                definitionId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SettingDefinitionResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    createTenant: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateTenantDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CreateTenantResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    activateTenant: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                tenantId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TenantLifecycleResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    archiveTenant: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                tenantId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TenantTransitionReasonDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TenantLifecycleResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    reactivateTenant: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                tenantId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TenantLifecycleResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    suspendTenant: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                tenantId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TenantTransitionReasonDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["TenantLifecycleResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["AccountStatement"][];
-                        meta: components["schemas"]["TypedRequestPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                statementId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["AccountStatement"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_close: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                statementId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["StatementReasonDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_lock: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                statementId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["StatementReasonDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_publish: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                statementId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_regenerate: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                statementId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["StatementReasonDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_generate: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["GenerateStatementDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    AccountStatementsController_batch: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["GenerateStatementBatchDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BalancesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UnitBalance"][];
-                        meta: components["schemas"]["TypedRequestPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BillingPeriodsController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["BillingPeriod"][];
-                        meta: components["schemas"]["TypedTracePageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BillingPeriodsController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BillingPeriodCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["BillingPeriod"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BillingPeriodsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                billingPeriodId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["BillingPeriod"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BillingPeriodLifecycleController_close: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                billingPeriodId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChargeReasonDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BillingPeriodLifecycleController_lock: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                billingPeriodId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChargeReasonDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargeBatchesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ChargeBatch"][];
-                        meta: components["schemas"]["TypedTracePageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargeBatchesController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                chargeBatchId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ChargeBatch"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargeConceptsController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ChargeConcept"][];
-                        meta: components["schemas"]["TypedTracePageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargeConceptsController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChargeConceptCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ChargeConcept"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargeConceptsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                chargeConceptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ChargeConcept"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargeConceptsController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                chargeConceptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChargeConceptUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ChargeConcept"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargeConceptsController_archive: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                chargeConceptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmptyRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["ChargeConcept"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Charge"][];
-                        meta: components["schemas"]["TypedTracePageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargesController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChargeCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Charge"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargesController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                chargeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Charge"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargesController_adjust: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                chargeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AdjustChargeDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargesController_cancel: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                chargeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PaymentReviewRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Charge"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargesController_reverse: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                chargeId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ReverseChargeDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ChargesController_generate: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["GenerateMonthlyChargesDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    FeeSchedulesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["FeeSchedule"][];
-                        meta: components["schemas"]["TypedTracePageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    FeeSchedulesController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["FeeScheduleCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["FeeSchedule"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    FeeSchedulesController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                feeScheduleId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["FeeSchedule"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    FeeSchedulesController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                feeScheduleId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["FeeScheduleUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["FeeSchedule"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    FeeSchedulesController_archive: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                feeScheduleId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmptyRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["FeeSchedule"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    listTenantInvitations: {
-        parameters: {
-            query?: {
-                status?: "pending" | "accepted" | "expired" | "revoked" | "cancelled";
-                email?: string;
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["InvitationListResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    createTenantInvitation: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateInvitationDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CreatedInvitationResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    revokeTenantInvitation: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path: {
-                invitationId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["InvitationResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    LeasesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Lease"][];
-                        meta: components["schemas"]["TypedResidentPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LeasesController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LeaseCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Lease"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LeasesController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                leaseId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Lease"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LeasesController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                leaseId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LeaseUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Lease"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LeasesController_end: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                leaseId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EndRelationshipRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Lease"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LegalEntitiesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["LegalEntity"][];
-                        meta: components["schemas"]["TypedResidentPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LegalEntitiesController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LegalEntityCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["LegalEntity"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LegalEntitiesController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                legalEntityId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["LegalEntity"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LegalEntitiesController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                legalEntityId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LegalEntityUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["LegalEntity"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    LegalEntitiesController_archive: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                legalEntityId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ArchiveRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["LegalEntity"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    revokeTenantMembership: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path: {
-                membershipId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RevokeMembershipDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MembershipResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    assignTenantMembershipRole: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path: {
-                membershipId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AssignMembershipRoleDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MembershipRoleResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    removeTenantMembershipRole: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path: {
-                membershipId: string;
-                roleId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MembershipRoleResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    PaymentAllocationsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                allocationId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PaymentAllocation"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentAllocationsController_reverse: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                allocationId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PaymentReasonDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentReceiptsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                receiptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PaymentReceipt"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentReceiptsController_accept: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                receiptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PaymentReceipt"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentReceiptsController_download: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                receiptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Receipt document. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/pdf": string;
-                    "image/jpeg": string;
-                    "image/png": string;
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentReceiptsController_reject: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                receiptId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PaymentReviewRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PaymentReceipt"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentsController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Payment"][];
-                        meta: components["schemas"]["TypedRequestPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentsController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreatePaymentDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Payment"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentAllocationCommandsController_allocate: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AllocatePaymentDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentAllocationCommandsController_list: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PaymentAllocation"][];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentAllocationCommandsController_autoAllocate: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": Record<string, never>;
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentsController_confirm: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Payment"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentsController_receipts: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PaymentReceipt"][];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentsController_upload: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ReceiptUploadDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentsController_reject: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PaymentReviewRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Payment"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PaymentAllocationCommandsController_reverse: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                paymentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PaymentReasonDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PersonsController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Person"][];
-                        meta: components["schemas"]["TypedResidentPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PersonsController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PersonCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Person"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PersonsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                personId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Person"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PersonsController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                personId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PersonUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Person"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PersonsController_archive: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                personId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ArchiveRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Person"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PersonsController_linkUser: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                personId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LinkUserRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PersonIdentityLinkAcknowledgement"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnershipsController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyOwnership"][];
-                        meta: components["schemas"]["TypedResidentPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnershipsController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OwnershipCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyOwnership"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnershipsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                ownershipId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyOwnership"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnershipsController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                ownershipId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["OwnershipUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyOwnership"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    OwnershipsController_end: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                ownershipId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EndRelationshipRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyOwnership"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PropertyUnitsController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyUnit"][];
-                        meta: components["schemas"]["TypedResidentPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PropertyUnitsController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PropertyUnitCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyUnit"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PropertyUnitsController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyUnit"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PropertyUnitsController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PropertyUnitUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyUnit"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    PropertyUnitsController_archive: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ArchiveRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["PropertyUnit"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BalancesController_balance: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UnitBalance"];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BalancesController_recalculate: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RecalculateBalanceDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    BalancesController_movements: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                propertyUnitId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["FinancialMovement"][];
-                        meta: components["schemas"]["TypedRequestMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ResidenciesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Residency"][];
-                        meta: components["schemas"]["TypedResidentPageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ResidenciesController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ResidencyCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Residency"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ResidenciesController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                residencyId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Residency"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ResidenciesController_update: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                residencyId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ResidencyUpdateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Residency"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    ResidenciesController_end: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                residencyId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EndRelationshipRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Residency"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    listEffectiveTenantSettings: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["EffectiveSettingListResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    getEffectiveTenantSetting: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path: {
-                key: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["EffectiveSettingResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    updateTenantSetting: {
-        parameters: {
-            query?: never;
-            header: {
-                "X-Tenant-Id": string;
-            };
-            path: {
-                key: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateTenantSettingDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["EffectiveSettingResponseDto"];
-                };
-            };
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
-                };
-            };
-        };
-    };
-    UnitFeesController_list: {
-        parameters: {
-            query?: {
-                page?: number;
-                pageSize?: number;
-            };
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UnitFeeAssignment"][];
-                        meta: components["schemas"]["TypedTracePageMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    UnitFeesController_create: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UnitFeeCreateRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UnitFeeAssignment"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    UnitFeesController_get: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-            };
-            path: {
-                unitFeeAssignmentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UnitFeeAssignment"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-        };
-    };
-    UnitFeesController_end: {
-        parameters: {
-            query?: never;
-            header: {
-                /** @description Validated active tenant context. */
-                "X-Tenant-Id": string;
-                /** @description Opaque client key scoped by tenant and operation. */
-                "Idempotency-Key": string;
-            };
-            path: {
-                unitFeeAssignmentId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EndRelationshipRequest"];
-            };
-        };
-        responses: {
-            /** @description Successful response. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UnitFeeAssignment"];
-                        meta: components["schemas"]["TypedTraceMeta"];
-                    };
-                };
-            };
-            /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description AUTHENTICATION_REQUIRED */
-            401: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
-            403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
-            409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
-            /** @description DEPENDENCY_UNAVAILABLE */
-            503: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SecureErrorEnvelope"];
-                };
-            };
+  healthLiveness: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description The API process is alive. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["HealthLivenessResponseDto"];
+        };
+      };
+      /** @description An uncontrolled platform failure occurred. */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  healthReadiness: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description All configured platform dependencies are ready. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["HealthReadinessResponseDto"];
+        };
+      };
+      /** @description The caller is not authorized to inspect platform readiness. */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      /** @description An uncontrolled platform failure occurred. */
+      500: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      /** @description At least one configured platform dependency is unavailable. */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["HealthReadinessResponseDto"];
+        };
+      };
+    };
+  };
+  getInvitationByToken: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        token: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PublicInvitationResponseDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
         };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  acceptInvitation: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        token: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AcceptedInvitationResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  getCurrentUserProfile: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CurrentUserResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  OwnAccountStatementsController_list: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnAccountStatementsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        statementId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnChargesController_list: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnPaymentsController_download: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        receiptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnPaymentsController_list: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnPaymentsController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreatePaymentDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnPaymentsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnPaymentsController_upload: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReceiptUploadDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  getCurrentUserEffectivePermissions: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["EffectiveTenantPermissionsResponseDto"];
+        };
+      };
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  OwnResidentsController_person: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Person"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnResidentsController_units: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyUnit"][];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnAccountStatementsController_balance: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnChargesController_listUnit: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnAccountStatementsController_movements: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnResidentsController_residencies: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Residency"][];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  listCurrentUserTenants: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AccessibleTenantsResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  listSettingDefinitions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SettingDefinitionListResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  getSettingDefinition: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        definitionId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SettingDefinitionResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  createTenant: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateTenantDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CreateTenantResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  activateTenant: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        tenantId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["TenantLifecycleResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  archiveTenant: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        tenantId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TenantTransitionReasonDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["TenantLifecycleResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  reactivateTenant: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        tenantId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["TenantLifecycleResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  suspendTenant: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        tenantId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TenantTransitionReasonDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["TenantLifecycleResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["AccountStatement"][];
+            meta: components["schemas"]["TypedRequestPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        statementId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["AccountStatement"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_close: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        statementId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StatementReasonDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_lock: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        statementId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StatementReasonDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_publish: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        statementId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": Record<string, never>;
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_regenerate: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        statementId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StatementReasonDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_generate: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["GenerateStatementDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  AccountStatementsController_batch: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["GenerateStatementBatchDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BalancesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["UnitBalance"][];
+            meta: components["schemas"]["TypedRequestPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BillingPeriodsController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["BillingPeriod"][];
+            meta: components["schemas"]["TypedTracePageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BillingPeriodsController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BillingPeriodCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["BillingPeriod"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BillingPeriodsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        billingPeriodId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["BillingPeriod"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BillingPeriodLifecycleController_close: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        billingPeriodId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChargeReasonDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BillingPeriodLifecycleController_lock: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        billingPeriodId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChargeReasonDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargeBatchesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["ChargeBatch"][];
+            meta: components["schemas"]["TypedTracePageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargeBatchesController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        chargeBatchId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["ChargeBatch"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargeConceptsController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["ChargeConcept"][];
+            meta: components["schemas"]["TypedTracePageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargeConceptsController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChargeConceptCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["ChargeConcept"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargeConceptsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        chargeConceptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["ChargeConcept"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargeConceptsController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        chargeConceptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChargeConceptUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["ChargeConcept"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargeConceptsController_archive: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        chargeConceptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EmptyRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["ChargeConcept"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Charge"][];
+            meta: components["schemas"]["TypedTracePageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargesController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChargeCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Charge"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargesController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        chargeId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Charge"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargesController_adjust: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        chargeId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AdjustChargeDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargesController_cancel: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        chargeId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PaymentReviewRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Charge"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargesController_reverse: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        chargeId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReverseChargeDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ChargesController_generate: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["GenerateMonthlyChargesDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  FeeSchedulesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["FeeSchedule"][];
+            meta: components["schemas"]["TypedTracePageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  FeeSchedulesController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["FeeScheduleCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["FeeSchedule"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  FeeSchedulesController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        feeScheduleId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["FeeSchedule"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  FeeSchedulesController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        feeScheduleId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["FeeScheduleUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["FeeSchedule"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  FeeSchedulesController_archive: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        feeScheduleId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EmptyRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["FeeSchedule"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  listTenantInvitations: {
+    parameters: {
+      query?: {
+        status?: "pending" | "accepted" | "expired" | "revoked" | "cancelled";
+        email?: string;
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["InvitationListResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  createTenantInvitation: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateInvitationDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CreatedInvitationResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  revokeTenantInvitation: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path: {
+        invitationId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["InvitationResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  LeasesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Lease"][];
+            meta: components["schemas"]["TypedResidentPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LeasesController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LeaseCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Lease"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LeasesController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        leaseId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Lease"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LeasesController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        leaseId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LeaseUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Lease"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LeasesController_end: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        leaseId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EndRelationshipRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Lease"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LegalEntitiesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["LegalEntity"][];
+            meta: components["schemas"]["TypedResidentPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LegalEntitiesController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LegalEntityCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["LegalEntity"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LegalEntitiesController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        legalEntityId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["LegalEntity"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LegalEntitiesController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        legalEntityId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LegalEntityUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["LegalEntity"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  LegalEntitiesController_archive: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        legalEntityId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ArchiveRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["LegalEntity"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  revokeTenantMembership: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path: {
+        membershipId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RevokeMembershipDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["MembershipResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  assignTenantMembershipRole: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path: {
+        membershipId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AssignMembershipRoleDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["MembershipRoleResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  removeTenantMembershipRole: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path: {
+        membershipId: string;
+        roleId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["MembershipRoleResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  PaymentAllocationsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        allocationId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PaymentAllocation"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentAllocationsController_reverse: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        allocationId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PaymentReasonDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentReceiptsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        receiptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PaymentReceipt"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentReceiptsController_accept: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        receiptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PaymentReceipt"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentReceiptsController_download: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        receiptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Receipt document. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/pdf": string;
+          "image/jpeg": string;
+          "image/png": string;
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentReceiptsController_reject: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        receiptId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PaymentReviewRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PaymentReceipt"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentsController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Payment"][];
+            meta: components["schemas"]["TypedRequestPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentsController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreatePaymentDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Payment"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentAllocationCommandsController_allocate: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AllocatePaymentDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentAllocationCommandsController_list: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PaymentAllocation"][];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentAllocationCommandsController_autoAllocate: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": Record<string, never>;
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentsController_confirm: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Payment"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentsController_receipts: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PaymentReceipt"][];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentsController_upload: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReceiptUploadDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentsController_reject: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PaymentReviewRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Payment"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PaymentAllocationCommandsController_reverse: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        paymentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PaymentReasonDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PersonsController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Person"][];
+            meta: components["schemas"]["TypedResidentPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PersonsController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PersonCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Person"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PersonsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        personId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Person"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PersonsController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        personId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PersonUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Person"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PersonsController_archive: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        personId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ArchiveRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Person"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PersonsController_linkUser: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        personId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LinkUserRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PersonIdentityLinkAcknowledgement"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnershipsController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyOwnership"][];
+            meta: components["schemas"]["TypedResidentPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnershipsController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["OwnershipCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyOwnership"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnershipsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        ownershipId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyOwnership"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnershipsController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        ownershipId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["OwnershipUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyOwnership"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  OwnershipsController_end: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        ownershipId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EndRelationshipRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyOwnership"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PropertyUnitsController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyUnit"][];
+            meta: components["schemas"]["TypedResidentPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PropertyUnitsController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PropertyUnitCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyUnit"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PropertyUnitsController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyUnit"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PropertyUnitsController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PropertyUnitUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyUnit"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  PropertyUnitsController_archive: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ArchiveRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["PropertyUnit"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BalancesController_balance: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["UnitBalance"];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BalancesController_recalculate: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RecalculateBalanceDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  BalancesController_movements: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        propertyUnitId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["FinancialMovement"][];
+            meta: components["schemas"]["TypedRequestMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ResidenciesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Residency"][];
+            meta: components["schemas"]["TypedResidentPageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ResidenciesController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResidencyCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Residency"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ResidenciesController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        residencyId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Residency"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ResidenciesController_update: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        residencyId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResidencyUpdateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Residency"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  ResidenciesController_end: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        residencyId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EndRelationshipRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["Residency"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  listEffectiveTenantSettings: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["EffectiveSettingListResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  getEffectiveTenantSetting: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path: {
+        key: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["EffectiveSettingResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  updateTenantSetting: {
+    parameters: {
+      query?: never;
+      header: {
+        "X-Tenant-Id": string;
+      };
+      path: {
+        key: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdateTenantSettingDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["EffectiveSettingResponseDto"];
+        };
+      };
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ApiErrorEnvelopeDto"];
+        };
+      };
+    };
+  };
+  UnitFeesController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        pageSize?: number;
+      };
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["UnitFeeAssignment"][];
+            meta: components["schemas"]["TypedTracePageMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  UnitFeesController_create: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UnitFeeCreateRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["UnitFeeAssignment"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  UnitFeesController_get: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+      };
+      path: {
+        unitFeeAssignmentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["UnitFeeAssignment"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+    };
+  };
+  UnitFeesController_end: {
+    parameters: {
+      query?: never;
+      header: {
+        /** @description Validated active tenant context. */
+        "X-Tenant-Id": string;
+        /** @description Opaque client key scoped by tenant and operation. */
+        "Idempotency-Key": string;
+      };
+      path: {
+        unitFeeAssignmentId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EndRelationshipRequest"];
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": {
+            data: components["schemas"]["UnitFeeAssignment"];
+            meta: components["schemas"]["TypedTraceMeta"];
+          };
+        };
+      };
+      /** @description TENANT_CONTEXT_REQUIRED, IDEMPOTENCY_KEY_REQUIRED */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description AUTHENTICATION_REQUIRED */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description TENANT_CONTEXT_INVALID, PERMISSION_DENIED */
+      403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_NOT_FOUND, CROSS_TENANT_REFERENCE */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description RESOURCE_STATE_CONFLICT, IDEMPOTENCY_KEY_CONFLICT, IDEMPOTENCY_OPERATION_IN_PROGRESS, CONCURRENT_MODIFICATION, FINANCIAL_CURRENCY_MISMATCH */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description VALIDATION_ERROR, UNSUPPORTED_TENANT_CURRENCY */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
+      /** @description DEPENDENCY_UNAVAILABLE */
+      503: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SecureErrorEnvelope"];
+        };
+      };
     };
+  };
 }

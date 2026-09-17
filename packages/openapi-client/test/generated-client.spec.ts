@@ -50,7 +50,7 @@ describe("generated client drift gate", () => {
     const generator = resolve(directory, "generator.mjs");
     writeFileSync(
       generator,
-      'import { writeFileSync } from "node:fs"; const i=process.argv.indexOf("-o"); writeFileSync(process.argv[i+1], String(Math.random()));',
+      'import { writeFileSync } from "node:fs"; const i=process.argv.indexOf("-o"); writeFileSync(process.argv[i+1], `export const value = ${Math.random()};\n`);',
     );
     const result = check({ generator });
     expect(result.status).not.toBe(0);

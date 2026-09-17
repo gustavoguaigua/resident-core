@@ -1,8 +1,9 @@
-import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import process from "node:process";
+
+import { generateClient } from "./generate-client.mjs";
 
 const packageRoot = resolve(import.meta.dirname, "..");
 const committed = process.env.OPENAPI_CLIENT_OUTPUT_PATH
@@ -47,14 +48,5 @@ try {
 }
 
 function generate(output) {
-  const result = spawnSync(
-    process.execPath,
-    [generator, source, "-o", output],
-    { cwd: packageRoot, encoding: "utf8" },
-  );
-  if (result.status !== 0) {
-    throw new Error(
-      result.stderr || result.stdout || "Client generation failed.",
-    );
-  }
+  generateClient({ generator, output, source });
 }

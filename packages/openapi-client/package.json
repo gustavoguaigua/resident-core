@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "check:generated": "node tools/check-generated.mjs",
-    "generate": "openapi-typescript openapi/resident-core.v1.json -o src/generated/resident-core.ts",
+    "generate": "node tools/generate-client.mjs",
     "lint": "eslint src test",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.json --noEmit",
